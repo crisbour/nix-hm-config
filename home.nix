@@ -1,5 +1,9 @@
 { pkgs, ... }:
-
+#let {
+#  user = builtins.getEnv "USER";
+#  userHome = builtins.getEnv "HOME";
+#}
+#in
 {
 
   # The home-manager manual is at:
@@ -15,8 +19,8 @@
   #
   # You need to change these to match your username and home directory
   # path:
-  home.username = "$USER";
-  home.homeDirectory = "$HOME";
+  home.username = builtins.getEnv "USER";
+  home.homeDirectory = builtins.getEnv "HOME";
 
   # If you use non-standard XDG locations, set these options to the
   # appropriate paths:
@@ -38,9 +42,8 @@
   # Since we do not install home-manager, you need to let home-manager
   # manage your shell, otherwise it will not be able to add its hooks
   # to your profile.
-  programs.bash = {
-    enable = true;
-  };
+
+  imports = [ ./home-manager/lxd.nix ];
 
   home.packages = [
     pkgs.htop
