@@ -21,9 +21,12 @@
         modules = [
           ./home.nix
           {
-            # Migrate them to home.nix
-  	        username = builtins.getEnv "USER";
-  	        homeDirectory = builtins.getEnv "HOME"; 
+            home = {
+              # Migrate them to home.nix
+  	          username = builtins.getEnv "USER";
+  	          homeDirectory = builtins.getEnv "HOME"; 
+              stateVersion = "22.11";
+            };
           }
         ];
 
