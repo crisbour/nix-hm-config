@@ -1,9 +1,4 @@
 { pkgs, ... }:
-#let {
-#  user = builtins.getEnv "USER";
-#  userHome = builtins.getEnv "HOME";
-#}
-#in
 {
 
   # The home-manager manual is at:

@@ -1,0 +1,68 @@
+#+title: lxd
+
+* Org
+For instroduction and guides on Org Mode checkout https://orgmode.org/
+
+** Org mode is awesome
+
+Writing in org mode with emacs configured using doom is very satisfyable.
+
+* LXD configure
+
+In order to experiment with system configuration in an isolated environment, LXD is a good choice for trying things out before commiting to making changes to the host.
+
+We may mount all the files from host in the container and map the UID/GID in order for the contaienr to have R/W rights. A good guide about this is present here https://www.cyberciti.biz/faq/how-to-add-or-mount-directory-in-lxd-linux-container/.
+
+** TODO LXD Rust configuration
+Instead of configuring such a container manually, write a rust script to automatically spawn a container with necessary configurations
+
+** LXD Bind mount
+
+In order to access and modify documents in container as they would be on the host, UID/GUID must match in kernel. The mapping is configured as follows:
+
+#+begin_src
+nix-shell '<home-manager>' -A install
+#+end_src
+
+Furthermore, the Documents directory must be mounted in the container. This is achieve through
+creating a disk device in the container with source on the host.
+
+#+begin_src
+lxc config add doc <container_name> source=/home/cristi/Documents dest=/home/ubuntu/Documents
+#+end_src
+
+** NIX in LXD Container requirements
+In order to use NIX inside LXD, nesting must be enabled as NIX itself makes use of namespace/containers (Not sure what is behind). The LXD configuration is:
+
+#+begin_src shell
+lxc launch -c security.nesting=true <image> <name>
+#+end_src
+
+A discussion about installing NIX in an Ubuntu LXD container for single user mode, can be found here: https://gist.github.com/simhaonline/3a107a13840dbcdbbc68e3dc25dd9aa3
+
+
+** Graphical Applications
+
+An X server is required to run in the container and forward the graphics to the host X server DISPLAY.
+Resource: https://blog.simos.info/how-to-run-graphics-accelerated-gui-apps-in-lxd-containers-on-your-ubuntu-desktop/
+
+* NIX
+NIX is declarative package manager, able of configuring a deterministic system, each package being hashed like a git tree of dependencies.
+
+** Home-Manager
+
+Main task with NIX is too setup the working environment usin Home-Manager. The manual can be found at https://nix-community.github.io/home-manager/
+
+Single user installation consider NIX a derivation itself, therfore there might be conflicts between `nix` and `home-manager-path` on priority level `5`. In order to hint NIX on which version of the required pacakge should be used, set a lower priority to NIX, such that would be the default if it has not been synced into `home-manager` yet.
+
+#+begin_src
+nix-env --set-flag priority 4 nix
+#+end_src
+
+*** Reproducible
+
+- Custom home-manager: https://www.lafuente.me/posts/installing-home-manager/
+
+** Blog build
+
+- https://blog.ysndr.de/posts/internals/2020-04-10-built-with-nix/

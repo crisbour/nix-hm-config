@@ -1,0 +1,21 @@
+#+title: Setup KVM
+
+Overview:
+How to setup an ubuntu VM with KVM
+
+
+* Required
+Intall dependencies:
+#+begin_src
+sudo apt install qemu-kvm ovmf
+#+end_src
+
+Check that KVM is available:
+#+begin_src shell
+kvm-ok
+#+end_src
+
+* Launch KVM
+#+begin_src
+https://ubuntu.com/blog/kvm-hyphervisor
+#+end_src
