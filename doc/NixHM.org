@@ -1,0 +1,50 @@
+#+title: Nix Home-Manager path
+
+Here are notes while trying to get home-manager setup for my environment, container or remote instances.
+
+After a lot of fiddling with ~nix~ and ~home-manager~ installation, there are subtle differences and approaches that lead to the foresight of having a =reproducible, composable and reusable= environment.
+
+* NIX
+** Installation: Single vs Multiple user
+While nix is part of multiple-user enviroment and it is prefered, multiple user installation might not be possible due to privileges such as in a shared linux/VM or inside a container, such as the LXD container used to test this repository.
+
+Otherwise, for single-user installation, home-manager packages might conflict due to a priority error on the same package name. One solution is to set ~nix~ to a different priority level than ~home-manager~.
+#+begin_src
+nix-env set-flag --priority <another_level> nix
+#+end_src
+
+** Reproducible
+
+In order to keep track of the versions used, I identified 2 methods so far: ~flake~ and ~niv~.
+- ~niv~ will keep track of the dependencies in ~shell.nix~ in ~/nix/sources.json~
+- ~flake~ will similarly keep dependencies versions and hashes in ~flake.lock~
+
+*** TODO Flake HM
+- [ ] Read about Flake
+- [ ] Flake shell.nix
+- [ ] Flake for Home-Manager
+
+** Home-Manager
+
+The official [[https://nix-community.github.io/home-manager/][Home-Manager Guide]] provides an excelent resource for this, guiding through:
+- install
+- switch, generations and rollbacks
+- XDG for integration with the DM
+- etc
+
+However, the above guide does not provide insight into implementation choices, but luckly
+Nix has become quite popular and numerous blog posts can be found that talk about this and show their solutions:
+
+- [[https://www.bekk.christmas/post/2021/16/dotfiles-with-nix-and-home-manager][Declarative managment of dotfile with Nix]]
+- [[https://www.lafuente.me/posts/installing-home-manager/][Custom HM in NixOS]]: Represents a reproducible home-manager configuration
+- [[https://github.com/ryantm/home-manager-template][home-manager-template]]
+- [ ] [[https://www.chrisportela.com/posts/home-manager-flake/][home-manager-flake]]: Setting up dotfiles with home-manager as flake
+  -- [[https://www.tweag.io/blog/2020-05-25-flakes/][Tutorial to flakes]]
+
+* Hosts
+** LXD
+Nix uses some form of containers, sandbox or namespaces (which I don't know their underlying functionality), but in order for running nix isolated, it requires that nested containers are enabled for the host container. Configure it as follows:
+
+#+begin_src
+lxc config set <container_name> security.nesting true
+#+end_src
