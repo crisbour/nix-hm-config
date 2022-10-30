@@ -17,11 +17,16 @@
       };
 
       mkHomeConfiguration = args: home-manager.lib.homeManagerConfiguration (rec {
-        system = args.system or "x86_64-linux";
-        configuration = import ./home.nix;
-  	    username = builtins.getEnv "USER";
-  	    homeDirectory = builtins.getEnv "HOME";
-        pkgs = pkgsForSystem system;
+        pkgs = pkgsForSystem (args.system or "x86_64-linux");
+        modules = [
+          ./home.nix
+          {
+            # Migrate them to home.nix
+  	        username = builtins.getEnv "USER";
+  	        homeDirectory = builtins.getEnv "HOME"; 
+          }
+        ];
+
       } // args);
 
     in utils.lib.eachSystem [ "x86_64-linux" ] (system: rec {

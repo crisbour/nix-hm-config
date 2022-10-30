@@ -1,4 +1,4 @@
-withGUI:
+lib: withGUI:
 {
   enable = withGUI;
   settings = {

@@ -1,7 +1,7 @@
 { config, lib, pkgs, specialArgs, ... }:
 
 let
-  bashsettings = import ./bash.nix pkgs;
+  bashsettings = import ./modules/bash.nix pkgs;
   vimsettings = import ./vim.nix;
   packages = import ./packages.nix;
   programs = import ./programs.nix;
@@ -40,7 +40,7 @@ in
   services.gpg-agent.enableExtraSocket = withGUI;
   services.gpg-agent.enableSshSupport = isLinux;
 
-  programs.alacritty = (import ./alacritty.nix) withGUI;
+  programs.alacritty = (import ./modules/alacritty/alacritty.nix) lib withGUI;
   programs.bash = bashsettings;
   programs.neovim = vimsettings pkgs;
 

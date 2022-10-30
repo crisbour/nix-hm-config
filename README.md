@@ -18,5 +18,6 @@ TODO: Nix Home-manager config to:
 ## Resources
 [al-color]: https://github.com/toggle-corp/alacritty-colorscheme
 
+## TODO
 
-
+- [ ] Add `git` to flake dependencies as containers or minmal system might not have it
