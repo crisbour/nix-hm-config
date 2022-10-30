@@ -1,48 +1,76 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
+
+let
+  bashsettings = import ./bash.nix pkgs;
+  vimsettings = import ./vim.nix;
+  packages = import ./packages.nix;
+  programs = import ./programs.nix;
+
+  # hacky way of determining which machine I'm running this from
+  inherit (specialArgs) withGUI isDesktop;
+
+  inherit (lib) mkIf;
+  inherit (pkgs.stdenv) isLinux;
+in
 {
-
-  # The home-manager manual is at:
-  #
-  #   https://rycee.gitlab.io/home-manager/release-notes.html
-  #
-  # Configuration options are documented at:
-  #
-  #   https://rycee.gitlab.io/home-manager/options.html
-
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  #
-  # You need to change these to match your username and home directory
-  # path:
   home.username = builtins.getEnv "USER";
   home.homeDirectory = builtins.getEnv "HOME";
 
-  # If you use non-standard XDG locations, set these options to the
-  # appropriate paths:
-  #
-  # xdg.cacheHome
-  # xdg.configHome
-  # xdg.dataHome
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "20.09";
+  # Allow some or all Unfree packages
+  #imports = [ ./config/base.nix ];
+  nixpkgs.config.allowUnfree = true;
 
-  # Since we do not install home-manager, you need to let home-manager
-  # manage your shell, otherwise it will not be able to add its hooks
-  # to your profile.
+  home.packages = packages pkgs withGUI;
 
-  imports = [ ./home-manager/lxd.nix ];
+  home.file.".config/nvim/coc-settings.json".source = ./coc-settings.json;
 
-  home.packages = [
-    pkgs.htop
-    pkgs.fortune
-  ];
+  # You can add services as follows:
+  #services.<program> = {
+  #  enable = true;
+  #  ...
+  #}
+
+  # Alternative to plain direnv, add watch method to evaluate state of shell
+  services.lorri.enable = isLinux;
+
+  services.gpg-agent.enable = isLinux;
+  services.gpg-agent.enableExtraSocket = withGUI;
+  services.gpg-agent.enableSshSupport = isLinux;
+
+  programs.alacritty = (import ./alacritty.nix) withGUI;
+  programs.bash = bashsettings;
+  programs.neovim = vimsettings pkgs;
+
+  # Why do we use both packages and programs versions of direnv 
+  programs.direnv.enable = true;
+  programs.htop = {
+    enable = true;
+    settings = {
+      left_meters = [ "LeftCPUs2" "Memory" "Swap" ];
+      left_right = [ "RightCPUs2" "Tasks" "LoadAverage" "Uptime" ];
+      setshowProgramPath = false;
+      treeView = true;
+    };
+  };
+  programs.ssh = {
+    enable = true;
+    forwardAgent = true;
+  };
+  programs.fzf.enable = true;
+
+  programs.vscode = mkIf withGUI {
+    enable = true;
+    package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
+    extensions = with pkgs.vscode-extensions; [
+      asciidoctor.asciidoctor-vscode
+      vscodevim.vim
+      ms-python.python
+    ];
+  };
+
+  xdg.enable = true;
 
 }
