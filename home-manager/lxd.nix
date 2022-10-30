@@ -9,7 +9,7 @@
 
   home.sessionVariables = {
     EDITOR = "vim";
-    SHELL = "zsh"; #"${pkgs.zsh}/bin/zsh";
+    SHELL = "${pkgs.zsh}/bin/zsh";
   };
 
  # different prefix from host machine to avoid conflict
