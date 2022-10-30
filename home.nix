@@ -2,7 +2,7 @@
 
 let
   bashsettings = import ./modules/bash.nix pkgs;
-  vimsettings = import ./vim.nix;
+  vimsettings = import ./modules/vim.nix;
   packages = import ./packages.nix;
   programs = import ./programs.nix;
 
