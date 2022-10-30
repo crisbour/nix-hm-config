@@ -1,4 +1,6 @@
 #+title: Nix Home-Manager path
+#+author: Cristian Bourceanu
+#+email: cristi.bourceanu@protonmail.com
 
 Here are notes while trying to get home-manager setup for my environment, container or remote instances.
 
