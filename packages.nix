@@ -25,7 +25,7 @@ pkgs: withGUI: with pkgs; [
   nix-index                     # Find packages providing a binary name
   nix-template                  # Generate deterministic derivation templates
   nix-update                    # Update nixpkgs
-  nixpkgs-review-fixed          # Rebuild packages with changes/overlays
+#  nixpkgs-review-fixed          # Rebuild packages with changes/overlays
   nodejs                        # needed for coc vim plugins
   perl                          # for fzf history
   python3
