@@ -57,17 +57,17 @@ pkgs: withGUI: with pkgs; [
   # intended to be installed with an X11 or wayland session
   brightnessctl
   enlightenment.terminology
-  discord
-  (dwarf-fortress-packages.dwarf-fortress-full.override {
-    dfVersion = "0.47.04";
-    theme = dwarf-fortress-packages.themes.phoebus;
-    enableIntro = false;
-    enableFPS = true;
-  })
+  #discord
+  #(dwarf-fortress-packages.dwarf-fortress-full.override {
+  #  dfVersion = "0.47.04";
+  #  theme = dwarf-fortress-packages.themes.phoebus;
+  #  enableIntro = false;
+  #  enableFPS = true;
+  #})
   nerdfonts                   # A bunch of awesome fonts
   #shutter # screenshots
   #flameshot
-  spotify
+  #spotify
 
   tmate
 ]
