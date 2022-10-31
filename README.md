@@ -14,6 +14,27 @@ TODO: Nix Home-manager config to:
 - clone alacritty themes and link/copy color schemes to `.config/alacritty/colors`
 - run `alacritty-colorscheme -V <prefered-colorscheme.{yaml,yml}>`. Alternatively, replace colors section with the colorscheme of choice and find a way to configure `.vimrc_background` as well
 
+## Usage
+
+### Update flakes
+
+```
+nix flake update
+```
+
+### Configuration
+
+Because this make use of env variables `USER` and `HOME` it is not a pure derivation, therefore it requires the `impure` argument.
+
+```
+home-manager switch --impure --flake .#<name_of_configuration>
+```
+
+Flakes are an experimental feature at the moment. In order to make use of them without verbosity in the command, allow flakes if you are following nix-unstabel. Add the following to `~/.config/nix/nix.conf`:
+
+```
+experimental-features = nix-command flakes
+```
 
 ## Resources
 [al-color]: https://github.com/toggle-corp/alacritty-colorscheme

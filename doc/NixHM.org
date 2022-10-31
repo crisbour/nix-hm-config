@@ -24,7 +24,7 @@ In order to keep track of the versions used, I identified 2 methods so far: ~fla
 *** TODO Flake HM
 - [ ] Read about Flake
 - [ ] Flake shell.nix
-- [ ] Flake for Home-Manager
+- [t] Flake for Home-Manager
 
 ** Home-Manager
 
@@ -42,6 +42,24 @@ Nix has become quite popular and numerous blog posts can be found that talk abou
 - [[https://github.com/ryantm/home-manager-template][home-manager-template]]
 - [ ] [[https://www.chrisportela.com/posts/home-manager-flake/][home-manager-flake]]: Setting up dotfiles with home-manager as flake
   -- [[https://www.tweag.io/blog/2020-05-25-flakes/][Tutorial to flakes]]
+
+*** Niv: run HM without installing it
+
+[[https://github.com/ryantm/home-manager-template][home-manager-tempalte]]
+
+
+*** Flakes
+
+It appears there might be some priority conflicts for HM using flake. Thist could be the same issue as the single install. The issue can be found here https://github.com/nix-community/home-manager/issues/2848
+
+*** Github Projects: HM + Flakes
+
+- https://github.com/the-nix-way/home-manager-config-template
+- https://github.com/Misterio77/nix-starter-configs
+- https://github.com/fufexan/dotfiles
+- https://github.com/MatthiasBenaets/nixos-config
+- https://github.com/MatthiasBenaets/nixos-config
+- https://github.com/lucperkins/nix-home-manager-config
 
 * Hosts
 ** LXD
