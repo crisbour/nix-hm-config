@@ -8,5 +8,5 @@ lib: withGUI:
       { key = "Subtract";   mods = "Control";     action = "DecreaseFontSize"; }
       { key = "Minus";      mods = "Control";     action = "DecreaseFontSize"; }
     ];
-  } // lib.trivial.importJSON  (./. + "./colors/my_theme.yaml";
+  } // lib.modules.importJSON  (./. + "/colors/my_theme.json");
 }

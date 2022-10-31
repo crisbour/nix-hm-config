@@ -1,13 +1,8 @@
-  # Highlight window damage information.
-  #highlight_damage: false
 colors:
-  # COLORSCHEME: base16-horizon-terminal-dark-256.yml
-  # Default colors
   primary:
     background: '0x1c1e26'
     foreground: '0xcbced0'
 
-  # Colors the cursor will use if `custom_cursor_colors` is true
   normal:
     black: '0x1c1e26'
     red: '0xe95678'
@@ -18,7 +13,6 @@ colors:
     cyan: '0x59e1e3'
     white: '0xcbced0'
 
-  # Bright colors
   bright:
     black: '0x6f6f70'
     red: '0xe95678'
@@ -33,7 +27,6 @@ colors:
     text: '0x1c1e26'
     cursor: '0xcbced0'
 
-  # Normal colors
   selection:
     text: '0x000000'
     background: '0xb3d7ff'
