@@ -1,19 +1,28 @@
 {
-  description = "Home-manager configuration";
+  description = "Home-manager configuration as a flake";
 
   inputs = {
-    utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, home-manager, nixpkgs, utils }:
+  outputs = { self, nixpkgs, home-manager, utils }:
   # Remove polybar-pipewire overlay
     let
+      username = builtins.getEnv "USER";
+      homeDirectory = builtins.getEnv "HOME";
 
       pkgsForSystem = system: import nixpkgs {
         inherit system;
+
+        config = {
+          allowUnfree = true;
+          xdg = { configHome = homeDirectory; };
+        };
       };
 
       mkHomeConfiguration = args: home-manager.lib.homeManagerConfiguration (rec {
@@ -23,8 +32,8 @@
           {
             home = {
               # Migrate them to home.nix
-  	          username = builtins.getEnv "USER";
-  	          homeDirectory = builtins.getEnv "HOME"; 
+              inherit username;
+              inherit homeDirectory;
               stateVersion = "22.11";
             };
           }
@@ -53,5 +62,6 @@
     };
 
     inherit home-manager;
+
   };
 }

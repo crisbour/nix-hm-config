@@ -10,13 +10,12 @@ pkgs: withGUI: with pkgs; [
   cmake
 
   dbus
-  direnv
   exa                           # `ls` replacement written in Rust
   fd                            # `find` alternative, faster and simpler
   git
-  gitAndTools.hub
+#  gitAndTools.hub
 #  glances                       # web based `htop`
-  jq 							# JSON parsing for the CLI
+  jq                            # JSON parsing for the CLI
   gnupg                         # gpg command
   gnumake
   htop
@@ -42,7 +41,6 @@ pkgs: withGUI: with pkgs; [
   # vim plugin dependencies
   fzf
   ripgrep
-  elmPackages.elm-format
 
   # so neovim can copy to clipboard
   xclip
@@ -71,4 +69,3 @@ pkgs: withGUI: with pkgs; [
 
   tmate
 ]
-

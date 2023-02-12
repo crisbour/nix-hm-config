@@ -1,5 +1,8 @@
-lib: withGUI:
-{
+{ config, lib, pkgs, ... }:
+withGUI:
+let
+  termfont = {family = "MesloLGS Nerd Font";};
+in {
   enable = withGUI;
   settings = {
     keybindings = [
@@ -19,6 +22,9 @@ lib: withGUI:
     cursor = {
       style = "Beam";
       thickness = 0.2;
+    };
+    window = {
+      decorations = "none";
     };
 
     shell = if config.programs.tmux.enable

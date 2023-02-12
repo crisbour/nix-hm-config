@@ -61,6 +61,15 @@ It appears there might be some priority conflicts for HM using flake. Thist coul
 - https://github.com/MatthiasBenaets/nixos-config
 - https://github.com/lucperkins/nix-home-manager-config
 
+
+** fromYAML
+
+Bring in configuration from yaml file might be necesarry sometime (i.e. alacritty). There are 2 approaches to this:
+ - Convert *YAML* to *JSON* then use the src_nix[bultin]{importJSON} to import the JSON as an atrtribute: https://github.com/search?p=1&q=fromYaml+language%3Anix&type=Code
+- Alterntively we can link the conf file directly and not set the options in nix:[[https://github.com/gytis-ivaskevicius/nixfiles/blob/2b2abcd07ede0df56360a8cda50a919a65864f8c/overlays/g-alacritty/default.nix][call with explicit config file path]]. This might also help with writing the conf file and have effect without having to produce a new derivation
+
+
+
 * Hosts
 ** LXD
 Nix uses some form of containers, sandbox or namespaces (which I don't know their underlying functionality), but in order for running nix isolated, it requires that nested containers are enabled for the host container. Configure it as follows:

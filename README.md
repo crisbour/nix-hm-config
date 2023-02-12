@@ -42,3 +42,4 @@ experimental-features = nix-command flakes
 ## TODO
 
 - [ ] Add `git` to flake dependencies as containers or minmal system might not have it
+- [x] Allow Unfree: Not working with Flakes for my config, find alternative
