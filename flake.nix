@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixgl.url = "github:guibou/nixGL";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -10,7 +11,7 @@
     utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, home-manager, utils }:
+  outputs = { self, nixpkgs, home-manager, utils, nixgl, ... }:
   # Remove polybar-pipewire overlay
     let
       username = builtins.getEnv "USER";
@@ -22,6 +23,7 @@
         config = {
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
+          overlays = [ nixgl.overlay ];
         };
       };
 
@@ -38,7 +40,6 @@
             };
           }
         ];
-
       } // args);
 
     in utils.lib.eachSystem [ "x86_64-linux" ] (system: rec {

@@ -3,11 +3,9 @@
 let
   # hacky way of determining which machine I'm running this from
   inherit (specialArgs) withGUI isDesktop;
-
-  packages = import ./packages.nix { inherit withGUI pkgs;};
-  programs = import ./programs.nix;
-
   inherit (pkgs.stdenv) isLinux;
+
+  packages = import ./packages.nix;
 in
 {
   home.sessionVariables = {
@@ -15,7 +13,7 @@ in
     SHELL = "${pkgs.zsh}/bin/zsh";
 #    BROWSER = "${pkgs.firefox}/bin/firefox";
   };
-  home.packages = packages;
+  home.packages = packages pkgs withGUI;
 
   # Allow some or all Unfree packages
   #imports = [ ./config/base.nix ];
@@ -30,8 +28,7 @@ in
     inherit pkgs;
     inherit config;
     inherit lib;
-    inherit withGUI;
-  };
+  } withGUI;
 
 
   # You can add services as follows:

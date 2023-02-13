@@ -12,10 +12,12 @@ pkgs: withGUI: with pkgs; [
   dbus
   exa                           # `ls` replacement written in Rust
   fd                            # `find` alternative, faster and simpler
-  git
+#  git
 #  gitAndTools.hub
 #  glances                       # web based `htop`
   jq                            # JSON parsing for the CLI
+  glibc
+  glibcLocales
   gnupg                         # gpg command
   gnumake
   htop

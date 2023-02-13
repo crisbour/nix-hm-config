@@ -1,4 +1,4 @@
-{ pkgs, config, lib, withGUI, ... }:
+{ pkgs, config, lib}: withGUI:
 let
   bashsettings = import ./modules/bash.nix pkgs;
   vimsettings = import ./modules/vim.nix;

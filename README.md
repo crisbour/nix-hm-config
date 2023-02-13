@@ -43,3 +43,4 @@ experimental-features = nix-command flakes
 
 - [ ] Add `git` to flake dependencies as containers or minmal system might not have it
 - [x] Allow Unfree: Not working with Flakes for my config, find alternative
+- [ ] How to insall `nixgl.auto.nixGLDefault` from home-manager?
