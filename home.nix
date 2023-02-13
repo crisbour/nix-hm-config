@@ -1,48 +1,50 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, specialArgs, ... }:
+
+let
+  # hacky way of determining which machine I'm running this from
+  inherit (specialArgs) withGUI isDesktop;
+  inherit (pkgs.stdenv) isLinux;
+
+  packages = import ./packages.nix;
+in
 {
+  home.sessionVariables = {
+    EDITOR = "nvim";
+    SHELL = "${pkgs.zsh}/bin/zsh";
+#    BROWSER = "${pkgs.firefox}/bin/firefox";
+  };
+  home.packages = packages pkgs withGUI;
 
-  # The home-manager manual is at:
-  #
-  #   https://rycee.gitlab.io/home-manager/release-notes.html
-  #
-  # Configuration options are documented at:
-  #
-  #   https://rycee.gitlab.io/home-manager/options.html
+  # Allow some or all Unfree packages
+  #imports = [ ./config/base.nix ];
+  nixpkgs.config.allowUnfree = true;
 
-  # Home Manager needs a bit of information about you and the
-  # paths it should manage.
-  #
-  # You need to change these to match your username and home directory
-  # path:
-  home.username = builtins.getEnv "USER";
-  home.homeDirectory = builtins.getEnv "HOME";
+  home.file.".config/nvim/coc-settings.json".source = ./coc-settings.json;
 
-  # If you use non-standard XDG locations, set these options to the
-  # appropriate paths:
-  #
-  # xdg.cacheHome
-  # xdg.configHome
-  # xdg.dataHome
+  # Allow Nix to handle fonts
+  fonts = { fontconfig = { enable = true; }; };
 
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # changes in each release.
-  home.stateVersion = "20.09";
+  programs = import ./programs.nix {
+    inherit pkgs;
+    inherit config;
+    inherit lib;
+  } withGUI;
 
-  # Since we do not install home-manager, you need to let home-manager
-  # manage your shell, otherwise it will not be able to add its hooks
-  # to your profile.
 
-  imports = [ ./home-manager/lxd.nix ];
+  # You can add services as follows:
+  #services.<program> = {
+  #  enable = true;
+  #  ...
+  #}
 
-  home.packages = [
-    pkgs.htop
-    pkgs.fortune
-  ];
+  # Alternative to plain direnv, add watch method to evaluate state of shell
+  services.lorri.enable = isLinux;
+
+  services.gpg-agent.enable = isLinux;
+  services.gpg-agent.enableExtraSocket = withGUI;
+  services.gpg-agent.enableSshSupport = isLinux;
+
+
+  xdg.enable = true;
 
 }

@@ -1,0 +1,19 @@
+#+title: Nix Env
+#+author: Cristian Bourceanu
+
+* Overview
+
+How to setup a working environment with Nix. Here is the learning steps undertook in learning Nix and what tools I experminted with that I can use to speed up and ease the initial setup of a Nix deriviation configuration for each project.
+
+** Tutorials
+The Nix Pill is an introductionary guide to how to use Nix and setup your shell.
+
+*** TODO Nix Pill
+- [ ] 4. [[https://nixos.org/guides/nix-pills/basics-of-language.html][Basics of the language]]o
+
+*** TODO Introduction to nix-shell
+https://ghedam.at/15978/an-introduction-to-nix-shell
+
+** Tools
+
+- [[https://github.com/jonringer/nix-template/][nix-template]]: Creating nix expression easy
