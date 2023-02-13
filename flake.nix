@@ -15,7 +15,7 @@
   # Remove polybar-pipewire overlay
     let
       username = builtins.getEnv "USER";
-      homeDirectory = builtins.getEnv "HOME";
+      homeDirectory = /. + builtins.getEnv "HOME";
 
       pkgsForSystem = system: import nixpkgs {
         inherit system;
