@@ -9,10 +9,9 @@ pkgs:
     fzf-vim
     fzfWrapper
     LanguageClient-neovim
-    lightline-vim
+#    lightline-vim
     nerdtree
     supertab
-    tabular
     vim-better-whitespace
     vim-visual-multi
 #    vim-multiple-cursors
@@ -21,7 +20,7 @@ pkgs:
     #vimproc-vim
 
     # themes
-    wombat256
+    gruvbox
 
     # Nix
     vim-nix
@@ -34,8 +33,12 @@ pkgs:
     YouCompleteMe
     vim-toml
 
-    # sql
-    #sqlite-lua
+    # git
+    fugitive
+
+    # Display tabs for buffers
+    vim-airline
+
   ];
 
   extraPackages = with pkgs; [
@@ -43,7 +46,7 @@ pkgs:
   ];
 
   extraConfig = ''
-    colorscheme wombat256mod
+    colorscheme gruvbox
     syntax on
     filetype plugin indent on
     set splitbelow
@@ -74,8 +77,6 @@ pkgs:
       endif
     endif
 
-    let g:haskellmode_completion_ghc = 0
-    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
     autocmd FileType markdown setlocal conceallevel=0
     autocmd FileType cue setlocal shiftwidth=2 tabstop=2 expandtab
     autocmd FileType cue DisableStripWhitespaceOnSave
@@ -84,11 +85,12 @@ pkgs:
     autocmd BufWritePost *.elm silent !elm-format --yes <afile>
 
     " Tabular bindings
-    let g:haskell_tabular = 1
-    vmap <leader>a= :Tabularize /=<CR>
-    vmap <leader>a; :Tabularize /::<CR>
-    vmap <leader>a- :Tabularize /-><CR>
-    vmap <leader>a# :Tabularize /#<CR>
+    if exists(":Tabularize")
+      vmap <leader>a= :Tabularize /=<CR>
+      vmap <leader>a; :Tabularize /::<CR>
+      vmap <leader>a- :Tabularize /-><CR>
+      vmap <leader>a# :Tabularize /#<CR>
+    endif
 
     " fzf bindings
     nnoremap <leader>r :Rg<CR>
@@ -98,6 +100,22 @@ pkgs:
     nnoremap <leader>L :BLines<CR>
     nnoremap <leader>c :Commits<CR>
     nnoremap <leader>C :BCommits<CR>
+
+
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
+
+    "  Buffer/Tabs navigation
+    :map <C-K> :bnext<CR>
+    :map <C-J> :bprev<CR>
+
+    " Configure vim-ariline tabline
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#left_sep = ' '
+    let g:airline#extensions#tabline#left_alt_sep = '|'
 
     let g:cue_fmt_on_save = 0
     let g:ycm_autoclose_preview_window_after_completion = 1
@@ -119,6 +137,16 @@ pkgs:
     nmap <silent> <C-t> :NERDTreeToggle<CR>
     "Set F2 to put the cursor to the nerdtree
     nmap <silent> <F2> :NERDTreeFind<CR>
+
+
+    " EasyAlign Delimiter
+    if !exists('g:easy_align_delimiters')
+      let g:easy_align_delimiters = {}
+    endif
+    let g:easy_align_delimiters['d'] = {
+    \ 'pattern': ' \ze\S\+\s*[,;=]',
+    \ 'left_margin': 0, 'right_margin': 0
+    \ }
   '';
 }
 
