@@ -16,7 +16,7 @@ in {
       bold = termfont;
       italic = termfont;
       bold_italic = termfont;
-      size = "12";
+      size = "24";
     };
 
     cursor = {
@@ -24,6 +24,10 @@ in {
       thickness = 0.2;
     };
     window = {
+      dimensions = {
+        columns = 140;
+        lines = 40;
+      };
       decorations = "none";
     };
 
