@@ -2,7 +2,7 @@ pkgs: withGUI: with pkgs; [
   # these files are meant to be installed in all scenarios
   bat
   binutils
-#  bottom                       # htop on steroids
+  bottom                       # htop on steroids
   cargo                         # rust `cargo` tool
   cargo-edit # Easy Rust dependency management
   cargo-graph # Rust dependency graphs
@@ -15,7 +15,6 @@ pkgs: withGUI: with pkgs; [
 #  git
 #  gitAndTools.hub
 #  glances                       # web based `htop`
-  jq                            # JSON parsing for the CLI
   glibc
   glibcLocales
   gnupg                         # gpg command

@@ -60,6 +60,14 @@ pkgs:
     set foldlevelstart=99
     set foldcolumn=0
 
+    " Manual plugins
+    call plug#begin()
+      Plug 'jceb/vim-orgmode'
+      " vim-orgmode requires some plugins: https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt#L250
+      Plug 'tpope/vim-speeddating'
+    call plug#end()
+
+
     set list
     set listchars=tab:>-
 
