@@ -15,11 +15,9 @@ pkgs: withGUI: with pkgs; [
 #  git
 #  gitAndTools.hub
 #  glances                       # web based `htop`
-  glibc
   glibcLocales
   gnupg                         # gpg command
   gnumake
-  htop
 
   manix                         # Nix search documentation
   nix-index                     # Find packages providing a binary name
@@ -28,7 +26,7 @@ pkgs: withGUI: with pkgs; [
 #  nixpkgs-review-fixed          # Rebuild packages with changes/overlays
   nodejs                        # needed for coc vim plugins
   perl                          # for fzf history
-  python3
+  (import ./modules/python-packages.nix { inherit pkgs; })
 #  ranger                        # Terminal file manager
   rnix-lsp                      # Nix language server
   rustc                         # Rust compiler

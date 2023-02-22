@@ -4,6 +4,7 @@ pkgs:
   viAlias = true;
   vimAlias = true;
   plugins = with pkgs.vimPlugins; [
+    vim-easy-align
     #coc-nvim
     editorconfig-vim
     fzf-vim
@@ -39,6 +40,12 @@ pkgs:
     # Display tabs for buffers
     vim-airline
 
+    # Tabularize
+    tabular
+
+    # Python linter
+    coc-pyright
+
   ];
 
   extraPackages = with pkgs; [
@@ -65,6 +72,7 @@ pkgs:
       Plug 'jceb/vim-orgmode'
       " vim-orgmode requires some plugins: https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt#L250
       Plug 'tpope/vim-speeddating'
+      Plug 'kurkale6ka/vim-swap'
     call plug#end()
 
 
@@ -146,6 +154,11 @@ pkgs:
     "Set F2 to put the cursor to the nerdtree
     nmap <silent> <F2> :NERDTreeFind<CR>
 
+    " EasyAlign Keymaps
+    " Start interactive EasyAlign in visual mode (e.g. vipga)
+    xmap ga <Plug>(EasyAlign)
+    " Start interactive EasyAlign for a motion/text object (e.g. gaip)
+    nmap ga <Plug>(EasyAlign)
 
     " EasyAlign Delimiter
     if !exists('g:easy_align_delimiters')
