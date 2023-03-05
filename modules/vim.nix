@@ -145,9 +145,11 @@ pkgs:
     \   }
     \ ]
 
+    " LanguageClient Settings
     let g:LanguageClient_serverCommands = {
     \ 'rust': ['rust-analyzer'],
     \ }
+    nmap <silent> gd <Plug>(lcn-definition)
 
     "CTRL-t to toggle tree view with CTRL-t
     nmap <silent> <C-t> :NERDTreeToggle<CR>
