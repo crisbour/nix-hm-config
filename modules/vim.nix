@@ -75,6 +75,11 @@ pkgs:
       Plug 'kurkale6ka/vim-swap'
     call plug#end()
 
+    " Set Codal syntax
+    au BufRead,BufNewFile *.codal set filetype=codal
+    au BufRead,BufNewFile *.hcodal set filetype=codal
+    au FileType codal set syntax=codal.ifdef
+
 
     set list
     set listchars=tab:>-
