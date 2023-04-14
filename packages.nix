@@ -19,6 +19,8 @@ pkgs: withGUI: with pkgs; [
   gnupg                         # gpg command
   gnumake
 
+  julia
+
   manix                         # Nix search documentation
   nix-index                     # Find packages providing a binary name
   nix-template                  # Generate deterministic derivation templates

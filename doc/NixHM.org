@@ -68,6 +68,11 @@ Bring in configuration from yaml file might be necesarry sometime (i.e. alacritt
  - Convert *YAML* to *JSON* then use the src_nix[bultin]{importJSON} to import the JSON as an atrtribute: https://github.com/search?p=1&q=fromYaml+language%3Anix&type=Code
 - Alterntively we can link the conf file directly and not set the options in nix:[[https://github.com/gytis-ivaskevicius/nixfiles/blob/2b2abcd07ede0df56360a8cda50a919a65864f8c/overlays/g-alacritty/default.nix][call with explicit config file path]]. This might also help with writing the conf file and have effect without having to produce a new derivation
 
+** TODO Julia setup
+At the moment I have just included julia as a package part of the HM setup,
+however, more advanced setups for reproducibility might be necessary as in
+[Scientific-FHS](https://github.com/olynch/scientific-fhs)
+- [ ] Setup Julia with JupyterNB and default packages
 
 
 * Hosts
