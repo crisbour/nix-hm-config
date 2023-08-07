@@ -33,6 +33,7 @@ pkgs: withGUI: with pkgs; [
   rnix-lsp                      # Nix language server
   rustc                         # Rust compiler
   # stack broken
+  starship
 
   tig                           # Awesome Text based git
   tree

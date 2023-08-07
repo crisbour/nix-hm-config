@@ -3,7 +3,7 @@ let
   bashsettings = import ./modules/bash.nix pkgs;
   vimsettings = import ./modules/vim.nix;
   gitsettings = (import ./modules/shell/git.nix) {inherit config pkgs lib;}; 
-  #(import ./modules/shell/zsh.nix) { inherit config pkgs lib; };
+  zshsettings = (import ./modules/shell/zsh.nix) { inherit config pkgs lib; };
   inherit (lib) mkIf;
   inherit (pkgs.stdenv) isLinux;
 in
@@ -81,5 +81,7 @@ in
     enableZshIntegration = true;
     options = [ ];
   };
+
+  zsh = zshsettings;
 
 }
