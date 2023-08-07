@@ -34,6 +34,9 @@ pkgs:
     YouCompleteMe
     vim-toml
 
+    # Julia
+    julia-vim
+
     # git
     fugitive
 

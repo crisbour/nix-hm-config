@@ -15,11 +15,11 @@ pkgs: withGUI: with pkgs; [
 #  git
 #  gitAndTools.hub
 #  glances                       # web based `htop`
-  glibcLocales
   gnupg                         # gpg command
   gnumake
 
   julia
+  jupyter
 
   manix                         # Nix search documentation
   nix-index                     # Find packages providing a binary name
@@ -52,6 +52,8 @@ pkgs: withGUI: with pkgs; [
   # for work
   # TODO: Add packages for work
 
+  pre-commit
+
 ] ++ pkgs.lib.optionals withGUI [
   # intended to be installed with an X11 or wayland session
   brightnessctl
@@ -69,4 +71,8 @@ pkgs: withGUI: with pkgs; [
   #spotify
 
   tmate
+
+  # for work
+  # TODO: Add packages for work
+  freerdp
 ]

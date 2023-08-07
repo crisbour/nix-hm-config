@@ -16,19 +16,19 @@ in
   neovim = vimsettings pkgs;
 
   # Why do we use both packages and versions of direnv
-  direnv= {
-    enable = true;
-    enableZshIntegration = true;
+  #direnv= {
+  #  enable = true;
+  #  enableZshIntegration = true;
 
-    stdlib = ''
-      use_riff() {
-        watch_file Cargo.toml
-        watch_file Cargo.lock
-        eval "$(riff print-dev-env)"
-        }
-      '';
-    nix-direnv.enable = true;
-  };
+  #  stdlib = ''
+  #    use_riff() {
+  #      watch_file Cargo.toml
+  #      watch_file Cargo.lock
+  #      eval "$(riff print-dev-env)"
+  #      }
+  #    '';
+  #  nix-direnv.enable = true;
+  #};
 
   dircolors = {
     enable = true;
