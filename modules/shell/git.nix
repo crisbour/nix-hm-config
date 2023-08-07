@@ -1,6 +1,5 @@
 { config, pkgs, lib, ... }: {
     enable = true;
-    delta.enable = true;
     userEmail = "cristian.bourceanu@codasip.com";
     userName = "Cristian Bourceanu";
     # TODO: add signing
@@ -40,6 +39,7 @@
         #"ssh://git@github.com" = { insteadOf = "https://github.com"; };
       #};
       delta = {
+	enable = true;
         line-numbers = true;
       };
     };
