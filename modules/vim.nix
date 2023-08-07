@@ -70,13 +70,14 @@ pkgs:
     set foldlevelstart=99
     set foldcolumn=0
 
+    " TODO Fix manual missing plugins
     " Manual plugins
-    call plug#begin()
-      Plug 'jceb/vim-orgmode'
-      " vim-orgmode requires some plugins: https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt#L250
-      Plug 'tpope/vim-speeddating'
-      Plug 'kurkale6ka/vim-swap'
-    call plug#end()
+    " call plug#begin()
+    "   Plug 'jceb/vim-orgmode'
+    "   " vim-orgmode requires some plugins: https://github.com/jceb/vim-orgmode/blob/master/doc/orgguide.txt#L250
+    "   Plug 'tpope/vim-speeddating'
+    "   Plug 'kurkale6ka/vim-swap'
+    " call plug#end()
 
     " Set Codal syntax
     au BufRead,BufNewFile *.codal set filetype=codal
