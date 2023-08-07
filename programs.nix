@@ -2,6 +2,7 @@
 let
   bashsettings = import ./modules/bash.nix pkgs;
   vimsettings = import ./modules/vim.nix;
+  gitsettings = import ./modules/shell/git.nix; 
   inherit (lib) mkIf;
   inherit (pkgs.stdenv) isLinux;
 in
@@ -35,7 +36,7 @@ in
     enableZshIntegration = true;
   };
 
-#  git = import ./git.nix { inherit pkgs; };
+  git = gitsettings; 
 
   # Let Home Manager install and manage itself.
   home-manager.enable = true;

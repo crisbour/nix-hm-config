@@ -36,7 +36,7 @@
               # Migrate them to home.nix
               inherit username;
               inherit homeDirectory;
-              stateVersion = "22.11";
+              stateVersion = "23.05";
             };
           }
         ];

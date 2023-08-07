@@ -13,7 +13,7 @@ pkgs: withGUI: with pkgs; [
   exa                           # `ls` replacement written in Rust
   fd                            # `find` alternative, faster and simpler
 #  git
-#  gitAndTools.hub
+  gitAndTools.delta
 #  glances                       # web based `htop`
   gnupg                         # gpg command
   gnumake
