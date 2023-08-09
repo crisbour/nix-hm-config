@@ -70,6 +70,10 @@ pkgs:
     set foldlevelstart=99
     set foldcolumn=0
 
+    " Max code size highlighted limiters
+    let &colorcolumn="80,".join(range(120,999),",")
+    highlight ColorColumn ctermbg=black guibg=black
+
     " TODO Fix manual missing plugins
     " Manual plugins
     " call plug#begin()
