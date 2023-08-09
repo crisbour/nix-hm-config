@@ -2,7 +2,7 @@
 let
   bashsettings = import ./modules/bash.nix pkgs;
   vimsettings = import ./modules/vim.nix;
-  gitsettings = (import ./modules/shell/git.nix) {inherit config pkgs lib;}; 
+  gitsettings = (import ./modules/shell/git.nix) {inherit config pkgs lib;};
   zshsettings = (import ./modules/shell/zsh.nix) { inherit config pkgs lib; };
   inherit (lib) mkIf;
   inherit (pkgs.stdenv) isLinux;
@@ -37,7 +37,7 @@ in
     enableZshIntegration = true;
   };
 
-  git = gitsettings; 
+  git = gitsettings;
 
   # Let Home Manager install and manage itself.
   home-manager.enable = true;
@@ -57,7 +57,10 @@ in
     forwardAgent = true;
   };
 
-  fzf.enable = true;
+  fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 
   vscode = mkIf withGUI {
     enable = true;

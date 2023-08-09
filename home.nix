@@ -20,17 +20,6 @@ in
   nixpkgs.config.allowUnfree = true;
 
   home.file.".config/nvim/coc-settings.json".source = ./coc-settings.json;
-  home.file.starship = {
-    target = ".config/starship.toml";
-    text = ''
-      add_newline = false
-      command_timeout = 2000
-
-      [character]
-      success_symbol = "[➜](bold green) "
-      error_symbol = "[✗](bold red) "
-    '';
-  };
 
   # Allow Nix to handle fonts
   fonts = { fontconfig = { enable = true; }; };
