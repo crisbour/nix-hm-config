@@ -167,19 +167,25 @@
       }
 
       function sync_files_to_cruncher () {
+        local OBILIX_PATH=$(git rev-parse --show-toplevel)
+        local OBILIX_BASENAME=$(basename $OBILIX_PATH)
 	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH $1)
+	      local CRUNCH_OBILIX_PATH=/home/cristian.bourceanu/centoslinux_home/$OBILIX_BASENAME
+	      local CRUNCH_FILE_PATH=$CRUNCH_OBILIX_PATH/$PATH_REL_TO_OBILIX
 	      echo "Syncronize $PATH_REL_TO_OBILIX to cruncher machine"
 	      if [[ -d $1 ]]
 	      then
-	        rsync --progress -r -L $1/ -a $CRUNCH:~/centoslinux_home/obilix/$PATH_REL_TO_OBILIX
+	        rsync --progress -r -L $1/ $CRUNCH:$CRUNCH_FILE_PATH
 	      else
-	        rsync --progress $1 $CRUNCH:~/centoslinux_home/obilix/$PATH_REL_TO_OBILIX
+	        rsync --progress $1 $CRUNCH:$CRUNCH_FILE_PATH
 	      fi
 	    }
 
 	    function sync_files_from_cruncher () {
+        local OBILIX_PATH=$(git rev-parse --show-toplevel)
+        local OBILIX_BASENAME=$(basename $OBILIX_PATH)
 	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH $1)
-	      local CRUNCH_OBILIX_PATH=/home/cristian.bourceanu/centoslinux_home/obilix
+	      local CRUNCH_OBILIX_PATH=/home/cristian.bourceanu/centoslinux_home/$OBILIX_BASENAME
 	      local CRUNCH_FILE_PATH=$CRUNCH_OBILIX_PATH/$PATH_REL_TO_OBILIX
 	      echo "Syncronize $PATH_REL_TO_OBILIX from cruncher machine"
 	      local file_type=$(ssh $CRUNCH "file -b $CRUNCH_FILE_PATH")
