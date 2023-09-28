@@ -3,6 +3,7 @@ pkgs: withGUI: with pkgs; [
   bat
   binutils
   bottom                       # htop on steroids
+
   cargo                         # rust `cargo` tool
   cargo-edit # Easy Rust dependency management
   cargo-graph # Rust dependency graphs
@@ -28,10 +29,12 @@ pkgs: withGUI: with pkgs; [
 #  nixpkgs-review-fixed          # Rebuild packages with changes/overlays
   nodejs                        # needed for coc vim plugins
   perl                          # for fzf history
-  (import ./modules/python-packages.nix { inherit pkgs; })
+# (import ./modules/python-packages.nix { inherit pkgs; })
 #  ranger                        # Terminal file manager
   rnix-lsp                      # Nix language server
   rustc                         # Rust compiler
+  rustfmt
+  rust-analyzer
   # stack broken
   starship
 

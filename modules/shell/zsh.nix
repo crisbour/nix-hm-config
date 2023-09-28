@@ -166,50 +166,99 @@
         sudo nixos-rebuild switch --flake ".#rocky"
       }
 
-      function sync_files_to_cruncher () {
+      # args:
+      # $1: server as <server> address i.e. user@ip
+      # $2: top_path as absolute <top_path> where repositories are
+      # $3: path as relative or absolute path
+      function sync_files_to_server() {
+        local OBILIX_PATH=$(git rev-parse --show-toplevel)
+        local SERVER_ADDR=$1
+        local SERVER_TOP_PATH=$2
+        local SYNC_PATH=$3
+
+        echo "sync_files_to_server($1, $2, $3)"
+
         local OBILIX_PATH=$(git rev-parse --show-toplevel)
         local OBILIX_BASENAME=$(basename $OBILIX_PATH)
-	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH $1)
-	      local CRUNCH_OBILIX_PATH=/home/cristian.bourceanu/centoslinux_home/$OBILIX_BASENAME
-	      local CRUNCH_FILE_PATH=$CRUNCH_OBILIX_PATH/$PATH_REL_TO_OBILIX
-	      echo "Syncronize $PATH_REL_TO_OBILIX to cruncher machine"
-	      if [[ -d $1 ]]
+        echo $OBILIX_PATH
+	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH $SYNC_PATH)
+
+	      local SERVER_OBILIX_PATH=$SERVER_TOP_PATH/$OBILIX_BASENAME
+	      local SERVER_FILE_PATH=$SERVER_OBILIX_PATH/$PATH_REL_TO_OBILIX
+        local SIZE=$(du -h -d 0 $SYNC_PATH)
+	      echo "Syncronize $PATH_REL_TO_OBILIX to server machine $SERVER_ADDR: $SIZE"
+
+	      if [[ -d $SYNC_PATH ]]
 	      then
-	        rsync --progress -r -L $1/ $CRUNCH:$CRUNCH_FILE_PATH
+	        rsync --progress -r -z -l $SYNC_PATH/ $SERVER_ADDR:$SERVER_FILE_PATH
 	      else
-	        rsync --progress $1 $CRUNCH:$CRUNCH_FILE_PATH
+	        rsync --progress -l $SYNC_PATH $SERVER_ADDR:$SERVER_FILE_PATH
 	      fi
 	    }
 
-	    function sync_files_from_cruncher () {
+	    function sync_files_from_server() {
+        local SERVER_ADDR=$1
+        local SERVER_TOP_PATH=$2
+        local SYNC_PATH=$3
+
         local OBILIX_PATH=$(git rev-parse --show-toplevel)
         local OBILIX_BASENAME=$(basename $OBILIX_PATH)
-	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH $1)
-	      local CRUNCH_OBILIX_PATH=/home/cristian.bourceanu/centoslinux_home/$OBILIX_BASENAME
-	      local CRUNCH_FILE_PATH=$CRUNCH_OBILIX_PATH/$PATH_REL_TO_OBILIX
-	      echo "Syncronize $PATH_REL_TO_OBILIX from cruncher machine"
-	      local file_type=$(ssh $CRUNCH "file -b $CRUNCH_FILE_PATH")
+	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH .)/$SYNC_PATH
+
+	      local SERVER_OBILIX_PATH=$SERVER_TOP_PATH/$OBILIX_BASENAME
+	      local SERVER_FILE_PATH=$SERVER_OBILIX_PATH/$PATH_REL_TO_OBILIX
+        local SIZE=$(ssh $SERVER_ADDR "du -h -d 0 $SERVER_FILE_PATH")
+	      echo "Syncronize $PATH_REL_TO_OBILIX from cruncher machine $SERVER_ADDR: $SIZE"
+
+	      local file_type=$(ssh $SERVER_ADDR "file -b $SERVER_FILE_PATH")
 	      echo "File type to sync from cruncher: $file_type"
 	      if [[ $file_type == *directory* ]];
 	      then
-	        rsync --progress -r $CRUNCH:$CRUNCH_FILE_PATH/ $1
+          if [[ -d $SYNC_PATH ]]; then
+            mkdir -p $SYNC_PATH
+          fi
+	        rsync --progress -r -l -z $SERVER_ADDR:$SERVER_FILE_PATH/ $SYNC_PATH
 	      else
-	        rsync --progress $CRUNCH:$CRUNCH_FILE_PATH $1
+	        rsync --progress -l $SERVER_ADDR:$SERVER_FILE_PATH $SYNC_PATH
 	      fi
 
 	    }
 
-      function match_crunch_path () {
-        local match_path='s/\/home\/cristian.bourceanu\/obilix/'
-        local path_escape_delimiter=$(echo $OBILIX_PATH | awk '{gsub("/","\\/");}1')
-        local sed_regex_replace=$match_path$path_escape_delimiter"/g"
-        local files=$(find $1 -type f)
+      function match_server_path () {
+        local SERVER_HOME_PATH=$1
+        local TREE_TO_MATCH=$2
+
+        local local_top_path=$(git rev-parse --show-toplevel)
+        local top_basename=$(basename $local_top_path)
+        local server_top_path=$SERVER_HOME_PATH/$top_basename
+        local path_match=$(echo $server_top_path | awk '{gsub("/","\\/");}1')
+        local path_replace=$(echo $local_top_path | awk '{gsub("/","\\/");}1')
+        local sed_regex_replace="s/"$path_match/$path_replace"/g"
+        local files=$(find $TREE_TO_MATCH -type f)
 
         # FIXME There must be an easier way to read one line at a time
         while IFS= read -r file;
         do
-          sed -i $sed_regex_replace $file
+          local_file_type=$(file -b --mime-encoding -- $file)
+          if [ $local_file_type != binary ]; then
+            sed -i $sed_regex_replace $file
+          else
+            echo "Skip binary file: \t $file"
+          fi
+          #echo $sed_regex_replace
         done <<< $files
+      }
+
+      function crunch_top_path() {
+        local local_top_path=$(git rev-parse --show-toplevel)
+        local top_basename=$(basename $local_top_path)
+        local path=/home/$USER/$top_basename
+        echo $path
+      }
+
+      function local_top_path() {
+        local path=$(git rev-parse --show-toplevel)
+        echo $path
       }
     '';
 
@@ -221,83 +270,87 @@
 
     shellAliases = {
       # builtins
-      size = "du -sh";
-      cp = "cp -i";
+      size  = "du -sh";
+      cp    = "cp -i";
       mkdir = "mkdir -p";
-      df = "df -h";
-      free = "free -h";
-      du = "du -sh";
-      susu = "sudo su";
-      op = "xdg-open";
-      del = "rm -rf";
-      sdel = "sudo rm -rf";
-      lst = "ls --tree -I .git";
-      lsl = "ls -l";
-      lsa = "ls -a";
-      null = "/dev/null";
-      tmux = "tmux -u";
-      tu = "tmux -u";
-      tua = "tmux a -t";
+      df    = "df -h";
+      free  = "free -h";
+      du    = "du -sh";
+      susu  = "sudo su";
+      op    = "xdg-open";
+      del   = "rm -rf";
+      sdel  = "sudo rm -rf";
+      lst   = "ls --tree -I .git";
+      lsl   = "ls -l";
+      lsa   = "ls -a";
+      null  = "/dev/null";
+      tmux  = "tmux -u";
+      tu    = "tmux -u";
+      tua   = "tmux a -t";
 
       # overrides
-      cat = "bat";
+      cat    = "bat";
       #ssh = "TERM=screen ssh";
       python = "python3";
-      pip = "python3 -m pip";
-      venv = "python3 -m venv";
-      j = "z";
+      pip    = "python3 -m pip";
+      venv   = "python3 -m venv";
+      j      = "z";
 
       # programs
-      g = "git";
-      dk = "docker";
-      pd = "podman";
-      pc = "podman-compose";
-      sc = "sudo systemctl";
-      poe = "poetry";
-      fb = "pcmanfm .";
+      g     = "git";
+      dk    = "docker";
+      pd    = "podman";
+      pc    = "podman-compose";
+      sc    = "sudo systemctl";
+      poe   = "poetry";
+      fb    = "pcmanfm .";
       space = "ncdu";
-      ca = "cargo";
-      diff = "delta";
-      py = "python";
+      ca    = "cargo";
+      diff  = "delta";
+      py    = "python";
       awake = "caffeinate";
       # TODO What are the followings?
-      os = "openstack";
-      pu = "pulumi";
+      os    = "openstack";
+      pu    = "pulumi";
 
       # TODO make myself a terminal cheatsheet
       # terminal cheat sheet
       cht = "cht.sh";
 
       # utilities
-      psf = "ps -aux | grep";
-      lsf = "ls | grep";
-      shut = "sudo shutdown -h now";
-      tssh = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
-      socks = "ssh -D 1337 -q -C -N";
+      psf     = "ps -aux | grep";
+      lsf     = "ls | grep";
+      shut    = "sudo shutdown -h now";
+      tssh    = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
+      socks   = "ssh -D 1337 -q -C -N";
 
       # clean
       dklocal = "docker run --rm -it -v `PWD`:/usr/workdir --workdir=/usr/workdir";
       dkclean = "docker container rm $(docker container ls -aq)";
 
-      caps = "xdotool key Caps_Lock";
-      gclean = "git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done";
-      ew = "nvim -c ':cd ~/vimwiki' ~/vimwiki";
+      caps    = "xdotool key Caps_Lock";
+      gclean  = "git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done";
+      ew      = "nvim -c ':cd ~/vimwiki' ~/vimwiki";
       weather = "curl -4 http://wttr.in/Koeln";
 
       # nix
-      ne = "nvim -c ':cd ~/.nixpkgs' ~/.nixpkgs";
+      ne    = "nvim -c ':cd ~/.nixpkgs' ~/.nixpkgs";
       clean = "nix-collect-garbage -d && nix-store --gc && nix-store --verify --check-contents --repair";
-      nsh = "nix-shell";
-      nse = "nix search nixpkgs";
+      nsh   = "nix-shell";
+      nse   = "nix search nixpkgs";
 
       # Work
-      codasip-vpn="sudo openvpn --config /etc/openvpn/client.conf";
-      mount-nfs="find /samba/ -maxdepth 1 -not -path /samba/ -type d | for i in $(cat); do sudo mount $i; done";
-      sync_to_cruncher="sync_files_to_cruncher $1";
-      sync_from_cruncher="sync_files_from_cruncher $1";
-      match_crunch_path="match_crunch_path $1";
-      docs_lint="open /mnt/edatools/software/linux/synopsys/vc_static/T-2022.06-SP2-1/doc/vcst/VC_SpyGlass_Docs/PDFs/VC_SpyGlass_Lint_UserGuide.pdf";
-      docs_syn="open /mnt/edatools/software/linux/cadence/ddi_22.30/GENUS221/docs/genus_timing/genus_timing.pdf";
+      codasip-vpn        = "sudo openvpn --config /etc/openvpn/client.conf";
+      mount-nfs          = "find /samba/ -maxdepth 1 -not -path /samba/ -type d | for i in $(cat); do sudo mount $i; done";
+      sync_to_cruncher   = "sync_files_to_server $CRUNCH /home/$USER/centoslinux_home $1";
+      sync_from_cruncher = "sync_files_from_server $CRUNCH /home/$USER/centoslinux_home $1";
+      sync_to_slurm      = "sync_files_to_server slurmlogin1 /home/codasip.com/$USER $1";
+      sync_from_slurm    = "sync_files_from_server slurmlogin1 /home/codasip.com/$USER $1";
+      match_crunch_path  = "match_server_path /home/$USER $1";
+      match_slurm_path   = "match_server_path $HOME $1";
+      docs_lint          = "open /mnt/edatools/software/linux/synopsys/vc_static/T-2022.06-SP2-1/doc/vcst/VC_SpyGlass_Docs/PDFs/VC_SpyGlass_Lint_UserGuide.pdf";
+      docs_syn           = "open /mnt/edatools/software/linux/cadence/ddi_22.30/GENUS221/docs/genus_timing/genus_timing.pdf";
+      vis-cruncher       = "vis +change_file_path+$(crunch_top_path)=$(local_top_path) $@";
     };
 
     #prezto = {
@@ -334,7 +387,7 @@
     #export PATH="$PATH":"$ONESPINROOT"/bin
 
     #export PATH=$HOME/.cargo/bin:$PATH
-    export PATH="/home/cristi/.local/bin:$PATH"
+    export PATH=$HOME/.local/bin:$PATH
 
     export OBILIX_PATH=$HOME/Documents/Scripts/A71/obilix
     export CRUNCH=cristian.bourceanu@app-team-cruncher.user.codasip.com
