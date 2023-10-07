@@ -25,7 +25,6 @@
       "__pycache__" "*.pyc" # python
     ];
     extraConfig = {
-      init = { defaultBranch = "main"; };
       pull = {
         ff = false;
         commit = false;
@@ -33,14 +32,26 @@
       };
       push = {
         default = "upstream";
-	autoSetupRemote = true;
+        autoSetupRemote = true;
       };
       #url = {
         #"ssh://git@github.com" = { insteadOf = "https://github.com"; };
       #};
       delta = {
-	enable = true;
+        enable = true;
         line-numbers = true;
       };
+
+      commit.gpgsign = "true";
+      gpg.program = "gpg2";
+
+      #protocol.keybase.allow = "always";
+      credentials.helper = "cache";
+      init.defaultBranch = "main";
+
+      user = {
+        signingkey = "8A68BB03AE8158B4";
+      };
     };
+
 }

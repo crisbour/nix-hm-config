@@ -11,7 +11,7 @@ pkgs: withGUI: with pkgs; [
   cmake
 
   dbus
-  exa                           # `ls` replacement written in Rust
+  eza                           # `ls` replacement written in Rust
   fd                            # `find` alternative, faster and simpler
 #  git
   gitAndTools.delta
@@ -21,6 +21,8 @@ pkgs: withGUI: with pkgs; [
 
   julia
   jupyter
+
+  keybase
 
   manix                         # Nix search documentation
   nix-index                     # Find packages providing a binary name
