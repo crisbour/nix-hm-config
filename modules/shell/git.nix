@@ -1,8 +1,11 @@
 { config, pkgs, lib, ... }: {
     enable = true;
-    userEmail = "cristian.bourceanu@codasip.com";
-    userName = "Cristian Bourceanu";
-    # TODO: add signing
+    userName = "Cristi Bourceanu";
+    userEmail = "bourceanu.cristi@gmail.com";
+    signing = {
+      key = "89DBB39E67BD4E0EFCB038B62CE17E1BCFECF3D6";
+      signByDefault = true;
+    };
     aliases = {
       cm = "commit";
       ca = "commit --amend --no-edit";
@@ -19,12 +22,26 @@
       cp = "cherry-pick";
       sur = "submodule update --init --recursive";
     };
-    ignores = [
-      "build" # build directory
-      ".idea" ".vs" ".vsc" ".vscode" # ide
-      "__pycache__" "*.pyc" # python
-    ];
+    delta = {
+      enable = true;
+      options = {
+        theme = "OneHalfDark";
+      };
+    };
     extraConfig = {
+      github.user = "crisbour";
+      url."git@github.com:crisbour/" = {
+        insteadOf = [
+          "me:"
+          "https://github.com/crisbour/"
+        ];
+      };
+      url."ssh://git@github.com" = {
+        insteadOf = "https://github.com";
+      };
+
+      init.defaultBranch = "main";
+
       pull = {
         ff = false;
         commit = false;
@@ -34,24 +51,18 @@
         default = "upstream";
         autoSetupRemote = true;
       };
-      #url = {
-        #"ssh://git@github.com" = { insteadOf = "https://github.com"; };
-      #};
-      delta = {
-        enable = true;
-        line-numbers = true;
-      };
 
       commit.gpgsign = "true";
-      gpg.program = "gpg2";
+      #gpg.program = "gpg2";
 
       #protocol.keybase.allow = "always";
-      credentials.helper = "cache";
-      init.defaultBranch = "main";
+      #credentials.helper = "cache";
 
-      user = {
-        signingkey = "8A68BB03AE8158B4";
-      };
     };
+    ignores = [
+      "build" # build directory
+      ".idea" ".vs" ".vsc" ".vscode" # ide
+      "__pycache__" "*.pyc" # python
+    ];
 
 }

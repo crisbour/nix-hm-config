@@ -31,8 +31,6 @@ in
   } withGUI;
 
 
-
-
   # You can add services as follows:
   #services.<program> = {
   #  enable = true;
@@ -42,10 +40,22 @@ in
   # Alternative to plain direnv, add watch method to evaluate state of shell
   services.lorri.enable = isLinux;
 
-  services.gpg-agent.enable = isLinux;
-  services.gpg-agent.enableExtraSocket = withGUI;
-  services.gpg-agent.enableSshSupport = isLinux;
-
+  services.gpg-agent = {
+    enable = isLinux;
+    defaultCacheTtl = 36000;
+    maxCacheTtl = 36000;
+    defaultCacheTtlSsh = 36000;
+    maxCacheTtlSsh = 36000;
+    enableExtraSocket = withGUI;
+    enableSshSupport = isLinux;
+    enableZshIntegration = true;
+    #pinentryFlavor = "gtk2";
+    verbose = true;
+    extraConfig = ''
+      debug-pinentry
+      debug ipc
+    '';
+  };
 
   xdg.enable = true;
 

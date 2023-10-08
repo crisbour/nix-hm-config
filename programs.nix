@@ -37,7 +37,33 @@ in
     enableZshIntegration = true;
   };
 
+  fzf = {
+    enable = true;
+    enableZshIntegration = true;
+  };
+
   git = gitsettings;
+
+  gpg = {
+    enable = true;
+    settings = {
+      default-key = "2CE17E1BCFECF3D6";
+      no-comments = false;
+      # Get rid of the copyright notice
+      no-greeting = true;
+      # Because some mailers change lines starting with "From " to ">From "
+      # it is good to handle such lines in a special way when creating
+      # cleartext signatures; all other PGP versions do it this way too.
+      no-escape-from-lines = true;
+      # Use a modern charset
+      charset = "utf-8";
+      ### Show keys settings
+      # Always show long keyid
+      keyid-format = "0xlong";
+      # Always show the fingerprint
+      with-fingerprint = true;
+    };
+  };
 
   # Let Home Manager install and manage itself.
   home-manager.enable = true;
@@ -73,11 +99,6 @@ in
 			};
 		};
 	};
-
-  fzf = {
-    enable = true;
-    enableZshIntegration = true;
-  };
 
   vscode = mkIf withGUI {
     enable = true;

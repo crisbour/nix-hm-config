@@ -81,4 +81,5 @@ pkgs: withGUI: with pkgs; [
   # for work
   # TODO: Add packages for work
   freerdp
+
 ]
