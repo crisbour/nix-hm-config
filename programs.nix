@@ -97,6 +97,11 @@ in
 					GSSAPIDelegateCredentials = "yes";
 				};
 			};
+
+			vdilogin = {
+  			hostname = "10.13.72.10";
+  			user = "cristian.bourceanu";
+			};
 		};
 	};
 

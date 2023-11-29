@@ -62,6 +62,8 @@ pkgs: withGUI: with pkgs; [
 
 ] ++ pkgs.lib.optionals withGUI [
   # intended to be installed with an X11 or wayland session
+  asciidoctor
+
   brightnessctl
   enlightenment.terminology
   #discord

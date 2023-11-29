@@ -256,6 +256,13 @@
         echo $path
       }
 
+      function slurm_top_path() {
+        local local_top_path=$(git rev-parse --show-toplevel)
+        local top_basename=$(basename $local_top_path)
+        local path=/home/codasip.com/$USER/$top_basename
+        echo $path
+      }
+
       function local_top_path() {
         local path=$(git rev-parse --show-toplevel)
         echo $path
@@ -351,6 +358,7 @@
       docs_lint          = "open /mnt/edatools/software/linux/synopsys/vc_static/T-2022.06-SP2-1/doc/vcst/VC_SpyGlass_Docs/PDFs/VC_SpyGlass_Lint_UserGuide.pdf";
       docs_syn           = "open /mnt/edatools/software/linux/cadence/ddi_22.30/GENUS221/docs/genus_timing/genus_timing.pdf";
       vis-cruncher       = "vis +change_file_path+$(crunch_top_path)=$(local_top_path) $@";
+      vis-slurm          = "vis +change_file_path+$(slurm_top_path)=$(local_top_path) $@";
     };
 
     #prezto = {
@@ -380,7 +388,8 @@
     export LMX_LICENSE_PATH=codasip3%6200:license-server.codasip.com%6200
 
     # Tools
-    #export PATH=/opt/mentor/questasim/linux_x87_65:$PATH
+    export PATH=$PATH:/opt/Mentor/questasim_2023.2/questasim/bin
+    export PATH=$PATH:/opt/codasip/studio-10.0.0-748/bin
     #export PATH=/root/.local/bin:$PATH
     #
     #export ONESPINROOT=/opt/onespin/2022.4.1
