@@ -74,6 +74,15 @@ however, more advanced setups for reproducibility might be necessary as in
 [Scientific-FHS](https://github.com/olynch/scientific-fhs)
 - [ ] Setup Julia with JupyterNB and default packages
 
+** TODO TMUX
+- [ ] Add renumber shortcut:
+  #+begin_src
+  bind R                                      \
+      set -g renumber-windows on\;            \
+      new-window\; kill-window\;              \
+      set -g renumber-windows off\;           \
+      display-message "Windows reordered..."
+  #+end_src
 
 * Hosts
 ** LXD
