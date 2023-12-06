@@ -1,12 +1,13 @@
 pkgs:
-#let
-#  spade-lang = import ./spade-plugin.nix pkgs;
-#in
+let
+  spade-lang = import ./spade-plugin.nix pkgs;
+in
 {
   enable = true;
   viAlias = true;
   vimAlias = true;
   plugins = with pkgs.vimPlugins; [
+    spade-lang
     vim-easy-align
     #coc-nvim
     editorconfig-vim
@@ -58,9 +59,10 @@ pkgs:
     rust-analyzer
   ];
 
- # packages.myVimPackage = [
- #   spade-lang
- # ];
+ # override.packages.myVimPackage = {
+ #   start = [spade-lang];
+ #   end = [];
+ # };
 
   extraConfig = ''
     colorscheme gruvbox
