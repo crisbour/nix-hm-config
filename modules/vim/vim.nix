@@ -1,4 +1,7 @@
 pkgs:
+#let
+#  spade-lang = import ./spade-plugin.nix pkgs;
+#in
 {
   enable = true;
   viAlias = true;
@@ -54,6 +57,10 @@ pkgs:
   extraPackages = with pkgs; [
     rust-analyzer
   ];
+
+ # packages.myVimPackage = [
+ #   spade-lang
+ # ];
 
   extraConfig = ''
     colorscheme gruvbox

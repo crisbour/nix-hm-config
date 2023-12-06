@@ -1,7 +1,7 @@
 { pkgs, config, lib}: withGUI:
 let
   bashsettings = import ./modules/bash.nix pkgs;
-  vimsettings = import ./modules/vim.nix;
+  vimsettings = import ./modules/vim/vim.nix;
   gitsettings = (import ./modules/shell/git.nix) {inherit config pkgs lib;};
   zshsettings = (import ./modules/shell/zsh.nix) { inherit config pkgs lib; };
   inherit (lib) mkIf;
