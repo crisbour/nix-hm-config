@@ -47,7 +47,7 @@ in
   gpg = {
     enable = true;
     settings = {
-      default-key = "2CE17E1BCFECF3D6";
+      default-key = "27F45D59F5FABA4E";
       no-comments = false;
       # Get rid of the copyright notice
       no-greeting = true;

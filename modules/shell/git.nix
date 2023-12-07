@@ -3,7 +3,7 @@
     userName = "Cristi Bourceanu";
     userEmail = "bourceanu.cristi@gmail.com";
     signing = {
-      key = "89DBB39E67BD4E0EFCB038B62CE17E1BCFECF3D6";
+      key="BF8299E2FF325130DA69DFC527F45D59F5FABA4E";
       signByDefault = true;
     };
     aliases = {
@@ -14,8 +14,9 @@
       pu = "pull";
       ps = "push";
       pf = "push --force-with-lease";
-      st  = "status -sb";
+      s  = "status -sb";
       co = "checkout";
+      cb = "checkout -b";
       fe = "fetch";
       gr = "grep -in";
       re = "rebase -i";
