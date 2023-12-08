@@ -15,6 +15,14 @@ in
   } withGUI;
 
   bash = bashsettings;
+
+  browserpass = {
+    enable = true;
+    browsers = [
+      "brave"
+    ];
+  };
+
   neovim = vimsettings pkgs;
 
   # Why do we use both packages and versions of direnv
@@ -47,7 +55,7 @@ in
   gpg = {
     enable = true;
     settings = {
-      default-key = "AEF4A543011E8AC1";
+      default-key = "0xAEF4A543011E8AC1";
       no-comments = false;
       # Get rid of the copyright notice
       no-greeting = true;

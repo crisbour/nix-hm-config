@@ -55,7 +55,6 @@
 
       commit.gpgsign = "true";
       #gpg.format = "ssh";
-      #gpg.program = "gpg2";
 
       #protocol.keybase.allow = "always";
       #credentials.helper = "cache";

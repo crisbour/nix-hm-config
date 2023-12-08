@@ -13,7 +13,6 @@ in
     SHELL     = "${pkgs.zsh}/bin/zsh";
     SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
 
-#    BROWSER = "${pkgs.firefox}/bin/firefox";
   };
   home.packages = packages pkgs withGUI;
 
