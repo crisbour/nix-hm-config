@@ -59,6 +59,12 @@ in
     '';
   };
 
+  # Be able to use gpg-agent and auth app in the same time: https://whynothugo.nl/journal/2023/03/13/using-a-yubikey-for-both-gpg-and-totp/
+  home.file."${config.home.homeDirectory}/.gnupg/scdaemon.conf".text = ''
+    pcsc-shared
+    #disable-ccid
+  '';
+
   xdg.enable = true;
 
 }

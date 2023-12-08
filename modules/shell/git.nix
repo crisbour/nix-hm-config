@@ -3,7 +3,7 @@
     userName = "Cristi Bourceanu";
     userEmail = "bourceanu.cristi@gmail.com";
     signing = {
-      key="94D828507E1D1383";
+      key="A6307A244F3BD76D";
       signByDefault = true;
     };
     aliases = {
