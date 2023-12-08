@@ -11,12 +11,8 @@ in {
       { key = "Subtract";   mods = "Control";     action = "DecreaseFontSize"; }
       { key = "Minus";      mods = "Control";     action = "DecreaseFontSize"; }
     ];
-	fonts = {
-      normal = termfont;
-      bold = termfont;
-      italic = termfont;
-      bold_italic = termfont;
-      size = "24";
+    font = {
+      size = 12;
     };
 
     cursor = {
@@ -39,7 +35,23 @@ in {
       program = config.home.sessionVariables.SHELL;
     };
 
-	decorations_theme_variant = "dark";
+    decorations_theme_variant = "dark";
+
+    extraConfig = ''
+      font:
+        normal:
+          family: IosevkaNerdFontMono
+          style: Regular
+        bold:
+          family: IosevkaNerdFontMono
+          style: Bold
+        italic:
+          family: IosevkaNerdFontMono
+          style: Bold
+        bold_italic:
+          family: IosevkaNerdFontMono
+          style: Bold Italic
+    '';
 
   } // lib.modules.importJSON  (./. + "/colors/my_theme.json");
 }

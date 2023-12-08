@@ -9,8 +9,10 @@ let
 in
 {
   home.sessionVariables = {
-    EDITOR = "nvim";
-    SHELL = "${pkgs.zsh}/bin/zsh";
+    EDITOR    = "nvim";
+    SHELL     = "${pkgs.zsh}/bin/zsh";
+    SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
+
 #    BROWSER = "${pkgs.firefox}/bin/firefox";
   };
   home.packages = packages pkgs withGUI;
@@ -46,8 +48,8 @@ in
     maxCacheTtl = 36000;
     defaultCacheTtlSsh = 36000;
     maxCacheTtlSsh = 36000;
-    enableExtraSocket = withGUI;
-    enableSshSupport = isLinux;
+    enableExtraSocket = true;
+    enableSshSupport = true;
     enableZshIntegration = true;
     #pinentryFlavor = "gtk2";
     verbose = true;

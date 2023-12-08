@@ -3,7 +3,7 @@
     userName = "Cristi Bourceanu";
     userEmail = "bourceanu.cristi@gmail.com";
     signing = {
-      key="BF8299E2FF325130DA69DFC527F45D59F5FABA4E";
+      key="94D828507E1D1383";
       signByDefault = true;
     };
     aliases = {
@@ -54,6 +54,7 @@
       };
 
       commit.gpgsign = "true";
+      gpg.format = "ssh";
       #gpg.program = "gpg2";
 
       #protocol.keybase.allow = "always";
