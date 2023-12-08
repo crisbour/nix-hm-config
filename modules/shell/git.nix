@@ -54,7 +54,7 @@
       };
 
       commit.gpgsign = "true";
-      gpg.format = "ssh";
+      #gpg.format = "ssh";
       #gpg.program = "gpg2";
 
       #protocol.keybase.allow = "always";

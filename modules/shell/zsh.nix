@@ -267,6 +267,8 @@
         local path=$(git rev-parse --show-toplevel)
         echo $path
       }
+
+      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     '';
 
     dirHashes = {
