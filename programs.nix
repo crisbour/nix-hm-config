@@ -3,7 +3,7 @@ let
   bashsettings = import ./modules/bash.nix pkgs;
   vimsettings = import ./modules/vim/vim.nix;
   gitsettings = (import ./modules/shell/git.nix) {inherit config pkgs lib;};
-  zshsettings = (import ./modules/shell/zsh.nix) { inherit config pkgs lib; };
+  zshsettings = (import ./modules/shell/zsh) { inherit config pkgs lib; };
   inherit (lib) mkIf;
   inherit (pkgs.stdenv) isLinux;
 in
@@ -23,7 +23,6 @@ in
     ];
   };
 
-  neovim = vimsettings pkgs;
 
   # Why do we use both packages and versions of direnv
   #direnv= {
@@ -85,6 +84,8 @@ in
       treeView = true;
     };
   };
+
+  neovim = vimsettings pkgs;
 
   ssh = {
     enable = true;

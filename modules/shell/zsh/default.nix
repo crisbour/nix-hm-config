@@ -68,14 +68,14 @@
         }
 
         {
-          name = "powerlevel9k";
-          file = "powerlevel9k.zsh-theme";
-          src = pkgs.fetchFromGitHub {
-            owner = "bhilburn";
-            repo = "powerlevel9k";
-            rev = "571a859413866897cf962396f02f65a288f677ac";
-            sha256 = "0xwa1v3c4p3cbr9bm7cnsjqvddvmicy9p16jp0jnjdivr6y9s8ax";
-          };
+          name = "powerlevel10k";
+          file = "powerlevel10k.zsh-theme";
+          src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
+        }
+        {
+          name = "powerlevel10k-config";
+          src = lib.cleanSource ./config;
+          file = "p10k.zsh";
         }
 
         {
@@ -268,7 +268,7 @@
         echo $path
       }
 
-      export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
+      #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     '';
 
     dirHashes = {
