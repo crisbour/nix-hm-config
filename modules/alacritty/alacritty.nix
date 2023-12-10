@@ -37,6 +37,7 @@ in {
 
     decorations_theme_variant = "dark";
 
+    # TODO: Improve fonts configs like https://github.com/oceanlewis/nix-config/blob/e692821d3d3f77785131737707e4ce723cc68f72/programs/alacritty/fonts.nix#L61
     extraConfig = ''
       font:
         normal:
@@ -47,7 +48,7 @@ in {
           style: Bold
         italic:
           family: IosevkaNerdFontMono
-          style: Bold
+          style: Italic
         bold_italic:
           family: IosevkaNerdFontMono
           style: Bold Italic
