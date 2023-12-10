@@ -74,12 +74,12 @@ in
     asciidoctor
 
     brightnessctl
-    #discord
+    discord
     joplin-desktop
 
     #shutter # screenshots
     #flameshot
-    #slack
+    slack
     spotify
 
     # TODO: Perhaps use these with touchscreen display laptop

@@ -51,10 +51,10 @@ in {
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
-    #pinentryFlavor       = "gnome3";
+    pinentryFlavor       = "gnome3";
     verbose              = true;
+    # pinentry-program /usr/bin/pinentry-gnome3
     extraConfig = ''
-      pinentry-program /usr/bin/pinentry-gnome3
       debug-pinentry
       debug ipc
     '';
