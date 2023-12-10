@@ -130,6 +130,7 @@
       op    = "xdg-open";
       del   = "rm -rf";
       sdel  = "sudo rm -rf";
+      ls    = "ls --color=auto";
       lst   = "ls --tree -I .git";
       lsl   = "ls -l";
       lsa   = "ls -a";
