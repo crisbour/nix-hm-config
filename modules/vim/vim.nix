@@ -7,7 +7,6 @@ in
   viAlias = true;
   vimAlias = true;
   plugins = with pkgs.vimPlugins; [
-    spade-lang
     vim-easy-align
     #coc-nvim
     editorconfig-vim
@@ -29,6 +28,9 @@ in
 
     # Nix
     vim-nix
+
+    # Markdown
+    vim-markdown
 
     # Python
     semshi
@@ -53,6 +55,9 @@ in
     # Python linter
     coc-pyright
 
+    ## User addded
+    # Spade-lang syntax higlight
+    spade-lang
   ];
 
   extraPackages = with pkgs; [
