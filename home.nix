@@ -12,7 +12,6 @@ in
     EDITOR    = "nvim";
     SHELL     = "${pkgs.zsh}/bin/zsh";
     #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
-
   };
   home.packages = packages pkgs withGUI;
 
@@ -39,7 +38,7 @@ in
   };
 
   # Allow Nix to handle fonts
-  fonts = { fontconfig = { enable = true; }; };
+  fonts.fontconfig.enable = true;
 
   programs = import ./programs.nix {
     inherit pkgs;
