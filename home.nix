@@ -11,7 +11,7 @@ in
   home.sessionVariables = {
     EDITOR    = "nvim";
     SHELL     = "${pkgs.zsh}/bin/zsh";
-    SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
+    #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
 
   };
   home.packages = packages pkgs withGUI;
@@ -47,22 +47,16 @@ in
     maxCacheTtl = 36000;
     defaultCacheTtlSsh = 36000;
     maxCacheTtlSsh = 36000;
-    enableExtraSocket = true;
+    #enableExtraSocket = true;
     enableSshSupport = true;
     enableZshIntegration = true;
-    #pinentryFlavor = "gtk2";
+    pinentryFlavor = "gnome3";
     verbose = true;
     extraConfig = ''
       debug-pinentry
       debug ipc
     '';
   };
-
-  # Be able to use gpg-agent and auth app in the same time: https://whynothugo.nl/journal/2023/03/13/using-a-yubikey-for-both-gpg-and-totp/
-  home.file."${config.home.homeDirectory}/.gnupg/scdaemon.conf".text = ''
-    pcsc-shared
-    #disable-ccid
-  '';
 
   xdg.enable = true;
 

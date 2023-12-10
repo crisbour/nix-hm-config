@@ -73,6 +73,10 @@ in
       # Always show the fingerprint
       with-fingerprint = true;
     };
+    scdaemonSettings = {
+      #disable-ccid = true;
+      pcsc-shared = true;
+    };
   };
 
   # Let Home Manager install and manage itself.
