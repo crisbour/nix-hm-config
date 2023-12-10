@@ -25,57 +25,30 @@
     };
 
     plugins = [
-      #{
-      #  name = "fast-syntax-highlighting";
-      #  file = "fast-syntax-highlighting.plugin.zsh";
-      #  src = "${pkgs.zsh-fast-syntax-highlighting}/share/zsh/site-functions";
-      #}
-      #{
-      #  name = "zsh-nix-shell";
-      #  file = "nix-shell.plugin.zsh";
-      #  src = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
-      #}
-      # https://github.com/kalbasit/shabka/blob/master/modules/home/software/zsh/default.nix
-        {
-          name = "enhancd";
-          file = "init.sh";
-          src = pkgs.fetchFromGitHub {
-            owner = "b4b4r07";
-            repo = "enhancd";
-            rev = "fd805158ea19d640f8e7713230532bc95d379ddc";
-            sha256 = "0pc19dkp5qah2iv92pzrgfygq83vjq1i26ny97p8dw6hfgpyg04l";
-          };
-        }
-
-        {
-          name = "gitit";
-          src = pkgs.fetchFromGitHub {
-            owner = "peterhurford";
-            repo = "git-it-on.zsh";
-            rev = "4827030e1ead6124e3e7c575c0dd375a9c6081a2";
-            sha256 = "01xsqhygbxmv38vwfzvs7b16iq130d2r917a5dnx8l4aijx282j2";
-          };
-        }
-
-        {
-          name = "solarized-man";
-          src = pkgs.fetchFromGitHub {
-            owner = "zlsun";
-            repo = "solarized-man";
-            rev = "a902b64696271efee95f37d45589078fdfbbddc5";
-            sha256 = "04gm4qm17s49s6h9klbifgilxv8i45sz3rg521dwm599gl3fgmnv";
-          };
-        }
-
         {
           name = "powerlevel10k";
-          file = "powerlevel10k.zsh-theme";
-          src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k";
+          src  = pkgs.zsh-powerlevel10k;
+          file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
         }
         {
           name = "powerlevel10k-config";
-          src = lib.cleanSource ./config;
+          src  = lib.cleanSource ./config;
           file = "p10k.zsh";
+        }
+
+        #{
+        #  name = "zsh-syntax-highlighting";
+        #  src = "${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting";
+        #  file = "nix-syntax-highlighting.plugin.zsh";
+        #}
+        {
+          name = "fast-syntax-highlighting";
+          src = pkgs.fetchFromGitHub {
+            owner = "zdharma-continuum";
+            repo = "fast-syntax-highlighting";
+            rev = "v1.55";
+            sha256 = "sha256-DWVFBoICroKaKgByLmDEo4O+xo6eA8YO792g8t8R7kA=";
+          };
         }
 
         {
@@ -83,8 +56,8 @@
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-completions";
-            rev = "0.27.0";
-            sha256 = "1c2xx9bkkvyy0c6aq9vv3fjw7snlm0m5bjygfk5391qgjpvchd29";
+            rev = "0.35.0";
+            sha256 = "sha256-GFHlZjIHUWwyeVoCpszgn4AmLPSSE8UVNfRmisnhkpg=";
           };
         }
 
@@ -93,44 +66,155 @@
           src = pkgs.fetchFromGitHub {
             owner = "zsh-users";
             repo = "zsh-history-substring-search";
-            rev = "47a7d416c652a109f6e8856081abc042b50125f4";
-            sha256 = "1mvilqivq0qlsvx2rqn6xkxyf9yf4wj8r85qrxizkf0biyzyy4hl";
+            rev = "v1.1.0";
+            sha256 = "sha256-GSEvgvgWi1rrsgikTzDXokHTROoyPRlU0FVpAoEmXG4=";
           };
         }
 
         {
-          name = "zsh-syntax-highlighting";
+          name = "zsh-nix-shell";
+          file = "nix-shell.plugin.zsh";
+          src  = "${pkgs.zsh-nix-shell}/share/zsh-nix-shell";
+        }
+      # #https://github.com/kalbasit/shabka/blob/master/modules/home/software/zsh/default.nix
+        #{
+        #  name = "enhancd";
+        #  file = "init.sh";
+        #  src = pkgs.fetchFromGitHub {
+        #    owner = "b4b4r07";
+        #    repo = "enhancd";
+        #    rev = "v2.5.1";
+        #    sha256 = "sha256-kaintLXSfLH7zdLtcoZfVNobCJCap0S/Ldq85wd3krI=";
+        #  };
+        #}
+
+        # colored-man-pages extracted from oh-my-zsh
+        # TODO: Debug
+        {
+          name = "colored-man-pages";
           src = pkgs.fetchFromGitHub {
-            owner = "zsh-users";
-            repo = "zsh-syntax-highlighting";
-            rev = "db6cac391bee957c20ff3175b2f03c4817253e60";
-            sha256 = "0d9nf3aljqmpz2kjarsrb5nv4rjy8jnrkqdlalwm2299jklbsnmw";
+            owner = "ohmyzsh";
+            repo = "ohmyzsh";
+            rev = "48ccc7b36de8efb2bd7beb9bd6e0a6f6fe03b95d";
+            sha256 = "sha256-OZc6FxmfQoFfEd589g4f022F6CUHQyEWwV/Ka0HCGag=";
           };
+          file="plugins/colored-man-pages/colored-man-pages.plugin.zsh";
         }
 
         {
-          name = "nix-shell";
+          name = "forgit";
           src = pkgs.fetchFromGitHub {
-            owner = "chisui";
-            repo = "zsh-nix-shell";
-            rev = "03a1487655c96a17c00e8c81efdd8555829715f8";
-            sha256 = "1avnmkjh0zh6wmm87njprna1zy4fb7cpzcp8q7y03nw3aq22q4ms";
+            owner = "wfxr";
+            repo = "forgit";
+            rev = "23.09.0";
+            sha256 = "sha256-WvJxjEzF3vi+YPVSH3QdDyp3oxNypMoB71TAJ7D8hOQ=";
           };
         }
-      #{
-      #  name = "forgit";
-      #  file = "forgit.plugin.zsh";
-      #  src = "${pkgs.forgit}/share/forgit";
-      #}
     ];
 
+    dirHashes = {
+      dl = "$HOME/Downloads";
+      nix = "$HOME/.nixpkgs";
+      code = "$HOME/code";
+    };
+
+    shellAliases = {
+      # builtins
+      size  = "du -sh";
+      cp    = "cp -i";
+      mkdir = "mkdir -p";
+      df    = "df -h";
+      free  = "free -h";
+      du    = "du -sh";
+      susu  = "sudo su";
+      op    = "xdg-open";
+      del   = "rm -rf";
+      sdel  = "sudo rm -rf";
+      lst   = "ls --tree -I .git";
+      lsl   = "ls -l";
+      lsa   = "ls -a";
+      null  = "/dev/null";
+      tmux  = "tmux -u";
+      tu    = "tmux -u";
+      tua   = "tmux a -t";
+
+      # overrides
+      cat    = "bat";
+      #ssh = "TERM=screen ssh";
+      python = "python3";
+      pip    = "python3 -m pip";
+      venv   = "python3 -m venv";
+      j      = "z";
+
+      # programs
+      g     = "git";
+      dk    = "docker";
+      sc    = "sudo systemctl";
+      poe   = "poetry";
+      fb    = "pcmanfm .";
+      space = "ncdu";
+      ca    = "cargo";
+      diff  = "difft";
+      py    = "python";
+
+      # TODO make myself a terminal cheatsheet
+      # terminal cheat sheet
+      cht = "cht.sh";
+
+      # utilities
+      psf     = "ps -aux | grep";
+      lsf     = "ls | grep";
+      shut    = "sudo shutdown -h now";
+      tssh    = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
+      socks   = "ssh -D 1337 -q -C -N";
+
+      # clean
+      dklocal = "docker run --rm -it -v `PWD`:/usr/workdir --workdir=/usr/workdir";
+      dkclean = "docker container rm $(docker container ls -aq)";
+
+      caps    = "xdotool key Caps_Lock";
+      gclean  = "git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done";
+      weather = "curl -4 http://wttr.in/Cambridge";
+
+      # nix
+      clean = "nix-collect-garbage -d && nix-store --gc && nix-store --verify --check-contents --repair";
+      nsh   = "nix-shell";
+      nse   = "nix search nixpkgs";
+
+      # Work
+      codasip-vpn        = "sudo openvpn --config /etc/openvpn/client.conf";
+      mount-nfs          = "find /samba/ -maxdepth 1 -not -path /samba/ -type d | for i in $(cat); do sudo mount $i; done";
+      sync_to_cruncher   = "sync_files_to_server $CRUNCH /home/$USER/centoslinux_home $1";
+      sync_from_cruncher = "sync_files_from_server $CRUNCH /home/$USER/centoslinux_home $1";
+      sync_to_slurm      = "sync_files_to_server slurmlogin1 /home/codasip.com/$USER $1";
+      sync_from_slurm    = "sync_files_from_server slurmlogin1 /home/codasip.com/$USER $1";
+      match_crunch_path  = "match_server_path /home/$USER $1";
+      match_slurm_path   = "match_server_path $HOME $1";
+      docs_lint          = "open /mnt/edatools/software/linux/synopsys/vc_static/T-2022.06-SP2-1/doc/vcst/VC_SpyGlass_Docs/PDFs/VC_SpyGlass_Lint_UserGuide.pdf";
+      docs_syn           = "open /mnt/edatools/software/linux/cadence/ddi_22.30/GENUS221/docs/genus_timing/genus_timing.pdf";
+      vis-cruncher       = "vis +change_file_path+$(crunch_top_path)=$(local_top_path) $@";
+      vis-slurm          = "vis +change_file_path+$(slurm_top_path)=$(local_top_path) $@";
+    };
+
+    #prezto = {
+    #  enable = true;
+    #  caseSensitive = false;
+    #  utility.safeOps = true;
+    #  editor = {
+    #    dotExpansion = true;
+    #    keymap = "vi";
+    #  };
+    #  pmodules = [
+    #    "autosuggestions"
+    #    "completion"
+    #    "directory"
+    #    "editor"
+    #    "git"
+    #    "terminal"
+    #  ];
+    #};
+
     initExtra = ''
-      # fixes starship swallowing newlines
-      precmd() {
-        precmd() {
-          echo
-        }
-      }
       export OBILIX_PATH=$HOME/Documents/Scripts/A71/obilix
 	    export CRUNCH=cristian.bourceanu@app-team-cruncher.user.codasip.com
 
@@ -142,8 +226,6 @@
       # TODO: handle secrets somehow
       #source /secrets/environment.bash
 
-      bindkey '^e' edit-command-line
-      # this is backspace
       bindkey '^H' autosuggest-accept
       bindkey '^ ' autosuggest-accept
 
@@ -270,116 +352,6 @@
 
       #export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
     '';
-
-    dirHashes = {
-      dl = "$HOME/Downloads";
-      nix = "$HOME/.nixpkgs";
-      code = "$HOME/code";
-    };
-
-    shellAliases = {
-      # builtins
-      size  = "du -sh";
-      cp    = "cp -i";
-      mkdir = "mkdir -p";
-      df    = "df -h";
-      free  = "free -h";
-      du    = "du -sh";
-      susu  = "sudo su";
-      op    = "xdg-open";
-      del   = "rm -rf";
-      sdel  = "sudo rm -rf";
-      lst   = "ls --tree -I .git";
-      lsl   = "ls -l";
-      lsa   = "ls -a";
-      null  = "/dev/null";
-      tmux  = "tmux -u";
-      tu    = "tmux -u";
-      tua   = "tmux a -t";
-
-      # overrides
-      cat    = "bat";
-      #ssh = "TERM=screen ssh";
-      python = "python3";
-      pip    = "python3 -m pip";
-      venv   = "python3 -m venv";
-      j      = "z";
-
-      # programs
-      g     = "git";
-      dk    = "docker";
-      pd    = "podman";
-      pc    = "podman-compose";
-      sc    = "sudo systemctl";
-      poe   = "poetry";
-      fb    = "pcmanfm .";
-      space = "ncdu";
-      ca    = "cargo";
-      diff  = "delta";
-      py    = "python";
-      awake = "caffeinate";
-      # TODO What are the followings?
-      os    = "openstack";
-      pu    = "pulumi";
-
-      # TODO make myself a terminal cheatsheet
-      # terminal cheat sheet
-      cht = "cht.sh";
-
-      # utilities
-      psf     = "ps -aux | grep";
-      lsf     = "ls | grep";
-      shut    = "sudo shutdown -h now";
-      tssh    = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
-      socks   = "ssh -D 1337 -q -C -N";
-
-      # clean
-      dklocal = "docker run --rm -it -v `PWD`:/usr/workdir --workdir=/usr/workdir";
-      dkclean = "docker container rm $(docker container ls -aq)";
-
-      caps    = "xdotool key Caps_Lock";
-      gclean  = "git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done";
-      ew      = "nvim -c ':cd ~/vimwiki' ~/vimwiki";
-      weather = "curl -4 http://wttr.in/Koeln";
-
-      # nix
-      ne    = "nvim -c ':cd ~/.nixpkgs' ~/.nixpkgs";
-      clean = "nix-collect-garbage -d && nix-store --gc && nix-store --verify --check-contents --repair";
-      nsh   = "nix-shell";
-      nse   = "nix search nixpkgs";
-
-      # Work
-      codasip-vpn        = "sudo openvpn --config /etc/openvpn/client.conf";
-      mount-nfs          = "find /samba/ -maxdepth 1 -not -path /samba/ -type d | for i in $(cat); do sudo mount $i; done";
-      sync_to_cruncher   = "sync_files_to_server $CRUNCH /home/$USER/centoslinux_home $1";
-      sync_from_cruncher = "sync_files_from_server $CRUNCH /home/$USER/centoslinux_home $1";
-      sync_to_slurm      = "sync_files_to_server slurmlogin1 /home/codasip.com/$USER $1";
-      sync_from_slurm    = "sync_files_from_server slurmlogin1 /home/codasip.com/$USER $1";
-      match_crunch_path  = "match_server_path /home/$USER $1";
-      match_slurm_path   = "match_server_path $HOME $1";
-      docs_lint          = "open /mnt/edatools/software/linux/synopsys/vc_static/T-2022.06-SP2-1/doc/vcst/VC_SpyGlass_Docs/PDFs/VC_SpyGlass_Lint_UserGuide.pdf";
-      docs_syn           = "open /mnt/edatools/software/linux/cadence/ddi_22.30/GENUS221/docs/genus_timing/genus_timing.pdf";
-      vis-cruncher       = "vis +change_file_path+$(crunch_top_path)=$(local_top_path) $@";
-      vis-slurm          = "vis +change_file_path+$(slurm_top_path)=$(local_top_path) $@";
-    };
-
-    #prezto = {
-    #  enable = true;
-    #  caseSensitive = false;
-    #  utility.safeOps = true;
-    #  editor = {
-    #    dotExpansion = true;
-    #    keymap = "vi";
-    #  };
-    #  pmodules = [
-    #    "autosuggestions"
-    #    "completion"
-    #    "directory"
-    #    "editor"
-    #    "git"
-    #    "terminal"
-    #  ];
-    #};
 
   profileExtra = ''
 

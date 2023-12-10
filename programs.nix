@@ -23,7 +23,6 @@ in
     ];
   };
 
-
   # Why do we use both packages and versions of direnv
   #direnv= {
   #  enable = true;

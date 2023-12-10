@@ -3,6 +3,7 @@ pkgs: withGUI: with pkgs; [
   bat
   binutils
   bottom                       # htop on steroids
+  difftastic                   # Fantastic diff utility
 
   cargo                         # rust `cargo` tool
   cargo-edit # Easy Rust dependency management
