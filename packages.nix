@@ -9,6 +9,7 @@ pkgs: withGUI: with pkgs; [
   cargo-edit # Easy Rust dependency management
   cargo-graph # Rust dependency graphs
   cargo-watch # Watch a Rust project and execute custom commands upon change
+  cloc
   cmake
 
   dbus
@@ -26,6 +27,7 @@ pkgs: withGUI: with pkgs; [
   keybase
 
   manix                         # Nix search documentation
+  most
   nix-index                     # Find packages providing a binary name
   nix-template                  # Generate deterministic derivation templates
   nix-update                    # Update nixpkgs
@@ -50,6 +52,8 @@ pkgs: withGUI: with pkgs; [
   fzf
   ripgrep
 
+  unzip
+
   # so neovim can copy to clipboard
   xclip
 ] ++ pkgs.lib.optionals pkgs.stdenv.isLinux [
@@ -67,17 +71,18 @@ pkgs: withGUI: with pkgs; [
 
   brightnessctl
   enlightenment.terminology
-  #discord
+  discord
   #(dwarf-fortress-packages.dwarf-fortress-full.override {
   #  dfVersion = "0.47.04";
   #  theme = dwarf-fortress-packages.themes.phoebus;
   #  enableIntro = false;
   #  enableFPS = true;
   #})
-  nerdfonts                   # A bunch of awesome fonts
+  nerdfonts
   #shutter # screenshots
   #flameshot
-  #spotify
+  slack
+  spotify
 
   tmate
 
