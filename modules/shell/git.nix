@@ -23,12 +23,16 @@
       cp = "cherry-pick";
       sur = "submodule update --init --recursive";
     };
+
     delta = {
       enable = true;
       options = {
         theme = "OneHalfDark";
+        #side-by-side = true;
+        line-numbers = true;
       };
     };
+
     extraConfig = {
       github.user = "crisbour";
       url."git@github.com:crisbour/" = {

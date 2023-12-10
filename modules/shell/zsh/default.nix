@@ -155,7 +155,7 @@
       fb    = "pcmanfm .";
       space = "ncdu";
       ca    = "cargo";
-      diff  = "difft";
+      diff  = "delta";
       py    = "python";
 
       # TODO make myself a terminal cheatsheet
