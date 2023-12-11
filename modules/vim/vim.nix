@@ -1,6 +1,7 @@
 pkgs:
 let
   spade-lang = import ./spade-plugin.nix pkgs;
+  codal-plugin = import ./codal/codal-plugin.nix pkgs;
 in
 {
   enable = true;
@@ -58,6 +59,18 @@ in
     ## User addded
     # Spade-lang syntax higlight
     spade-lang
+    {
+      plugin = codal-plugin;
+      config = ''
+        au BufRead,BufNewFile *.codal set filetype=codal
+        au BufRead,BufNewFile *.hcodal set filetype=codal
+
+        au FileType codal set tabstop=4 shiftwidth=4 expandtab
+
+        " Proper "ifdef" handling
+        au FileType codal set syntax=codal.ifdef
+      '';
+    }
   ];
 
   extraPackages = with pkgs; [
