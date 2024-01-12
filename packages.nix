@@ -5,7 +5,6 @@ pkgs: withGUI: with pkgs; [
   bottom                       # htop on steroids
   difftastic                   # Fantastic diff utility
 
-  cargo                         # rust `cargo` tool
   cargo-edit # Easy Rust dependency management
   cargo-graph # Rust dependency graphs
   cargo-watch # Watch a Rust project and execute custom commands upon change
@@ -14,6 +13,7 @@ pkgs: withGUI: with pkgs; [
 
   dbus
   eza                           # `ls` replacement written in Rust
+  evcxr                         # Rust notebook: Evcxr
   fd                            # `find` alternative, faster and simpler
 #  git
   gitAndTools.delta
@@ -38,8 +38,6 @@ pkgs: withGUI: with pkgs; [
  (import ./modules/python-packages.nix { inherit pkgs; })
 #  ranger                        # Terminal file manager
   rnix-lsp                      # Nix language server
-  rustc                         # Rust compiler
-  rustfmt
   rust-analyzer
   # stack broken
   starship

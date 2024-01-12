@@ -9,6 +9,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     utils.url = "github:numtide/flake-utils";
+    rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
   outputs = { self, nixpkgs, home-manager, utils, nixgl, ... }:
@@ -25,6 +26,11 @@
           xdg = { configHome = homeDirectory; };
           overlays = [ nixgl.overlay ];
         };
+        overlays = [
+          nixgl.overlay
+          # TODO: Better organization: https://github.com/redxtech/dotfiles/blob/03a5dbefcac0db01539ddd3a57d5935739a306b6/.config/home-manager/flake.nix
+          (import ./gui/gl_wrapper.nix)
+        ];
       };
 
       mkHomeConfiguration = args: home-manager.lib.homeManagerConfiguration (rec {
