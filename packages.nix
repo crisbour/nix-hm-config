@@ -8,8 +8,13 @@ pkgs: withGUI: with pkgs; [
   cargo-edit # Easy Rust dependency management
   cargo-graph # Rust dependency graphs
   cargo-watch # Watch a Rust project and execute custom commands upon change
+
+  clang-tools_17
+
   cloc
+
   cmake
+  cmake-language-server
 
   dbus
   eza                           # `ls` replacement written in Rust

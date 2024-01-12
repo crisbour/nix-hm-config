@@ -44,7 +44,79 @@ in
       '';
     }
     fzfWrapper
-    LanguageClient-neovim
+    {
+      plugin = LanguageClient-neovim;
+      config = ''
+        nmap <silent> gd <Plug>(lcn-definition)
+      '';
+    }
+    {
+      type = "lua";
+      plugin = nvim-lspconfig;
+      # Inspired from https://github.com/sumnerevans/home-manager-config/blob/40d5adf9c249ffd08a0c8c8098ae43107aef68f9/modules/neovim/plugins/nvim-lspconfig.nix#L29
+      config = ''
+        local lspconfig = require('lspconfig')
+        --local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+        lspconfig.bashls.setup {
+          cmd = { "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start" },
+        }
+        lspconfig.clangd.setup {
+          cmd = { "${pkgs.clang-tools_17}/bin/clangd",
+                  "--background-index",
+                  "--suggest-missing-includes",
+                  "--clang-tidy",
+                  "-Wall"
+                  },
+        }
+        lspconfig.yamlls.setup {
+          cmd = { "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server", "--stdio" },
+        }
+
+        lspconfig.julials.setup{}
+        lspconfig.cmake.setup{}
+        lspconfig.vimls.setup{}
+        lspconfig.pyright.setup{}
+        lspconfig.rust_analyzer.setup{
+          settings = {
+            ['rust-analyzer'] = {},
+          },
+        }
+        --require'lspconfig'.nimls.setup{}
+        --require'lspconfig'.pyls.setup{}
+
+        -- Use LspAttach autocommand to only map the following keys
+        -- after the language server attaches to the current buffer
+        vim.api.nvim_create_autocmd('LspAttach', {
+          group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+          callback = function(ev)
+            -- Enable completion triggered by <c-x><c-o>
+            vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+            -- Buffer local mappings.
+            -- See `:help vim.lsp.*` for documentation on any of the below functions
+            local opts = { buffer = ev.buf }
+            vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+            vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+            vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+            vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+            --vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+            vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+            vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+            vim.keymap.set('n', '<space>wl', function()
+              print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+            end, opts)
+            vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+            vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+            vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+            vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+            vim.keymap.set('n', '<space>f', function()
+              vim.lsp.buf.format { async = true }
+            end, opts)
+          end,
+        })
+      '';
+    }
 #    lightline-vim
     {
       plugin = nerdtree;
