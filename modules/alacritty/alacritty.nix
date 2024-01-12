@@ -12,7 +12,7 @@ in {
       { key = "Minus";      mods = "Control";     action = "DecreaseFontSize"; }
     ];
     font = {
-      size = 12;
+      size = 16;
     };
 
     cursor = {
