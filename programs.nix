@@ -74,7 +74,7 @@ in
       with-fingerprint = true;
     };
     scdaemonSettings = {
-      #disable-ccid = true;
+      disable-ccid = true;
       pcsc-shared = true;
     };
   };
