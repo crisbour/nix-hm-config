@@ -22,7 +22,7 @@ pkgs: withGUI: with pkgs; [
   gnumake
 
   julia
-  jupyter
+#  jupyter
 
   keybase
 
@@ -34,7 +34,8 @@ pkgs: withGUI: with pkgs; [
 #  nixpkgs-review-fixed          # Rebuild packages with changes/overlays
   nodejs                        # needed for coc vim plugins
   perl                          # for fzf history
-# (import ./modules/python-packages.nix { inherit pkgs; })
+#  pinentry
+ (import ./modules/python-packages.nix { inherit pkgs; })
 #  ranger                        # Terminal file manager
   rnix-lsp                      # Nix language server
   rustc                         # Rust compiler
@@ -72,6 +73,7 @@ pkgs: withGUI: with pkgs; [
   brightnessctl
   enlightenment.terminology
   discord
+  joplin-desktop
   #(dwarf-fortress-packages.dwarf-fortress-full.override {
   #  dfVersion = "0.47.04";
   #  theme = dwarf-fortress-packages.themes.phoebus;
