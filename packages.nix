@@ -25,6 +25,7 @@ pkgs: withGUI: with pkgs; [
 #  glances                       # web based `htop`
   gnupg                         # gpg command
   gnumake
+  go
 
   julia
 #  jupyter
