@@ -24,7 +24,6 @@
         config = {
           allowUnfree = true;
           xdg = { configHome = homeDirectory; };
-          overlays = [ nixgl.overlay ];
         };
         overlays = [
           nixgl.overlay
