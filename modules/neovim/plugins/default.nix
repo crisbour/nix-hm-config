@@ -4,7 +4,7 @@
     # Custom plugins
     ## Spade-lang syntax higlight
     ./spade-lang.nix
-    ./codal-lang.nix
+    ./codal
 
     # Local Environment Configuration and Integration
     ./vim-autoswap.nix
