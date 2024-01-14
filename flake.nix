@@ -8,11 +8,11 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    utils.url = "github:numtide/flake-utils";
+    flake-utils.url = "github:numtide/flake-utils";
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, utils, nixgl, ... }:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, ... }:
   # Remove polybar-pipewire overlay
     let
       username = builtins.getEnv "USER";
@@ -32,42 +32,22 @@
         ];
       };
 
-      mkHomeConfiguration = args: home-manager.lib.homeManagerConfiguration (rec {
+      mkHomeConfiguration = hostModules: home-manager.lib.homeManagerConfiguration (rec {
         pkgs = pkgsForSystem (args.system or "x86_64-linux");
         modules = [
           ./home.nix
-          {
-            home = {
-              # Migrate them to home.nix
-              inherit username;
-              inherit homeDirectory;
-              stateVersion = "23.11";
-            };
-          }
+          hostModules
         ];
-      } // args);
 
-    in utils.lib.eachSystem [ "x86_64-linux" ] (system: rec {
+        # TODO: One day maybe when I'll have my own nix derviations organized
+        #extraSpecialArgs = { inherit declarative-cachix; };
+      } );
+
+    in {
+      homeConfigurations.cristi = mkHomeConfiguration ./host-configurations/cristi.nix;
+      homeConfigurations.lxd    = mkHomeConfiguration ./host-configurations/lxd.nix;
+    } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+    {
       legacyPackages = pkgsForSystem system;
-  }) // {
-    # non-system suffixed items should go here
-    nixosModules.home = import ./home.nix; # attr set or list
-
-    homeConfigurations.cristi = mkHomeConfiguration {
-      extraSpecialArgs = {
-        withGUI = true;
-        isDesktop = true;
-      };
-    };
-
-    homeConfigurations.lxd = mkHomeConfiguration {
-      extraSpecialArgs = {
-        withGUI = false;
-        isDesktop = false;
-      };
-    };
-
-    inherit home-manager;
-
-  };
+    });
 }

@@ -130,7 +130,7 @@
       op    = "xdg-open";
       del   = "rm -rf";
       sdel  = "sudo rm -rf";
-      ls    = "ls --color=auto";
+      ls    = "eza";
       lst   = "ls --tree -I .git";
       lsl   = "ls -l";
       lsa   = "ls -a";
@@ -164,7 +164,7 @@
 
       # utilities
       psf     = "ps -aux | grep";
-      lsf     = "ls | grep";
+      lsf     = "eza | grep";
       shut    = "sudo shutdown -h now";
       tssh    = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
       socks   = "ssh -D 1337 -q -C -N";

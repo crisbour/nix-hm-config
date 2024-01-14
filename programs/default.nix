@@ -1,0 +1,141 @@
+{ config, lib, pkgs, ... }:
+with pkgs;
+let
+  inherit (pkgs.stdenv) isLinux;
+  hasGui = config.wayland.enable || config.xorg.enable;
+in
+{
+  home.packages = [
+    bat
+    binutils
+    bottom                       # htop on steroids
+    delta
+    #difftastic                   # Fantastic diff utility
+    cloc
+    curl
+    dbus
+    # TODO: alias ls=eza
+    eza                           # `ls` replacement written in Rust
+    evcxr                         # Rust notebook: Evcxr
+    # TODO: alias find=fd
+    fd                            # `find` alternative, faster and simpler
+    file
+#    git
+#    glances                       # web based `htop`
+    gnumake
+    go
+
+    julia
+#    jupyter
+
+    keybase
+
+    libnotify
+
+    manix                         # Nix search documentation
+    most
+    nix-index                     # Find packages providing a binary name
+    nix-template                  # Generate deterministic derivation templates
+    nix-update                    # Update nixpkgs
+#    nixpkgs-review-fixed          # Rebuild packages with changes/overlays
+    nodejs                        # needed for coc vim plugins
+    openssl
+    pciutils
+    perl                          # for fzf history
+ (  import ../pkgs/python-packages.nix { inherit pkgs; })
+ # TODO: Perhaps configure it like here: https://github.com/HugoReeves/nix-home/blob/0b044c15b7fb597e1480cd266ea25599706fb9e9/program/file-manager/ranger/index.nix#L4
+#    ranger                        # Terminal file manager
+    lf                            # Terminal file manager inspired by ranger
+
+    # FIXME: Move language server to nvim
+    rnix-lsp                      # Nix language server
+    rust-analyzer
+
+    tig                           # Awesome Text based git
+    tree
+    wget
+
+    # vim plugin dependencies
+    ripgrep
+    unzip
+    usbutils
+    zip
+    xdg-utils
+    xclip
+  ] ++ lib.optionals hasGui [
+    # intended to be installed with an X11 or wayland session
+    asciidoctor
+
+    brightnessctl
+    discord
+    joplin-desktop
+    nerdfonts
+    #shutter # screenshots
+    #flameshot
+    slack
+    spotify
+
+    # TODO: Perhaps use these with touchscreen display laptop
+    #write_stylus
+    #xournal
+
+    tmate
+
+    # for work
+    freerdp
+  ];
+
+  programs = {
+
+    # Let Home Manager install and manage itself.
+    home-manager.enable = true;
+
+    htop = {
+      enable = true;
+      settings = {
+        left_meters = [ "LeftCPUs2" "Memory" "Swap" ];
+        left_right = [ "RightCPUs2" "Tasks" "LoadAverage" "Uptime" ];
+        setshowProgramPath = false;
+        treeView = true;
+      };
+    };
+
+    dircolors = {
+      enable = true;
+      enableZshIntegration = true;
+      extraConfig = __readFile (pkgs.fetchurl {
+          url = "https://raw.githubusercontent.com/trapd00r/LS_COLORS/bcf78f74be4788ef224eadc7376ca780ae741e1e/LS_COLORS";
+          hash = "sha256-itKCWFPpJcTbw25DZCY7dktZh7/hU9RLHCmRLXvksno=";
+        });
+    };
+
+    # Terminal workspace more powerfull than tmux
+    zellij = {
+      enable = true;
+      settings = { };
+    };
+
+    # Better cd
+    zoxide = {
+      enable = true;
+      enableZshIntegration = true;
+    };
+
+
+    # Why do we use both packages and versions of direnv
+    #direnv= {
+    #  enable = true;
+    #  enableZshIntegration = true;
+
+    #  stdlib = ''
+    #    use_riff() {
+    #      watch_file Cargo.toml
+    #      watch_file Cargo.lock
+    #      eval "$(riff print-dev-env)"
+    #      }
+    #    '';
+    #  nix-direnv.enable = true;
+    #};
+  };
+}
+

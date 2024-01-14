@@ -7,7 +7,11 @@ pkgs.python3.withPackages (p: with p; [
   networkx # graphs
   numpy # numerical computation
   pandas # data analysis
-  pylint # static checking
-  setuptools # setup.py
+  pip
   pre-commit-hooks
+  pylint # static checking
+  pynvim
+  python-gitlab
+  setuptools # setup.py
+  tabulate
 ])

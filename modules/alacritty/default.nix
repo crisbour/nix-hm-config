@@ -1,9 +1,6 @@
 { config, lib, pkgs, ... }:
-withGUI:
-let
-  termfont = {family = "MesloLGS Nerd Font";};
-in {
-  enable = withGUI;
+{
+  enable = true;
   settings = {
     keybindings = [
       { key = "Equals";     mods = "Control";     action = "IncreaseFontSize"; }

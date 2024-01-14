@@ -1,11 +1,18 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+{
+  home.packages = with pkgs.gitAndTools [delta ];
+
+  programs.git = {
     enable = true;
+    package = pkgs.gitAndTools.gitFull;
+
     userName = "Cristi Bourceanu";
     userEmail = "bourceanu.cristi@gmail.com";
     signing = {
       key="75A90598348541DF";
       signByDefault = true;
     };
+
     aliases = {
       cm = "commit";
       ca = "commit --amend --no-edit";
@@ -34,6 +41,7 @@
     };
 
     extraConfig = {
+      core.editor = "nvim";
       github.user = "crisbour";
       url."git@github.com:crisbour/" = {
         insteadOf = [
@@ -57,7 +65,7 @@
         autoSetupRemote = true;
       };
 
-      commit.gpgsign = "true";
+      commit.gpgsign = true;
       #gpg.format = "ssh";
 
       #protocol.keybase.allow = "always";
@@ -67,7 +75,10 @@
     ignores = [
       "build" # build directory
       ".idea" ".vs" ".vsc" ".vscode" # ide
-      "__pycache__" "*.pyc" # python
+      "__pycache__" "*.pyc" ".venv" # python
+      ".direnv"
+      ".cache"
     ];
+  };
 
 }
