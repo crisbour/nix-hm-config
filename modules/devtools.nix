@@ -35,6 +35,7 @@ in {
         python3Packages.ptpython
 
         # Languages
+        gcc
         go
         #julia
 
