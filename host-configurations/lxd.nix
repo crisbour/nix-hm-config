@@ -1,6 +1,4 @@
 {
-  extraSpecialArgs = {
-    withGUI = false;
-    isDesktop = false;
-  };
-};
+    withGUI = true;
+    isDesktop = true;
+}
