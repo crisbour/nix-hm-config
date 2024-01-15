@@ -36,12 +36,14 @@ in {
 
         # Languages
         go
-        julia
+        #julia
 
         # TODO: Move to rust.nix
         cargo-edit # Easy Rust dependency management
         cargo-graph # Rust dependency graphs
         cargo-watch # Watch a Rust project and execute custom commands upon change
+        rustfmt
+        clippy
 
         # Language servers
         clang-tools_17

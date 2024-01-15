@@ -29,7 +29,7 @@ set listchars=tab:>-
 "set splitbelow
 
 " Max code size highlighted limiters
-#let &colorcolumn="80,".join(range(120,999),",")
-#highlight ColorColumn ctermbg=black guibg=black
+"let &colorcolumn="80,".join(range(120,999),",")
+"highlight ColorColumn ctermbg=black guibg=black
 
 let mapleader=' '

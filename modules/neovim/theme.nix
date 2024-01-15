@@ -1,10 +1,15 @@
 { pkgs, lib, ... }:
 with lib; {
   programs.neovim = {
-    plugins = with pkgs.vimPlugins; [ vim-devicons nightfox-nvim ];
+    plugins = with pkgs.vimPlugins; [
+      vim-devicons
+      nightfox-nvim
+      gruvbox
+    ];
 
     extraConfig = ''
-      if ($TERM == 'alacritty' || $TERM == 'tmux-256color' || $TERM == 'xterm-256color' || $TERM == 'screen-256color') && !has('gui_running')
+    if ($TERM == 'alacritty' || $TERM == 'tmux-256color' ||
+      \ $TERM == 'xterm-256color' || $TERM == 'screen-256color') && !has('gui_running')
           set termguicolors
       endif
 

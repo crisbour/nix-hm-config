@@ -40,7 +40,7 @@ in
     nix-update                    # Update nixpkgs
 #    nixpkgs-review-fixed          # Rebuild packages with changes/overlays
     nodejs                        # needed for coc vim plugins
-    openssl
+#    openssl
     pciutils
     perl                          # for fzf history
  (  import ../pkgs/python-packages.nix { inherit pkgs; })

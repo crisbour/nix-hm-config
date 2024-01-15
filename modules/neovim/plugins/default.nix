@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./barbar.nix
     # Custom plugins
     ## Spade-lang syntax higlight
     ./spade-lang.nix
@@ -17,8 +18,10 @@
 
     # Language Server, Completion, and Formatting
     ## Format code: ./conform.nvim.nix
+    ./conform.nvim.nix
     ./nvim-cmp.nix
     ./nvim-lspconfig.nix
+    ./trouble.nvim.nix
 
     # Synatx Highlighting
     ./rainbow-delimiters.nix
@@ -51,20 +54,6 @@
     julia-vim
 
 
-    # Display tabs for buffers
-    {
-      plugin = vim-airline;
-      config = ''
-        " Configure vim-ariline tabline
-        let g:airline#extensions#tabline#enabled = 1
-        let g:airline#extensions#tabline#left_sep = ' '
-        let g:airline#extensions#tabline#left_alt_sep = '|'
-
-        "  Buffer/Tabs navigation
-        :map <C-K> :bnext<CR>
-        :map <C-J> :bprev<CR>
-      '';
-    }
     {
       plugin = vim-easy-align;
       config = ''
@@ -130,24 +119,6 @@
       config = ''
         let g:better_whitespace_enabled=1
         let g:strip_whitespace_on_save=1
-      '';
-    }
-
-    {
-      plugin = YouCompleteMe;
-      config = ''
-        let g:ycm_autoclose_preview_window_after_completion = 1
-        let g:ycm_auto_trigger = 0
-        let g:ycm_key_invoke_completion = '<Tab>'
-        let g:ycm_language_server =
-        \ [
-        \   {
-        \     'name': 'rust',
-        \     'cmdline': ['rust-analyzer'],
-        \     'filetypes': ['rust'],
-        \     'project_root_files': ['Cargo.toml']
-        \   }
-        \ ]
       '';
     }
   ];
