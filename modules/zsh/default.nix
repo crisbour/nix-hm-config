@@ -7,12 +7,6 @@
     dotDir = ".config/zsh";
     #defaultKeymap = "viins"; #vicmd or viins
 
-    sessionVariables = {
-      #COLORTERM = "truecolor";
-      EDITOR = "nvim";
-      VISUAL = "nvim";
-      NIXPKGS_ALLOW_UNFREE = "1";
-    };
 
     history = {
       expireDuplicatesFirst = true;
