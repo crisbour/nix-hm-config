@@ -1,3 +1,6 @@
+# TODO
+# Correct users detection fails in RHEL: https://discourse.nixos.org/t/unable-to-use-nixpkgs-git-on-rhel-7/12598
+
 { config, pkgs, lib, ... }:
 {
   home.packages = with pkgs.gitAndTools; [delta ];

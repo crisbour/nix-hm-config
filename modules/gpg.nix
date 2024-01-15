@@ -31,8 +31,9 @@ in {
       with-fingerprint = true;
     };
     scdaemonSettings = {
-      #disable-ccid = true;
+      disable-ccid = true;
       pcsc-shared = true;
+      reader-port="Yubico Yubikey";
     };
   };
 
@@ -45,9 +46,10 @@ in {
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
-    pinentryFlavor       = "gnome3";
+    #pinentryFlavor       = "gnome3";
     verbose              = true;
     extraConfig = ''
+      #user-agent
       debug-pinentry
       debug ipc
     '';

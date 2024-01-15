@@ -29,6 +29,8 @@
           nixgl.overlay
           # TODO: Better organization: https://github.com/redxtech/dotfiles/blob/03a5dbefcac0db01539ddd3a57d5935739a306b6/.config/home-manager/flake.nix
           (import ./gui/gl_wrapper.nix)
+          # Get around the issue with openssh on RPM distros: https://nixos.wiki/wiki/Nix_Cookbook
+          (final: prev: { openssh = prev.openssh_gssapi; } )
         ];
       };
 
