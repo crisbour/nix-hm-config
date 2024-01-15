@@ -34,9 +34,9 @@ in
 
   home.sessionVariables = {
     COLORTERM = "truecolor";
-    VISUAL    = "${editor}";
-    EDITOR    = "${editor}";
-    SHELL     = "${pkgs.zsh}/bin/zsh";
+    VISUAL = "${editor}";
+    EDITOR = "${editor}";
+    SHELL = "${pkgs.zsh}/bin/zsh";
     TERMINAL  = "${terminal}";
     #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
     NIXPKGS_ALLOW_UNFREE = "1";
