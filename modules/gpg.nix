@@ -6,6 +6,10 @@ let
   hasGUI = true;
 in {
 
+  home.sessionVariables = {
+    #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
+  };
+
   home.packages = with pkgs; [
     gnupg
     #pinentry
@@ -31,45 +35,44 @@ in {
       with-fingerprint = true;
     };
     scdaemonSettings = {
-      disable-ccid = true;
+      #disable-ccid = true;
       pcsc-shared = true;
-      reader-port="Yubico Yubikey";
+      #reader-port="Yubico Yubikey";
     };
   };
 
   services.gpg-agent = {
-    enable               = isLinux;
-    defaultCacheTtl      = 36000;
-    maxCacheTtl          = 36000;
-    defaultCacheTtlSsh   = 36000;
-    maxCacheTtlSsh       = 36000;
+    enable               = true;
+    defaultCacheTtl      = agentTTL;
+    maxCacheTtl          = agentTTL;
+    defaultCacheTtlSsh   = agentTTL;
+    maxCacheTtlSsh       = agentTTL;
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
     #pinentryFlavor       = "gnome3";
     verbose              = true;
     extraConfig = ''
-      #user-agent
       debug-pinentry
       debug ipc
     '';
   };
 
-  systemd.user.services.yubikey-touch-detector =
-    lib.mkIf hasGUI {
-      Unit = {
-        Description = "YubiKey touch detector";
-        PartOf = [ "graphical-session.target" ];
-      };
+ systemd.user.services.yubikey-touch-detector =
+   lib.mkIf hasGUI {
+     Unit = {
+       Description = "YubiKey touch detector";
+       PartOf = [ "graphical-session.target" ];
+     };
 
-      Service = {
-        ExecStart =
-          "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector --libnotify";
-        Environment = [ "PATH=${lib.makeBinPath [ pkgs.gnupg ]}" ];
-        Restart = "always";
-        RestartSec = 5;
-      };
+     Service = {
+       ExecStart =
+         "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector --libnotify";
+       Environment = [ "PATH=${lib.makeBinPath [ pkgs.gnupg ]}" ];
+       Restart = "always";
+       RestartSec = 5;
+     };
 
-      Install.WantedBy = [ "graphical-session.target" ];
-    };
+     Install.WantedBy = [ "graphical-session.target" ];
+   };
 }
