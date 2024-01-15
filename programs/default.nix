@@ -4,6 +4,13 @@ let
   inherit (pkgs.stdenv) isLinux;
   #hasGui = config.wayland.enable || config.xorg.enable;
   hasGUI = true;
+  # Nerdfonts is huge: take only what you need
+  #nerdfonts = (pkgs.nerdfonts.override { fonts = [
+  #    "FiraCode"
+  #    "DroidSansMono"
+  #    "Iosevka"
+  #    "Monokai"
+  #]; });
 in
 {
   home.packages = [
@@ -32,8 +39,7 @@ in
     manix                         # Nix search documentation
     most
 
-    # Nerdfonts is huge: take only what you need
-    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Iosevka" ]; })
+    nerdfonts
 
     nix-index                     # Find packages providing a binary name
     nix-template                  # Generate deterministic derivation templates
