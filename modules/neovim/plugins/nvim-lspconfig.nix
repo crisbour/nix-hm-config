@@ -3,7 +3,7 @@
   programs.neovim = {
     extraPackages = with pkgs; [
       rust-analyzer
-      clangd
+      clang-tools_17
     ];
     plugins = with pkgs.vimPlugins; [
       {

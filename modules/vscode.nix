@@ -1,6 +1,8 @@
 {config, pkgs, ...}:
 let
-  hasGUI = config.wayland.enable || config.xorg.enable;
+  #hasGUI = config.wayland.enable || config.xorg.enable;
+  hasGUI = true;
+in
 {
   programs.vscode = {
     enable = hasGUI;

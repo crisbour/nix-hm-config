@@ -3,7 +3,8 @@ with lib;
 let
   tomlFormat = pkgs.formats.toml { };
   iniFormat = pkgs.formats.ini { };
-  hasGui = config.wayland.enable || config.xorg.enable;
+  #hasGUI = config.wayland.enable || config.xorg.enable;
+  hasGUI = true;
   exposePort = pkgs.writeShellScriptBin "exposeport" ''
     sudo ssh -L $2:localhost:$2 $1
   '';
@@ -35,6 +36,7 @@ in {
 
         # Languages
         go
+        julia
 
         # TODO: Move to rust.nix
         cargo-edit # Easy Rust dependency management
@@ -48,7 +50,7 @@ in {
 
       ] ++ (
         # GUI Tools
-        optionals hasGui [
+        optionals hasGUI [
           dfeet                 # D-Feet is an easy to use D-Bus debugger
           rars                  # RISC-V Assembler and Runtime Simulator
           wireshark

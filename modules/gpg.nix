@@ -1,11 +1,12 @@
 { config, lib, pkgs, ... }:
 let
   agentTTL = 60 * 60 * 12; # 12 hours
-  waylandCfg = config.wayland;
-  xorgCfg = config.xorg;
+  inherit (pkgs.stdenv) isLinux;
+  #hasGUI = config.wayland.enable || config.xorg.enable;
+  hasGUI = true;
 in {
 
-  home.packages = [
+  home.packages = with pkgs; [
     gnupg
     #pinentry
   ];
@@ -53,7 +54,7 @@ in {
   };
 
   systemd.user.services.yubikey-touch-detector =
-    lib.mkIf (waylandCfg.enable || xorgCfg.enable) {
+    lib.mkIf hasGUI {
       Unit = {
         Description = "YubiKey touch detector";
         PartOf = [ "graphical-session.target" ];

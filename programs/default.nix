@@ -2,7 +2,8 @@
 with pkgs;
 let
   inherit (pkgs.stdenv) isLinux;
-  hasGui = config.wayland.enable || config.xorg.enable;
+  #hasGui = config.wayland.enable || config.xorg.enable;
+  hasGUI = true;
 in
 {
   home.packages = [
@@ -23,10 +24,6 @@ in
 #    git
 #    glances                       # web based `htop`
     gnumake
-    go
-
-    julia
-#    jupyter
 
     keybase
 
@@ -34,6 +31,10 @@ in
 
     manix                         # Nix search documentation
     most
+
+    # Nerdfonts is huge: take only what you need
+    (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "Iosevka" ]; })
+
     nix-index                     # Find packages providing a binary name
     nix-template                  # Generate deterministic derivation templates
     nix-update                    # Update nixpkgs
@@ -62,17 +63,17 @@ in
     zip
     xdg-utils
     xclip
-  ] ++ lib.optionals hasGui [
+  ] ++ lib.optionals hasGUI [
     # intended to be installed with an X11 or wayland session
     asciidoctor
 
     brightnessctl
-    discord
+    #discord
     joplin-desktop
-    nerdfonts
+
     #shutter # screenshots
     #flameshot
-    slack
+    #slack
     spotify
 
     # TODO: Perhaps use these with touchscreen display laptop

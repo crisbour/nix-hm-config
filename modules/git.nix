@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 {
-  home.packages = with pkgs.gitAndTools [delta ];
+  home.packages = with pkgs.gitAndTools; [delta ];
 
   programs.git = {
     enable = true;

@@ -14,7 +14,7 @@ let
       done
     '';
 in {
-  alacritty      = nixGLWrap prev.nixgl.auto.nixGLDefault prev.alacritty;
+  #alacritty      = nixGLWrap prev.nixgl.auto.nixGLDefault prev.alacritty;
   joplin-desktop = nixGLWrap prev.nixgl.auto.nixGLDefault prev.joplin-desktop;
   # FIXME:  error: attribute 'fhsWithPackages' missing
   #vscode       = nixGLWrap prev.nixgl.auto.nixGLDefault prev.vscode;

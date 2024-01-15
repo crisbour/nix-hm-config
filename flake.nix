@@ -32,22 +32,24 @@
         ];
       };
 
-      mkHomeConfiguration = hostModules: home-manager.lib.homeManagerConfiguration (rec {
-        pkgs = pkgsForSystem (args.system or "x86_64-linux");
+      mkHomeConfiguration = hostModule: home-manager.lib.homeManagerConfiguration (rec {
+        pkgs = pkgsForSystem (hostModule.system or "x86_64-linux");
         modules = [
           ./home.nix
-          hostModules
         ];
+
+        extraSpecialArgs = { inherit hostModule;};
 
         # TODO: One day maybe when I'll have my own nix derviations organized
         #extraSpecialArgs = { inherit declarative-cachix; };
       } );
 
-    in {
+    in
+    {
       homeConfigurations.cristi = mkHomeConfiguration ./host-configurations/cristi.nix;
       homeConfigurations.lxd    = mkHomeConfiguration ./host-configurations/lxd.nix;
     } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
     {
       legacyPackages = pkgsForSystem system;
-    });
+    }));
 }

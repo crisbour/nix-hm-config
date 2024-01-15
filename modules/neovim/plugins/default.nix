@@ -152,7 +152,7 @@
     }
   ];
 
-  extraConfig = ''
+  programs.neovim.extraConfig = ''
 
     autocmd FileType markdown setlocal conceallevel=0
 

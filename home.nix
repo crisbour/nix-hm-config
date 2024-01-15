@@ -4,8 +4,6 @@ let
   # hacky way of determining which machine I'm running this from
   inherit (specialArgs) withGUI isDesktop;
   inherit (pkgs.stdenv) isLinux;
-
-  packages = import ./packages.nix;
 in
 {
   imports = [
@@ -15,8 +13,9 @@ in
 
   home = {
     stateVersion = "23.11";
-    inherit username;
-    inherit homeDirectory;
+    # FIXME: Inherit variables
+    username = builtins.getEnv "USER";
+    homeDirectory = /. + builtins.getEnv "HOME";
   };
 
   # Allow Nix to handle fonts
