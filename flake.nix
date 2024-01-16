@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixgl.url = "github:guibou/nixGL";
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -51,7 +52,19 @@
       homeConfigurations.cristi = mkHomeConfiguration ./host-configurations/cristi.nix;
       homeConfigurations.lxd    = mkHomeConfiguration ./host-configurations/lxd.nix;
     } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
+    let
+        pkgs = pkgsForSystem system;
+    in
     {
-      legacyPackages = pkgsForSystem system;
+        devShells.default = pkgs.mkShell {
+            packages = with pkgs; [
+                black
+                cargo
+                git-crypt
+                nixfmt
+                pre-commit
+                rnix-lsp
+            ];
+        };
     }));
 }
