@@ -33,3 +33,12 @@ set listchars=tab:>-
 "highlight ColorColumn ctermbg=black guibg=black
 
 let mapleader=' '
+
+" TODO: Configure vim.diagnostic
+"vim.diagnostic.config({
+"  virtual_text = true,
+"  signs = true,
+"  underline = true,
+"  update_in_insert = false,
+"  severity_sort = false,
+"})
