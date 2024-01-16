@@ -16,10 +16,8 @@ let
   };
 in
 {
-  programs.neovim = {
-    plugins = [
-      vim-spade-lang
-    ];
-  };
+  programs.neovim.plugins = [
+    vim-spade-lang
+  ];
 }
 
