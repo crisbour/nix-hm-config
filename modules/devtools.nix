@@ -29,6 +29,7 @@ in {
         pre-commit
         tree-sitter
         watchexec
+        perf-tools
 
 
         # Better Python REPL
@@ -36,6 +37,7 @@ in {
 
         # Languages
         gcc
+        gdb
         go
         #julia
 
