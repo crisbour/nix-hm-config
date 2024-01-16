@@ -11,7 +11,7 @@ filetype plugin indent on
 
 " Tabs
 set expandtab
-set shiftwidth=4
+set shiftwidth=2
 set tabstop=4
 
 set number                                              " Show the current line number
