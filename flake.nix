@@ -10,7 +10,7 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    mach-nix.url = "github:DavHau/mach-nix";
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +23,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, alacritty-theme, nixpkgs-stable, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-stable, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       username = builtins.getEnv "USER";
@@ -60,7 +60,7 @@
           ./home.nix
         ];
 
-        extraSpecialArgs = { inherit hostModule;};
+        extraSpecialArgs = { inherit hostModule mach-nix;};
 
         # TODO: One day maybe when I'll have my own nix derviations organized
         #extraSpecialArgs = { inherit declarative-cachix; };
