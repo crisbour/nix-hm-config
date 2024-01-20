@@ -89,8 +89,8 @@ vim.keymap.set("n", "<localleader>fg", builtin.live_grep,   { desc = "Search in 
 vim.keymap.set("n", "<localleader>fb", builtin.buffers,     { desc = "Explore buffers" })
 vim.keymap.set("n", "<localleader>fh", builtin.help_tags,   { desc = "Find help tags?" })
 
-vim.keymap.set("n", "<localleader>fc", builtin.git_commits,   { desc = "Find help tags?" })
-vim.keymap.set("n", "<localleader>fC", builtin.git_bcommits,   { desc = "Find help tags?" })
+vim.keymap.set("n", "<localleader>fc", builtin.git_commits,   { desc = "Find commits" })
+vim.keymap.set("n", "<localleader>fC", builtin.git_bcommits,   { desc = "Find commits in buffers" })
 
 vim.keymap.set("n", "<localleader>fB", builtin.git_branches,          { desc = "Branches" })
 
