@@ -2,9 +2,13 @@
 {
   programs.neovim = {
     extraPackages = with pkgs; [
+      lua-language-server
       rust-analyzer
       clang-tools_17
-    ];
+      texlab
+    ] ++ (with pkgs.nodePackages; [
+      pyright
+    ]);
     plugins = with pkgs.vimPlugins; [
       {
         type = "lua";
@@ -50,6 +54,9 @@
           },
         }
         lspconfig.vimls.setup{
+          capabilities = capabilities,
+        }
+        lspconfig.veridian.setup{
           capabilities = capabilities,
         }
         lspconfig.yamlls.setup {

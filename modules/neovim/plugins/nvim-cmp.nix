@@ -14,14 +14,15 @@ in {
       (luaPlugin cmp-nvim-lsp-signature-help)
       (luaPlugin lspkind-nvim)
       (luaPlugin luasnip)
-      {
-        type = "lua";
-        plugin = cmp-spell;
-        config = ''
-          vim.opt.spell = true
-          vim.opt.spelllang = { 'en_us' }
-        '';
-      }
+      # FIXME: Spell checking is disabled because it's not code aware
+      #{
+      #  type = "lua";
+      #  plugin = cmp-spell;
+      #  config = ''
+      #    vim.opt.spell = true
+      #    vim.opt.spelllang = { 'en_us' }
+      #  '';
+      #}
       {
         type = "lua";
         plugin = nvim-cmp;
@@ -54,7 +55,7 @@ in {
               { name = "nvim_lsp", priority = 100 },
               { name = "nvim_lsp_signature_help", priority = 90 },
               { name = "async_path", priority = 80 },
-              { name = "spell", priority = 70 },
+              --{ name = "spell", priority = 70 },
               { name = "fuzzy_buffer", priority = 60 },
               { name = "luasnip", priority = 50 },
             },

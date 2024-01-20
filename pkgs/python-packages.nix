@@ -12,6 +12,8 @@ pkgs.python3.withPackages (p: with p; [
   pylint # static checking
   pynvim
   python-gitlab
+  python-lsp-black
+  python-lsp-server
   setuptools # setup.py
   tabulate
 ])
