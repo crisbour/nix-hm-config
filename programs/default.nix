@@ -90,6 +90,9 @@ in
 
     # for work
     freerdp
+
+    # Graph drawing
+    (import ../gui/yed.nix { inherit pkgs; })
   ];
 
   programs = {
