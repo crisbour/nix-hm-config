@@ -12,7 +12,8 @@ filetype plugin indent on
 " Tabs
 set expandtab
 set shiftwidth=2
-set tabstop=4
+set tabstop=2
+"autocmd BufEnter *.hpp,*.cpp,.h,.c : setlocal shiftwidth=4 tabstop=4 expandtab
 
 set number                                              " Show the current line number
 set scrolloff=5                                         " Always have 5 lines above/below the current line
