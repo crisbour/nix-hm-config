@@ -66,16 +66,14 @@ in
       name = "Numix-Cursor";
       package = pkgs.numix-cursor-theme;
     };
+    # FIXME: Prefer gtk-application-prefer-dark-theme appearing as "Settings" instead of native parameter in /home/cristi/.config/gtk-{3,4}.0/settings.ini
+    #  Unknown key Settings in /home/cristi/.config/gtk-3.0/settings.ini
     gtk3.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme=true;
     };
 
     gtk4.extraConfig = {
-      Settings = ''
-        gtk-application-prefer-dark-theme=1
-      '';
+      gtk-application-prefer-dark-theme=true;
     };
   };
 
