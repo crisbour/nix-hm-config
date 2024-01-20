@@ -52,15 +52,15 @@
     '';
 
     urls = [
-      { url = "https://drewdevault.com/blog/index.xml"; }
-      { url = "https://sourcehut.org/blog/index.xml"; }
-      { url = "https://www.thedroneely.com/posts/rss.xml"; }
-      { url = "https://stackoverflow.blog/feed/"; }
-      { url = "https://jakevossen.libsyn.com/rss"; }
-      { url = "https://emersion.fr/blog/rss.xml"; }
-      { url = "https://www.joelonsoftware.com/feed/"; }
+      { url = "https://maskray.me/blog/atom.xml"; }
+      { url = "https://www.adiuvoengineering.com/microzed-chronicles-archive/feed"; }
+      { url = "https://www.brendangregg.com/blog/rss.xml"; }
+      { url = "https://zipcpu.com/feed"; }
+      { url = "https://tomverbeure.github.io/feed.xml"; }
+      { url = "https://news.ycombinator.com/rss"; }
+      { url = "https://lazamar.github.io/feed"; }
       { url = "https://weekly.nixos.org/feeds/all.rss.xml"; }
-      { url = "https://veronneau.org/feeds/atom.xml"; }
+      { url = "https://ianthehenry.com/posts/how-to-learn-nix/feed.xml"; }
     ];
   };
 }
