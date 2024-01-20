@@ -12,7 +12,7 @@
     userName = "Cristi Bourceanu";
     userEmail = "bourceanu.cristi@gmail.com";
     signing = {
-      key="75A90598348541DF";
+      key="A6307A244F3BD76D";
       signByDefault = true;
     };
 
