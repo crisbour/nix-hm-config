@@ -4,14 +4,8 @@
   description = "Home-manager configuration as a flake";
 
   inputs = {
-    inputs.alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
-
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
-
-    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
     flake-utils.url = "github:numtide/flake-utils";
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -22,14 +16,14 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-
+    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     # Nix User Repository
     nur.url = "github:nix-community/NUR";
-
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, alacritty-theme, ... } @ inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, alacritty-theme, nixpkgs-stable, ... } @ inputs:
   # Remove polybar-pipewire overlay
     let
       username = builtins.getEnv "USER";
@@ -49,6 +43,14 @@
           (import ./nixGL/gl_wrapper.nix)
           # Get around the issue with openssh on RPM distros: https://nixos.wiki/wiki/Nix_Cookbook
           (final: prev: { openssh = prev.openssh_gssapi; } )
+        ];
+      };
+
+
+      pkgsStable = system: import nixpkgs-stable {
+        inherit system;
+        overlays = [
+          alacritty-theme.overlays.default
         ];
       };
 
