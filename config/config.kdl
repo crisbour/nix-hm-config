@@ -1,0 +1,94 @@
+default_layout "compact"
+default_mode "normal"
+mouse_mode true
+copy_command "xclip"
+copy_on_select true
+scrollback_editor "nvim"
+default_shell "zsh"
+simplified_ui true
+//pane_frames false
+
+ui {
+    pane_frames {
+        //hide_session_name true
+        rounded_corners true
+    }
+}
+
+plugins {
+    tab-bar { path "tab-bar"; }
+    status-bar { path "status-bar"; }
+    strider { path "strider"; }
+    compact-bar { path "compact-bar"; }
+}
+
+layout {
+  pane
+  pane size=1 borderless=true {
+    plugin location="zellij:compact-bar"
+  }
+}
+
+theme "gruvbox_dark"
+
+//keybinds clear-defaults=true {
+//    normal {
+//        bind "Alt h" "Left" { MoveFocus "Left"; }
+//        bind "Alt l" "Right" { MoveFocus "Right"; }
+//        bind "Alt j" "Down" { MoveFocus "Down"; }
+//        bind "Alt k" "Up" { MoveFocus "Up"; }
+//        bind "Alt ," { GoToPreviousTab; }
+//        bind "Alt ." { GoToNextTab; }
+//        bind "Alt d" { NewPane; }
+//        bind "Alt s" { NewTab; }
+//        bind "Alt q" { GoToTab 1; }
+//        bind "Alt w" { GoToTab 2; }
+//        bind "Alt e" { GoToTab 3; }
+//        bind "Alt r" { GoToTab 4; }
+//        bind "Alt t" { GoToTab 5; }
+//        bind "Alt y" { GoToTab 6; }
+//        bind "Alt u" { GoToTab 7; }
+//        bind "Alt i" { GoToTab 8; }
+//        bind "Alt o" { GoToTab 9; }
+//        bind "Alt f" { ToggleFocusFullscreen; }
+//        bind "Alt x" { CloseFocus; }
+//        bind "Alt X" { CloseTab; }
+//        //bind "Alt Ctrl j" { Resize "Increase Down"; }
+//        //bind "Alt Ctrl h" { Resize "Increase Left"; }
+//        //bind "Alt Ctrl k" { Resize "Decrease Up"; }
+//        //bind "Alt Ctrl l" { Resize "Decrease Right"; }
+//        bind "Alt H" "Left" { MovePane "Left"; }
+//        bind "Alt J" "Down" { MovePane "Down"; }
+//        bind "Alt K" "Up" { MovePane "Up"; }
+//        bind "Alt L" "Right" { MovePane "Right"; }
+//    }
+//    scroll {
+//        bind "Alt v" { SwitchToMode "Normal"; }
+//        bind "e" { EditScrollback; SwitchToMode "Normal"; }
+//        bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+//        bind "Alt c" { ScrollToBottom; SwitchToMode "Normal"; }
+//        bind "j" "Down" { ScrollDown; }
+//        bind "k" "Up" { ScrollUp; }
+//        bind "Alt f" "PageDown" "Right" "l" { PageScrollDown; }
+//        bind "Alt b" "PageUp" "Left" "h" { PageScrollUp; }
+//        bind "d" { HalfPageScrollDown; }
+//        bind "u" { HalfPageScrollUp; }
+//        // uncomment this and adjust key if using copy_on_select=false
+//        // bind "Alt c" { Copy; }
+//    }
+//    search {
+//        bind "Alt /" { SwitchToMode "Normal"; }
+//        bind "Alt c" { ScrollToBottom; SwitchToMode "Normal"; }
+//        bind "j" "Down" { ScrollDown; }
+//        bind "k" "Up" { ScrollUp; }
+//        bind "Alt f" "PageDown" "Right" "l" { PageScrollDown; }
+//        bind "Alt b" "PageUp" "Left" "h" { PageScrollUp; }
+//        bind "d" { HalfPageScrollDown; }
+//        bind "u" { HalfPageScrollUp; }
+//        bind "n" { Search "down"; }
+//        bind "p" { Search "up"; }
+//        bind "c" { SearchToggleOption "CaseSensitivity"; }
+//        bind "w" { SearchToggleOption "Wrap"; }
+//        bind "o" { SearchToggleOption "WholeWord"; }
+//    }
+//}
