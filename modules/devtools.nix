@@ -40,7 +40,10 @@ in {
         gcc
         gdb
         go
-        #julia
+        julia
+        # Only necesarry for Julia gtk env
+        # TODO: Should this be just part of shell.nix?
+        glib
 
         # TODO: Move to rust.nix
         cargo-edit # Easy Rust dependency management

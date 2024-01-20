@@ -70,29 +70,29 @@ in
     xdg-utils
     xclip
   ] ++ lib.optionals hasGUI [
-    # intended to be installed with an X11 or wayland session
     asciidoctor
-
     brightnessctl
     discord
-    joplin-desktop
-
-    #shutter # screenshots
     #flameshot
+    joplin-desktop
+    mendeley
+    okular
+    #shutter # screenshots
     slack
     spotify
+    teams-for-linux
+    tmate
 
     # TODO: Perhaps use these with touchscreen display laptop
     #write_stylus
     #xournal
 
-    tmate
+    # Graph drawing
+    (import ../gui/yed.nix { inherit pkgs; })
 
     # for work
     freerdp
 
-    # Graph drawing
-    (import ../gui/yed.nix { inherit pkgs; })
   ];
 
   programs = {

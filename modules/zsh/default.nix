@@ -370,6 +370,7 @@
 
       export OBILIX_PATH=$HOME/Documents/Scripts/A71/obilix
       export CRUNCH=cristian.bourceanu@app-team-cruncher.user.codasip.com
+      export JULIA_LOAD_PATH=/home/cristi/.julia/dev
     '';
   };
 
