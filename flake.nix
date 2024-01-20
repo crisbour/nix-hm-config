@@ -1,19 +1,35 @@
+# TODO: Organize flakes better for easy overlays
+# - https://github.com/lanice/nixhome/blob/c7067ad78ee9ddbae61e12ffad9f9211ad631be2/flake.nix
 {
   description = "Home-manager configuration as a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixgl.url = "github:guibou/nixGL";
+    inputs.alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
+
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+
+    nixos-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    flake-utils.url = "github:numtide/flake-utils";
+
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    flake-utils.url = "github:numtide/flake-utils";
+
+    nixgl = {
+      url = "github:guibou/nixGL";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-utils.follows = "flake-utils";
+    };
+
+    # Nix User Repository
+    nur.url = "github:nix-community/NUR";
+
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, ... }:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nixgl, alacritty-theme, ... } @ inputs:
   # Remove polybar-pipewire overlay
     let
       username = builtins.getEnv "USER";
@@ -27,9 +43,10 @@
           xdg = { configHome = homeDirectory; };
         };
         overlays = [
+          alacritty-theme.overlays.default
           nixgl.overlay
           # TODO: Better organization: https://github.com/redxtech/dotfiles/blob/03a5dbefcac0db01539ddd3a57d5935739a306b6/.config/home-manager/flake.nix
-          (import ./gui/gl_wrapper.nix)
+          (import ./nixGL/gl_wrapper.nix)
           # Get around the issue with openssh on RPM distros: https://nixos.wiki/wiki/Nix_Cookbook
           (final: prev: { openssh = prev.openssh_gssapi; } )
         ];

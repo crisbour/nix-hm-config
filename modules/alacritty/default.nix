@@ -1,6 +1,37 @@
 { config, lib, pkgs, ... }:
+#let
+#  # Alternatively: https://github.com/MOIS3Y/NVDF/blob/005f184a80d89cc098b421ee0fd6e483dc269351/home/stepan/VoidOS/pkgs/nixgl.nix#L38
+#  # Why we need this: https://alternativebit.fr/posts/nixos/nix-opengl-and-ubuntu-integration-nightmare/
+#  #alacritty-wrapped = import ../../nixGL/nixGLWrapper.nix {
+#  #  inherit pkgs;
+#  #  targetPkg = pkgs.alacri;
+#  #  name = "alacritty";
+#  #};
+#  alacritty-wrapped = with pkgs; stdenv.mkDerivation {
+#    pname = alacritty.pname;
+#    version = alacritty.version;
+#
+#    src = "${alacritty}";
+#
+#    buildInputs = [ alacritty ];
+#
+#    installPhase = ''
+#      mkdir $out
+#      ln -s ${alacritty}/* $out
+#      rm $out/bin
+#      mkdir $out/bin
+#      for bin in ${alacritty}/bin/*; do
+#       wrapped_bin=$out/bin/$(basename $bin)
+#       echo "exec ${lib.getExe nixgl.auto.nixGLDefault} $bin \$@" > $wrapped_bin
+#       chmod +x $wrapped_bin
+#      done
+#    '';
+#    meta = alacritty.meta;
+#  };
+#in
 {
   programs.alacritty = {
+    #package = alacritty-wrapped;
     enable = true;
     settings = {
       # TODO Binding fixup
