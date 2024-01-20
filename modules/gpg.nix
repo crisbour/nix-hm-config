@@ -59,21 +59,42 @@ in {
     '';
   };
 
- #systemd.user.services.yubikey-touch-detector =
- #  lib.mkIf hasGUI {
- #    Unit = {
- #      Description = "YubiKey touch detector";
- #      PartOf = [ "graphical-session.target" ];
- #    };
+  systemd.user.sockets.yubikey-touch-detector = {
+    Unit.Description = "Unix socket activation for YubiKey touch detector service";
+    Socket = {
+      ListenFIFO = "%t/yubikey-touch-detector.sock";
+      RemoveOnStop = true;
+      SocketMode = "0660";
+    };
+    Install.WantedBy = [ "sockets.target" ];
+  };
 
- #    Service = {
- #      ExecStart =
- #        "${pkgs.yubikey-touch-detector}/bin/yubikey-touch-detector --libnotify";
- #      Environment = [ "PATH=${lib.makeBinPath [ pkgs.gnupg ]}" ];
- #      Restart = "always";
- #      RestartSec = 5;
- #    };
+ systemd.user.services.yubikey-touch-detector =
+   lib.mkIf hasGUI {
+     Unit = {
+       Description = "YubiKey touch detector";
+       Requires = [ "yubikey-touch-detector.socket" ];
+     };
 
- #    Install.WantedBy = [ "graphical-session.target" ];
- #  };
+     Service = {
+       Environment = [
+         "PATH=${lib.makeBinPath [ pkgs.gnupg pkgs.yubikey-touch-detector ]}"
+         # show desktop notifications using libnotify
+         "YUBIKEY_TOUCH_DETECTOR_LIBNOTIFY=true"
+         # enable debug logging
+         "YUBIKEY_TOUCH_DETECTOR_VERBOSE=false"
+       ];
+       ExecStart = toString (pkgs.writeShellScript "yubikey-touch-detector" ''
+         export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+         yubikey-touch-detector --libnotify
+       '');
+       Restart = "always";
+       RestartSec = 5;
+     };
+
+     Install = {
+       WantedBy = [ "default.target" ];
+       Also = [ "yubikey-touch-detector.socket" ];
+     };
+   };
 }
