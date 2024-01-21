@@ -49,9 +49,6 @@
 
       pkgsStable = system: import nixpkgs-stable {
         inherit system;
-        overlays = [
-          alacritty-theme.overlays.default
-        ];
       };
 
       mkHomeConfiguration = hostModule: home-manager.lib.homeManagerConfiguration (rec {
@@ -60,7 +57,10 @@
           ./home.nix
         ];
 
-        extraSpecialArgs = { inherit hostModule mach-nix;};
+        extraSpecialArgs = {
+          inherit hostModule mach-nix;
+          pkgs-stable = pkgsStable pkgs.system;
+        };
 
         # TODO: One day maybe when I'll have my own nix derviations organized
         #extraSpecialArgs = { inherit declarative-cachix; };

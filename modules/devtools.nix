@@ -1,4 +1,4 @@
-{ config, lib, pkgs, mach-nix, ... }:
+{ config, lib, pkgs, pkgs-stable, mach-nix, ... }:
 with lib;
 let
   tomlFormat = pkgs.formats.toml { };
@@ -40,7 +40,7 @@ in {
         gcc
         gdb
         go
-        julia
+        pkgs-stable.julia
         # Only necesarry for Julia gtk env
         # TODO: Should this be just part of shell.nix?
         glib
