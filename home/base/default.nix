@@ -23,6 +23,8 @@ in
       #      inherit pkgs;
       #    };
       #};
+      # TODO: Is this necessary?
+      xdg = { configHome = homeDirectory; };
     };
   };
 

@@ -38,8 +38,6 @@
         inherit system;
         config = {
           allowUnfree = true;
-          # TODO: Is this necessary?
-          #xdg = { configHome = homeDirectory; };
         };
       });
       nixGlOverlay = {config, ...}: {nixpkgs.overlays = [nixgl.overlay];};
