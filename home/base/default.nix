@@ -39,12 +39,10 @@ in
 
   home = {
     stateVersion = "23.11";
-    # FIXME: Inherit variables
-    username = builtins.getEnv "USER";
-    homeDirectory = /. + builtins.getEnv "HOME";
     #sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = {
-      FLAKE = "$HOME/Documents/Scripts/Linux/nix-hm-config";
+      # FIX: Set FLAKE path at the user setup?
+      #FLAKE = "$HOME/Documents/Scripts/Linux/nix-hm-config";
       COLORTERM = "truecolor";
       VISUAL    = "${editor}";
       EDITOR    = "${editor}";
@@ -64,5 +62,4 @@ in
   services.udiskie.enable = true;
 
   # TODO: Still more to improve: https://github.com/Misterio77/nix-config/blob/main/home/misterio/global/default.nix
-
 }
