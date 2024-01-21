@@ -60,6 +60,7 @@ in {
       ] ++ (
         # GUI Tools
         optionals hasGUI [
+          kicad
           dfeet                 # D-Feet is an easy to use D-Bus debugger
           rars                  # RISC-V Assembler and Runtime Simulator
           wireshark
