@@ -6,6 +6,7 @@ in
 {
   imports = [
     ./alacritty
+    ./zellij
     ./bash.nix
     ./browser.nix
     ./fzf.nix

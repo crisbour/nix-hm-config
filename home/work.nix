@@ -1,0 +1,4 @@
+{
+    withGUI = true;
+    isDesktop = true;
+}

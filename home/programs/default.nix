@@ -119,18 +119,11 @@ in
         });
     };
 
-    # Terminal workspace more powerfull than tmux
-    # TODO: Nice configuration: https://github.com/budimanjojo/dotfiles
-    zellij = {
-      enable = true;
-    };
-
     # Better cd
     zoxide = {
       enable = true;
       enableZshIntegration = true;
     };
-
 
     # Why do we use both packages and versions of direnv
     #direnv= {
@@ -146,12 +139,6 @@ in
     #    '';
     #  nix-direnv.enable = true;
     #};
-  };
-
-  # TODO Move programs and config in a single place
-  home.file.zellij = {
-    target = ".config/zellij/config.kdl";
-    source = ../config/config.kdl;
   };
 
 }
