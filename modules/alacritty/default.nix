@@ -48,16 +48,16 @@
       font =
       let
         fontStyle = style: {
-          family = "Iosevka Nerd Font Mono";
+          family = "Iosevka Nerd Font";
           inherit style;
         };
       in
       {
         size = 14;
         normal      = fontStyle "Regular";
-        bold        = fontStyle "Medium";
+        bold        = fontStyle "Bold";
         italic      = fontStyle "Italic";
-        bold_italic = fontStyle "Medium Italic";
+        bold_italic = fontStyle "Bold Italic";
       };
 
       cursor = {
