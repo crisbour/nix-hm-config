@@ -31,6 +31,10 @@ in
         type = with types; nullOr str;
         default = null;
       };
+      signKey = mkOption {
+        type = with types; nullOr str;
+        default = null;
+      };
     };
   };
 }

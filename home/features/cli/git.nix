@@ -2,6 +2,9 @@
 # Correct users detection fails in RHEL: https://discourse.nixos.org/t/unable-to-use-nixpkgs-git-on-rhel-7/12598
 
 { config, pkgs, lib, ... }:
+let
+  inherit (config.home) user-info;
+in
 {
   home.packages = with pkgs.gitAndTools; [delta ];
 
@@ -11,9 +14,10 @@
 
     userName = "Cristi Bourceanu";
     userEmail = "bourceanu.cristi@gmail.com";
+    # TODO = optionalAttrs?
     signing = {
-      key="A6307A244F3BD76D";
-      signByDefault = true;
+      key           = user-info.gpg.signKey;
+      signByDefault = !builtins.isNull user-info.gpg.signKey;
     };
 
     aliases = {
