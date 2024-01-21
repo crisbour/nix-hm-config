@@ -49,6 +49,8 @@
         modules = [
           hostModule
           alacritty-theme-Overlay
+          # TODO Add nixGlOverlay only to non NixOS
+          nixGlOverlay
         ];
         extraSpecialArgs = {
           inherit inputs outputs;
