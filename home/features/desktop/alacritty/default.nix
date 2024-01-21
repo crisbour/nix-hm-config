@@ -29,14 +29,17 @@
 #    meta = alacritty.meta;
 #  };
 #in
+let
+  # TODO: Remove trace after moving alacritty-theme to flake-inputs successfully
+  #theme = builtins.trace (lib.debug.traceSeqN 1 pkgs.alacritty-theme) pkgs.alacritty-theme.gruvbox_dark;
+  theme = pkgs.alacritty-theme.gruvbox_dark;
+in
 {
   programs.alacritty = {
     package = pkgs.unstable.alacritty;
     enable = true;
     settings = {
-      import = [
-        pkgs.alacritty-theme.gruvbox_dark
-      ];
+      import = [ theme ];
 
       font =
       let

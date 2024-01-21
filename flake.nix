@@ -44,9 +44,14 @@
       });
       nixGlOverlay = {config, ...}: {nixpkgs.overlays = [nixgl.overlay];};
 
+      alacritty-theme-Overlay = { config, pkgs, ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
+
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration (rec {
         pkgs = pkgsFor.${system};
-        modules = [ hostModule ];
+        modules = [
+          hostModule
+          alacritty-theme-Overlay
+        ];
         extraSpecialArgs = {
           inherit inputs outputs;
           # TODO: One day maybe when I'll have my own nix derviations organized
