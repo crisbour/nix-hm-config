@@ -1,0 +1,1 @@
+The keychron keyboard is identified as an apple product and sometimes might end up misbehaving. Follow this guide to set it up properly: https://github.com/Kurgol/keychron/blob/master/k2.md
