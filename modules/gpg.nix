@@ -15,11 +15,19 @@ in {
     #pinentry
   ];
 
+  # TODO: Configure with public keyserver: https://github.com/hardselius/dotfiles/blob/110d2b106fdf2e9b30a8f0ae66d3e0ea97f52824/home/gpg.nix#L51
+  # => No need to import keys from backup
   programs.gpg = {
     enable = true;
+    # For options details check: https://gnupg.org/documentation/manuals/gnupg/Option-Index.html
     settings = {
+      # TODO: Replace with: default-key = user-info.gpg.masterKey;
+      # in order to allow multiple hosts definitions
       default-key = "0xAEF4A543011E8AC1";
+      # No comments in signature
       no-comments = false;
+      # No version in output
+      no-emit-version = true;
       # Get rid of the copyright notice
       no-greeting = true;
       # Because some mailers change lines starting with "From " to ">From "
@@ -31,13 +39,22 @@ in {
       ### Show keys settings
       # Always show long keyid
       keyid-format = "0xlong";
+      # Display UID validity
+      list-options = "show-uid-validity";
+      verify-options = "show-uid-validity";
       # Always show the fingerprint
       with-fingerprint = true;
+      # Enable smartcard
+      use-agent = true;
+      # Disable recipient key ID in messages
+      throw-keyids = true;
     };
     scdaemonSettings = {
       disable-ccid = true;
-      pcsc-shared = true;
-      pcsc-driver = "/usr/lib64/libpcsclite.so.1";
+      # FIXME: The PIN caching problem is cause by pcsc-shared, since gpg-agent will release the lock to let other applications access pcscd
+      # Disable for now causes unusability with FIDO and auth application
+      #pcsc-shared = true;
+      #pcsc-driver = "/usr/lib64/libpcsclite.so.1";
       #reader-port="Yubico Yubikey";
     };
   };
