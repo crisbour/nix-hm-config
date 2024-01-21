@@ -22,7 +22,7 @@ pkgs.python3.withPackages (p: with p; [
       version = "1.0.2";
       src = fetchPypi {
         inherit pname version;
-        sha256 = "";
+        hash = "sha256-XdYo6nwt9Tm2GVvBo/tPQo4pZb633MW3zjvbUqAAcTQ=";
       };
       doCheck = false;
       propagatedBuildInputs = [
