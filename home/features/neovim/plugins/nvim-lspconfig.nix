@@ -3,6 +3,7 @@
   programs.neovim = {
     extraPackages = with pkgs; [
       lua-language-server
+      rnix-lsp                      # Nix language server
       rust-analyzer
       clang-tools_17
       texlab

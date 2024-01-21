@@ -1,80 +1,69 @@
-{ config, lib, pkgs, specialArgs, ... }:
+{ inputs, lib, pkgs, config, outputs, ... }:
 with lib.hm.gvariant;
 let
-  # hacky way of determining which machine I'm running this from
-  inherit (specialArgs) withGUI isDesktop;
-  inherit (pkgs.stdenv) isLinux;
+  editor   = "nvim";
+  terminal = "${pkgs.alacritty}/bin/alacritty";
+  shell    = "${pkgs.zsh}/bin/zsh";
 in
 {
   imports = [
-    ./modules
-    ./programs
-  ];
+    ../features/cli
+    ../features/neovim
+    ../programs
+  ] ++ (builtins.attrValue outputs.homeManagerModules);
+
+  nixpkgs = {
+    overlays = builtins.attrValues outputs.overlays;
+    config = {
+      allowUnfree = true;
+      allowUnfreePredicate = (_: true);
+      # TODO Are there packages that I would like and are not in nixpkgs
+      #packagesOverrides = pkgs: {
+      #  nur = import (builtins.fetchTarball
+      #    "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      #      inherit pkgs;
+      #    };
+      #};
+    };
+  };
+
+  nix = {
+    package = lib.mkDefault pkgs.nix;
+    settings = {
+      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      warn-dirty = false;
+    };
+  };
+
+  # A systemd unit switcher for Home Manager => (re)start service when changing config
+  systemd.user.startServices = "sd-switch";
 
   home = {
     stateVersion = "23.11";
     # FIXME: Inherit variables
     username = builtins.getEnv "USER";
     homeDirectory = /. + builtins.getEnv "HOME";
-  };
-
-  # Keep qemu configuration for virt-manager as shown at: https://nixos.wiki/wiki/Virt-manager
-  dconf.settings = {
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
-
-    "org/gnome/mutter" = {
-      experimental-features = ["scale-monitor-framebuffer"];
-    };
-
-    "org/gnome/desktop/interface" = {
-      color-scheme = "prefer-dark";
+    #sessionPath = [ "$HOME/.local/bin" ];
+    sessionVariables = {
+      FLAKE = "$HOME/Documents/Scripts/Linux/nix-hm-config";
+      COLORTERM = "truecolor";
+      VISUAL    = "${editor}";
+      EDITOR    = "${editor}";
+      SHELL     = "${shell}";
+      TERMINAL  = "${terminal}";
+      #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
+      NIXPKGS_ALLOW_UNFREE = "1";
     };
   };
 
   # Allow Nix to handle fonts
   fonts.fontconfig.enable = true;
 
-  # You can add services as follows:
-  #services.<program> = {
-  #  enable = true;
-  #  ...
-  #}
-
   # Alternative to plain direnv, add watch method to evaluate state of shell
-  services.lorri.enable = isLinux;
+  services.lorri.enable = true;
 
-  services.udiskie.enable = isLinux;
+  services.udiskie.enable = true;
 
-  # Gnome look inspired from: https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
-  gtk = {
-    enable = true;
-
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-
-    theme = {
-      name = "palenight";
-      package = pkgs.palenight-theme;
-    };
-
-    cursorTheme = {
-      name = "Numix-Cursor";
-      package = pkgs.numix-cursor-theme;
-    };
-    # FIXME: Prefer gtk-application-prefer-dark-theme appearing as "Settings" instead of native parameter in /home/cristi/.config/gtk-{3,4}.0/settings.ini
-    #  Unknown key Settings in /home/cristi/.config/gtk-3.0/settings.ini
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme=true;
-    };
-
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme=true;
-    };
-  };
+  # TODO: Still more to improve: https://github.com/Misterio77/nix-config/blob/main/home/misterio/global/default.nix
 
 }

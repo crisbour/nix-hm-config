@@ -1,13 +1,8 @@
-{ config, lib, pkgs, pkgs-stable, mach-nix, ... }:
+{ inputs, config, lib, pkgs, ... }:
 with lib;
 let
-  tomlFormat = pkgs.formats.toml { };
-  iniFormat = pkgs.formats.ini { };
   #hasGUI = config.wayland.enable || config.xorg.enable;
   hasGUI = true;
-  exposePort = pkgs.writeShellScriptBin "exposeport" ''
-    sudo ssh -L $2:localhost:$2 $1
-  '';
 in {
 
   options = {
@@ -19,19 +14,22 @@ in {
   config = mkIf config.devTools.enable {
     home.packages = with pkgs;
       [
+        binutils
+        #difftastic                   # Fantastic diff utility
+        cloc
+        dbus
+        evcxr                         # Rust notebook: Evcxr
         # Shell Utilities
-        delta
         eternal-terminal        # Remote terminal that reconnest automatically
-        exposePort
-        jq                      # CLI JSON processor
-        mach-nix.packages.${pkgs.system}.mach-nix # mach-nix python declarative env from requirements.txt; Inspired from https://github.com/dejanr/dotfiles/tree/b4e2f70d822fd6bb2ca1f0c7dd450fd938c9de87
+        inputs.mach-nix.packages.${pkgs.system}.mach-nix # mach-nix python declarative env from requirements.txt; Inspired from https://github.com/dejanr/dotfiles/tree/b4e2f70d822fd6bb2ca1f0c7dd450fd938c9de87
         mosh                    # Mobile SSH
         nodePackages.jsonlint
         pre-commit
         tree-sitter
         watchexec
         perf-tools
-
+        tmate
+  #    glances                       # web based `htop`
 
         # Better Python REPL
         python3Packages.ptpython
@@ -43,6 +41,7 @@ in {
         pkgs-stable.julia
         # Only necesarry for Julia gtk env
         # TODO: Should this be just part of shell.nix?
+        (  import ../pkgs/python-packages.nix { inherit pkgs; })
         glib
 
         # TODO: Move to rust.nix
@@ -57,9 +56,15 @@ in {
         cmake
         cmake-language-server
 
+        # Debug utils
+        usbutils
+        pciutils
+        xdg-utils
       ] ++ (
         # GUI Tools
         optionals hasGUI [
+          asciidoctor
+          # TODO: Move to electronics
           kicad
           dfeet                 # D-Feet is an easy to use D-Bus debugger
           rars                  # RISC-V Assembler and Runtime Simulator

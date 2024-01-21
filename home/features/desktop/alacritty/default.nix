@@ -31,16 +31,9 @@
 #in
 {
   programs.alacritty = {
-    #package = alacritty-wrapped;
+    package = pkgs.unstable.alacritty;
     enable = true;
     settings = {
-      # TODO Binding fixup
-      #key_bindings = [
-      #  { key = "Equals";     mods = "Control";     action = "IncreaseFontSize"; }
-      #  { key = "Add";        mods = "Control";     action = "IncreaseFontSize"; }
-      #  { key = "Subtract";   mods = "Control";     action = "DecreaseFontSize"; }
-      #  { key = "Minus";      mods = "Control";     action = "DecreaseFontSize"; }
-      #];
       import = [
         pkgs.alacritty-theme.gruvbox_dark
       ];
