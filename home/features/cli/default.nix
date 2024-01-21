@@ -3,6 +3,7 @@
   imports = [
     ./bash.nix
     ./git.nix
+    ./fzf.nix
     ./ssh.nix
     ./gpg.nix
     ./zsh
