@@ -61,6 +61,7 @@
       { url = "https://lazamar.github.io/feed"; }
       { url = "https://weekly.nixos.org/feeds/all.rss.xml"; }
       { url = "https://ianthehenry.com/posts/how-to-learn-nix/feed.xml"; }
+      { url = "https://haseebmajid.dev/series/index.xml"; }
     ];
   };
 }
