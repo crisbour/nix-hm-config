@@ -12,7 +12,7 @@ in {
 
   home.packages = with pkgs; [
     gnupg
-    #pinentry
+    pinentry-gnome
   ];
 
   # TODO: Configure with public keyserver: https://github.com/hardselius/dotfiles/blob/110d2b106fdf2e9b30a8f0ae66d3e0ea97f52824/home/gpg.nix#L51
