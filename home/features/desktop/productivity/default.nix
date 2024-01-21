@@ -17,15 +17,15 @@ with pkgs;
     mendeley
     okular
     #shutter # screenshots
+
+    # TODO Move to media
     spotify
+
     tmate
 
     # TODO: Perhaps use these with touchscreen display laptop
     #write_stylus
     #xournal
-
-    # Graph drawing
-    (import ../gui/yed.nix { inherit pkgs; })
   ];
 }
 

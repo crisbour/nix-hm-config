@@ -21,7 +21,8 @@ in
     #./kdeconnect.nix
   ];
 
-  xdg.portal.enable = true;
+  # TODO What is xdg portal and configure it to gtk or kde?
+  #xdg.portal.enable = true;
 
   home.packages = with pkgs; [
     # Control fonts better
@@ -37,17 +38,10 @@ in
     #xournal
 
     brightnessctl
+
     okular
 
-    # TODO Move to productivity
-    joplin-desktop
-    mendeley
-
-    # Move to media
-    spotify
-
     # Graph drawing
-    (import ../gui/yed.nix { inherit pkgs; })
-
+    (import ./gui/yed.nix { inherit pkgs; })
   ];
 }

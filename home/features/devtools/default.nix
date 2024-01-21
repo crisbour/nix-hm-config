@@ -38,10 +38,10 @@ in {
         gcc
         gdb
         go
-        pkgs-stable.julia
+        julia
         # Only necesarry for Julia gtk env
         # TODO: Should this be just part of shell.nix?
-        (  import ../pkgs/python-packages.nix { inherit pkgs; })
+        (  import ./python/python-packages.nix { inherit pkgs; })
         glib
 
         # TODO: Move to rust.nix

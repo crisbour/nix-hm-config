@@ -6,8 +6,9 @@
     ./features/devtools
     ./features/desktop/channels
     ./features/desktop/productivity
-    ./features/desktop/electronic
-    ./features/pass
+    ./features/desktop/electronics
+    # TODO Configure secrets
+    #./features/pass
   ];
 
 }

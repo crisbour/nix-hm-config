@@ -51,7 +51,6 @@
     #  nix-direnv.enable = true;
     #};
   };
-  };
 
   home.packages = with pkgs; [
     bat # Improved cat TODO add base16 colors?
@@ -77,7 +76,6 @@
     tig                           # Awesome Text based git
     tre # Improved `tree` written in Rust TODO: Add alias?
     #timer # To help with my ADHD paralysis
-    trekscii # Cute startrek cli printer
     wget
     unzip
     zip

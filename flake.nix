@@ -16,74 +16,68 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-utils.follows = "flake-utils";
     };
-    nixpkgs-stable.url = "github:NixOS/nixpkgs/nixos-23.11";
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # Nix User Repository
     nur.url = "github:nix-community/NUR";
     rust-overlay.url = "github:oxalica/rust-overlay";
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-stable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-unstable, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
-      username = builtins.getEnv "USER";
-      homeDirectory = /. + builtins.getEnv "HOME";
+      inherit (self) outputs;
 
-      pkgsForSystem = system: import nixpkgs {
+      # TODO: Is this necessary? Perhaps for accessing home-manager.lib.homeManagerConfiguration easier
+      lib = nixpkgs.lib // home-manager.lib;
+
+      systems = [ "aarch64-linux" "x86_64-linux" ];
+
+      forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
         inherit system;
-
         config = {
           allowUnfree = true;
-          xdg = { configHome = homeDirectory; };
+          # TODO: Is this necessary?
+          #xdg = { configHome = homeDirectory; };
         };
-        overlays = [
-          alacritty-theme.overlays.default
-          nixgl.overlay
-          # TODO: Better organization: https://github.com/redxtech/dotfiles/blob/03a5dbefcac0db01539ddd3a57d5935739a306b6/.config/home-manager/flake.nix
-          (import ./nixGL/gl_wrapper.nix)
-          # Get around the issue with openssh on RPM distros: https://nixos.wiki/wiki/Nix_Cookbook
-          (final: prev: { openssh = prev.openssh_gssapi; } )
-        ];
-      };
+      });
+      nixGlOverlay = {config, ...}: {nixpkgs.overlays = [nixgl.overlay];};
 
-
-      pkgsStable = system: import nixpkgs-stable {
-        inherit system;
-      };
-
-      mkHomeConfiguration = hostModule: home-manager.lib.homeManagerConfiguration (rec {
-        pkgs = pkgsForSystem (hostModule.system or "x86_64-linux");
-        modules = [
-          ./home.nix
-        ];
-
+      mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration (rec {
+        pkgs = pkgsFor.${system};
+        modules = [ hostModule ];
         extraSpecialArgs = {
-          inherit hostModule mach-nix;
-          pkgs-stable = pkgsStable pkgs.system;
+          inherit inputs outputs;
+          # TODO: One day maybe when I'll have my own nix derviations organized
+          #inherit declarative-cachix;
         };
-
-        # TODO: One day maybe when I'll have my own nix derviations organized
-        #extraSpecialArgs = { inherit declarative-cachix; };
       } );
 
     in
     {
-      homeConfigurations.cristi = mkHomeConfiguration ./host-configurations/cristi.nix;
-      homeConfigurations.lxd    = mkHomeConfiguration ./host-configurations/lxd.nix;
-    } // (flake-utils.lib.eachSystem [ "x86_64-linux" ] (system:
-    let
-        pkgs = pkgsForSystem system;
-    in
-    {
-        devShells.default = pkgs.mkShell {
-            packages = with pkgs; [
-                black
-                cargo
-                git-crypt
-                nixfmt
-                pre-commit
-                rnix-lsp
-            ];
-        };
-    }));
+      nixosModules       = import ./modules/nixos;
+      homeManagerModules = import ./modules/home-manager;
+
+      # TODO: Add templates for languages of interest to minimize time spent on boiler plate code and project init
+      # Inspire yourself from: https://github.com/Misterio77/nix-config/tree/main/templates
+      #templates = import ./templates;
+
+      overlays = import ./overlays {inherit inputs outputs;};
+
+      packages  = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
+      formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
+
+      homeConfigurations = {
+        cristi = mkHomeConfiguration ./home/cristi.nix "x86_64-linux";
+        work = mkHomeConfiguration ./home/work.nix   "x86_64-linux";
+        tiny = mkHomeConfiguration ./home/tiny.nix   "x86_64-linux";
+      };
+
+      # TODO: Port my NixOS configs to this repo as well
+      #nixosConfigurations = {
+      #  home = mkNixosConfiguration ./hosts/home.nix;
+      #};
+    };
 }
