@@ -11,4 +11,13 @@
     #./features/pass
   ];
 
+  home.user-info = {
+    username = "cristi";
+    fullName = "Cristi Bourceanu";
+    email = "bourceanu.cristi@gmail.com";
+    github = "crisbour";
+    gpg.enable = true;
+    gpg.masterKey = "0xAEF4A543011E8AC1";
+  };
+
 }

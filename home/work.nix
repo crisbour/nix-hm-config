@@ -18,4 +18,10 @@
     freerdp
   ];
 
+  home.user-info = {
+    fullName = "Cristian Bourceanu";
+    email = "cristian.bourceanu@codasip.com";
+    gpg.enable = true;
+    gpg.masterKey = "0x152B728E9A90E3ED";
+  };
 }

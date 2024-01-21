@@ -4,6 +4,7 @@ let
   inherit (pkgs.stdenv) isLinux;
   #hasGUI = config.wayland.enable || config.xorg.enable;
   hasGUI = true;
+  inherit (config.home) user-info;
 in {
 
   home.sessionVariables = {
@@ -18,12 +19,12 @@ in {
   # TODO: Configure with public keyserver: https://github.com/hardselius/dotfiles/blob/110d2b106fdf2e9b30a8f0ae66d3e0ea97f52824/home/gpg.nix#L51
   # => No need to import keys from backup
   programs.gpg = {
-    enable = true;
+    enable = user-info.gpg.enable;
     # For options details check: https://gnupg.org/documentation/manuals/gnupg/Option-Index.html
     settings = {
       # TODO: Replace with: default-key = user-info.gpg.masterKey;
       # in order to allow multiple hosts definitions
-      default-key = "0xAEF4A543011E8AC1";
+      default-key = user-info.gpg.masterKey;
       # No comments in signature
       no-comments = false;
       # No version in output
