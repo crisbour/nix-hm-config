@@ -4,8 +4,6 @@
     ./bash.nix
     ./git.nix
     ./fzf.nix
-    ./ssh.nix
-    ./gpg.nix
     ./zsh
     ./zellij
     ./dircolors.nix

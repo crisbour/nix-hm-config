@@ -2,6 +2,7 @@
 {
   imports = [
     ./base
+    ./features/auth
     ./features/desktop/alacritty
     ./features/desktop/gnome
     ./features/desktop/productivity
