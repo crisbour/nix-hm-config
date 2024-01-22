@@ -15,7 +15,7 @@ in
   imports = [
     ./gtk.nix
     ./browser.nix
-    #./xdg.nix
+    ./xdg.nix
     #./font.nix
     #./brave.nix
     #./kdeconnect.nix

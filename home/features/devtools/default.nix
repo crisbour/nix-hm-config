@@ -5,6 +5,10 @@ let
   hasGUI = true;
 in {
 
+  imports = [
+    ./vscode.nix
+  ];
+
   options = {
     devTools.enable = mkEnableOption "developer tools and applications" // {
       default = true;

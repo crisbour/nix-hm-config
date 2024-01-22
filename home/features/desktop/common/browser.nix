@@ -1,8 +1,6 @@
 {
   programs.browserpass = {
     enable = true;
-    browsers = [
-      "brave"
-    ];
+    browsers = [ "brave" ];
   };
 }
