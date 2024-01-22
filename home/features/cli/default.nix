@@ -7,6 +7,8 @@
     ./zsh
     ./zellij
     ./dircolors.nix
+    ./tmux
+    ./screen.nix
     # TODO, add some more interesting packages from here: https://github.com/Misterio77/nix-config/blob/main/home/misterio/features/cli/default.nix
     # - shellcolor
     # - lyrics
