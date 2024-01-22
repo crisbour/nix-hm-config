@@ -7,6 +7,7 @@
     ./ssh.nix
     ./gpg.nix
     ./zsh
+    ./zellij
     ./dircolors.nix
     # TODO, add some more interesting packages from here: https://github.com/Misterio77/nix-config/blob/main/home/misterio/features/cli/default.nix
     # - shellcolor
