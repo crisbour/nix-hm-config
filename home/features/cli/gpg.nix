@@ -13,7 +13,6 @@ in {
 
   home.packages = with pkgs; [
     gnupg
-    pinentry-gnome
   ];
 
   # TODO: Configure with public keyserver: https://github.com/hardselius/dotfiles/blob/110d2b106fdf2e9b30a8f0ae66d3e0ea97f52824/home/gpg.nix#L51
@@ -55,7 +54,7 @@ in {
       # FIXME: The PIN caching problem is cause by pcsc-shared, since gpg-agent will release the lock to let other applications access pcscd
       # Disable for now causes unusability with FIDO and auth application
       #pcsc-shared = true;
-      #pcsc-driver = "libpcsclite.so.1";
+      pcsc-driver = "/usr/lib64/libpcsclite.so.1";
       #reader-port="Yubico Yubikey";
     };
   };
@@ -69,12 +68,12 @@ in {
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
-    pinentryFlavor       = "gnome3";
+    #pinentryFlavor       = "gnome3";
     verbose              = true;
-    # pinentry-program /usr/bin/pinentry-gnome3
     extraConfig = ''
       debug-pinentry
       debug ipc
+      pinentry-program /usr/bin/pinentry-gnome3
     '';
   };
 }
