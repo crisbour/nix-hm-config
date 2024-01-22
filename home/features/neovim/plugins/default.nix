@@ -17,7 +17,8 @@
     # Editor
     ./nvim-neoclip.nix
     ./telescope.nix
-    ./advanced-git-search.nix
+    # FIXME Fails to build
+    #./advanced-git-search.nix
 
     # Language Server, Completion, and Formatting
     ## Format code: ./conform.nvim.nix

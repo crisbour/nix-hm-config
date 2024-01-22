@@ -32,6 +32,7 @@ in
     package = lib.mkDefault pkgs.nix;
     settings = {
       experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      # TODO Add: "configurable-impure-env" "auto-allocate-uids"
       warn-dirty = false;
     };
   };
