@@ -19,6 +19,13 @@ in
     #./font.nix
     #./brave.nix
     #./kdeconnect.nix
+    ./yubikey.nix
+
+    #./calendar
+
+    #./communication.nix
+    # Not sure I need this
+    #./syncthing.nix
   ];
 
   # TODO What is xdg portal and configure it to gtk or kde?
