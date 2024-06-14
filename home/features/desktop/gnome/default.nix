@@ -12,12 +12,29 @@
         "Alacritty.desktop"
         "brave-browser.desktop"
         "spotify.desktop"
-        #"discord.desktop"
+        "discord.desktop"
+        "slack.desktop"
+        "org.gnome.Nautilus.desktop"
         #"code.desktop"
-        #"slack.desktop"
         #"thunderbird.desktop"
         #"org.telegram.desktop.desktop"
         #"org.gnome.Nautilus.desktop"
+      ];
+      enabled-extensions = [
+        "trayiconsreloaded@selfmade.pl"
+        #"blur-my-shell@aunetx"
+        "drive-menu@gnome-shell-extensions.gcampax.github.com"
+        #"dash-to-panel@jderose9.github.com"
+        "just-perfection-desktop@just-perfection"
+        "caffeine@patapon.info"
+        "clipboard-indicator@tudmotu.com"
+        "horizontal-workspace-indicator@tty2.io"
+        "bluetooth-quick-connect@bjarosze.gmail.com"
+        "gsconnect@andyholmes.github.io"
+        #"pip-on-top@rafostar.github.com"
+        "forge@jmmaranan.com"
+        # "dash-to-dock@micxgx.gmail.com" # Alternative Dash-to-Panel
+        # "fullscreen-avoider@noobsai.github.com" # Dash-to-Panel Incompatable
       ];
     };
 
@@ -27,22 +44,46 @@
       uris = ["qemu:///system"];
     };
 
-    "org/gnome/mutter" = {
-      experimental-features = ["scale-monitor-framebuffer"];
+   "org/gnome/mutter" = {
+     edge-tiling = false;
+     experimental-features = ["scale-monitor-framebuffer"];
+     workspaces-only-on-primary = false;
+   };
+
+    "org/gnome/desktop/wm/preferences"  = {
+      num-workspaces = 4;
+      workspace-names = [ "Hardware" "PhD" "Programming" "Nix" ];
+    };
+
+    "org/gnome/shell/extensions/horizontal-workspace-indicator" = {
+      widget-position = "left";
+      widget-orientation = "horizontal";
+      icons-style = "circles";
     };
 
     "org/gnome/desktop/interface" = {
       color-scheme = "prefer-dark";
-    };
-
-    "org/gnome/desktop/interface" = {
       enable-hot-corners = false;
+      clock-show-weekday = true;
       # cursor-size = 33;
     };
 
-    #"org/gnome/mutter" = {
-    #  workspaces-only-on-primary = true;
-    #};
+    "org/gnome/desktop/peripherals/touchpad" = {
+      natural-scroll = false;
+      tap-to-click = true;
+      two-finger-scrolling-enabled = true;
+    };
+
+    "org/gnome/desktop/calendar" = {
+        show-weekdate = true;
+    };
+
+    "org/gnome/shell/extensions/caffeine" = {
+      enable-fullscreen = true;
+      restore-state = true;
+      show-indicator = true;
+      show-notification = false;
+    };
 
     #"org/gnome/settings-daemon/plugins/media-keys" = {
     #  custom-keybindings = [
@@ -61,4 +102,25 @@
     #  name = "rofi-drun";
     #};
   };
+
+
+  home.packages = with pkgs.gnomeExtensions; [
+      tray-icons-reloaded
+      #blur-my-shell
+      removable-drive-menu
+      #dash-to-panel
+      upower-battery
+      just-perfection
+      caffeine
+      clipboard-indicator
+      workspace-indicator-2
+      bluetooth-quick-connect
+      gsconnect
+      #pip-on-top
+      #pop-shell
+      forge
+      # fullscreen-avoider
+      # dash-to-dock
+    ];
 }
+# Good resource for customizing gnome through dconf: https://github.com/MatthiasBenaets/nixos-config/blob/020e93e22bdce9000db6ac31753dfec9c4e1c879/modules/desktops/gnome.nix#L70

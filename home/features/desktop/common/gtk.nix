@@ -43,12 +43,4 @@ rec {
     };
   };
 
-  # TODO: Does this imply the gtkX.extraConfig is not needed anymore?
-  #services.xsettingsd = {
-  #  enable = true;
-  #  settings = {
-  #    "Net/ThemeName" = "${gtk.theme.name}";
-  #    "Net/IconThemeName" = "${gtk.iconTheme.name}";
-  #  };
-  #};
 }
