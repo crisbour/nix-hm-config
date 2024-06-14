@@ -9,8 +9,7 @@
     ./features/desktop/channels
     ./features/desktop/productivity
     ./features/desktop/electronics
-    # TODO Configure secrets
-    #./features/pass
+    ./features/pass
   ];
 
   home = {
