@@ -7,11 +7,11 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-	./hardware-configuration.nix
-      	<nixos-hardware/dell/xps/15-9550>
+        ./hardware-configuration.nix
+        <nixos-hardware/dell/xps/15-9550>
         # FIXME: Nvidia configs fail on suspend
-        #./gpu.nix
-	<home-manager/nixos>
+        ./gpu.nix
+        <home-manager/nixos>
         ./yubikey.nix
         ./fonts.nix
     ];
@@ -42,7 +42,7 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/London";
+  time.timeZone = "Europe/Bucharest";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
