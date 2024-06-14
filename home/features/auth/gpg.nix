@@ -69,7 +69,7 @@ in {
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
-    pinentryFlavor       = "gnome3";
+    pinentryPackage      = pkgs.pinentry-gnome;
     verbose              = true;
     # pinentry-program /usr/bin/pinentry-gnome3
     extraConfig = ''

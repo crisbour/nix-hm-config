@@ -3,7 +3,8 @@
   programs.neovim = {
     extraPackages = with pkgs; [
       lua-language-server
-      rnix-lsp                      # Nix language server
+      #rnix-lsp                      # Nix language server
+      nixd # Alternative since rnix-lsp has a vulnerability
       rust-analyzer
       clang-tools_17
       texlab

@@ -30,7 +30,7 @@ Because this make use of env variables `USER` and `HOME` it is not a pure deriva
 home-manager switch --impure --flake .#<name_of_configuration>
 ```
 
-Flakes are an experimental feature at the moment. In order to make use of them without verbosity in the command, allow flakes if you are following nix-unstabel. Add the following to `~/.config/nix/nix.conf`:
+Flakes are an experimental feature in older realease. In order to make use of them without verbosity in the command, allow flakes if you are following nix-unstable. Add the following to `~/.config/nix/nix.conf`:
 
 ```
 experimental-features = nix-command flakes
@@ -41,6 +41,6 @@ experimental-features = nix-command flakes
 
 ## TODO
 
-- [ ] Add `git` to flake dependencies as containers or minmal system might not have it
+- [ ] Add `git` to flake dependencies as containers or minimal system might not have it
 - [x] Allow Unfree: Not working with Flakes for my config, find alternative
-- [ ] How to insall `nixgl.auto.nixGLDefault` from home-manager?
+- [ ] How to install `nixgl.auto.nixGLDefault` from home-manager?
