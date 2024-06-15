@@ -55,6 +55,7 @@
       { url = "https://maskray.me/blog/atom.xml"; }
       { url = "https://www.adiuvoengineering.com/microzed-chronicles-archive/feed"; }
       { url = "https://www.brendangregg.com/blog/rss.xml"; }
+      { url = "https://sandervanderburg.blogspot.com/rss.xml"; }
       { url = "https://zipcpu.com/feed"; }
       { url = "https://tomverbeure.github.io/feed.xml"; }
       { url = "https://news.ycombinator.com/rss"; }
@@ -62,6 +63,7 @@
       { url = "https://weekly.nixos.org/feeds/all.rss.xml"; }
       { url = "https://ianthehenry.com/posts/how-to-learn-nix/feed.xml"; }
       { url = "https://haseebmajid.dev/series/index.xml"; }
+      { url = "https://blog.thalheim.io/index.html"; }
     ];
   };
 }
