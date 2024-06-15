@@ -6,6 +6,8 @@ with pkgs;
   ];
 
   home.packages = [
+    graphviz
+
 #    openssl
     evcxr                         # Rust notebook: Evcxr
     rust-analyzer
@@ -14,6 +16,7 @@ with pkgs;
     brightnessctl
     #flameshot
     joplin-desktop
+    libreoffice
     mendeley
     okular
     #shutter # screenshots

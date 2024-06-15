@@ -1,6 +1,8 @@
 { pkgs ? import <nixpkgs> {} }:
 with pkgs;
 let
+  # TODO set env variable floating respectively to the resolution used
+  # - perhaps use some optional config option for all scalling aps, such as this, spotify, etc
   yed-highdpi = writeShellScriptBin "yed" ''
     exec env GDK_SCALE=2 ${yed}/bin/yed
   '';

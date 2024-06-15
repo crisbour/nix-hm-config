@@ -9,6 +9,7 @@
     ./features/desktop/channels
     ./features/desktop/productivity
     ./features/desktop/electronics
+    ./features/desktop/gaming
     ./features/pass
   ];
 
