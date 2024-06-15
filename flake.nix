@@ -80,6 +80,15 @@
         tiny = mkHomeConfiguration ./home/tiny.nix   "x86_64-linux";
       };
 
+      nixosConfigurations = {
+         cristi = lib.nixosSystem {
+          modules = [./hosts/cristi];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+      };
+
       # TODO: Port my NixOS configs to this repo as well
       #nixosConfigurations = {
       #  home = mkNixosConfiguration ./hosts/home.nix;
