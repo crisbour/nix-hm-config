@@ -13,7 +13,7 @@ in {
 
   home.packages = with pkgs; [
     gnupg
-    pinentry-gnome
+    pinentry-gnome3
   ];
 
   # TODO: Configure with public keyserver: https://github.com/hardselius/dotfiles/blob/110d2b106fdf2e9b30a8f0ae66d3e0ea97f52824/home/gpg.nix#L51
@@ -69,7 +69,7 @@ in {
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
-    pinentryPackage      = pkgs.pinentry-gnome;
+    pinentryPackage      = pkgs.pinentry-gnome3;
     verbose              = true;
     # pinentry-program /usr/bin/pinentry-gnome3
     extraConfig = ''
