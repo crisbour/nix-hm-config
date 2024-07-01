@@ -8,7 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
         ./hardware-configuration.nix
-        <nixos-hardware/dell/xps/15-9550>
+        #<nixos-hardware/dell/xps/15-9550>
         # FIXME: Nvidia configs fail on suspend
         ./gpu.nix
         <home-manager/nixos>
@@ -30,6 +30,10 @@
     "net.ipv4.conf.all.forwarding" = true;
     "net.ipv4.conf.default.forwarding" = true;
   };
+
+  boot.kernelParams = [
+    "mem_sleep_default=deep"
+  ];
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -79,7 +83,7 @@
           ]) ++ (with pkgs.gnome; [
             #cheese # webcam tool
             gnome-music
-            gedit # text editor
+            #gedit # text editor
             epiphany # web browser
             geary # email reader
             #gnome-characters
