@@ -13,7 +13,7 @@
     ./hardware-configuration.nix
 
     ../common/global
-    ../common/users/cristi
+    ../common/users/cristi.nix
     # FIXME: Nvidia configs fail on suspend
     ../common/optional/gpu.nix
     ../common/optional/fonts.nix
