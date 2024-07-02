@@ -6,6 +6,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -81,8 +82,14 @@
       };
 
       nixosConfigurations = {
-         cristi = lib.nixosSystem {
-          modules = [./hosts/cristi];
+         xps = lib.nixosSystem {
+          modules = [./hosts/xps];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
+        precision = lib.nixosSystem {
+          modules = [./hosts/precision];
           specialArgs = {
             inherit inputs outputs;
           };
