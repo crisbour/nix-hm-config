@@ -22,22 +22,18 @@ in {
       "libvirtd"
     ];
     packages = with pkgs; [
+      home-manager
       nixos-option
       brave
       firefox
       gcc
     ];
+
+    #openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);
+    #hashedPasswordFile = config.sops.secrets.gabriel-password.path;
   };
 
-    openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);
-    hashedPasswordFile = config.sops.secrets.gabriel-password.path;
-    packages = [pkgs.home-manager];
-  };
+  #home-manager.users.cristi = import ../../../../home/cristi/${config.networking.hostName}.nix;
 
-  sops.secrets.gabriel-password = {
-    sopsFile = ../../secrets.yaml;
-    neededForUsers = true;
-  };
-
-  home-manager.users.gabriel = import ../../../../home/gabriel/${config.networking.hostName}.nix;
-
+  # TODO define secrets here
+};
