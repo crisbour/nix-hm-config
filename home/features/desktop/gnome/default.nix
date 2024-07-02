@@ -39,14 +39,14 @@
     };
 
     # Keep qemu configuration for virt-manager as shown at: https://nixos.wiki/wiki/Virt-manager
-    "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-      uris = ["qemu:///system"];
-    };
+    #"org/virt-manager/virt-manager/connections" = {
+    #  autoconnect = ["qemu:///system"];
+    #  uris = ["qemu:///system"];
+    #};
 
    "org/gnome/mutter" = {
      edge-tiling = false;
-     experimental-features = ["scale-monitor-framebuffer"];
+     #experimental-features = ["scale-monitor-framebuffer"];
      workspaces-only-on-primary = false;
    };
 
@@ -85,6 +85,11 @@
       show-notification = false;
     };
 
+    #"org/gnome/shell/extensions/just-perfection" = {
+    #  panel-size = 48;
+    #  activities-button = false;
+    #};
+
     #"org/gnome/settings-daemon/plugins/media-keys" = {
     #  custom-keybindings = [
     #    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-alacritty/"
@@ -104,7 +109,7 @@
   };
 
 
-  home.packages = with pkgs.gnomeExtensions; [
+  home.packages = (with pkgs.gnomeExtensions; [
       tray-icons-reloaded
       #blur-my-shell
       removable-drive-menu
@@ -121,6 +126,8 @@
       forge
       # fullscreen-avoider
       # dash-to-dock
-    ];
+    ]) ++ (with pkgs; [
+      #gnome-extension-manager
+    ]);
 }
 # Good resource for customizing gnome through dconf: https://github.com/MatthiasBenaets/nixos-config/blob/020e93e22bdce9000db6ac31753dfec9c4e1c879/modules/desktops/gnome.nix#L70
