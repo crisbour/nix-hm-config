@@ -17,6 +17,7 @@
     NIX_CONFIG = "extra-experimental-features = nix-command flakes repl-flake";
     nativeBuildInputs = with pkgs; [ nix home-manager git ];
     packages = with pkgs; [
+        vim
         black
         git-crypt
         nixfmt

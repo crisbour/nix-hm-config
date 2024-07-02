@@ -49,6 +49,7 @@ in
     okular
 
     # Graph drawing
-    (import ./gui/yed.nix { inherit pkgs; })
+    # WARN Broken
+    #(import ./gui/yed.nix { inherit pkgs; }) # yEd for HiDPI
   ];
 }
