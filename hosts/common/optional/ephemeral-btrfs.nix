@@ -12,7 +12,7 @@ in {
 
   fileSystems = {
     "/" = {
-      device = "/dev/disk/by-label/${hostname}";
+      device = "/dev/mapper/${hostname}";
       fsType = "btrfs";
       options = [
         "subvol=root"
@@ -22,7 +22,7 @@ in {
     };
 
     "/nix" = {
-      device = "/dev/disk/by-label/${hostname}";
+      device = "/dev/mapper/${hostname}";
       fsType = "btrfs";
       options = [
         "subvol=nix"
@@ -32,7 +32,7 @@ in {
     };
 
     "/home" = {
-      device = "/dev/disk/by-label/${hostname}";
+      device = "/dev/mapper/${hostname}";
       fsType = "btrfs";
       options = [
         "subvol=home"
@@ -42,7 +42,7 @@ in {
     };
 
     "/persist" = {
-      device = "/dev/disk/by-label/${hostname}";
+      device = "/dev/mapper/${hostname}";
       fsType = "btrfs";
       options = [
         "subvol=persist"
@@ -53,7 +53,7 @@ in {
     };
 
     "/swap" = {
-      device = "/dev/disk/by-label/${hostname}";
+      device = "/dev/mapper/${hostname}";
       fsType = "btrfs";
       options = [
         "subvol=swap"

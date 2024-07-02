@@ -36,4 +36,4 @@ in {
   #home-manager.users.cristi = import ../../../../home/cristi/${config.networking.hostName}.nix;
 
   # TODO define secrets here
-};
+}
