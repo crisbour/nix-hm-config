@@ -4,7 +4,7 @@
   description = "Home-manager configuration as a flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
@@ -62,6 +62,7 @@
 
     in
     {
+      inherit lib;
       nixosModules       = import ./modules/nixos;
       homeManagerModules = import ./modules/home-manager;
 
