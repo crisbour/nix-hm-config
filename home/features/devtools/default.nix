@@ -50,7 +50,7 @@ in {
 
         # TODO: Move to rust.nix
         cargo-edit # Easy Rust dependency management
-        cargo-graph # Rust dependency graphs
+        #cargo-graph # Rust dependency graphs
         cargo-watch # Watch a Rust project and execute custom commands upon change
         rustfmt
         clippy
@@ -69,7 +69,7 @@ in {
         optionals hasGUI [
           asciidoctor
           # TODO: Move to electronics
-          dfeet                 # D-Feet is an easy to use D-Bus debugger
+          d-spy # dfeet # D-Feet is an easy to use D-Bus debugger but deprecated
           rars                  # RISC-V Assembler and Runtime Simulator
           wireshark
 

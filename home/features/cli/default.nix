@@ -84,7 +84,7 @@
 
     # TODO: Review the Nix tools, what they are useful for and how to use them
     nil # Nix LSP
-    nixfmt # Nix formatter
+    nixfmt-classic # Nix formatter
     nvd # Differ
     nix-output-monitor
     #nh # Nice wrapper for NixOS and HM
