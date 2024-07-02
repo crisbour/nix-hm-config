@@ -76,7 +76,7 @@
   #  umount /mnt
   #'';
 
-  nixpkgs.hostPlatform.system = lib.mkDefault "x86_64-linux";
-  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  nixpkgs.hostPlatform.system = "x86_64-linux";
+  powerManagement.cpuFreqGovernor = "powersave";
+  hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 }

@@ -10,7 +10,13 @@
         inputs.home-manager.nixosModules.home-manager
         #<home-manager/nixos>
         ./locale.nix
-    ];
+    ]
+    ++ (builtins.attrValues outputs.nixosModules);
+
+  home-manager.useGlobalPkgs = true;
+  home-manager.extraSpecialArgs = {
+    inherit inputs outputs;
+  };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -50,9 +56,9 @@
   };
 
   # Configure keymap in X11
-  services.xserver = {
+  services.xserver.xkb = {
     layout = "us";
-    xkbVariant = "";
+    variant = "";
   };
 
   # Enable CUPS to print documents.
@@ -82,11 +88,11 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
 
   # Enable automatic login for the user.
-  services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "cristi";
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "cristi";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;

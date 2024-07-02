@@ -9,13 +9,14 @@
     driSupport32Bit = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
+  # Load intel/nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["intel" "nvidia"];
 
   hardware.nvidia = {
 
     prime = {
-      sync.enable = true;
+      sync.enable = false;
+      offload.enable = true;
 
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
