@@ -23,12 +23,13 @@
         "virtio_pci"
         "virtio_blk"
       ];
-    kernelModules = [ ];
+    kernelModules = [ "i915" ];
   };
 
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
-  boot.kernelModules = [ "kvm-intel" "vhost_vsock"];
-  boot.extraModulePackages = [ ];
+  boot.kernelModules = [ "kvm-intel" "nvidia" "vhost_vsock"];
+  #boot.blacklistedKernelModules = lib.mkDefault [ "nouveau" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -48,6 +49,8 @@
   boot.kernelParams = [
     "mem_sleep_default=deep"
     "ibt=off"
+    #"intel_iommu=igfx_off"
+    "nvidia-drm.modeset=1"
     #"i915.enable_psr=0" # Panel Self Refresh (PSR) is a power saving feature that might cause flickering
   ];
 
