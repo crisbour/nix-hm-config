@@ -6,8 +6,8 @@
     ./features/desktop/alacritty
     ./features/desktop/gnome
     ./features/devtools
+    ./features/productivity
     ./features/desktop/channels
-    ./features/desktop/productivity
     ./features/desktop/electronics
     ./features/desktop/gaming
     ./features/pass
