@@ -6,7 +6,10 @@
   programs.brave = {
     enable = true;
     extensions = [
-      "naepdomgkenhinolocfifgehidddafch"
+      "naepdomgkenhinolocfifgehidddafch" # BrowserPass
+      "bfhkfdnddlhfippjbflipboognpdpoeh" # reMarkable
+      "ffbkglfijbcbgblgflchnbphjdllaogb" # CyberGhost
+      "dagcmkpagjlhakfdhnbomgmjdpkdklff" # Mendeley
     ];
   };
 }
