@@ -2,6 +2,8 @@
 with pkgs;
 {
   imports = [
+    ./mail.nix
+    ./neomutt.nix
     ./newsboat.nix
   ];
 

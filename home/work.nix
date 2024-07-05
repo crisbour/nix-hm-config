@@ -5,7 +5,7 @@
     ./features/auth
     ./features/desktop/alacritty
     ./features/desktop/gnome
-    ./features/desktop/productivity
+    ./features/productivity
     ./features/devtools
   ];
 

@@ -52,6 +52,7 @@
     '';
 
     urls = [
+      { url = "https://www.umcconnell.net/feed"; }
       { url = "https://maskray.me/blog/atom.xml"; }
       { url = "https://www.adiuvoengineering.com/microzed-chronicles-archive/feed"; }
       { url = "https://www.brendangregg.com/blog/rss.xml"; }
