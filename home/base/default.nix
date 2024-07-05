@@ -59,6 +59,9 @@ in
     };
   };
 
+  # Let Home Manager install and manage itself
+  programs.home-manager.enable = true;
+
   # Allow Nix to handle fonts
   fonts.fontconfig.enable = true;
 
