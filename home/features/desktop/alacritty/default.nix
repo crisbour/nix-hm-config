@@ -73,7 +73,7 @@ in
 
       shell = if config.programs.tmux.enable
       then {
-        program = pkgs.runtimeShell;
+        program = config.home.sessionVariables.SHELL;
         args = ["-c" "tmux attach || tmux new"];
       } else {
         program = config.home.sessionVariables.SHELL;
