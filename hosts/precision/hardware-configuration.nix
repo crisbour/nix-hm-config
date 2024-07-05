@@ -47,6 +47,8 @@
 
   boot.kernelParams = [
     "mem_sleep_default=deep"
+    "ibt=off"
+    #"i915.enable_psr=0" # Panel Self Refresh (PSR) is a power saving feature that might cause flickering
   ];
 
   fileSystems = {
