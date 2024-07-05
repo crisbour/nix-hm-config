@@ -51,5 +51,8 @@ in
     # Graph drawing
     # WARN Broken
     #(import ./gui/yed.nix { inherit pkgs; }) # yEd for HiDPI
+
+    # Image editing
+    gimp
   ];
 }
