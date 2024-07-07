@@ -75,7 +75,6 @@
     ncdu # TUI disk usage
     perl                          # for fzf history
     ripgrep # Better grep
-    rustup
     tig                           # Awesome Text based git
     tre # Improved `tree` written in Rust TODO: Add alias?
     #timer # To help with my ADHD paralysis
