@@ -22,6 +22,8 @@
     # Nix User Repository
     nur.url = "github:nix-community/NUR";
     rust-overlay.url = "github:oxalica/rust-overlay";
+
+    nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-unstable, ... }@inputs:
