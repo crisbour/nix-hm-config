@@ -29,7 +29,7 @@
         "just-perfection-desktop@just-perfection"
         "caffeine@patapon.info"
         "clipboard-indicator@tudmotu.com"
-        "horizontal-workspace-indicator@tty2.io"
+        "workspace-indicator@gnome-shell-extensions.gcampax.github.com"
         "bluetooth-quick-connect@bjarosze.gmail.com"
         "gsconnect@andyholmes.github.io"
         #"pip-on-top@rafostar.github.com"
@@ -39,27 +39,9 @@
       ];
     };
 
-    # Keep qemu configuration for virt-manager as shown at: https://nixos.wiki/wiki/Virt-manager
-    #"org/virt-manager/virt-manager/connections" = {
-    #  autoconnect = ["qemu:///system"];
-    #  uris = ["qemu:///system"];
-    #};
-
-   "org/gnome/mutter" = {
-     edge-tiling = false;
-     #experimental-features = ["scale-monitor-framebuffer"];
-     workspaces-only-on-primary = false;
-   };
-
     "org/gnome/desktop/wm/preferences"  = {
       num-workspaces = 4;
       workspace-names = [ "Hardware" "PhD" "Programming" "Nix" ];
-    };
-
-    "org/gnome/shell/extensions/horizontal-workspace-indicator" = {
-      widget-position = "left";
-      widget-orientation = "horizontal";
-      icons-style = "circles";
     };
 
     "org/gnome/desktop/interface" = {
@@ -68,6 +50,9 @@
       clock-show-weekday = true;
       # cursor-size = 33;
     };
+    "org/gnome/desktop/calendar" = {
+        show-weekdate = true;
+    };
 
     "org/gnome/desktop/peripherals/touchpad" = {
       natural-scroll = false;
@@ -75,38 +60,30 @@
       two-finger-scrolling-enabled = true;
     };
 
-    "org/gnome/desktop/calendar" = {
-        show-weekdate = true;
+    "org/gnome/shell/extensions/trayIconsReloaded" = {
+      #applications='[{"id":"slack.desktop"},{"id":"discord.desktop"},{"id":"teams-for-linux.desktop"}]'
+      icon-margin-horizontal  = 0;
+      icon-padding-horizontal = 10;
+      icon-size               = 17;
+      icons-limit             = 4;
+      invoke-to-workspace     = true;
+      position-weight         = 0;
+      tray-margin-left        = 10;
+      tray-margin-right       = 10;
+      tray-position           = "right";
     };
 
-    "org/gnome/shell/extensions/caffeine" = {
-      enable-fullscreen = true;
-      restore-state = true;
-      show-indicator = true;
-      show-notification = false;
+    "org/gnome/mutter" = {
+      #edge-tiling = false;
+      experimental-features = ["scale-monitor-framebuffer"];
+      #workspaces-only-on-primary = false;
     };
 
-    #"org/gnome/shell/extensions/just-perfection" = {
-    #  panel-size = 48;
-    #  activities-button = false;
-    #};
+    "org/gnome/shell/extensions/bluetooth-quick-connect" = {
+      show-battery-icon-on = true;
+      show-battery-value-on = true;
+    };
 
-    #"org/gnome/settings-daemon/plugins/media-keys" = {
-    #  custom-keybindings = [
-    #    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-alacritty/"
-    #    "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-rofi/"
-    #  ];
-    #};
-    #"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-alacritty" = {
-    #  binding = "<Super>Return";
-    #  command = "alacritty";
-    #  name = "open-terminal";
-    #};
-    #"org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-rofi" = {
-    #  binding = "<Super>D";
-    #  command = "rofi -show drun";
-    #  name = "rofi-drun";
-    #};
   };
 
 
@@ -119,7 +96,7 @@
       just-perfection
       caffeine
       clipboard-indicator
-      workspace-indicator-2
+      workspace-indicator
       bluetooth-quick-connect
       gsconnect
       #pip-on-top
@@ -128,7 +105,7 @@
       # fullscreen-avoider
       # dash-to-dock
     ]) ++ (with pkgs; [
-      #gnome-extension-manager
+      gnome-extension-manager
     ]);
 }
 # Good resource for customizing gnome through dconf: https://github.com/MatthiasBenaets/nixos-config/blob/020e93e22bdce9000db6ac31753dfec9c4e1c879/modules/desktops/gnome.nix#L70
