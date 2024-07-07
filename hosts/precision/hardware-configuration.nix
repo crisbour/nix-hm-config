@@ -29,7 +29,14 @@ in
   };
 
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
-  boot.kernelModules = [ "kvm-intel" "nvidia" "vhost_vsock"];
+  boot.kernelModules = [
+    "kvm-intel"
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_drm"
+    #"nvidia_uvm" # Required by CUDA: Unified Memory
+    "vhost_vsock"
+  ];
   #boot.blacklistedKernelModules = lib.mkDefault [ "nouveau" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
@@ -50,7 +57,7 @@ in
 
   boot.kernelParams = [
     "mem_sleep_default=deep"
-    "ibt=off"
+    #"ibt=off"
     #"intel_iommu=igfx_off"
     "nvidia-drm.modeset=1"
     #"i915.enable_psr=0" # Panel Self Refresh (PSR) is a power saving feature that might cause flickering
@@ -70,21 +77,10 @@ in
     }
   ];
 
-  # Enable hibernation
-  #swapDevices = [
-  #  { device = "/dev/disk/by-uuid/your-swap-uuid"; }
-  #];
-  #powerManagement.resumeCommands = ''
-  #  cryptsetup open /dev/disk/by-uuid/your-luks-uuid root
-  #'';
-  #powerManagement.hibernateCommands = ''
-  #  mount -o subvol=@ /dev/mapper/root /mnt
-  #  btrfs filesystem sync /mnt
-  #  umount /mnt
-  #'';
+  powerManagement.enable = true;
+  powerManagement.cpuFreqGovernor = "powersave";
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
-  powerManagement.cpuFreqGovernor = "powersave";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
   # ==================================================================================
