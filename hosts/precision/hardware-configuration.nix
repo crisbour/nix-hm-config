@@ -11,6 +11,7 @@ in
       (modulesPath + "/installer/scan/not-detected.nix")
       ../common/optional/encrypted-root.nix
       ../common/optional/ephemeral-btrfs.nix
+      ../common/optional/hibernate-resume.nix
     ];
 
     boot.initrd = {
