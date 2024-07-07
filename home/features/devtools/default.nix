@@ -47,6 +47,8 @@ in {
         # TODO: Should this be just part of shell.nix?
         (  import ./python/python-packages.nix { inherit pkgs; })
         glib
+        rustc
+        cargo
 
         # TODO: Move to rust.nix
         cargo-edit # Easy Rust dependency management
