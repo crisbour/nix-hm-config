@@ -73,10 +73,11 @@ in
 
       shell = if config.programs.tmux.enable
       then {
-        program = config.home.sessionVariables.SHELL;
+        #config.home.sessionVariables.SHELL;
+        program = "${pkgs.zsh}/bin/zsh";
         args = ["-c" "tmux attach || tmux new"];
       } else {
-        program = config.home.sessionVariables.SHELL;
+        program = "${pkgs.zsh}/bin/zsh";
       };
 
 

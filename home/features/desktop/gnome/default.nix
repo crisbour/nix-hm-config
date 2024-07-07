@@ -21,7 +21,8 @@
         #"org.gnome.Nautilus.desktop"
       ];
       enabled-extensions = [
-        "trayiconsreloaded@selfmade.pl"
+        "trayIconsReloaded@selfmade.pl"
+        "Battery-Health-Charging@maniacx.github.com"
         #"blur-my-shell@aunetx"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
         #"dash-to-panel@jderose9.github.com"
