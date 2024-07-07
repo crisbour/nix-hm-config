@@ -2,7 +2,9 @@
 # and may be overwritten by future invocations.  Please make changes
 # to /etc/nixos/configuration.nix instead.
 { config, lib, pkgs, modulesPath, ... }:
-
+let
+  snd = "/sys/class/sound/hwC0D0";
+in
 {
   imports =
     [
@@ -84,4 +86,61 @@
   nixpkgs.hostPlatform.system = "x86_64-linux";
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
+
+  # ==================================================================================
+  # Quality of Life changes
+  # ==================================================================================
+
+  # Sound quality enable bottom speakers
+  sound.enable = true;
+  boot.extraModprobeConfig = ''
+    options snd slots=snd-hda-intel
+    options snd-hda-intel model=alc289
+    options snd-hda-intel enable=1,1
+    options snd-hda-intel patch=hda-jack-retask.fw
+  '';
+  # Reference: https://discourse.nixos.org/t/fixing-audio-on-asus-strix-scar-17-g733qs/12687/9
+  hardware.firmware = [ ( pkgs.writeTextDir "/lib/firmware/hda-jack-retask.fw" ( builtins.readFile ./hda-jack-retask.fw ) ) ];
+  # Inspired from: https://github.com/snpschaaf/nixos-hardware/blob/12620020f76b1b5d2b0e6fbbda831ed4f5fe56e1/system76/darp6/default.nix#L80
+  #hardware.firmware = [
+  #      (pkgs.writeTextFile {
+  #        name = "precision-audio-patch";
+  #        destination = "/lib/firmware/precision-audio-patch";
+  #        text = ''
+  #          [codec]
+  #          0x10ec0289 0x10280b1a 0
+
+  #          [pincfg]
+  #          0x17 0x90170151
+  #          0x1e 0x90170150
+  #        '';
+  #      })
+  #    ];
+  # options snd-hda-intel patch=hda-jack-retask.fw
+
+  # Perhaps similar issue as described here: https://github.com/NixOS/nixos-hardware/blob/master/dell/xps/15-9510/default.nix#L11
+  # and here: https://github.com/NixOS/nixos-hardware/blob/master/dell/xps/15-9520/default.nix#L12
+  #boot.extraModprobeConfig = ''
+  #  options iwlwifi 11n_disable=8
+  #  options iwlwifi power_save=1 disable_11ax=1
+  #'';
+
+  # Enable with over heating becomes and issue
+  #services.thermald.enable = lib.mkDefault true;
+
+  powerManagement.powertop.enable = true;
+
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+       governor = "powersave";
+       turbo = "never";
+    };
+    charger = {
+       governor = "performance";
+       turbo = "auto";
+    };
+  };
+
+
 }
