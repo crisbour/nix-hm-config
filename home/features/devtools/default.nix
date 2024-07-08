@@ -3,6 +3,7 @@ with lib;
 let
   #hasGUI = config.wayland.enable || config.xorg.enable;
   hasGUI = true;
+  nix-matlab = pkgs.inputs.nix-matlab;
 in {
 
   imports = [
@@ -49,6 +50,8 @@ in {
         glib
         rustc
         cargo
+        nix-matlab.matlab-shell # https://gitlab.com/doronbehar/nix-matlab
+        nix-matlab.matlab
 
         # TODO: Move to rust.nix
         cargo-edit # Easy Rust dependency management

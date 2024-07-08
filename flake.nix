@@ -24,6 +24,7 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
 
     nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
+    nix-matlab.url = "gitlab:doronbehar/nix-matlab";
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-unstable, ... }@inputs:
