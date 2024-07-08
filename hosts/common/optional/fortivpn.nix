@@ -1,5 +1,15 @@
 { config, pkgs, inputs, ... }:
 {
+  networking.networkmanager.enable = true;
+
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-fortisslvpn
+    networkmanager-openconnect
+    networkmanager-openvpn
+    #networkmanager-l2tp
+    #networkmanager-vpnc
+  ];
+
   environment = {
     systemPackages = with pkgs; [
       openfortivpn

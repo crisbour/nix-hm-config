@@ -6,6 +6,9 @@
 }: let
   ifTheyExist = groups: builtins.filter (group: builtins.hasAttr group config.users.groups) groups;
 in {
+  imports = [
+    ../optional/fortivpn.nix
+  ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cristi = {
     isNormalUser = true;
