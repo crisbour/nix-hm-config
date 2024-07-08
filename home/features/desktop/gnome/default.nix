@@ -84,6 +84,12 @@
       show-battery-value-on = true;
     };
 
+    # Keep qemu configuration for virt-manager as shown at: https://nixos.wiki/wiki/Virt-manager
+    "org/virt-manager/virt-manager/connections" = {
+      autoconnect = ["qemu:///system"];
+      uris = ["qemu:///system"];
+    };
+
   };
 
 

@@ -14,24 +14,15 @@ in
       ../common/optional/hibernate-resume.nix
     ];
 
-    boot.initrd = {
-      availableKernelModules = [
-        #"iwlwifi"
-        "nvme"
-        "xhci_pci"
-        "ahci"
-        "usb_storage"
-        "sd_mod"
-
-        # Useful for VM to interact with hardware
-        #"vfio_pci"
-        #"vfio"
-        #"vfio_iommu_type1"
-        #"vfio_virqfd"
-
-        "virtio_pci"
-        "virtio_blk"
-      ];
+  boot.initrd = {
+    availableKernelModules = [
+      #"iwlwifi"
+      "nvme"
+      "xhci_pci"
+      "ahci"
+      "usb_storage"
+      "sd_mod"
+    ];
     kernelModules = [ "i915" ];
   };
 

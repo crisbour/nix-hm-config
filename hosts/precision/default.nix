@@ -14,10 +14,11 @@
 
     ../common/global
     ../common/users/cristi.nix
-    # FIXME: Nvidia configs fail on suspend
     ../common/optional/gpu.nix
     ../common/optional/fonts.nix
     ../common/optional/yubikey.nix
+    # WARN Cannot use nvidia driver and vfio concurently
+    #../common/optional/kvm.nix
   ];
 
 
