@@ -8,6 +8,7 @@ in {
 
   imports = [
     ./vscode.nix
+    ./latex.nix
   ];
 
   options = {
