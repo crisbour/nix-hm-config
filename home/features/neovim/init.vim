@@ -35,6 +35,12 @@ set listchars=tab:>-
 
 let mapleader=' '
 
+" Tree-sitter based folding. (Technically not a module because it's per windows and not per buffer.)
+" -> This will respect your foldminlines and foldnestmax settings.
+set foldmethod=expr
+set foldexpr=nvim_treesitter#foldexpr()
+set nofoldenable                     " Disable folding at startup.
+
 " TODO: Configure vim.diagnostic
 "vim.diagnostic.config({
 "  virtual_text = true,
