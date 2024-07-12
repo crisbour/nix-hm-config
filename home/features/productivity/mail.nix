@@ -123,6 +123,10 @@ in {
   programs.mbsync.enable = true;
   programs.msmtp.enable = true;
 
+  home.packages = with pkgs; [
+    thunderbird
+  ];
+
   #systemd.user.services.mbsync = {
   #  Unit = {
   #    Description = "mbsync synchronization";
