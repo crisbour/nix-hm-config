@@ -3,6 +3,9 @@ let
   #inherit (inputs.nix-colors.lib-contrib { inherit pkgs; }) gtkThemeFromScheme;
 in
 rec {
+  xdg.portal.config.common.default = "*";
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
+
   # Gnome look inspired from: https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
   gtk = {
     enable = true;
