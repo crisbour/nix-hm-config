@@ -90,6 +90,18 @@
       uris = ["qemu:///system"];
     };
 
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-alacritty" = {
+      binding = "<Super>T";
+      command = "alacritty";
+      name = "open-terminal";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys" = {
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom-alacritty/"
+      ];
+    };
+
   };
 
 
