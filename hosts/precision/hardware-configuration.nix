@@ -55,7 +55,8 @@ in
 
   boot.kernelParams = [
     "mem_sleep_default=deep"
-    "ahci.mobile_lpm_policy=2" # Extreme SSD power saving: med_power_with_dipm=2 or min_power=3
+    # FIXME Is this preventing suspend?
+    #"ahci.mobile_lpm_policy=2" # Extreme SSD power saving: med_power_with_dipm=2 or min_power=3
     #"ibt=off"
     #"intel_iommu=igfx_off"
     "nvidia-drm.modeset=1"
