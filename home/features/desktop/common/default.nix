@@ -14,6 +14,7 @@ in
 {
   imports = [
     ./gtk.nix
+    ./rofi.nix
     ./browser.nix
     ./xdg.nix
     #./font.nix
