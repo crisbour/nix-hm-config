@@ -24,6 +24,7 @@
     nur.url = "github:nix-community/NUR";
     rust-overlay.url = "github:oxalica/rust-overlay";
 
+    # FHS wrappers for Xilinx and Matlab tools
     nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
   };
