@@ -27,6 +27,12 @@
     # FHS wrappers for Xilinx and Matlab tools
     nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
+
+    # WindowsApp and other misc, checkout at: https://github.com/emmanuelrosa/erosanix
+    erosanix = {
+      url = "github:emmanuelrosa/erosanix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-unstable, ... }@inputs:
@@ -77,7 +83,7 @@
 
       overlays = import ./overlays {inherit inputs outputs;};
 
-      packages  = forEachSystem (pkgs: import ./pkgs { inherit pkgs; });
+      packages  = forEachSystem (pkgs: import ./pkgs { inherit pkgs inputs; });
       devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 

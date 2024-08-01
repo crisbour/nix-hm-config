@@ -9,5 +9,7 @@
     inputs.nix-xilinx.vitis_hls
     inputs.nix-xilinx.model_composer
     inputs.nix-xilinx.petalinux-install-shell
+
+    ltspice
   ];
 }
