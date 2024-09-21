@@ -1,8 +1,15 @@
 { pkgs, ... }:
+let
+  spade-language-server = import ./spade/spade-ls.nix { inherit pkgs; };
+in
 {
+  home.packages = [
+    spade-language-server
+  ];
   programs.neovim = {
     extraPackages = with pkgs; [
       lua-language-server
+      spade-language-server
       #rnix-lsp                      # Nix language server
       nixd # Alternative since rnix-lsp has a vulnerability
       rust-analyzer
@@ -23,6 +30,7 @@
           cmd = { "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start" },
           capabilities = capabilities,
         }
+
         lspconfig.clangd.setup {
           cmd = { "${pkgs.clang-tools_17}/bin/clangd",
                   "--all-scopes-completion",
@@ -35,41 +43,58 @@
                   },
           capabilities = capabilities,
         }
+
         lspconfig.cmake.setup{
           capabilities = capabilities,
         }
+
         lspconfig.julials.setup{
           capabilities = capabilities,
         }
+
         lspconfig.nixd.setup{
           capabilities = capabilities,
         }
+
         --lspconfig.nimls.setup{}
         --lspconfig.pyls.setup{}
+
         lspconfig.pyright.setup{
           capabilities = capabilities,
         }
+
         lspconfig.rust_analyzer.setup{
           capabilities = capabilities,
           settings = {
             ['rust-analyzer'] = {},
           },
         }
+
         lspconfig.vimls.setup{
           capabilities = capabilities,
         }
+
         lspconfig.veridian.setup{
           capabilities = capabilities,
         }
+
         lspconfig.yamlls.setup {
           cmd = { "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server", "--stdio" },
           capabilities = capabilities,
         }
-        lspconfig.texlab.setup {
-            cmd = { "${pkgs.texlab}/bin/texlab" },
-            capabilities = capabilities,
-          }
 
+        lspconfig.texlab.setup {
+          cmd = { "${pkgs.texlab}/bin/texlab" },
+          capabilities = capabilities,
+        }
+
+        vim.tbl_deep_extend('keep', lspconfig, {
+          spadels = {
+            cmd = { 'spade-language-server' },
+            filetypes = 'spade',
+            name = 'spadels',
+          }
+        })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer

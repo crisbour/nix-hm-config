@@ -4,6 +4,11 @@ let
   hasGUI = true;
 in
 {
+
+  home.packages = [
+    pkgs.platformio
+  ];
+
   programs.vscode = {
     enable = hasGUI;
     package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
