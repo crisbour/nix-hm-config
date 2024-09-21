@@ -9,7 +9,7 @@ let
     src = fetchFromGitLab {
       owner = "spade-lang";
       repo = "spade-vim";
-      rev = "75bfb155ae8cefdf06fb562a14dfd7e37d900374";
+      rev = "d658a2eec0175c252827e39049cae7a7324d42dd";
       sha256 = "sha256-YneRALZT6QrBMXNQ2rVZxBWju4R57dTeYvc5PlqeRQ0=";
     };
     meta.homepage = "https://gitlab.com/spade-lang/spade-vim";
@@ -17,7 +17,12 @@ let
 in
 {
   programs.neovim.plugins = [
-    vim-spade-lang
+    {
+      plugin = vim-spade-lang;
+      config = ''
+        au BufRead,BufNewFile *.spade set filetype=spade
+      '';
+    }
   ];
 }
 

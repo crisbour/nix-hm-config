@@ -5,7 +5,7 @@
     ./barbar.nix
     # Custom plugins
     ## Spade-lang syntax higlight
-    ./spade-lang.nix
+    ./spade/spade-vim.nix
     ./codal
 
     # Local Environment Configuration and Integration
