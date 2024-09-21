@@ -17,7 +17,7 @@ with pkgs;
     asciidoctor
     brightnessctl
     #flameshot
-    joplin-desktop
+    unstable.joplin-desktop
     libreoffice
     mendeley
     okular
