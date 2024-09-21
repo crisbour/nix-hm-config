@@ -25,6 +25,8 @@ In order to keep track of the versions used, I identified 2 methods so far: ~fla
 - [ ] Read about Flake
 - [ ] Flake shell.nix
 - [t] Flake for Home-Manager
+- [ ] Add OneNote
+- [ ] Fix yubikey notification
 
 ** Home-Manager
 
