@@ -11,6 +11,7 @@
     ./features/desktop/electronics
     ./features/desktop/gaming
     ./features/pass
+    ./features/nfs
   ];
 
   home = {
