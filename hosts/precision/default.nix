@@ -17,6 +17,7 @@
     ../common/optional/gpu.nix
     ../common/optional/fonts.nix
     ../common/optional/yubikey.nix
+    ../common/optional/udev.nix
     # WARN Cannot use nvidia driver and vfio concurently
     #../common/optional/kvm.nix
   ];
@@ -34,6 +35,11 @@
     #  "aarch64-linux"
     #  "i686-linux"
     #];
+  };
+  services.logind = {
+    extraConfig = ''
+      HandleLidSwitch=suspend
+    '';
   };
 
   networking = {
