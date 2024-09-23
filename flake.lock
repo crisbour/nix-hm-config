@@ -237,15 +237,15 @@
         "nixpkgs": "nixpkgs_4"
       },
       "locked": {
-        "lastModified": 1723391159,
-        "narHash": "sha256-KYStx0Y0kKJ2EEdPvai2a67iRey/2Cp9SeKAMH4QgVo=",
-        "owner": "crisbour",
+        "lastModified": 1726909322,
+        "narHash": "sha256-kdgYg1zxB5TT299A/KbefyXuE9AgemFOtPtnXuoII/Y=",
+        "owner": "doronbehar",
         "repo": "nix-xilinx",
-        "rev": "224c3fd84f1846ca5ca8e5f19dd0d26a754111ba",
+        "rev": "a54b271795532da62816e6699857c534d6728869",
         "type": "gitlab"
       },
       "original": {
-        "owner": "crisbour",
+        "owner": "doronbehar",
         "repo": "nix-xilinx",
         "type": "gitlab"
       }
