@@ -10,6 +10,7 @@
       "bfhkfdnddlhfippjbflipboognpdpoeh" # reMarkable
       "ffbkglfijbcbgblgflchnbphjdllaogb" # CyberGhost
       "dagcmkpagjlhakfdhnbomgmjdpkdklff" # Mendeley
+      "ekhagklcjbdpajgpjgmbionohlpdbjgc" # Zotero Connector
     ];
   };
 }
