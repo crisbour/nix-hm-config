@@ -5,6 +5,7 @@ with pkgs;
     ./mail.nix
     ./neomutt.nix
     ./newsboat.nix
+    ./zotero
   ];
 
   home.packages = [

@@ -10,4 +10,5 @@ let
 in
 {
   ltspice = pkgs.callPackage ./ltspice.nix { inherit pkgs inputs; };
+  zotero-addons = pkgs.callPackage ./zotero-addons.nix { inherit pkgs; };
 }
