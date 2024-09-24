@@ -49,11 +49,11 @@ in
 
   cita = buildZoteroXpiAddon rec {
     pname = "cita";
-    version = "1.0.0-beta.6";
+    version = "1.0.0-beta.7";
     addonId = "zotero-wikicite@wikidata.org";
 
     url = "https://github.com/diegodlh/zotero-cita/releases/download/v${version}/zotero-cita.xpi";
-    hash = "sha256-8L7wUABOMXoQ+irGZtcgpZu8cXHYLFR7UgCGKRmlJmQ=";
+    hash = "sha256-/RcO+W1LXp938L7kM6Yues8YvyrihYI/UgyRB66Rn9Y=";
 
     meta = with lib; {
       homepage = "https://github.com/diegodlh/zotero-cita";
@@ -188,7 +188,7 @@ in
     version = "0.7.2";
     addonId = "aria@apex973.com";
 
-    url = "https://github.com/lifan0127/ai-research-assistant/releases/download/${version}/aria.xpi";
+    url = "https://github.com/lifan0127/ai-research-assistant/releases/download/v${version}/aria.xpi";
     hash = "sha256-LTYy2YmWknzbEVWbZb96vT4VSgMTRPQaUXaXsIlY6WI=";
 
     meta = with lib; {

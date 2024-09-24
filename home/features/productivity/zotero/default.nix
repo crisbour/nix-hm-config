@@ -26,6 +26,7 @@ in
         zotero-storage-scanner
         zotfile
         zotero-delitemwithatt
+        cita
         ai-research-assistant
       ];
 
