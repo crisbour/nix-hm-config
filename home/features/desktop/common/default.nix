@@ -18,9 +18,9 @@ in
     ./browser.nix
     ./xdg.nix
     #./font.nix
-    #./brave.nix
-    #./kdeconnect.nix
     ./yubikey.nix
+
+    ./gui/remote.nix
 
     #./calendar
 
