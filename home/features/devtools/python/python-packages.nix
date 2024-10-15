@@ -31,4 +31,19 @@ pkgs.python3.withPackages (p: with p; [
       ];
     }
   )
+  (
+    buildPythonPackage rec {
+      pname = "webio_jupyter_extension";
+      version = "0.1.0";
+      src = fetchPypi {
+        inherit pname version;
+        hash = "sha256-m0FJa4bdC1c02Z+YeFumjPSzzXWuXHBLl7usvxmO0rc=";
+      };
+      doCheck = false;
+      propagatedBuildInputs = [
+        # Specify dependencies
+        jupyter-packaging
+      ];
+    }
+  )
 ])
