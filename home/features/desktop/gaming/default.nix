@@ -6,11 +6,14 @@
 
   home.packages = with pkgs; [
 
-    unstable.winetricks
-    unstable.wineWowPackages.full
+    winetricks
+    wineWowPackages.full
 
     (lutris.override {
       extraLibraries =  pkgs: [
+        vkd3d
+        wine
+        winetricks
         libadwaita
         gtk4
         pango
