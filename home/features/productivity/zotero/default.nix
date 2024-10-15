@@ -12,7 +12,7 @@ in
   programs.zotero = {
     enable = true;
 
-    package = pkgs.zotero_7;
+    package = pkgs.unstable.zotero;
 
     profiles.default = {
       # TODO installation seems broken?
@@ -24,10 +24,12 @@ in
         zotero-preview
         zotero-robustlinks
         zotero-storage-scanner
-        zotfile
+        zotmoov
         zotero-delitemwithatt
+        scite-zotero
         cita
         ai-research-assistant
+        zotero-gpt
       ];
 
       settings =
@@ -122,6 +124,12 @@ in
           "extensions.zotero.zoteroocr.outputPNG" = false; # Output options > "Save the intermediate PNGs as well in the folder"
 
           "ui.use_activity_cursor" = true;
+
+          # Recursive view of articles in the hierarchy
+          "extensions.zotero.recursiveCollections" = true;
+
+          # Enable Zotero API
+          # TODO: Find how to enable Zotero API to work with Joplin ZoteroLink
 
           # LibreOffice extension settings
           # TODO Setup LibreOffice perhaps like `somasis` or keep with Joplin BibTex manual export
