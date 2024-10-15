@@ -112,6 +112,9 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    # NFS for UoE
+    samba
+    cifs-utils
     # Found out more about how to configure virt-manager at: https://nixos.wiki/wiki/Virt-manager
     coreutils
     gnome.gnome-tweaks

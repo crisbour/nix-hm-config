@@ -8,6 +8,7 @@
 in {
   imports = [
     ../optional/fortivpn.nix
+    ../optional/uoe-cifs.nix
   ];
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cristi = {
