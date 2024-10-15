@@ -2,11 +2,18 @@
 {
   networking.networkmanager.enable = true;
 
+  # Support for IPSec VPN
+  networking.networkmanager.enableStrongSwan = true;
+
+  services.xl2tpd.enable = true;
+  services.strongswan.enable = true;
+
   networking.networkmanager.plugins = with pkgs; [
     networkmanager-fortisslvpn
-    networkmanager-openconnect
+    #networkmanager-openconnect
     networkmanager-openvpn
-    #networkmanager-l2tp
+    networkmanager-l2tp
+    networkmanager_strongswan
     #networkmanager-vpnc
   ];
 
