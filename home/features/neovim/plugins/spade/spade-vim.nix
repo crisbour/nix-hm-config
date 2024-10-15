@@ -10,7 +10,7 @@ let
       owner = "spade-lang";
       repo = "spade-vim";
       rev = "d658a2eec0175c252827e39049cae7a7324d42dd";
-      sha256 = "sha256-YneRALZT6QrBMXNQ2rVZxBWju4R57dTeYvc5PlqeRQ0=";
+      sha256 = "sha256-IOCRHntWdShw0wp21yK1VyKg5wz5KzQZo2CmOmzEEug=";
     };
     meta.homepage = "https://gitlab.com/spade-lang/spade-vim";
   };
