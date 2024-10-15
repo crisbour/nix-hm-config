@@ -22,6 +22,7 @@ with pkgs;
     libreoffice
     mendeley
     okular
+    quarto
     #shutter # screenshots
 
     # TODO Move to media
