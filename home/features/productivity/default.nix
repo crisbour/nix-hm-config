@@ -9,21 +9,25 @@ with pkgs;
   ];
 
   home.packages = [
+    brightnessctl
+    evcxr                         # Rust notebook: Evcxr
     graphviz
 
-#    openssl
-    evcxr                         # Rust notebook: Evcxr
-    rust-analyzer
-
+    # Documents
     asciidoctor
-    brightnessctl
-    #flameshot
-    unstable.joplin-desktop
     libreoffice
-    mendeley
     okular
     quarto
+    unstable.joplin-desktop
+
+    # Reference manager
+    mendeley
+
+    rust-analyzer
+
+    # Desktop interaction
     #shutter # screenshots
+    #flameshot
 
     # TODO Move to media
     spotify

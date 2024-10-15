@@ -152,17 +152,17 @@ in
     };
   };
 
-  zotfile = buildZoteroXpiAddon rec {
-    pname = "zotfile";
-    version = "5.1.3";
-    addonId = "zotfile@columbia.edu";
+  zotmoov = buildZoteroXpiAddon rec {
+    pname = "zotmoov";
+    version = "1.1.14";
+    addonId = "zotmoov@wileyy.com";
 
     # TODO Remove "Beta" when the release is stable
-    url = "https://github.com/jlegewie/zotfile/releases/download/v${version}Beta/zotfile-${version}-fx.xpi";
-    hash = "sha256-UEF5Lqcc3Ol/KfaxM8lbGTpFZ3KfLWCpWJrxXSIxXBI=";
+    url = "https://github.com/wileyyugioh/zotmoov/releases/download/${version}/zotmoov-${version}-fx.xpi";
+    hash = "sha256-Csp+cX7YouO8u7XZoY7gNnU5Z8V9dDe7+hxFKOqej3Q=";
 
     meta = with lib; {
-      homepage = "https://github.com/jlegewie/zotfile";
+      homepage = "https://github.com/wileyyugioh/zotmoov";
       license = [ licenses.gpl3 ];
       platforms = platforms.all;
     };
@@ -183,13 +183,44 @@ in
     };
   };
 
+  scite-zotero = buildZoteroXpiAddon rec {
+    pname = "scite-zotero";
+    version = "2.0.2";
+    addonId = "scite-zotero-plugin@scite.ai";
+
+    url = "https://github.com/scitedotai/scite-zotero-plugin/releases/download/v${version}/scite-zotero-plugin-${version}.xpi";
+    hash = "sha256-Etb8K9MrkzBGnQYDQeoexkV13VPPemIYNW8ubyrLlhc=";
+
+    meta = with lib; {
+      homepage = "https://github.com/scitedotai/scite-zotero-plugin";
+      license = [ licenses.agpl3Only ];
+      platforms = platforms.all;
+    };
+  };
+
+
+  zotero-gpt = buildZoteroXpiAddon rec {
+    pname = "zotero-gpt";
+    version = "1.2.3";
+    addonId = "zoterogpt@polygon.org";
+
+    url = "https://github.com/MuiseDestiny/zotero-gpt/releases/download/${version}/zotero-gpt.xpi";
+    hash = "sha256-qxl0/u3JJx1moXK7PcixTKeNNnJywwtkwgWYx5GHphM=";
+
+    meta = with lib; {
+      homepage = "https://github.com/MuiseDestiny/zotero-gpt";
+      license = [ licenses.agpl3Only ];
+      platforms = platforms.all;
+    };
+  };
+
   ai-research-assistant = buildZoteroXpiAddon rec {
     pname = "ai-research-assistant";
     version = "0.7.2";
     addonId = "aria@apex973.com";
 
     url = "https://github.com/lifan0127/ai-research-assistant/releases/download/v${version}/aria.xpi";
-    hash = "sha256-LTYy2YmWknzbEVWbZb96vT4VSgMTRPQaUXaXsIlY6WI=";
+    hash = "sha256-ryZUt7gnAUayOCccuqwXp3VIMQYkY9gM+obQrmL2NPQ=";
 
     meta = with lib; {
       homepage = "https://github.com/lifan0127/ai-research-assistant";
