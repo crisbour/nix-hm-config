@@ -22,6 +22,7 @@
       ];
       enabled-extensions = [
         "trayIconsReloaded@selfmade.pl"
+        "power-profile-switcher@eliapasquali.github.io"
         "Battery-Health-Charging@maniacx.github.com"
         #"blur-my-shell@aunetx"
         "drive-menu@gnome-shell-extensions.gcampax.github.com"
@@ -107,6 +108,7 @@
 
   home.packages = (with pkgs.gnomeExtensions; [
       tray-icons-reloaded
+      power-profile-switcher
       #blur-my-shell
       removable-drive-menu
       #dash-to-panel

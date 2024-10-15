@@ -29,6 +29,7 @@ in
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
   boot.kernelModules = [
     "kvm-intel"
+    "intel_pstate"
     "nvidia"
     "nvidia_modeset"
     "nvidia_drm"
