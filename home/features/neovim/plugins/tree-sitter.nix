@@ -26,6 +26,7 @@ in {
       (luaPlugin nvim-treesitter-parsers.kotlin)
       (luaPlugin nvim-treesitter-parsers.javascript)
       (luaPlugin nvim-treesitter-parsers.javascript)
+      (luaPlugin nvim-treesitter-parsers.julia)
       (luaPlugin nvim-treesitter-parsers.json)
       (luaPlugin nvim-treesitter-parsers.json5)
       (luaPlugin nvim-treesitter-parsers.lua)

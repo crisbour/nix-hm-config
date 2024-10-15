@@ -10,6 +10,7 @@ in {
     ./vscode.nix
     ./latex.nix
     ./hardware-design.nix
+    ./julia
   ];
 
   options = {
@@ -46,7 +47,6 @@ in {
         gcc
         gdb
         go
-        julia
         # Only necesarry for Julia gtk env
         # TODO: Should this be just part of shell.nix?
         (  import ./python/python-packages.nix { inherit pkgs; })
