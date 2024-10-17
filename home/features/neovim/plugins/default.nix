@@ -39,6 +39,7 @@
     direnv-vim
 
     # Editor
+    vim-suda
     vim-closetag
     vim-surround
     vim-visual-multi
