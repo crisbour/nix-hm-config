@@ -12,6 +12,7 @@ with pkgs;
     brightnessctl
     evcxr                         # Rust notebook: Evcxr
     graphviz
+    engauge-digitizer             # Grapgh to CSV digitizer: Very useful for extracting data from papers
 
     # Documents
     asciidoctor
