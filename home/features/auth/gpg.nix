@@ -77,4 +77,11 @@ in {
       debug ipc
     '';
   };
+
+  home.file.".gnupg/sshcontrol" = {
+    text = ''
+      2C5FF24D5F6271C6E8DB256D9E20691015288800
+    '';
+  };
+
 }
