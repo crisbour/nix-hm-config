@@ -22,12 +22,16 @@
   services.xserver.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.displayManager.gdm = {
+    enable = true;
+    wayland = false;
+  };
   services.xserver.desktopManager.gnome = {
     enable = true;
-    #extraGSettingsOverrides = {
-    #  "org.gnome.mutter".experimental-features = "['scale-monitor-framebuffer']";
-    #};
+    extraGSettingsOverrides = ''
+      ["org.gnome.mutter"]
+      experimental-features=['scale-monitor-framebuffer', 'x11-randr-fractional-scaling'];
+    '';
   };
 
   # GNOME specific: https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
