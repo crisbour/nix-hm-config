@@ -40,6 +40,9 @@ in
     enable = true;
     settings = {
       import = [ theme ];
+      env = {
+        TERM = "xterm-256color";
+      };
 
       font =
       let
@@ -75,7 +78,7 @@ in
       then {
         #config.home.sessionVariables.SHELL;
         program = "${pkgs.zsh}/bin/zsh";
-        args = ["-c" "tmux attach || tmux new"];
+        args = [ "-l" "-c" "tmux attach || tmux new"];
       } else {
         program = "${pkgs.zsh}/bin/zsh";
       };
