@@ -49,10 +49,11 @@ in
     sessionVariables = {
       # FIX: Set FLAKE path at the user setup?
       #FLAKE = "$HOME/Documents/Scripts/Linux/nix-hm-config";
+      NIX_BUILD_SHELL = "${shell}";
       COLORTERM = "truecolor";
       VISUAL    = "${editor}";
       EDITOR    = "${editor}";
-      #SHELL     = "${shell}";
+      SHELL     = "${shell}";
       TERMINAL  = "${terminal}";
       #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
       NIXPKGS_ALLOW_UNFREE = "1";

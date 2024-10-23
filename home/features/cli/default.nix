@@ -38,20 +38,18 @@
       enableZshIntegration = true;
     };
 
-    # Why do we use both packages and versions of direnv
-    #direnv= {
-    #  enable = true;
-    #  enableZshIntegration = true;
-
-    #  stdlib = ''
-    #    use_riff() {
-    #      watch_file Cargo.toml
-    #      watch_file Cargo.lock
-    #      eval "$(riff print-dev-env)"
-    #      }
-    #    '';
-    #  nix-direnv.enable = true;
-    #};
+    direnv= {
+      enable = true;
+      enableZshIntegration = true;
+      nix-direnv.enable = true;
+      #stdlib = ''
+      #  use_riff() {
+      #    watch_file Cargo.toml
+      #    watch_file Cargo.lock
+      #    eval "$(riff print-dev-env)"
+      #    }
+      #  '';
+    };
   };
 
   home.packages = with pkgs; [
@@ -70,6 +68,7 @@
     jq # JSON pretty printer and manipulator
     lf                            # Terminal file manager inspired by ranger
     libnotify
+    lorri
     manix                         # Nix search documentation
     most # Better than less and more
     ncdu # TUI disk usage
