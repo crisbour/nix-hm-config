@@ -15,6 +15,7 @@ in
       rust-analyzer
       clang-tools_17
       texlab
+      ltex-ls
     ] ++ (with pkgs.nodePackages; [
       pyright
     ]);
@@ -49,6 +50,17 @@ in
         }
 
         lspconfig.julials.setup{
+          capabilities = capabilities,
+        }
+
+        lspconfig.ltex.setup{
+          settings = {
+            ltex = {
+              language = "en-GB",
+              -- Supported languages: https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md#ltex
+              filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "tex", "pandoc", "quarto", "html", "xhtml" },
+            },
+          },
           capabilities = capabilities,
         }
 
