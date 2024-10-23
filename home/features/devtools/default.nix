@@ -85,10 +85,6 @@ in {
           icon-library
         ]);
 
-    # Enable developer programs
-    programs.direnv.enable = true;
-    programs.direnv.nix-direnv.enable = true;
-
     # TODO: How to use poetry to configure python env?
     #xdg.configFile."pypoetry/config.toml".source =
     #  tomlFormat.generate "config.toml" { virtualenvs.in-project = true; };
