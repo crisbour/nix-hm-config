@@ -10,10 +10,14 @@ in {
     ../optional/fortivpn.nix
     ../optional/uoe-cifs.nix
   ];
+
+  programs.zsh.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.cristi = {
     isNormalUser = true;
     description = "Cristi Bourceanu";
+    shell = pkgs.zsh;
     #initialPassword = "ChangeMe1";
     extraGroups = ifTheyExist [
       "docker"
