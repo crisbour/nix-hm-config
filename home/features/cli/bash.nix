@@ -5,6 +5,15 @@
   programs.bash = {
     enable = true;
     enableVteIntegration = true;
+    historyControl = ["erasedups" "ignorespace"];
+    shellOptions = [
+        "autocd"
+        "cdspell"
+        "cmdhist"
+        "dotglob"
+        "histappend"
+        "expand_aliases"
+      ];
     initExtra = ''
       # set a fancy prompt (non-color, unless we know we "want" color)
       case "$TERM" in
@@ -17,14 +26,9 @@
       force_color_prompt=yes
 
       if [ -n "$force_color_prompt" ]; then
-          if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-        # We have color support; assume it's compliant with Ecma-48
-        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-        # a case would tend to support setf rather than setaf.)
         color_prompt=yes
           else
         color_prompt=
-          fi
       fi
 
       if [ "$color_prompt" = yes ]; then
@@ -45,7 +49,7 @@
 
       # colored GCC warnings and errors. this isn't needed in my experience but is
       #  nice to have
-      #export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+      export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
       HISTFILESIZE=10000
       HISTSIZE=10000
@@ -55,12 +59,16 @@
       shopt -s extglob
       shopt -s globstar
       shopt -s checkjobs
-
-      # some more ls aliases
-      alias ll='ls -alF'
-      alias la='ls -A'
-      alias l='ls -CF'
     '';
+
+    shellAliases = {
+        cat  = "bat";
+        grep = "rg";
+        rm   = "trash-put";
+        ll   = "ls -alF";
+        la   = "ls -A";
+        l    = "ls -CF";
+      };
   };
 }
 
