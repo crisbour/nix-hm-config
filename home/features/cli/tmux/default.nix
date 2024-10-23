@@ -9,7 +9,7 @@
     escapeTime = 0;
     historyLimit = 10000;
     keyMode = "vi";
-    terminal = "tmux-256color";
+    terminal = "xterm-256color";
     #extraConfig = lib.strings.fileContents ./tmux.conf;
     extraConfig = ''
       set-option -g default-shell ${pkgs.zsh}/bin/zsh
