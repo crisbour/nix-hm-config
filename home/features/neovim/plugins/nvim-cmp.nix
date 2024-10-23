@@ -6,6 +6,9 @@ let
     plugin = pkg;
   };
 in {
+  home.packages = [
+    nodejs # copilot-lua needes it
+  ];
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       (luaPlugin cmp-async-path)
@@ -14,6 +17,27 @@ in {
       (luaPlugin cmp-nvim-lsp-signature-help)
       (luaPlugin lspkind-nvim)
       (luaPlugin luasnip)
+      # Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
+      {
+        # TODO: Customize experience with Copilot
+        type = "lua";
+        plugin = copilot-lua;
+        config = ''
+        require('copilot').setup({
+          -- Disable suggestions and panel as they can interfere with cmp appearing in copilot-cmp
+          suggestion = { enabled = false },
+          panel = { enabled = false },
+          -- TODO: Customize copilot response https://github.com/zbirenbaum/copilot.lua
+        })
+        '';
+      }
+      {
+        type = "lua";
+        plugin = copilot-cmp;
+        config = ''
+          require('copilot_cmp').setup()
+        '';
+      }
       # FIXME: Spell checking is disabled because it's not code aware
       #{
       #  type = "lua";
@@ -41,6 +65,7 @@ in {
               format = require("lspkind").cmp_format({
                 mode = 'symbol', -- show only symbol annotations
                 maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+                symbol_map = { Copilot = "" },
                 ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
                 preset = "codicons", -- codicons preset
               })
@@ -54,6 +79,7 @@ in {
             sources = {
               { name = "nvim_lsp", priority = 100 },
               { name = "nvim_lsp_signature_help", priority = 90 },
+              { name = "copilot", priority = 85 },
               { name = "async_path", priority = 80 },
               --{ name = "spell", priority = 70 },
               { name = "fuzzy_buffer", priority = 60 },
