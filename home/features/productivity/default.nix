@@ -22,9 +22,6 @@ with pkgs;
     quarto
     unstable.joplin-desktop
 
-    # Reference manager
-    mendeley
-
     rust-analyzer
 
     # Desktop interaction
