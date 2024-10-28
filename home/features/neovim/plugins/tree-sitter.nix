@@ -32,6 +32,7 @@ in {
       (luaPlugin nvim-treesitter-parsers.lua)
       (luaPlugin nvim-treesitter-parsers.markdown)
       (luaPlugin nvim-treesitter-parsers.markdown_inline)
+      (luaPlugin nvim-treesitter-parsers.matlab)
       (luaPlugin nvim-treesitter-parsers.nix)
       (luaPlugin nvim-treesitter-parsers.ocaml)
       (luaPlugin nvim-treesitter-parsers.proto)

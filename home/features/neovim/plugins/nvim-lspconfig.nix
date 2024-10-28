@@ -16,6 +16,7 @@ in
       clang-tools_17
       texlab
       ltex-ls
+      matlab-language-server
     ] ++ (with pkgs.nodePackages; [
       pyright
     ]);
@@ -61,6 +62,10 @@ in
               filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "tex", "pandoc", "quarto", "html", "xhtml" },
             },
           },
+          capabilities = capabilities,
+        }
+
+        lspconfig.matlab_ls.setup{
           capabilities = capabilities,
         }
 
