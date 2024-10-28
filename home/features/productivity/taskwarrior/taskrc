@@ -1,0 +1,81 @@
+# [Created by task 3.0.2 10/25/2024 11:25:55]
+# Taskwarrior program configuration file.
+# For more documentation, see https://taskwarrior.org or try 'man task', 'man task-color',
+# 'man task-sync' or 'man taskrc'
+
+# Here is an example of entries that use the default, override and blank values
+#   variable=foo   -- By specifying a value, this overrides the default
+#   variable=      -- By specifying no value, this means no default
+#   #variable=foo  -- By commenting out the line, or deleting it, this uses the default
+
+# You can also refence environment variables:
+#   variable=$HOME/task
+#   variable=$VALUE
+
+# Use the command 'task show' to see all defaults and overrides
+
+# Files
+data.location=/home/cristi/OneDrive/Apps/TaskWarrior
+
+# To use the default location of the XDG directories,
+# move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
+
+#data.location=~/.local/share/task
+#hooks.location=~/.config/task/hooks
+
+# Color theme (uncomment one to use)
+#include light-16.theme
+#include light-256.theme
+#include dark-16.theme
+include dark-256.theme
+#include dark-red-256.theme
+#include dark-green-256.theme
+#include dark-blue-256.theme
+#include dark-violets-256.theme
+#include dark-yellow-green.theme
+#include dark-gray-256.theme
+#include dark-gray-blue-256.theme
+#include solarized-dark-256.theme
+#include solarized-light-256.theme
+#include no-color.theme
+
+# Custom
+## Priority
+uda.priority.label=Priority
+uda.priority.type=string
+uda.priority.values=H,M,,L
+urgency.uda.priority.H.coefficient=6.0
+urgency.uda.priority.M.coefficient=3.9
+urgency.uda.priority.L.coefficient=0.9
+
+## Effort estimation
+uda.effort.label=Effort
+uda.effort.type=string
+uda.effort.values=H,M,L
+urgency.uda.effort.L.coefficient=3
+urgency.uda.effort.M.coefficient=2
+urgency.uda.effort.H.coefficient=1
+
+## Inbox https://cs-syd.eu/posts/2015-06-21-gtd-with-taskwarrior-part-2-collection.html
+report.in.columns=id,description
+report.in.description=Inbox
+report.in.filter=status:pending limit:page (+in)
+report.in.labels=ID,Description
+
+report.default=ready
+
+report.list.columns=id,project,tags,priority,start.active,description,due,due.remaining
+report.list.labels=ID,Proj,Tags,Pri,A,Description,Due,
+
+## Contexts
+context.work=+work or +freelance or +teaching or +demonstration
+context.phd=+study or +lab or +papers or +analysis or +writing
+context.home=-work -freelance -study -lab -papers -teaching -demonstration -analysis
+
+# Review generated
+uda.reviewed.type=date
+uda.reviewed.label=Reviewed
+report._reviewed.description=Tasksh review report.  Adjust the filter to your needs.
+report._reviewed.columns=uuid
+report._reviewed.sort=reviewed+,modified+
+report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )

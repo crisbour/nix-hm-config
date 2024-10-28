@@ -6,6 +6,7 @@ with pkgs;
     ./neomutt.nix
     ./newsboat.nix
     ./zotero
+    ./taskwarrior
   ];
 
   home.packages = [
