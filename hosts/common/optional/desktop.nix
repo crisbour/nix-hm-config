@@ -94,6 +94,7 @@
     gnome.gnome-tweaks
     gnome.gnome-sound-recorder
     gnomeExtensions.unite
+    xorg.xhost # Necessary for allowing docker X11 access
   #  wget
   ];
 
