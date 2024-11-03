@@ -1,4 +1,8 @@
-{ config, pkgs, lib, ... }: {
+{ config, pkgs, lib, ... }:
+let
+  TERM = "scren-256color";
+in
+{
   home.packages = with pkgs; [
     screen
   ];
@@ -9,10 +13,11 @@
     escapeTime = 0;
     historyLimit = 10000;
     keyMode = "vi";
-    terminal = "xterm-256color";
+    terminal = TERM;
     #extraConfig = lib.strings.fileContents ./tmux.conf;
     extraConfig = ''
       set-option -g default-shell ${pkgs.zsh}/bin/zsh
+      set-option -sa terminal-features ',${TERM}:RGB'
       set -g mode-keys emacs
       set -g status-keys emacs
 
