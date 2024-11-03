@@ -13,6 +13,7 @@
     ./hardware-configuration.nix
 
     ../common/global
+    ../common/optional/desktop.nix
     ../common/users/cristi.nix
     ../common/optional/gpu.nix
     ../common/optional/fonts.nix
