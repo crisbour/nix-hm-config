@@ -120,11 +120,17 @@
     lxc = {
       enable = true;
       lxcfs.enable = true;
-      # TODO Add systemConfig to store lxcpath and btrfs.root paths
-      systemConfig =
-        ''
-          lxc.lxcpath = /var/lib/lxd/storage-pools # The location in which all containers are stored.
-        '';
+
+      # This enables lxcfs, which is a FUSE fs that sets up some things so that
+      # things like /proc and cgroups work better in lxd containers.
+      # See https://linuxcontainers.org/lxcfs/introduction/ for more info.
+      #
+      # Also note that the lxcfs NixOS option says that in order to make use of
+      # lxcfs in the container, you need to include the following NixOS setting
+      # in the NixOS container guest configuration:
+      #
+      defaultConfig = "lxc.include = ''${pkgs.lxcfs}/share/lxc/config/common.conf.d/00-lxcfs.conf";
+
     };
 
     libvirtd = {
@@ -132,5 +138,23 @@
       qemu.runAsRoot = true;
     };
   };
+
+  # kernel module for forwarding to work
+  boot.kernelModules = [ "nf_nat_ftp" ];
+
+  # Set up networking bridge for LXD
+  networking = {
+    bridges = {
+      lxdbr0 = {
+        interfaces = [];
+      };
+    };
+    nat = {
+      enable = true;
+      internalInterfaces = ["lxdbr0"];
+      externalInterface = "eth0"; # Replace with your actual external interface
+    };
+  };
+  networking.firewall.trustedInterfaces = [ "lxdbr0" ];
 
 }
