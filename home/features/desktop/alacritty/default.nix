@@ -36,7 +36,7 @@ let
 in
 {
   programs.alacritty = {
-    package = pkgs.unstable.alacritty;
+    package = pkgs.alacritty;
     enable = true;
     settings = {
       import = [ theme ];
