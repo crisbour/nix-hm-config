@@ -26,13 +26,13 @@
     ./conform.nvim.nix
     ./nvim-cmp.nix
     ./nvim-lspconfig.nix
+    # TODO: Learn how to make use of this plugin to inspect warnings and errors
     ./trouble.nvim.nix
     # TODO: Performance annotations to add -> https://github.com/t-troebst/perfanno.nvim
 
     # Synatx Highlighting
     ./rainbow-delimiters.nix
     ./tree-sitter.nix
-
   ];
 
   programs.neovim.plugins = (with pkgs.vimPlugins; [
@@ -53,20 +53,11 @@
       '';
     }
 
-    # git
+    # ------ git -------
     fugitive
 
     # TODO: Use format rules across text editors
     editorconfig-vim
-
-    # Syntax highlighting
-    vim-nix         # Nix
-    vim-markdown    # Markdown
-    vim-toml        # TOML
-    semshi          # Python
-
-    # Julia
-    julia-vim
 
     otter-nvim
 
