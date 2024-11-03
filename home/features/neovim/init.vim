@@ -1,3 +1,5 @@
+" Set language for the spell checker
+setlocal spell spelllang=en_gb
 
 set showbreak=↩\
 

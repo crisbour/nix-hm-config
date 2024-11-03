@@ -81,7 +81,7 @@ in {
               { name = "nvim_lsp_signature_help", priority = 90 },
               { name = "copilot", priority = 85 },
               { name = "async_path", priority = 80 },
-              --{ name = "spell", priority = 70 },
+              { name = "spell", priority = 70 },
               { name = "fuzzy_buffer", priority = 60 },
               { name = "luasnip", priority = 50 },
             },
