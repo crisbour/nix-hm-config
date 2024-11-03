@@ -3,7 +3,7 @@ with lib; {
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       vim-devicons
-      nightfox-nvim
+      #nightfox-nvim
       gruvbox
     ];
 

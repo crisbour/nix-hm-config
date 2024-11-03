@@ -29,7 +29,6 @@ in {
         dbus
         evcxr                         # Rust notebook: Evcxr
         # Shell Utilities
-        eternal-terminal        # Remote terminal that reconnest automatically
         inputs.mach-nix.packages.${pkgs.system}.mach-nix # mach-nix python declarative env from requirements.txt; Inspired from https://github.com/dejanr/dotfiles/tree/b4e2f70d822fd6bb2ca1f0c7dd450fd938c9de87
         mosh                    # Mobile SSH
         nodePackages.jsonlint
