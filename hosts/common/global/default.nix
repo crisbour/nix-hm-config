@@ -131,6 +131,9 @@
       #
       defaultConfig = "lxc.include = ''${pkgs.lxcfs}/share/lxc/config/common.conf.d/00-lxcfs.conf";
 
+      systemConfig = ''
+        lxc.lxcpath = /var/lib/lxd/storage-pools # The location in which all containers are stored.
+      '';
     };
 
     libvirtd = {
