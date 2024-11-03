@@ -6,10 +6,20 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    # FIXME: Is there any advantage to use the dev channel instead of what nixpkgs follows?
+    #nix-ld ={
+    #  url = "github:Mic92/nix-ld";
+    #  inputs.nixpkgs.follows = "nixpkgs";
+    #};
     hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       # TODO Extract release from nixpkgs.url
       url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    # NixOS WSL Support
+    nixos-wsl = {
+      url = "github:nix-community/nixos-wsl";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
