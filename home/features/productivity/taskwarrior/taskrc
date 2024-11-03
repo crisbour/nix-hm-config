@@ -15,7 +15,8 @@
 # Use the command 'task show' to see all defaults and overrides
 
 # Files
-data.location=/home/cristi/OneDrive/Apps/TaskWarrior
+# HACK: Make tasksync service that runs `rclone sync` with OneDrive
+data.location=/home/cristi/.task
 
 # To use the default location of the XDG directories,
 # move this configuration file from ~/.taskrc to ~/.config/task/taskrc and uncomment below
