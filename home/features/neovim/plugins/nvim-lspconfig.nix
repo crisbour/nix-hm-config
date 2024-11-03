@@ -10,8 +10,7 @@ in
     extraPackages = with pkgs; [
       lua-language-server
       spade-language-server
-      #rnix-lsp                      # Nix language server
-      nixd # Alternative since rnix-lsp has a vulnerability
+      nixd # Nix language server
       rust-analyzer
       clang-tools_17
       texlab

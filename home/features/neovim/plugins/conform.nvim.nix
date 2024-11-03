@@ -7,12 +7,12 @@
         formatters_by_ft = {
           go = { "goimports" },
           markdown = { "deno_fmt" },
-          nix = { "nixfmt-classic" },
+          nix = { "nixfmt" },
         },
         formatters = {
           deno_fmt = { command = "${pkgs.deno}/bin/deno" },
           goimports = { command = "${pkgs.gotools}/bin/goimports" },
-          nixfmt = { command = "${pkgs.nixfmt-classic}/bin/nixfmt" },
+          nixfmt = { command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt" },
         },
       })
       vim.keymap.set('n', '<C-f>', function()

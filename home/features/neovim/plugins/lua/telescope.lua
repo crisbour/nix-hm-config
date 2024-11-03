@@ -79,11 +79,12 @@ builtin.grep_string({
   search = "",
   only_sort_text = true,
 })
-end, {})
+end, { desc = "Search with grep_string" })
 vim.keymap.set('v', '<C-S>', builtin.grep_string, {})
 
 
 -- File picker
+vim.keymap.set("n", "<localleader>f", "<nop>", { desc = "Find {files, rg, buffer, help, commit, branch"})
 vim.keymap.set("n", "<localleader>ff", builtin.find_files,  { desc = "Find files" })
 vim.keymap.set("n", "<localleader>fg", builtin.live_grep,   { desc = "Search in project" })
 vim.keymap.set("n", "<localleader>fb", builtin.buffers,     { desc = "Explore buffers" })
