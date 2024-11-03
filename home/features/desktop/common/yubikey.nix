@@ -33,7 +33,7 @@ in
          yubikey-touch-detector --libnotify
        '');
        Restart = "always";
-       RestartSec = 5;
+       #RestartSec = 5;
      };
 
      Install = {
