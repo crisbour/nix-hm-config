@@ -3,6 +3,7 @@
   #TODO: If necessary create nvim flake: https://primamateria.github.io/blog/neovim-nix/
   imports = [
     ./barbar.nix
+
     # Custom plugins
     ## Spade-lang syntax higlight
     ./spade/spade-vim.nix
