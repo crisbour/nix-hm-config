@@ -35,17 +35,23 @@
 
   ];
 
-  programs.neovim.plugins = with pkgs.vimPlugins; [
+  programs.neovim.plugins = (with pkgs.vimPlugins; [
     # Local Environment Configuration and Integration
     direnv-vim
 
     # Editor
     vim-suda
     vim-closetag
-    vim-surround
-    vim-visual-multi
-
-    quarto-nvim
+    vim-surround # Add and change surroundings of words and lines. Need better hints to remember commands
+    vim-visual-multi # TODO: Learn how to use it or remove it
+    # NOTE: More customisation at https://github.com/gvolpe/neovim-flake/blob/2b374d1610bb9392c52ddecf70bb0b32555737fe/modules/todo/todo-comments.nix#L38
+    {
+      type = "lua";
+      plugin = todo-comments-nvim;
+      config = ''
+        require('todo-comments').setup()
+      '';
+    }
 
     # git
     fugitive
@@ -71,20 +77,21 @@
         local quarto = require('quarto')
         quarto.setup({
           lspFeatures = {
+            enabled = true,
             languages = { "r", "python", "julia", "bash", "lua", "html", "dot", "javascript", "typescript", "ojs" },
             chunks = "all",
-				    diagnostics = {
-				    	enabled = true,
-				    	triggers = { "BufWritePost" },
-				    },
-				    completion = {
-				    	enabled = true,
-				    },
+            diagnostics = {
+              enabled = true,
+              triggers = { "BufWritePost" },
+            },
+            completion = {
+              enabled = true,
+            },
           },
           codeRunner = {
-          enabled = true,
-          default_method = "molten",
-			    },
+            enabled = true,
+            default_method = "molten",
+          },
         })
 
         local runner = require("quarto.runner")
@@ -221,7 +228,16 @@
         let g:strip_whitespace_on_save=1
       '';
     }
-  ];
+  ]) ++ (with pkgs.unstable.vimPlugins; [
+    # TODO Move to stable pkgs when bumping version
+    {
+      type = "lua";
+      plugin = tssorter-nvim;
+      config = ''
+        require('tssorter').setup()
+      '';
+    }
+  ]);
 
   programs.neovim.extraConfig = ''
 

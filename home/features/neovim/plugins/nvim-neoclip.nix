@@ -12,7 +12,7 @@
         plugin = pkgs.vimPlugins.nvim-neoclip-lua;
         config = ''
           require('neoclip').setup {
-            history = 10000,
+            history = 1000,
             enable_persistent_history = true,
             default_register = { '"', '+', '*' },
           }
