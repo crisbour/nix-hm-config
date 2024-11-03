@@ -41,9 +41,23 @@
     yubikey-personalization
   ];
 
+  security.pam.u2f = {
+    enable = true;
+    interactive = true;
+    control = "sufficient";
+    cue = true;
+  };
+
   security.pam.services = {
     login.u2fAuth = false;
     sudo.u2fAuth = true;
+  };
+
+  security.pam.yubico = {
+     enable = true;
+     #debug = true;
+     mode = "challenge-response";
+     id = [ "25552783" ];
   };
 }
 
