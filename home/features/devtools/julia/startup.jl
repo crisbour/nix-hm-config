@@ -1,6 +1,6 @@
 import Pkg
 let
-    pkgs = ["Revise", "OhMyREPL", "IJulia", "Pluto", "QuartoNotebookRunner"]
+    pkgs = ["Revise", "OhMyREPL", "IJulia", "Pluto", "QuartoNotebookRunner", "LanguageServer"]
     for pkg in pkgs
         if Base.find_package(pkg) === nothing
             Pkg.add(pkg)
