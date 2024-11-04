@@ -41,7 +41,7 @@ in
     settings = {
       import = [ theme ];
       env = {
-        TERM = "screen-256color";
+        TERM = "xterm-256color";
       };
 
       font =

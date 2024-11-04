@@ -1,6 +1,6 @@
 { config, pkgs, lib, ... }:
 let
-  TERM = "screen-256color";
+  TERM = "xterm-256color";
 in
 {
   home.packages = with pkgs; [
