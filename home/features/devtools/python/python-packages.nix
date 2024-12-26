@@ -14,6 +14,7 @@ pkgs.python3.withPackages (p: with p; [
   python-gitlab
   python-lsp-black
   python-lsp-server
+  plotly
   setuptools # setup.py
   tabulate
   (

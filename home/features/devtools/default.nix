@@ -52,6 +52,11 @@ in {
         glib
         rustc
         cargo
+
+        # Kotlin + Java OpenJDK for execution
+        kotlin
+        zulu
+
         nix-matlab.matlab-shell # https://gitlab.com/doronbehar/nix-matlab
         nix-matlab.matlab
 
