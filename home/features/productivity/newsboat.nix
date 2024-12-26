@@ -65,6 +65,7 @@
       { url = "https://ianthehenry.com/posts/how-to-learn-nix/feed.xml"; }
       { url = "https://haseebmajid.dev/series/index.xml"; }
       { url = "https://blog.thalheim.io/index.html"; }
+      { url = "https://mo8it.com/atom.xml"; }
     ];
   };
 }
