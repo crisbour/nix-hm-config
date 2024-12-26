@@ -22,7 +22,7 @@
     ../common/optional/docker.nix
     ../common/optional/gitlab-runner.nix
     # WARN Cannot use nvidia driver and vfio concurently
-    #../common/optional/kvm.nix
+    ../common/optional/kvm.nix
   ];
 
 
