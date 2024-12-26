@@ -214,6 +214,21 @@ in
     };
   };
 
+  zotero-better-notes = buildZoteroXpiAddon rec {
+    pname = "zotero-better-notes";
+    version = "2.0.18";
+    addonId = "Knowledge4Zotero@windingwind.com";
+
+    url = "https://github.com/windingwind/zotero-better-notes/releases/download/v${version}/better-notes-for-zotero.xpi";
+    hash = "sha256-02BMrJKyeQUJ9eafB8cDiu6ks4V+tcJecXt7Zv7F+Us=";
+
+    meta = with lib; {
+      homepage = "https://github.com/windingwind/zotero-better-notes";
+      license = [ licenses.agpl3Only ];
+      platforms = platforms.all;
+    };
+  };
+
   ai-research-assistant = buildZoteroXpiAddon rec {
     pname = "ai-research-assistant";
     version = "0.7.2";
