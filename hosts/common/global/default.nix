@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, outputs, pkgs, ... }:
+{ inputs, outputs, pkgs, lib, ... }:
 
 {
   imports =
@@ -104,60 +104,7 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
 
-  # ==================================================================================
-  # User defined
-  # ==================================================================================
-  # Adding lxd and overriding the package
-  virtualisation = {
-    lxd = {
-      enable=true;
-
-      # using the package of our overlay
-      # package = pkgs.lxd-vmx.lxd.override {useQemu = true;};
-      recommendedSysctlSettings=true;
-    };
-
-    lxc = {
-      enable = true;
-      lxcfs.enable = true;
-
-      # This enables lxcfs, which is a FUSE fs that sets up some things so that
-      # things like /proc and cgroups work better in lxd containers.
-      # See https://linuxcontainers.org/lxcfs/introduction/ for more info.
-      #
-      # Also note that the lxcfs NixOS option says that in order to make use of
-      # lxcfs in the container, you need to include the following NixOS setting
-      # in the NixOS container guest configuration:
-      #
-      defaultConfig = "lxc.include = ''${pkgs.lxcfs}/share/lxc/config/common.conf.d/00-lxcfs.conf";
-
-      systemConfig = ''
-        lxc.lxcpath = /var/lib/lxd/storage-pools # The location in which all containers are stored.
-      '';
-    };
-
-    libvirtd = {
-      enable = true;
-      qemu.runAsRoot = true;
-    };
-  };
-
-  # kernel module for forwarding to work
+  # kernel module for forwarding to container to work
   boot.kernelModules = [ "nf_nat_ftp" ];
-
-  # Set up networking bridge for LXD
-  networking = {
-    bridges = {
-      lxdbr0 = {
-        interfaces = [];
-      };
-    };
-    nat = {
-      enable = true;
-      internalInterfaces = ["lxdbr0"];
-      externalInterface = "eth0"; # Replace with your actual external interface
-    };
-  };
-  networking.firewall.trustedInterfaces = [ "lxdbr0" ];
 
 }
