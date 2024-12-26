@@ -17,4 +17,12 @@
   environment.systemPackages = with pkgs; [
     docker
   ];
+
+  # kernel module for forwarding to container to work
+  boot.kernelModules = [ "nf_nat_ftp" ];
+
+   # Export X11 host to docker
+  environment.shellInit = ''
+    [ -n "$DISPLAY" ] && xhost +si:localuser:$USER || true
+  '';
 }
