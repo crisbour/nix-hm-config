@@ -17,9 +17,11 @@ in
   boot.initrd = {
     availableKernelModules = [
       #"iwlwifi"
+      "thunderbolt"
       "nvme"
       "xhci_pci"
       "ahci"
+      "usbhid"
       "usb_storage"
       "sd_mod"
     ];
@@ -28,6 +30,7 @@ in
 
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
   boot.kernelModules = [
+    "kvm"
     "kvm-intel"
     "intel_pstate"
     "nvidia"
