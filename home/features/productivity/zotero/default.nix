@@ -29,7 +29,8 @@ in
         scite-zotero
         cita
         ai-research-assistant
-        zotero-gpt
+        #zotero-gpt
+        zotero-better-notes
       ];
 
       settings =
@@ -153,6 +154,7 @@ in
         #   "extensions.shortdoi.tag_multiple" = "#multiple_doi";
         #   "extensions.shortdoi.tag_nodoi" = "#no_doi";
 
+        # FIXME: ZotMov replace ZotFile for Zotero 7, port settings for it
         # Add-ons > Zotero PDF Preview
         # "extensions.zotero.pdfpreview.previewTabName" = "PDF"; # Default tab name clashes with Zotero Citation Preview
 
