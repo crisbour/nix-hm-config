@@ -31,5 +31,17 @@
     ATTR{idVendor}=="03fd", ATTR{idProduct}=="000f", MODE="666"
     ATTR{idVendor}=="03fd", ATTR{idProduct}=="0013", MODE="666"
     ATTR{idVendor}=="03fd", ATTR{idProduct}=="0015", MODE="666"
+
+    ###########################################################################
+    #                                                                         #
+    #  60-opalkelly.rules -- UDEV rules for Opal Kelly USB Devices            #
+    #                                                                         #
+    ###########################################################################
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="151f", MODE="0666"
+
+    ###########################################################################
+    # Picoquant: /etc/udev/rules.d/99-picoquant.rules                         #
+    ###########################################################################
+    ATTR{idVendor}=="0e0d", ATTR{idProduct}=="0007", MODE="0666"
   '';
 }
