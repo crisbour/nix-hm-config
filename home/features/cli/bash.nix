@@ -62,12 +62,11 @@
     '';
 
     shellAliases = {
-        cat  = "bat";
-        grep = "rg";
-        rm   = "trash-put";
+        #cat  = "bat";
         ll   = "ls -alF";
         la   = "ls -A";
         l    = "ls -CF";
+        ls   = "ls --color=auto";
       };
   };
 }
