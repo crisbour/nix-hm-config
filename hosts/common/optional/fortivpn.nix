@@ -26,6 +26,8 @@
       host=remote.net.ed.ac.uk
       port=8443
       username=s2703496
+      set-dns=0
+      set-routes=0
     '';
   };
 }
