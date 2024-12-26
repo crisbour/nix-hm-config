@@ -45,6 +45,9 @@
       xorg.libXrandr
       xorg.libXinerama
       libGL
+      freetype
+      libpng
+      openssl
       # Add any missing dynamic libraries for unpackaged programs
       # here, NOT in environment.systemPackages
     ];
