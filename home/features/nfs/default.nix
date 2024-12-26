@@ -7,6 +7,9 @@ in
     fuse
     rclone
   ];
+
+  # Setup sync between Documents and onedrive:Documents as in https://codingnotions.com/fully-automated-backup-rclone/
+
   systemd.user.services = {
     rclone-onedrive= {
       Unit = {
