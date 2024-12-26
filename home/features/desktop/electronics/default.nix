@@ -10,6 +10,8 @@
     inputs.nix-xilinx.model_composer
     inputs.nix-xilinx.petalinux-install-shell
 
+    inputs.waveforms.waveforms
+
     ltspice
   ];
 }
