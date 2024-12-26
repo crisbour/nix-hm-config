@@ -5,6 +5,13 @@
   ...
 }:
 {
+
+  environment.systemPackages = with pkgs; [
+    # NFS for UoE
+    samba
+    cifs-utils
+  ];
+
   # ------- CIFS ---------
   fileSystems."/mnt/datastore" = {
     device = "//csce.datastore.ed.ac.uk/csce/eng/users/s2703496";

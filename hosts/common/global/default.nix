@@ -53,9 +53,6 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # NFS for UoE
-    samba
-    cifs-utils
     # Found out more about how to configure virt-manager at: https://nixos.wiki/wiki/Virt-manager
     coreutils
     pciutils
@@ -64,7 +61,6 @@
     tcpdump
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     virt-manager
-  #  wget
   ];
 
   # Enable flakes and nix-command
