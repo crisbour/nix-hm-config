@@ -1,8 +1,5 @@
 {lib, ...}: {
 
-  # Set your time zone.
-  time.timeZone = "Europe/London";
-
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
 
@@ -21,5 +18,7 @@
   #location.provider = "geoclue2";
 
   services.automatic-timezoned.enable = true;
+  # Set your time zone.
+  #time.timeZone = "Europe/Bucharest";
 }
 

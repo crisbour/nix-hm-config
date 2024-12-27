@@ -82,8 +82,6 @@ in
     }
   ];
 
-  powerManagement.enable = true;
-  powerManagement.cpuFreqGovernor = "powersave";
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
@@ -93,7 +91,6 @@ in
   # ==================================================================================
 
   # Sound quality enable bottom speakers
-  sound.enable = true;
   boot.extraModprobeConfig = ''
     options snd slots=snd-hda-intel
     options snd-hda-intel model=alc289
@@ -129,9 +126,12 @@ in
   # Enable with over heating becomes and issue
   #services.thermald.enable = lib.mkDefault true;
 
+  powerManagement.enable = true;
+  powerManagement.cpuFreqGovernor = "powersave";
+
   powerManagement.powertop.enable = true;
 
-  services.auto-cpufreq.enable = true;
+  #services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
        governor = "powersave";

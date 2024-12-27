@@ -65,8 +65,6 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
-  system.stateVersion = "24.05";
-
   security.polkit.enable = true;
   security.polkit.debug = true;
   security.polkit.extraConfig = ''

@@ -4,7 +4,7 @@
   description = "Home-manager configuration as a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     # FIXME: Is there any advantage to use the dev channel instead of what nixpkgs follows?
     #nix-ld ={
@@ -14,7 +14,7 @@
     hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       # TODO Extract release from nixpkgs.url
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # NixOS WSL Support
