@@ -146,6 +146,12 @@
             inherit inputs outputs;
           };
         };
+        hydrax= lib.nixosSystem {
+          modules = [./hosts/hydrax];
+          specialArgs = {
+            inherit inputs outputs;
+          };
+        };
       };
 
       # TODO: Port my NixOS configs to this repo as well
