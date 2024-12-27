@@ -79,12 +79,13 @@
     };
 
     "/data" = {
-      device = "/dev/sda1";
+      device = "/dev/disk/by-uuid/f0017ddc-8ffe-4ac6-a830-afe7cba234a7";
       fsType = "btrfs";
       options = [
         "subvol=data"
         "noatime"
         "compress=zstd"
+        "autodefrag"
       ];
     };
 
