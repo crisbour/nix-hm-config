@@ -31,7 +31,7 @@ in
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
-      experimental-features = [ "nix-command" "flakes" "repl-flake" ];
+      experimental-features = [ "nix-command" "flakes" ];
       # TODO Add: "configurable-impure-env" "auto-allocate-uids"
       warn-dirty = false;
       # NOTE: Do we need explicit use of store cache
