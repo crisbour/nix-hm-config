@@ -1,15 +1,11 @@
 { pkgs, ... }:
-let
-  spade-language-server = import ./spade/spade-ls.nix { inherit pkgs; };
-in
 {
   home.packages = [
-    spade-language-server
   ];
   programs.neovim = {
     extraPackages = with pkgs; [
       lua-language-server
-      spade-language-server
+      #spade-language-server
       nixd # Nix language server
       rust-analyzer
       clang-tools_17
@@ -103,14 +99,6 @@ in
           cmd = { "${pkgs.texlab}/bin/texlab" },
           capabilities = capabilities,
         }
-
-        vim.tbl_deep_extend('keep', lspconfig, {
-          spadels = {
-            cmd = { 'spade-language-server' },
-            filetypes = 'spade',
-            name = 'spadels',
-          }
-        })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer
