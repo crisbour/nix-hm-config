@@ -16,19 +16,18 @@
     ../common/optional/lxd.nix
   ];
 
-  time.timeZone = "Europe/Bucharest";
+  # FIXME: Deassert automatic timezone
+  #time.timeZone = "Europe/Bucharest";
 
-  boot.loader.grub = {
-    enable = true;
-    version = 2;
-    forceInstall = true;
-    device = "/dev/nvme0n1p1";
-  };
+  networking.firewall.allowedTCPPorts = [ 80 443 ]; # Allow traffic on port 80 and hhtps on 443
+  services.httpd.enable = true; # Enable the HTTP server
 
   services.openssh = {
     enable = true;
-    permitRootLogin = "yes";
-    passwordAuthentication = false;
+    settings = {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = false;
+    };
   };
 
   users.users.root.openssh.authorizedKeys.keys = [
@@ -40,6 +39,4 @@
   ];
 
   # TODO: Add HM inline to configure user
-
-  system.stateVersion = "24.05";
 }
