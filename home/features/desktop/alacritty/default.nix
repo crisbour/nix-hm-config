@@ -64,7 +64,7 @@ in
         thickness = 0.2;
       };
 
-      live_config_reload = true;
+      general.live_config_reload = true;
 
       window = {
         dimensions = {
@@ -74,7 +74,7 @@ in
         decorations = "None";
       };
 
-      shell = if config.programs.tmux.enable
+      terminal.shell = if config.programs.tmux.enable
       then {
         #config.home.sessionVariables.SHELL;
         program = "${pkgs.zsh}/bin/zsh";

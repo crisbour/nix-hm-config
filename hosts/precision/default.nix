@@ -24,6 +24,9 @@
     # WARN Cannot use nvidia driver and vfio concurently
     ../common/optional/kvm.nix
     ../common/optional/lxd.nix
+    # UoE VPN and CIFS
+    ../optional/fortivpn.nix
+    ../optional/uoe-cifs.nix
   ];
 
 
@@ -64,6 +67,9 @@
     # proxy.default = "http://user:password@proxy:port/";
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
+
+  # Needed for udiskie in HM
+  services.udisks2.enable = true;
 
   security.polkit.enable = true;
   security.polkit.debug = true;
