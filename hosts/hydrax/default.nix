@@ -6,7 +6,7 @@
 }:
 {
   imports = [
-    ./hardware.nix
+    ./hardware-configuration.nix
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
