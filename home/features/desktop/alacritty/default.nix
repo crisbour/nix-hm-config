@@ -39,7 +39,7 @@ in
     package = pkgs.alacritty;
     enable = true;
     settings = {
-      import = [ theme ];
+      general.import = [ theme ];
       env = {
         TERM = "xterm-256color";
       };
