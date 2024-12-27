@@ -7,6 +7,7 @@
       fixed-cidr-v6 = "fd00::/80";
       ipv6 = true;
     };
+    # FIXME Only enable if NVIDIA is present. Add a config value in modules
     enableNvidia = true;
   };
   # HACK: Conditional assert on nvidia driver installed
