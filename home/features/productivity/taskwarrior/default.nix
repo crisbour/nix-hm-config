@@ -16,7 +16,6 @@ in
     taskwarrior-tui
     #timewarrior # Not sure how to use it
     tasksh
-    google-cloud-sdk
   ];
 
   # Inspired: https://github.com/jevy/home-manager-nix-config/blob/5a088cb8f00e046c9473e39c4c390d31911f495b/taskwarrior/taskrc
