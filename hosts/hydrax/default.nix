@@ -14,6 +14,8 @@
     #../common/optional/yubikey.nix
     ../common/optional/docker.nix
     #../common/optional/lxd.nix
+    #./server.nix
+    ./reverse-proxy.nix
   ];
 
   # FIXME: Deassert automatic timezone
