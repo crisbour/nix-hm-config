@@ -112,7 +112,7 @@
 
   swapDevices = [
     {
-      device = "/dev/nvme0n1p1";
+      device = "/dev/nvme0n1p2";
     }
   ];
 
