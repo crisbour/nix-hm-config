@@ -13,20 +13,28 @@
     # FIXME: YubiKey passthrough on SSH???
     #../common/optional/yubikey.nix
     ../common/optional/docker.nix
-    ../common/optional/lxd.nix
+    #../common/optional/lxd.nix
   ];
 
   # FIXME: Deassert automatic timezone
   #time.timeZone = "Europe/Bucharest";
 
-  networking.firewall.allowedTCPPorts = [ 80 443 ]; # Allow traffic on port 80 and hhtps on 443
-  services.httpd.enable = true; # Enable the HTTP server
+  environment.systemPackages = with pkgs; [
+    xorg.xauth
+    # other packages...
+  ];
+
+  networking.firewall.allowedTCPPorts = [ 80 443 8787 ]; # Allow traffic on port 80 and hhtps on 443
 
   services.openssh = {
     enable = true;
     settings = {
       PermitRootLogin = "yes";
       PasswordAuthentication = false;
+      X11Forwarding = true;
+      X11DisplayOffset = 10;
+      X11UseLocalhost = false;
+      AllowTcpForwarding = true;
     };
   };
 
