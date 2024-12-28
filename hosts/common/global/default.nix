@@ -24,9 +24,6 @@
   # Enable firmware update service
   services.fwupd.enable = true;
 
-  systemd.services.lxd.path = with pkgs; [
-    qemu_kvm
-  ];
 
   # TODO: Make prebuild binaries work in NixOS
   programs.nix-ld = {
