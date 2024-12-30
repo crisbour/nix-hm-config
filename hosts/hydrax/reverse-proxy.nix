@@ -72,8 +72,9 @@ in
         };
         services = {
           website.loadBalancer.servers = [ { url = "http://localhost:80"; } ];
-
           mikrotik.loadBalancer.servers = [ { url = "http://192.168.88.1:80"; } ];
+          # FIXME:
+          #lxd.loadBalancer.servers = [ { url = "http://localhost:8180"; } ];
         };
       };
     };

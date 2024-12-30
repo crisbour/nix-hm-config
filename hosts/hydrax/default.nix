@@ -13,9 +13,10 @@
     # FIXME: YubiKey passthrough on SSH???
     #../common/optional/yubikey.nix
     ../common/optional/docker.nix
-    #../common/optional/lxd.nix
+    ../common/optional/lxd.nix
     #./server.nix
-    ./reverse-proxy.nix
+    #./reverse-proxy.nix
+    ./lxd-image-server.nix
   ];
 
   # FIXME: Deassert automatic timezone
