@@ -27,6 +27,7 @@ in {
       "wheel"
       "libvirtd"
       "video"
+      "www-data"
     ];
     packages = with pkgs; [
       home-manager
