@@ -23,6 +23,7 @@ in {
       "wheel"
       "lxd"
       "libvirtd"
+      "www-data"
     ];
     packages = with pkgs; [
       home-manager
