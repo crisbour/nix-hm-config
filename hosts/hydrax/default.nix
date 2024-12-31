@@ -27,17 +27,18 @@
     # other packages...
   ];
 
-  networking.firewall.allowedTCPPorts = [ 80 443 8787 ]; # Allow traffic on port 80 and hhtps on 443
+  networking.firewall.allowedTCPPorts = [ 80 443 22 8787 ]; # Allow traffic on port 80 and hhtps on 443
 
   services.openssh = {
     enable = true;
     settings = {
       PermitRootLogin = "yes";
       PasswordAuthentication = false;
-      X11Forwarding = true;
+      X11Forwarding = true;  # Enable X11 forwarding
       X11DisplayOffset = 10;
       X11UseLocalhost = false;
       AllowTcpForwarding = true;
+      UseDns = true;  # Use DNS for hostname resolution
     };
   };
 
