@@ -25,8 +25,8 @@
     ../common/optional/kvm.nix
     ../common/optional/lxd.nix
     # UoE VPN and CIFS
-    ../optional/fortivpn.nix
-    ../optional/uoe-cifs.nix
+    ../common/optional/fortivpn.nix
+    ../common/optional/uoe-cifs.nix
   ];
 
 
