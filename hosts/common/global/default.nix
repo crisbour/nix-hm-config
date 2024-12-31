@@ -54,6 +54,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     # Found out more about how to configure virt-manager at: https://nixos.wiki/wiki/Virt-manager
+    gnupg
     coreutils
     pciutils
     qemu
