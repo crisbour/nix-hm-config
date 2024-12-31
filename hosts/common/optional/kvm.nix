@@ -11,10 +11,10 @@
       "virtio_blk"
 
      # FIXME: Only enable if nvidia enabled
-     "nvidia"
-     "nvidia_modeset"
-     "nvidia_uvm"
-     "nvidia_drm"
+      #"nvidia"
+      #"nvidia_modeset"
+      #"nvidia_uvm"
+      #"nvidia_drm"
     ]
   };
 
@@ -22,7 +22,7 @@
     # enable IOMMU
     "intel_iommu=on"
     # FIXME: Only enable if nvidia enabled
-    "vfio-pci.ids=10de:25b9" # nvidia address
+    #"vfio-pci.ids=10de:25b9" # nvidia address
   ];
 
   hardware.opengl.enable = true;
