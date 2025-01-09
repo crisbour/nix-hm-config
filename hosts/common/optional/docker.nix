@@ -17,6 +17,7 @@
 
   environment.systemPackages = with pkgs; [
     docker
+    xorg.xhost # Necessary for allowing docker X11 access
   ];
 
   # kernel module for forwarding to container to work
