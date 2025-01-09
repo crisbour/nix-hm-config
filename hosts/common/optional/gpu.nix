@@ -7,7 +7,6 @@
   #---------------------------------------------------------------------
   hardware.opengl = {
     enable = true;
-    #driSupport = true;
     driSupport32Bit = true;
 
     #---------------------------------------------------------------------
@@ -15,29 +14,33 @@
     #---------------------------------------------------------------------
     extraPackages = with pkgs; [
       intel-media-driver      # LIBVA_DRIVER_NAME=iHD
-      libvdpau-va-gl
-      nvidia-vaapi-driver
       vaapiIntel                  # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
       vaapiVdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
       vulkan-validation-layers
-    ];
+   ];
   };
 
   # Load intel/nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["modesetting" "nvidia"];
 
+  boot.kernelParams = [
+    "nvidia-drm.modeset=1"
+    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+  ];
+
   hardware.nvidia = {
 
     prime = {
-      sync.enable = false;
       offload = {
         enable = true;
         enableOffloadCmd = true;
       };
 
-
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+      # Set bus IDs in the host configuration
+      #intelBusId = "PCI:0:2:0";
+      #nvidiaBusId = "PCI:1:0:0";
     };
 
     # Modesetting is required.

@@ -25,7 +25,7 @@
     #"vfio-pci.ids=10de:25b9" # nvidia address
   ];
 
-  hardware.opengl.enable = true;
+  hardware.graphics.enable = true;
 
   virtualisation = {
     libvirtd = {

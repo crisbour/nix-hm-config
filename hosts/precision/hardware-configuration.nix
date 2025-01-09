@@ -28,10 +28,16 @@ in
     kernelModules = [ "i915" ];
   };
 
+  hardware.nvidia.prime = {
+    intelBusId = "PCI:0:2:0";
+    nvidiaBusId = "PCI:1:0:0";
+  };
+
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
   boot.kernelModules = [
     "kvm"
     "kvm-intel"
+    "acpi_call"
     "intel_pstate"
     "nvidia"
     "nvidia_modeset"
@@ -123,6 +129,19 @@ in
   #  options iwlwifi power_save=1 disable_11ax=1
   #'';
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        # A2DP profile enable for bluetooth
+        Enable = "Source,Sink,Media,Socket";
+        # Show battery status
+        Experimental = true;
+      };
+    };
+  };
+
   # Enable with over heating becomes and issue
   #services.thermald.enable = lib.mkDefault true;
 
@@ -142,6 +161,10 @@ in
        turbo = "auto";
     };
   };
+
+  # Manage device power-control:
+  services.power-profiles-daemon.enable = true;
+
 
 
 }

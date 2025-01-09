@@ -49,6 +49,13 @@
     '';
   };
 
+  # TODO: move to module that enables fprintd-reader
+  services.fprintd.enable = true;
+  # Only enabled when GDM is not used
+  #security.pam.services = {
+  #  login.fprintAuth = true;
+  #};
+
   networking = {
     hostName = "precision";
     # Enable NetworkManager
@@ -86,9 +93,7 @@
   '';
   environment.systemPackages = with pkgs; [
     libsmbios
-    #dell-command-configure
-    gnomeExtensions.battery-health-charging
-    polkit
-    polkit_gnome
+    dell-command-configure
+    networkmanagerapplet
   ];
 }
