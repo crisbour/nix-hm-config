@@ -24,7 +24,6 @@
     };
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
     flake-utils.url = "github:numtide/flake-utils";
-    mach-nix.url = "github:DavHau/mach-nix";
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
