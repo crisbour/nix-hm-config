@@ -31,10 +31,29 @@
       inputs.flake-utils.follows = "flake-utils";
     };
     # Nix User Repository
-    nur.url = "github:nix-community/NUR";
+    nur = {
+      url = "github:nix-community/NUR";
+      #inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # Hyprland
+    hypr-contrib.url = "github:hyprwm/contrib";
+    hyprpicker.url = "github:hyprwm/hyprpicker";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # RustUp toolchain
     rust-overlay.url = "github:oxalica/rust-overlay";
 
-    # FHS wrappers for Xilinx and Matlab tools
+    # Secrets
+    sops-nix = {
+      url = "github:Mic92/sops-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+   # FHS wrappers for Xilinx and Matlab tools
     nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
     nix-matlab.url = "gitlab:doronbehar/nix-matlab";
 
@@ -50,7 +69,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, mach-nix, nixgl, alacritty-theme, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -67,9 +86,9 @@
           allowUnfree = true;
         };
       });
-      nixGlOverlay = {config, ...}: {nixpkgs.overlays = [nixgl.overlay];};
-
+      nixGlOverlay = { ... }: {nixpkgs.overlays = [nixgl.overlay];};
       alacritty-theme-Overlay = { config, pkgs, ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
+      #nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration (rec {
         pkgs = pkgsFor.${system};
@@ -78,6 +97,7 @@
           alacritty-theme-Overlay
           # TODO Add nixGlOverlay only to non NixOS
           nixGlOverlay
+          #nurOverlay
         ];
         extraSpecialArgs = {
           inherit inputs outputs;
