@@ -99,6 +99,8 @@
     # TODO: Use format rules across text editors
     editorconfig-vim
 
+    # ------ languages -------
+    vim-just
     otter-nvim
 
     {

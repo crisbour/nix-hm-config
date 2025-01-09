@@ -37,6 +37,7 @@ in {
         watchexec
         perf-tools
         tmate
+        valgrind                          # c memory analyzer
   #    glances                       # web based `htop`
 
         # Better Python REPL

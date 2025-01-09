@@ -5,6 +5,11 @@
   ];
 
   home.packages = with pkgs; [
+    # Celeste
+    celeste-classic
+
+    # Doom
+    crispy-doom
 
     winetricks
     wineWowPackages.full
