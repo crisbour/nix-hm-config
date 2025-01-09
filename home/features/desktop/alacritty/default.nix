@@ -35,6 +35,12 @@ let
   theme = pkgs.alacritty-theme.gruvbox_dark;
 in
 {
+  home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "NerdFontsSymbolsOnly" "JetBrainsMono" ]; })
+    twemoji-color-font
+    noto-fonts-emoji
+  ];
+
   programs.alacritty = {
     package = pkgs.alacritty;
     enable = true;

@@ -105,6 +105,34 @@
 
   };
 
+  # --------------------------------------------------------
+  # ROFI
+  # --------------------------------------------------------
+
+  # gnome keyboard shortcuts
+  dconf.settings = {
+    "org/gnome/settings-daemon/plugins/media-keys".custom-keybindings = [
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/rofi-window/"
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/rofi-pass/"
+      "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/rofi-run/"
+    ];
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/rofi-window" = {
+      binding="<Super>space";
+      command="rofi -show window";
+      name="rofi window";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/rofi-pass" = {
+      name = "rofi-pass";
+      command = "rofi-pass";
+      binding = "<Ctrl><Super>s";
+    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/rofi-run" = {
+      name = "rofi launcher";
+      command = "rofi -show run -display-run 'run: '";
+      binding = "<Ctrl><Super>space";
+    };
+  };
+
 
   home.packages = (with pkgs.gnomeExtensions; [
       tray-icons-reloaded

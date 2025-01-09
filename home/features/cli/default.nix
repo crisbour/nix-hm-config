@@ -9,6 +9,8 @@
     ./dircolors.nix
     ./tmux
     ./screen.nix
+    ./yazi.nix
+    #./fastfetch.nix
     # TODO, add some more interesting packages from here: https://github.com/Misterio77/nix-config/blob/main/home/misterio/features/cli/default.nix
     # - shellcolor
     # - lyrics
@@ -53,30 +55,37 @@
   };
 
   home.packages = with pkgs; [
-    bat # Improved cat TODO add base16 colors?
-    bc # Calculator
-    bottom # System viewer (htop on steroids)
-    comma # Install and run programs by sticking a , before them
-    delta #  Syntax aware diff
+    bat        # Improved cat TODO add base16 colors?
+    bc         # Calculator
+    bottom     # System viewer (htop on steroids)
+    caligula   # User-friendly, lightweight TUI for disk imaging
+    comma      # Install and run programs by sticking a , before them
+    delta      # Syntax aware diff
     diffsitter # Better diff
-    #distrobox # Nice escape hatch, integrates docker images with my environment
-    eza # Better ls, written in Rust
-    fd # Better find => TODO add alias
+               # distrobox      # Nice escape hatch, integrates docker images with my environment
+    eza        # Better ls, written in Rust
+    fd         # Better find => TODO add alias
     file
     gnumake
-    httpie # Better curl => # TODO: add alias curl = httpie
-    jq # JSON pretty printer and manipulator
-    lf                            # Terminal file manager inspired by ranger
+    httpie     # Better curl => # TODO: add alias curl = httpie
+    jq         # JSON pretty printer and manipulator
+    killall
     libnotify
     lorri
-    manix                         # Nix search documentation
-    most # Better than less and more
-    ncdu # TUI disk usage
-    perl                          # for fzf history
-    ripgrep # Better grep
-    tig                           # Awesome Text based git
-    tre # Improved `tree` written in Rust TODO: Add alias?
-    #timer # To help with my ADHD paralysis
+    manix      # Nix search documentation
+    most       # Better than less and more
+    ncdu       # TUI disk usage
+    fastfetch  # Like neofetch but gets info for more Unix systems
+    cpufetch # CPU Info like neofetch
+    pamixer                           # pulseaudio command line mixer
+    perl       # for fzf history
+    playerctl                         # controller for media players
+    poweralertd
+    ripgrep    # Better grep
+    tdf                               # cli pdf viewg
+    tig        # Awesome Text based git
+    tre        # Improved `tree` written in Rust TODO: Add alias?
+    #timer      # To help with my ADHD paralysis
     wget
     unzip
     zip

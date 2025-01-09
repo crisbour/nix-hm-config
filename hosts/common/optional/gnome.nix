@@ -59,4 +59,19 @@
     gnomeExtensions.unite
   ];
 
+
+  security.polkit.enable = true;
+  security.polkit.debug = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
+      if (action.id === "org.freedesktop.policykit.exec" &&
+          action.lookup("program") === "/usr/local/bin/batteryhealthchargingctl-cristi"
+      )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
+
 }
