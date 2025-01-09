@@ -14,13 +14,14 @@
 
     ../common/global
     ../common/optional/desktop.nix
+    ../common/optional/hyprland.nix
     ../common/users/cristi.nix
     ../common/optional/gpu.nix
     ../common/optional/fonts.nix
     ../common/optional/yubikey.nix
     ../common/optional/udev.nix
     ../common/optional/docker.nix
-    ../common/optional/gitlab-runner.nix
+    #../common/optional/gitlab-runner.nix
     # WARN Cannot use nvidia driver and vfio concurently
     ../common/optional/kvm.nix
     ../common/optional/lxd.nix
@@ -29,6 +30,7 @@
     ../common/optional/uoe-cifs.nix
   ];
 
+  hardware.enableRedistributableFirmware = lib.mkDefault true;
 
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
@@ -78,19 +80,6 @@
   # Needed for udiskie in HM
   services.udisks2.enable = true;
 
-  security.polkit.enable = true;
-  security.polkit.debug = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      polkit.log("user " +  subject.user + " is attempting action " + action.id + " from PID " + subject.pid);
-      if (action.id === "org.freedesktop.policykit.exec" &&
-          action.lookup("program") === "/usr/local/bin/batteryhealthchargingctl-cristi"
-      )
-      {
-        return polkit.Result.YES;
-      }
-    })
-  '';
   environment.systemPackages = with pkgs; [
     libsmbios
     dell-command-configure

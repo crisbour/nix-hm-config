@@ -4,7 +4,8 @@
     ./base
     ./features/auth
     ./features/desktop/alacritty
-    ./features/desktop/gnome
+    #./features/desktop/gnome
+    ./features/desktop/hyprland
     ./features/devtools
     ./features/productivity
     ./features/desktop/channels
@@ -12,6 +13,11 @@
     ./features/desktop/gaming
     ./features/pass
     ./features/nfs
+
+    # Services
+    ./services/system/power-monitor.nix
+    ./services/system/kdeconnect.nix
+    ./services/media/playerctl.nix
   ];
 
   home = {

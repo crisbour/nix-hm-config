@@ -55,5 +55,25 @@ in
 
     # Image editing
     gimp
+
+    # Image viewer
+    oculante
+
+    # Terminal emulator
+    ghostty
+
+    # File manager
+    nemo
+
+    # Media player
+    mpv
+
+    audacious
+    file-roller # archive
+
+    obs-studio
+    pavucontrol                       # pulseaudio volume controle (GUI)
+    resources                         # GUI resources monitor
+    zenity
   ];
 }

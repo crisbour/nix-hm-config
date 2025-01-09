@@ -6,7 +6,7 @@
 
   home.packages = with pkgs; [
     zoom-us
-    discord
+    webcord-vencord
     teams-for-linux
   ];
 }
