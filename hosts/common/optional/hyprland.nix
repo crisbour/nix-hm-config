@@ -6,10 +6,13 @@
 
   boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
 
+  services.xserver.enable = true;
+  programs.xwayland.enable = true;
+
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
-    #withUWSM = true;
+    withUWSM = true;
     #package = inputs.hyprland.packages.${pkgs.system}.default;
     #portalPackage =
     #  inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
@@ -26,8 +29,7 @@
     };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      # inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland
-      #pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
