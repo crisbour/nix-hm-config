@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.services.incus-server;
+  cfg = config.services.incus;
 in
 # Inspired by: https://github.com/deedee-ops/nixlab/blob/f286c09139ea75ff5419e3e0b264e54b8b86f0f2/modules/system/apps/incus/default.nix
 {

@@ -30,7 +30,14 @@
     ../common/optional/uoe-cifs.nix
   ];
 
-  hardware.enableRedistributableFirmware = lib.mkDefault true;
+  mySystem.info = {
+    hostname = "precision";
+    has_gui = true;
+    has_nvidia = true;
+    has_intel = true;
+  };
+
+  hardware.enableAllFirmware = lib.mkDefault true;
 
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
@@ -59,7 +66,7 @@
   #};
 
   networking = {
-    hostName = "precision";
+    hostName = config.mySystem.info.hostname;
     # Enable NetworkManager
     networkmanager.enable = true;
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
