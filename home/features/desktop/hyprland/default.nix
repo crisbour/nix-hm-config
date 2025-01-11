@@ -24,6 +24,12 @@
     ./scripts
   ];
 
+  home.packages = with pkgs; [
+    xwaylandvideobridge
+    weston
+    wl-clipboard-rs
+  ];
+
   services.wluma = {
     enable = true;
     config = ''
