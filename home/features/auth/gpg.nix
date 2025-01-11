@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
 let
   agentTTL = 60 * 60 * 12; # 12 hours
-  inherit (pkgs.stdenv) isLinux;
-  #hasGUI = config.wayland.enable || config.xorg.enable;
-  hasGUI = true;
+  hasGUI = config.home.user-info.has_gui;
   inherit (config.home) user-info;
 in {
 
