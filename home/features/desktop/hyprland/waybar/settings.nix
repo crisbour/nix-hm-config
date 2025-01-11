@@ -1,4 +1,4 @@
-{  ... }:
+{ inputs, ... }:
 let
   host = "laptop";
   # TODO: Receive this from config
@@ -46,6 +46,8 @@ in
       "network"
       (if (host == "laptop") then "battery" else "")
       "hyprland/language"
+      "custom/taskwarrior"
+      "idle_inhibitor"
       "custom/notification"
     ];
     clock = {
@@ -84,6 +86,16 @@ in
         "4" = [ ];
         "5" = [ ];
       };
+    };
+    # TODO: Refine this, inspired from: https://github.com/DestinyofYeet/nix-config/tree/e6dd89e9cebc741a9239fab82169040e68597a2c
+    "custom/taskwarrior" = {
+      # format = "Most urgent task: {}";
+      # exec = "${pkgs.nushell}/bin/nu ${pkgs.substituteAll { src = ../modules/nu-scripts/taskwarrior.nu; task = "${pkgs.taskwarrior3}/bin/task";}}";
+      # exec = "${pkgs.nushell}/bin/nu ${../../../modules/nu-scripts/taskwarrior.nu}";
+      exec = "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
+      format = " ";
+      interval = 10;
+      return-type = "json";
     };
     cpu = {
       format = "<span foreground='${green}'> </span> {usage}%";
@@ -180,5 +192,18 @@ in
       on-click-right = "swaync-client -d -sw";
       escape = true;
     };
+    idle_inhibitor = {
+      format = "{icon}";
+      format-icons = {
+        activated = "☕"; # Coffee icon, might need particular font
+        deactivated = "󰾪 ";
+      };
+      tooltip = true;
+      tooltip-format-activated = "Cafeinate: {status}";
+      tooltip-format-deactivated = "Nominal: {status}";
+      timeout = 50; # Minutes too keep caffeinated
+      #on-click = "hyprctl dispatch idle_inhibitor";
+    };
+
   };
 }
