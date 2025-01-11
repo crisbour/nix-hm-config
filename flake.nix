@@ -42,6 +42,12 @@
       url = "github:hyprwm/Hyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    waybar-taskwarrior = {
+      url = "github:DestinyofYeet/waybar-taskwarrior.rs";
+      # url = "path:///home/ole/github/waybar-taskwarrior.rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # RustUp toolchain
     rust-overlay.url = "github:oxalica/rust-overlay";
