@@ -29,7 +29,7 @@
     useRoutingFeatures = "server";
   };
 
-  service.incus = {
+  mySystem.incus = {
     enable = true;
     enableServer = true;
     enableUI = true;
