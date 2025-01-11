@@ -1,7 +1,6 @@
 {config, pkgs, ...}:
 let
-  #hasGUI = config.wayland.enable || config.xorg.enable;
-  hasGUI = true;
+  hasGUI = config.home.user-info.has_gui;
 in
 {
 

@@ -1,8 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 let
   inherit (pkgs.stdenv) isLinux;
-  #hasGui = config.wayland.enable || config.xorg.enable;
-  hasGUI = true;
+  hasGUI = config.home.user-info.has_gui;
   # Nerdfonts is huge: take only what you need
   #nerdfonts = (pkgs.nerdfonts.override { fonts = [
   #    "FiraCode"

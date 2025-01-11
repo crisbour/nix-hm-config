@@ -36,5 +36,9 @@ in
         default = null;
       };
     };
+    has_gui = mkOption {
+      type = with types; bool;
+      default = false;
+    };
   };
 }
