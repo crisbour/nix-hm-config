@@ -15,8 +15,8 @@
     ../common/optional/docker.nix
     ../common/optional/lxd.nix
     #./server.nix
-    #./reverse-proxy.nix
-    ./lxd-image-server.nix
+    ./reverse-proxy.nix
+    #./lxd-image-server.nix
   ];
 
   # FIXME: Deassert automatic timezone
@@ -28,6 +28,12 @@
   ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 22 8787 ]; # Allow traffic on port 80 and hhtps on 443
+
+  service.incus = {
+    enable = true;
+    enableServer = true;
+    enableUI = true;
+  };
 
   services.openssh = {
     enable = true;
