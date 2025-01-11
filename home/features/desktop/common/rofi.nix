@@ -17,7 +17,7 @@ in
     rofi-pass
     rofi-power-menu
     rofi-screenshot
-    #nur.repos.peel.rofi-wifi-menu
+    rofi-wifi-menu
     #nur.repos.peel.rofi-emoji
   ];
 
