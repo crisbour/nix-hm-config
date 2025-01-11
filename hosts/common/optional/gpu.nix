@@ -5,6 +5,7 @@
   # Direct Rendering Infrastructure (DRI) support, both for 32-bit and 64-bit, and
   # Make sure opengl is enabled
   #---------------------------------------------------------------------
+  hardware.graphics.enable = true;
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
@@ -27,7 +28,8 @@
 
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
-    "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
+    # Following is recommender by Hyprland but fails on suspend
+    #"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
 
   hardware.nvidia = {
@@ -64,7 +66,7 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = true;
+    open = false;
 
     # Enable the Nvidia settings menu,
 	# accessible via `nvidia-settings`.

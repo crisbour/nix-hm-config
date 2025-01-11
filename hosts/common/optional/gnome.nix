@@ -5,6 +5,15 @@
     ./desktop.nix
   ];
 
+  # X11 windowing system.
+  services.xserver.enable = true;
+  #services.xkb = {
+  #  # Configure keymap in X11
+  #  # FIXME: maximum keycode 708 not supported
+  #  layout = "us";
+  #  variant = "";
+  #};
+
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm = {
     enable = true;

@@ -16,7 +16,6 @@
 
     # Services
     ./services/system/power-monitor.nix
-    ./services/system/kdeconnect.nix
     ./services/media/playerctl.nix
   ];
 
