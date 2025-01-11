@@ -6,11 +6,11 @@
   ...
 }:
 let
-  cfg = config.services.incus;
+  cfg = config.mySystem.incus;
 in
 # Inspired by: https://github.com/deedee-ops/nixlab/blob/f286c09139ea75ff5419e3e0b264e54b8b86f0f2/modules/system/apps/incus/default.nix
 {
-  options.services.incus = {
+  options.mySystem.incus = {
     enable = lib.mkEnableOption "incus server";
     enableServer = lib.mkOption {
       type = lib.types.bool;
@@ -116,7 +116,7 @@ in
         # User profile and network for reproducible LXD containers
         networks = [
           {
-            name = "incusbr0";
+            name = "${cfg.defaultNIC.network}";
             description = "Local bridge between host and LXD container for user profile";
             type = "bridge";
             config = {
@@ -140,13 +140,13 @@ in
               #"snapshots.schedule" = "@hourly";
             };
             devices = {
-              eth0 = lib.recursiveUpdate cfg.defaultNIC { name = "eth0"; };
               root = {
                 path = "/";
                 pool = "default";
                 #size = "200GiB";
                 type = "disk";
               };
+              eth0 = lib.recursiveUpdate cfg.defaultNIC { name = "eth0"; };
             };
           }
           {
