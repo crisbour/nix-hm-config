@@ -1,2 +1,3 @@
 {
+  incus = import ./incus.nix;
 }
