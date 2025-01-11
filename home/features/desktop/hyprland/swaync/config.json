@@ -139,6 +139,22 @@
         {
           "label": "",
           "command": "firefox"
+        },
+        {
+          "label": "󰕾",
+          "command": "swayosd-client --output-volume mute-toggle"
+        },
+        {
+          "label": "󰍬",
+          "command": "swayosd-client --input-volume mute-toggle"
+        },
+        {
+          "label": "󰖩",
+          "command": "nm-connect-editor"
+        },
+        {
+          "label": "󰂯",
+          "command": "blueman-manager"
         }
       ]
     },

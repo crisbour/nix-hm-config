@@ -82,6 +82,13 @@ in
       padding: 1px;
     }
 
+    #custom-taskwarrior {
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-right: 10px;
+      color: ${text_color};
+    }
+
     #pulseaudio, #network, #cpu, #memory, #disk, #battery, #language, #custom-notification {
       padding-left: 5px;
       padding-right: 5px;
