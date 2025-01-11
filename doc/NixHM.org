@@ -63,6 +63,8 @@ It appears there might be some priority conflicts for HM using flake. Thist coul
 - https://github.com/MatthiasBenaets/nixos-config
 - https://github.com/lucperkins/nix-home-manager-config
 
+** Inspiration
+- https://github.com/notashelf/nyx?tab=readme-ov-file
 
 ** fromYAML
 
