@@ -24,6 +24,11 @@
 
   networking.firewall.allowedTCPPorts = [ 80 443 22 8787 ]; # Allow traffic on port 80 and hhtps on 443
 
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "server";
+  };
+
   service.incus = {
     enable = true;
     enableServer = true;
