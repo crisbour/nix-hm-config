@@ -20,7 +20,7 @@ with pkgs;
     libreoffice
     okular
     quarto
-    unstable.joplin-desktop
+    joplin-desktop
 
     rust-analyzer
 
