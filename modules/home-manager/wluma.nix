@@ -47,7 +47,6 @@ in {
         path = "/sys/bus/platform/devices/dell-laptop/leds/dell::kbd_backlight"
       '';
     };
-
   };
 
   config = lib.mkIf cfg.enable {
@@ -68,14 +67,14 @@ in {
           Description =
             "Adjusting screen brightness based on screen contents and amount of ambient light";
           Documentation = "https://github.com/maximbaz/wluma";
+          PartOf = [ "graphical-session.target" ];
         };
         Service = {
           ExecStart = "${pkgs.wluma}/bin/wluma";
-          PrivateNetwork = true;
+          #PrivateNetwork = true;
           PrivateMounts = false;
-          Restart = "always";
-          RestartSec = 1;
-          #EnvironmentFile = "-%E/wluma/service.conf";
+          Restart = "on-failure";
+          EnvironmentFile = "-%E/wluma/service.conf";
         };
       };
   };
