@@ -16,15 +16,11 @@
     #./server.nix
     ./reverse-proxy.nix
     #./lxd-image-server.nix
+    ./xserver.nix
   ];
 
   # FIXME: Deassert automatic timezone
   #time.timeZone = "Europe/Bucharest";
-
-  environment.systemPackages = with pkgs; [
-    xorg.xauth
-    # other packages...
-  ];
 
   networking.firewall.allowedTCPPorts = [ 80 443 22 8787 ]; # Allow traffic on port 80 and hhtps on 443
 
