@@ -14,6 +14,7 @@
   virtualisation = {
     lxd = {
       enable=true;
+      ui.enable = true;
 
       # using the package of our overlay
       # package = pkgs.lxd-vmx.lxd.override {useQemu = true;};
@@ -48,8 +49,30 @@
             config = {
               "security.nesting" = "true";
               "security.privileged" = "true";
-              "environment.DISPLAY" = ":1";
             };
+            devices = {
+              eth0 = {
+                name = "eth0";
+                network = "lxdbr0"; # Use your defined bridge
+                type = "nic";
+              };
+            };
+          }
+          {
+            name = "nix";
+            description = "Nix Store mount";
+            devices = {
+              nix-store = {
+                path = "/nix/store";
+                source = "/nix/store";
+                readonly = true;
+                type = "disk";
+              };
+            };
+          }
+          {
+            name = "home";
+            description = "Mount user home";
             devices = {
               home = {
                 # Allow access to home
@@ -58,16 +81,44 @@
                 source = "/home/cristi";
                 type = "disk";
               };
-              eth0 = {
-                name = "eth0";
-                network = "lxdbr0"; # Use your defined bridge
-                type = "nic";
+            };
+          }
+          #{
+          #  name = "gpu";
+          #  description = "GPU passthrough to container";
+          #  devices = {
+          #    gpu = {
+          #      type = "gpu";
+          #    };
+          #  };
+          #}
+          {
+            name = "x11";
+            description = "Xorg(X11) forward";
+            config = {
+              "environment.DISPLAY" = ":1";
+              "environment.WAYLAND_DISPLAY" = "wayland-1";
+            };
+            devices = {
+              waylandSocket = {
+                type = "proxy";
+                bind = "container";
+                connect = "unix:/run/user/1000/wayland-1";
+                listen = "unix:/mnt/wayland-1";
+                "security.gid" = "1000";
+                "security.uid" = "1000";
+                # Following available only for non abstract proxy device
+                #gid = "1000";
+                #uid = "1000";
+                #mode = "0700";
               };
-              nix-store = {
-                path = "/nix/store";
-                source = "/nix/store";
-                readonly = true;
-                type = "disk";
+              X0 = {
+                bind = "container";
+                connect = "unix:@/tmp/.X11-unix/X0";
+                listen = "unix:@/tmp/.X11-unix/X0";
+                "security.gid" = "1000";
+                "security.uid" = "1000";
+                type = "proxy";
               };
               X1 = {
                 bind = "container";
