@@ -1,8 +1,10 @@
+{ pkgs, ... }:
 {
   programs.browserpass = {
     enable = true;
-    browsers = [ "brave" ];
+    browsers = [ "brave" "firefox" ];
   };
+
   programs.brave = {
     enable = true;
     extensions = [
@@ -11,6 +13,11 @@
       "ffbkglfijbcbgblgflchnbphjdllaogb" # CyberGhost
       "dagcmkpagjlhakfdhnbomgmjdpkdklff" # Mendeley
       "ekhagklcjbdpajgpjgmbionohlpdbjgc" # Zotero Connector
+      "eimadpbcbfnmbkopoojfekhnkhdbieeh" # Dark Reader
     ];
   };
+
+  home.packages = with pkgs; [
+    inputs.zen-browser.default
+  ];
 }
