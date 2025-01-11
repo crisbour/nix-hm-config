@@ -8,11 +8,17 @@
     BAT=$(echo /sys/class/power_supply/BAT*)
     BAT_STATUS="$BAT/status"
 
-    ${pkgs.pipewire}/bin/pw-cli i all 2>&1 | ${pkgs.ripgrep}/bin/rg running -q
-    # only suspend if audio isn't running and on battery
-    if [ $? == 1 && $(cat "$BAT_STATUS") != "Discharging"]; then
+    # Only suspend if audio isn't running and on battery
+    running=${pkgs.pipewire}/bin/pw-cli i all 2>&1 | ${pkgs.ripgrep}/bin/rg running
+    battery_status=$(cat "$BAT_STATUS")
+    if [[ -n running && "$battery_status" == "Discharging" ]]; then
       ${pkgs.systemd}/bin/systemctl suspend
     fi
+
+    # NOTE: It seems that locking before suspend interferes with suspend service
+    # Lock screen
+    swaylock
+    #hyprlock
   '';
 
   brillo = lib.getExe pkgs.brillo;
@@ -30,20 +36,12 @@ in {
 
       listener = [
         {
-          timeout = 180; # 3 min
+          timeout = 120; # 2 min
           # save the current brightness and dim the screen over a period of
           # 1 second
           on-timeout = "${brillo} -O; ${brillo} -u 1000000 -S 5";
           # brighten the screen over a period of 500ms to the saved value
           on-resume = "${brillo} -I -u 500000";
-        }
-        {
-          timeout = 180; # 3 min
-          # save the current brightness and dim the screen over a period of
-          # 1 second
-          on-timeout = "${brillo} -k -O; ${brillo} -k -u 1000000 -S 0";
-          # brighten the screen over a period of 500ms to the saved value
-          on-resume = "${brillo} -k -I -u 500000";
         }
         {
           timeout = 300; # 5 min
