@@ -58,6 +58,7 @@
     bat        # Improved cat TODO add base16 colors?
     bc         # Calculator
     bottom     # System viewer (htop on steroids)
+    btop       # Better htop
     caligula   # User-friendly, lightweight TUI for disk imaging
     comma      # Install and run programs by sticking a , before them
     delta      # Syntax aware diff
