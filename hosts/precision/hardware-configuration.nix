@@ -11,7 +11,11 @@ in
       (modulesPath + "/installer/scan/not-detected.nix")
       ../common/optional/encrypted-root.nix
       ../common/optional/ephemeral-btrfs.nix
-      ../common/optional/hibernate-resume.nix
+      # FIXME: Hibernate doesn't work with swapfile under luks
+      # https://sawyershepherd.org/post/hibernating-to-an-encrypted-swapfile-on-btrfs-with-nixos/
+      # https://discourse.nixos.org/t/is-it-possible-to-hibernate-with-swap-file/2852/3
+      # ERROR: Clear Stale Hibernate Storage Info was skipped because of an unmet condition check (ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67)
+      #../common/optional/hibernate-resume.nix
     ];
 
   boot.initrd = {
@@ -85,6 +89,7 @@ in
     {
       device = "/swap/swapfile";
       size = 32768;
+      options = [ "sw" ];
     }
   ];
 
