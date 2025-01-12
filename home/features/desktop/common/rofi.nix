@@ -3,6 +3,7 @@ let
   my-rofi = pkgs.rofi.override {
     plugins = with pkgs; [
       # rofi-file-browser
+      bemoji
     ];
   };
 in
@@ -14,10 +15,12 @@ in
   #  #pkgs.inputs.nur.repos.peel.rofi-emoji
   #];
   home.packages = with pkgs; [
-    rofi-pass
+    rofi-pass-wayland
     rofi-power-menu
     rofi-screenshot
     rofi-wifi-menu
+    rofi-bluetooth
+    rofi-systemd
     #nur.repos.peel.rofi-emoji
   ];
 
@@ -25,12 +28,11 @@ in
     enable = true;
     package = pkgs.rofi-wayland;
     plugins = [
-      #pkgs.rofi-calc
+      pkgs.rofi-calc-wayland
       pkgs.rofi-emoji-wayland
       pkgs.rofi-systemd
       #pkgs.rofi-themes
     ];
-    #package = my-rofi;
     theme = "DarkBlue";
   };
 
@@ -50,7 +52,7 @@ in
 
   xdg.configFile."rofi/config.rasi".text = ''
     configuration{
-      modi: "run,drun,window";
+      modi: "run,drun,window,emoji";
       lines: 5;
       cycle: false;
       font: "JetBrainsMono NF Bold 15";
@@ -61,9 +63,11 @@ in
       location: 0;
       disable-history: true;
       hide-scrollbar: true;
-      display-drun: " Apps ";
-      display-run: " Run ";
-      display-window: " Window ";
+      display-drun: "   Apps ";
+      display-run: "   Run ";
+      display-window: "   Window ";
+      display-emoji: "   Emoji ";
+      display-calc: "   Calc";
       /* display-Network: " Network"; */
       sidebar-mode: true;
       sorting-method: "fzf";
@@ -159,59 +163,4 @@ in
       text-color: @green;
     }
   '';
-
-  #home.file.rofi_config = {
-  #  target = ".config/rofi/config.rasi";
-  #  text = ''
-  #    /* This is a comment */
-  #    /* rofi -dump-config */
-  #    @theme "gruvbox-dark"
-
-  #    configuration {
-  #      modes: [
-  #        window,
-  #        drun,
-  #        run,
-  #        ssh
-  #        /* file-browser-extended */
-  #      ];
-  #      terminal: "alacritty";
-  #      dpi: 1;
-  #      show-icons: true;
-  #    }
-  #    filebrowser {
-  #      directory: "~/Documents";
-  #    }
-
-  #    /* man rofi-theme */
-
-  #    window {
-  #      width: 80%;
-  #    }
-  #  '';
-  #};
-
-  # home.file.rofi_file_browser_config = let
-  #   openDir = pkgs.writeScript "openDir" ''
-  #     if [[ -d "$1" ]]; then
-  #       xdg-open "$1"
-  #     elif [[ -f "$1" ]]; then
-  #       xdg-open "''${1%/*}"
-  #     fi
-  #   '';
-  # in {
-  #   target = ".config/rofi/file-browser";
-  #   text = ''
-  #     # This is a comment
-  #     dir ~/Documents
-  #     depth 0
-  #     no-sort-by-type
-  #     sort-by-depth
-
-  #     # BUG: rofi -show-icons causes segmentation fault
-  #     # oc-search-path
-  #     # oc-cmd "nautilus"
-  #     # oc-cmd "${openDir}"
-  #   '';
-  # };
 }
