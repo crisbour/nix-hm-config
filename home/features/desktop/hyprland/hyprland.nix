@@ -9,9 +9,8 @@
     wl-clip-persist
     cliphist
     wf-recorder
-    glib
     wayland
-    direnv
+    polkit_gnome
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
