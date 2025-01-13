@@ -14,9 +14,9 @@
     xwayland.enable = true;
     withUWSM = true;
     #package = inputs.hyprland.packages.${pkgs.system}.default;
-    #portalPackage =
-    #  inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+    portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
+
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -29,7 +29,6 @@
     };
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
     ];
   };
 
@@ -52,7 +51,5 @@
   };
 
   # unlock GPG keyring on login
-  security.pam.services.greetd.enableGnomeKeyring = true;
-  security.pam.services.login.fprintAuth = true;
-
+  #security.pam.services.greetd.enableGnomeKeyring = true;
 }
