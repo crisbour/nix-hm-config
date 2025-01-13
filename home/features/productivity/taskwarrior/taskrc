@@ -80,3 +80,8 @@ report._reviewed.description=Tasksh review report.  Adjust the filter to your ne
 report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
+
+sync.server.url=http://task.adventure-bytes.com
+sync.server.client_id=e470c6d6-96cb-45b9-82d6-c9912473cb84
+# TODO: Generate another secret and store it in sops
+sync.encryption_secret=Thuash4f
