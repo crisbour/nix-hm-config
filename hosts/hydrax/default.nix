@@ -17,6 +17,7 @@
     ./reverse-proxy.nix
     #./lxd-image-server.nix
     ./xserver.nix
+    ./taskchampion.nix
   ];
 
   # FIXME: Deassert automatic timezone
