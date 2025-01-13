@@ -88,6 +88,47 @@ however, more advanced setups for reproducibility might be necessary as in
       display-message "Windows reordered..."
   #+end_src
 
+** Taskwarrior
+
+My failed approach to sync task db:
+#+begin_src
+    # HACK: Syncronize task DB back and forth, but long term solution is
+    # task-sync: https://github.com/GothenburgBitFactory/taskchampion-sync-server
+    systemd.user.services = {
+      rclone-sync-taskdb = {
+        Unit = {
+          Description = "Bidirectional sync of taskwarrior DB based on timestamps";
+          AssertPathIsDirectory = onedrive_task_dir;
+          Wants = "network-online.target";
+          After = "network-online.target";
+        };
+
+        Service = {
+          Type = "oneshot";
+          ExecStart = ''
+            ${pkgs.rclone}/bin/rclone sync --update ${local_task_dir}/taskchampion.sqlite3 ${onedrive_task_dir}
+            ${pkgs.rclone}/bin/rclone sync --update ${onedrive_task_dir}/taskchampion.sqlite3 ${local_task_dir}
+          '';
+        };
+      };
+    };
+
+    systemd.user.timers = {
+      rclone-sync-taskdb = {
+        Unit = {
+          Description = "Timer for bidirectional taskwarrior DB sync";
+        };
+        Timer = {
+          OnBootSec = "5m";
+          OnUnitActiveSec = "15m";
+        };
+        Install = {
+          WantedBy = [ "timers.target" ];
+        };
+      };
+    };
+#+end_src
+
 * Hosts
 ** LXD
 Nix uses some form of containers, sandbox or namespaces (which I don't know their underlying functionality), but in order for running nix isolated, it requires that nested containers are enabled for the host container. Configure it as follows:
