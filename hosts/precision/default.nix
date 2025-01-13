@@ -67,8 +67,11 @@
     #];
   };
   services.logind = {
+    # Already defined in hibernate-resume
+    lidSwitch = "suspend";
+    lidSwitchExternalPower = "lock";
     extraConfig = ''
-      HandleLidSwitch=suspend
+      HandlePowerKey=suspend
     '';
   };
 
