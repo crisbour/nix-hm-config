@@ -17,6 +17,11 @@ in
       description = "Enable server UI and reverse-proxy with certs";
       default = false;
     };
+    serverAddr = lib.mkOption {
+      type = lib.types.str;
+      description = "Default core.http_address";
+      default = "127.0.0.1:8443";
+    };
     dataDir = lib.mkOption {
       type = lib.types.str;
       description = "Path to directory containing data.";
@@ -111,7 +116,7 @@ in
         # User profile and network for reproducible LXD containers
         networks = [
           {
-            name = "lxdbr0";
+            name = "incusbr0";
             description = "Local bridge between host and LXD container for user profile";
             type = "bridge";
             config = {
@@ -170,15 +175,6 @@ in
               };
             };
           }
-          #{
-          #  name = "gpu";
-          #  description = "GPU passthrough to container";
-          #  devices = {
-          #    gpu = {
-          #      type = "gpu";
-          #    };
-          #  };
-          #}
           {
             name = "x11";
             description = "Xorg(X11) forward";
@@ -217,7 +213,19 @@ in
               };
             };
           }
-        ];
+        ] ++
+        (lib.optional config.mySystem.info.has_nvidia {
+            name = "gpu";
+            description = "Nvidia GPU passthrough to container";
+            devices = {
+              nvidia_gpu = {
+                type = "gpu";
+                gputype="phsycical";
+                id="nvidia.com/gpu=0";
+              };
+            };
+          }
+        );
       };
     };
 
@@ -228,9 +236,26 @@ in
       subGidRanges = [ { startGid = 1000000; count = 65536; } ];
     };
 
+    # Incus on NixOS is unsupported using iptables
+    networking.nftables.enable = true;
+
     networking.firewall.trustedInterfaces =
       lib.optionals (builtins.hasAttr "network" cfg.defaultNIC) [ cfg.defaultNIC.network ]
       ++ lib.optionals (builtins.hasAttr "parent" cfg.defaultNIC) [ cfg.defaultNIC.parent ];
+
+    # Set up networking bridge for LXD
+    networking.bridges = {
+      ${cfg.defaultNIC.network} = {
+        interfaces = [];
+      };
+    };
+    # Bind containers ports to host. How does it behave when ports clash
+    networking.nat = lib.mkIf cfg.enableServer {
+      enable = true;
+      internalInterfaces = ["${cfg.defaultNIC.network}"];
+      # FIXME: Only used for server, but how to get main interface
+      externalInterface = "tailscale0"; # Replace with your actual external interface
+    };
 
     #environment.persistence."${config.mySystem.impermanence.persistPath}" =
     #  lib.mkIf config.mySystem.impermanence.enable
@@ -261,8 +286,7 @@ in
     systemd.services.incus = lib.mkIf cfg.enableServer {
       postStart = lib.mkAfter (
         lib.optionalString cfg.enableUI ''
-          ${lib.getExe config.virtualisation.incus.package} config set core.https_address 127.0.0.1:8443
-          ${lib.getExe config.virtualisation.incus.package} config set core.trust_password AT90USB162
+          ${lib.getExe config.virtualisation.incus.package} config set core.https_address ${cfg.serverAddr}
         ''
       );
     };

@@ -25,7 +25,6 @@
     #../common/optional/gitlab-runner.nix
     # WARN: Cannot use nvidia driver and vfio concurently
     ../common/optional/kvm.nix
-    ../common/optional/lxd.nix
     # UoE VPN and CIFS
     ../common/optional/fortivpn.nix
     ../common/optional/uoe-cifs.nix
@@ -39,6 +38,18 @@
   };
 
   hardware.enableAllFirmware = lib.mkDefault true;
+
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
+
+  services.incus = {
+    enable = true;
+    # Needed to let remote local: push to another remote
+    enableServer = true;
+  };
+  networking.firewall.allowedTCPPorts = [ 8443 ];
 
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
