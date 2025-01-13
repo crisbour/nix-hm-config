@@ -57,8 +57,13 @@ let
   power-menu = pkgs.writeScriptBin "power-menu" (
     builtins.readFile ./power-menu.sh
   );
+
+  x11-portal = pkgs.writeScriptBin "x11-portal" (
+    builtins.readFile ./x11-portal.sh
+  );
 in
 {
+  # TODO: Prune what I don't use
   home.packages = with pkgs; [
     wall-change
     wallpaper-picker
@@ -89,5 +94,7 @@ in
     screenshot
 
     power-menu
+
+    x11-portal
   ];
 }

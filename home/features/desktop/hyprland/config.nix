@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   wayland.windowManager.hyprland = {
     settings = {
@@ -18,6 +18,8 @@
         "poweralertd &"
         "wl-clip-persist --clipboard both &"
         "wl-paste --watch cliphist store &"
+        #"wl-paste --type text --watch cliphist store"
+        #"wl-paste --type image --watch cliphist store"
         "waybar &"
         "swaync &"
         "hyprctl setcursor Bibata-Modern-Ice 24 &"
@@ -29,7 +31,6 @@
       input = {
         kb_model = "pc104";
         kb_layout = "us";
-        #kb_options = "grp:alt_caps_toggle";
         kb_options = "terminate:ctrl_alt_bksp";
         numlock_by_default = false;
         follow_mouse = 1;
@@ -145,41 +146,60 @@
         "$mainMod, F1, exec, show-keybinds"
 
         # keybindings
-        "$mainMod, Return, exec, alacritty"
-        "ALT, Return, exec, [float; size 1111 700] ghostty"
-        "$mainMod SHIFT, Return, exec, [fullscreen] alacritty"
-        "$mainMod, B, exec, hyprctl dispatch exec '[workspace 1 silent] zen'"
         "$mainMod, Q, killactive,"
         "$mainMod, F, fullscreen, 0"
         "$mainMod SHIFT, F, fullscreen, 1"
         "$mainMod, Space, exec, toggle_float"
-        "$mainMod, D, exec, rofi -show drun || pkill rofi"
-        "$mainMod SHIFT, D, exec, webcord --enable-features=UseOzonePlatform --ozone-platform=wayland"
-        "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] SoundWireServer'"
-        "$mainMod, Escape, exec, swaylock"
-        "ALT, Escape, exec, hyprlock"
-        "$mainMod SHIFT, Escape, exec, power-menu"
-        "$mainMod, P, pseudo,"
         "$mainMod, X, togglesplit,"
-        "$mainMod, T, exec, toggle_oppacity"
+        "$mainMod, O, exec, toggle_oppacity"
+        "$mainMod SHIFT, B, exec, toggle_waybar"
+        ## terminal
+        "$mainMod, Return, exec, alacritty"
+        "$mainMod SHIFT, Return, exec, [fullscreen] alacritty"
+        "ALT, Return, exec, [float; size 1111 700] ghostty"
+
+        ## file explorer
         "$mainMod, E, exec, nemo"
         "ALT, E, exec, hyprctl dispatch exec '[float; size 1111 700] nemo'"
         "$mainMod SHIFT, E, exec, hyprctl dispatch exec '[float; size 1111 700] ghostty -e yazi'"
-        "$mainMod SHIFT, B, exec, toggle_waybar"
-        "$mainMod, C ,exec, hyprpicker -a"
-        "$mainMod, W,exec, wallpaper-picker"
-        "$mainMod SHIFT, W,exec, hyprctl dispatch exec '[float; size 925 615] waypaper'"
+
+        ## browser
+        "$mainMod, B, exec, hyprctl dispatch exec '[workspace 1 silent] zen'"
+
+        ## utils
+        # FIXME: How to add multiple x11 sessions without mounting all the sockets?
+        "$mainMod SHIFT, W,exec, x11-portal" # Open an x11 window in wayland with weston for one app
         "$mainMod, N, exec, swaync-client -t -sw"
         "CTRL SHIFT, Escape, exec, hyprctl dispatch exec '[workspace 11] resources'"
-        "$mainMod, equal, exec, woomer"
         # "$mainMod SHIFT, W, exec, vm-start"
 
-        # screenshot
+        ## Not frequently used, perhaps remove?
+        "$mainMod, C ,exec, hyprpicker -a"
+        "$mainMod CTRL SHIFT, S, exec, ${pkgs.qrtool}/bin/qrtool decode $(${pkgs.grimblast}/bin/grimblast --freeze save area) | ${pkgs.wl-clipboard}/bin/wl-copy" # Scans QR code and copies data to clipboard
+        #"$mainMod SHIFT, W,exec, hyprctl dispatch exec '[float; size 925 615] waypaper'"
+        "$mainMod SHIFT, D, exec, webcord --enable-features=UseOzonePlatform --ozone-platform=wayland"
+        "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] SoundWireServer'"
+
+        ## Lock/Suspend ...
+        "$mainMod, Escape, exec, swaylock"
+        "ALT, Escape, exec, hyprlock"
+        "$mainMod SHIFT, Escape, exec, power-menu" # Using rofi
+
+        ## Rofi
+        "$mainMod, D, exec, pkill rofi || rofi -show drun"
+        "$mainMod, PERIOD, exec, bemoji" # Using rofi
+        "$mainMod, W, exec, wallpaper-picker"
+        "$mainMod SHIFT, C, exec, rofi -show calc"
+        "$mainMod SHIFT, P, exec, rofi-pass"
+        ### clipboard manager
+        "$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy"
+
+        ## screenshot
         ",Print, exec, screenshot --copy"
         "$mainMod, Print, exec, screenshot --save"
         "$mainMod SHIFT, Print, exec, screenshot --swappy"
 
-        # switch focus
+        ## switch focus
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
@@ -189,7 +209,7 @@
         "$mainMod, k, movefocus, u"
         "$mainMod, l, movefocus, r"
 
-        # switch workspace
+        ## switch workspace
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
         "$mainMod, 3, workspace, 3"
@@ -201,7 +221,7 @@
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
 
-        # same as above, but switch to the workspace
+        ## same as above, but switch to the workspace
         "$mainMod SHIFT, 1, movetoworkspacesilent, 1" # movetoworkspacesilent
         "$mainMod SHIFT, 2, movetoworkspacesilent, 2"
         "$mainMod SHIFT, 3, movetoworkspacesilent, 3"
@@ -214,7 +234,7 @@
         "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
         "$mainMod CTRL, c, movetoworkspace, empty"
 
-        # window control
+        ## window control
         "$mainMod SHIFT, left, movewindow, l"
         "$mainMod SHIFT, right, movewindow, r"
         "$mainMod SHIFT, up, movewindow, u"
@@ -233,27 +253,15 @@
         "$mainMod CTRL, k, resizeactive, 0 -80"
         "$mainMod CTRL, l, resizeactive, 80 0"
 
-        "$mainMod ALT, left, moveactive,  -80 0"
-        "$mainMod ALT, right, moveactive, 80 0"
-        "$mainMod ALT, up, moveactive, 0 -80"
-        "$mainMod ALT, down, moveactive, 0 80"
-        "$mainMod ALT, h, moveactive,  -80 0"
-        "$mainMod ALT, j, moveactive, 0 80"
-        "$mainMod ALT, k, moveactive, 0 -80"
-        "$mainMod ALT, l, moveactive, 80 0"
-
-        # media and volume controls
+        ## media and volume controls
         # ",XF86AudioMute,exec, pamixer -t"
         ",XF86AudioPlay,exec, playerctl play-pause"
         ",XF86AudioNext,exec, playerctl next"
         ",XF86AudioPrev,exec, playerctl previous"
         ",XF86AudioStop,exec, playerctl stop"
 
-        "$mainMod, mouse_down, workspace, e-1"
-        "$mainMod, mouse_up, workspace, e+1"
-
-        # clipboard manager
-        "$mainMod, V, exec, cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy"
+        "$mainMod, mouse_down, workspace, e+1"
+        "$mainMod, mouse_up, workspace, e-1"
       ];
 
       # # binds active in lockscreen
@@ -306,7 +314,7 @@
         "opacity 1.0 override 1.0 override, class:(Unity)"
         "opacity 1.0 override 1.0 override, class:(brave)"
         "opacity 1.0 override 1.0 override, class:(okular)"
-        "workspace 1, class:^(brave)$"
+        "workspace 1, class:^(zen)$"
         "workspace 3, class:^(okular)$"
         "workspace 4, class:^(Gimp-2.10)$"
         "workspace 5, class:^(Spotify)$"
@@ -350,7 +358,6 @@
         "bordersize 0, floating:0, onworkspace:f[1]"
         "rounding 0, floating:0, onworkspace:f[1]"
 
-        "maxsize 1111 700, floating: 1"
         "center, floating: 1"
 
         # Remove context menu transparency in chromium based apps
