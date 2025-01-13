@@ -28,6 +28,8 @@
     # UoE VPN and CIFS
     ../common/optional/fortivpn.nix
     ../common/optional/uoe-cifs.nix
+
+    ./fprint-auth.nix
   ];
 
   mySystem.info = {
@@ -69,13 +71,6 @@
       HandleLidSwitch=suspend
     '';
   };
-
-  # TODO: move to module that enables fprintd-reader
-  services.fprintd.enable = true;
-  # Only enabled when GDM is not used
-  #security.pam.services = {
-  #  login.fprintAuth = true;
-  #};
 
   networking = {
     hostName = config.mySystem.info.hostname;
