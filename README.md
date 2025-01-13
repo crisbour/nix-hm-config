@@ -41,6 +41,8 @@ experimental-features = nix-command flakes
 - [ ] I like swaylock better than hyprlock
 - [ ] pinentry-ghome3 doesn't work in hyprland, even with hyprpolkitagent and
 gcr enabled; using pinentry-qt for now, which looks bad
+- [ ] I quite like how JManch puts assertions to check his config and document
+what has been working and what not
 
 ## Resources
 [al-color]: https://github.com/toggle-corp/alacritty-colorscheme
