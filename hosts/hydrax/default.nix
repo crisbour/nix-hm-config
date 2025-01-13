@@ -22,7 +22,7 @@
   # FIXME: Deassert automatic timezone
   #time.timeZone = "Europe/Bucharest";
 
-  networking.firewall.allowedTCPPorts = [ 80 443 22 8787 ]; # Allow traffic on port 80 and hhtps on 443
+  networking.firewall.allowedTCPPorts = [ 22 ]; # Allow ssh
 
   services.tailscale = {
     enable = true;
