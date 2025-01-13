@@ -36,8 +36,16 @@ Flakes are an experimental feature in older realease. In order to make use of th
 experimental-features = nix-command flakes
 ```
 
+### TODO
+
+- [ ] I like swaylock better than hyprlock
+- [ ] pinentry-ghome3 doesn't work in hyprland, even with hyprpolkitagent and
+gcr enabled; using pinentry-qt for now, which looks bad
+
 ## Resources
 [al-color]: https://github.com/toggle-corp/alacritty-colorscheme
+- [Nix builtins and lib
+  ref](https://teu5us.github.io/nix-lib.html#nixpkgs-library-functions)
 
 ## TODO
 
