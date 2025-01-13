@@ -20,13 +20,11 @@ in {
     shell = pkgs.zsh;
     #initialPassword = "ChangeMe1";
     extraGroups = ifTheyExist [
-      "docker"
       "wheel"
       "networkmanager"
       "i2c"
       "wireshark"
       "wheel"
-      "lxd"
       "libvirtd"
       "video"
     ];
