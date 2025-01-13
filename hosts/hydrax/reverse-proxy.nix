@@ -79,10 +79,8 @@ in
           };
 
           taskchampion = {
-            entryPoints = [ "web" "websecure" ];
-            # TODO: Extract domain from config.server.domain
-            rule = "Host(`task.adventure-bytes.com`)";
-            tls = true;
+            entryPoints = [ "websecure" ];
+            rule = "Host(`task.${domain}`)";
             service = "taskchampion";
           };
         };
@@ -90,9 +88,11 @@ in
           website.loadBalancer.servers = [ { url = "http://localhost:80"; } ];
           mikrotik.loadBalancer.servers = [ { url = "http://192.168.88.1:80"; } ];
           # FIXME:
-          lxd.loadBalancer.servers = [ { url = "https://127.0.0.1:8443"; } ];
-          taskchampion.loadBalancer.servers = let port = config.services.taskchampion-sync-server.port; in
-            [ { url = "http://127.0.0.1:${builtins.toString port}"; } ];
+          lxd.loadBalancer.servers = [ { url = "https://localhost:8443"; } ];
+          taskchampion.loadBalancer.servers =
+            [ {
+              url = "http://localhost:${builtins.toString config.services.taskchampion-sync-server.port}";
+            }];
         };
       };
     };
