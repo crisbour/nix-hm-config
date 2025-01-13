@@ -291,6 +291,11 @@ in
       );
     };
 
+    # Make sure storage-pools dir exists if we choose to mount at different location than /var/lib/incus
+    systemd.tmpfiles.rules = [
+      "d ${cfg.dataDir}/storage-pools 0755 incus incus-admin -"
+    ];
+
     #services.nginx.virtualHosts.incus = lib.mkIf cfg.enableUI (
     #  svc.mkNginxVHost {
     #    host = "incus";

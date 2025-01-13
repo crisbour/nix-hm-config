@@ -34,6 +34,7 @@
     enable = true;
     enableServer = true;
     enableUI = true;
+    dataDir = "/data/incus";
   };
 
   services.openssh = {
