@@ -21,32 +21,23 @@
   };
   services.keybase.enable = true;
 
-  # Enable u2f over USB, for yubikey auth in browser
-  #hardware.u2f.enable = true;
-
   environment.systemPackages = with pkgs; [
-    gnupg
     yubikey-personalization
+    yubikey-manager
+    yubico-pam
+    # GUI
     yubikey-personalization-gui
     yubioath-flutter
-    yubikey-manager
   ];
 
-  environment.shellInit = ''
-    gpg-connect-agent /bye
-    export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-  '';
+  # add udev rules for yubikey personalization
+  services.udev.packages = with pkgs; [ yubikey-personalization ];
 
-  services.udev.packages = with pkgs; [
-    yubikey-personalization
-  ];
+   # enable smartcard support
+  hardware.gpgSmartcards.enable = true;
 
-  security.pam.u2f = {
-    enable = true;
-    interactive = true;
-    control = "sufficient";
-    cue = true;
-  };
+  # enable polkit to use yubikey for authentication
+  security.polkit.enable = true;
 
   security.pam.services = {
     login.u2fAuth = false;
