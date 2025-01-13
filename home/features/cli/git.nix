@@ -72,7 +72,7 @@ in
         autoSetupRemote = true;
       };
 
-      commit.gpgsign = true;
+      commit.gpgsign = !builtins.isNull user-info.gpg.signKey;
       #gpg.format = "ssh";
 
       #protocol.keybase.allow = "always";

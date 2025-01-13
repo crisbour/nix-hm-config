@@ -6,7 +6,7 @@
 
     # Custom plugins
     ## Spade-lang syntax higlight
-    ./spade
+    #./spade
     ./codal
 
     # Local Environment Configuration and Integration

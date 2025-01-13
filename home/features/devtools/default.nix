@@ -10,6 +10,7 @@ in {
     ./latex.nix
     ./hardware-design.nix
     ./julia
+    ../neovim/plugins/spade
   ];
 
   options = {
