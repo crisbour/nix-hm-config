@@ -4,10 +4,12 @@
   imports = [
     ./barbar.nix
 
-    # Custom plugins
-    ## Spade-lang syntax higlight
+    # Languages
+    ./quarto.nix
+    ## Custom plugins
+    #./codal
+    ### Spade-lang syntax higlight
     #./spade
-    ./codal
 
     # Local Environment Configuration and Integration
     ./vim-autoswap.nix
@@ -38,6 +40,7 @@
   programs.neovim.plugins = (with pkgs.vimPlugins; [
     # Basic
     plenary-nvim
+    which-key-nvim
 
     # Local Environment Configuration and Integration
     direnv-vim
@@ -101,43 +104,6 @@
 
     # ------ languages -------
     vim-just
-    otter-nvim
-
-    {
-      type = "lua";
-      plugin = quarto-nvim;
-      config = ''
-        local quarto = require('quarto')
-        quarto.setup({
-          lspFeatures = {
-            enabled = true,
-            languages = { "r", "python", "julia", "bash", "lua", "html", "dot", "javascript", "typescript", "ojs" },
-            chunks = "all",
-            diagnostics = {
-              enabled = true,
-              triggers = { "BufWritePost" },
-            },
-            completion = {
-              enabled = true,
-            },
-          },
-          codeRunner = {
-            enabled = true,
-            default_method = "molten",
-          },
-        })
-
-        local runner = require("quarto.runner")
-        -- vim.keymap.set("n", "<leader>rc", runner.run_cell,  { desc = "run cell", silent = true })
-        -- vim.keymap.set("n", "<leader>ra", runner.run_above, { desc = "run cell and above", silent = true })
-        -- vim.keymap.set("n", "<leader>rA", runner.run_all,   { desc = "run all cells", silent = true })
-        -- vim.keymap.set("n", "<leader>rl", runner.run_line,  { desc = "run line", silent = true })
-        -- vim.keymap.set("v", "<leader>r",  runner.run_range, { desc = "run visual range", silent = true })
-        -- vim.keymap.set("n", "<leader>RA", function()
-        --   runner.run_all(true)
-        --   end, { desc = "run all cells of all languages", silent = true })
-      '';
-    }
 
     {
       type = "lua";

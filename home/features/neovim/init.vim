@@ -8,7 +8,8 @@ set showbreak=↩\
 noremap j gj
 noremap k gk
 
-syntax on
+" WARN: Not sure why, but "syntax on" breaks quarto-nvim/otter-nvim
+"syntax on
 filetype plugin indent on
 
 " Tabs

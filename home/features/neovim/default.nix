@@ -16,21 +16,9 @@ with lib; {
   programs.neovim = {
     enable = true;
 
-    # neovim 0.10, so we have native snippets available
-    # have to use -unwrapped or it fails to build with:
-    #   /nix/store/klvl86nr4wj5q9r351jnq0l2nway8vkj-neovim-0.10.0/bin/nvim-python3: Permission denied
-    # https://github.com/NixOS/nixpkgs/issues/137829
-    package = pkgs.unstable.neovim-unwrapped;
-
     extraConfig = concatMapStringsSep "\n\n" builtins.readFile [
       ./init.vim
       ./filetype-specific-configs.vim
-    ];
-
-    # TODO: Check if this is necessary
-    extraPackages = with pkgs; [
-      bat
-      ripgrep
     ];
 
     viAlias = true;
@@ -39,7 +27,7 @@ with lib; {
 
     withPython3 = true;
     withNodeJs = true;
-    #withRuby = true;
+    withRuby = true;
   };
 
   # TODO:Add spelling suggestions

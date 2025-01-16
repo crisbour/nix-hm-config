@@ -11,7 +11,6 @@ in {
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter-parsers.bash)
       (nvim-treesitter-parsers.c)
-      # TODO Replace with https://github.com/folke/todo-comments.nvim
       (nvim-treesitter-parsers.comment)
       (nvim-treesitter-parsers.cpp)
       (nvim-treesitter-parsers.diff)
@@ -54,6 +53,9 @@ in {
         plugin = nvim-treesitter;
         config = ''
           require('nvim-treesitter.configs').setup({
+            indent = {
+              enable = true
+            },
             highlight = {
               enable = true,
               additional_vim_regex_highlighting = false,

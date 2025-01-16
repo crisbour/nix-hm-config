@@ -3,8 +3,6 @@
     nvim-web-devicons
     {
       plugin = barbar-nvim;
-      # TODO: remap with "A-" instead which is easier to access
-      # Blocker: zellij mappings
       config = ''
         " Re-order to previous/next
         nnoremap <silent> <A-<> <Cmd>BufferMovePrevious<CR>
