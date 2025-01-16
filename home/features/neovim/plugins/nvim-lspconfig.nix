@@ -1,10 +1,12 @@
 { pkgs, ... }:
 {
-  home.packages = [
+  home.packages = with pkgs; [
+    ltex-ls
   ];
   programs.neovim = {
     extraPackages = with pkgs; [
       lua-language-server
+      vim-language-server
       #spade-language-server
       nixd # Nix language server
       rust-analyzer

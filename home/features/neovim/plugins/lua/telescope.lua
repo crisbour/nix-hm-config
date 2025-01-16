@@ -1,5 +1,4 @@
 -- sebnow telscope setup: https://github.com/sebnow/configs/blob/5eeac9291b94aecc1031ac68fe51c8e2c553914a/nix/home-manager/neovim/lua/sebnow/telescope.lua
-local wk = require("which-key")
 local telescope = require("telescope")
 local builtin = require("telescope.builtin")
 local sorters = require("telescope.sorters")
@@ -101,4 +100,3 @@ vim.keymap.set("n", "<localleader>l",  builtin.resume,                { desc = "
 vim.keymap.set("n", "<localleader>ws", builtin.lsp_workspace_symbols, { desc = "Explore workspace symbols" })
 vim.keymap.set("n", "<localleader>ds", builtin.lsp_document_symbols,  { desc = "Explore document symbols" })
 
-wk.register(mappings, opts)
