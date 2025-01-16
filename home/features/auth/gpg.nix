@@ -22,6 +22,7 @@ in {
       # TODO: Replace with: default-key = user-info.gpg.masterKey;
       # in order to allow multiple hosts definitions
       default-key = user-info.gpg.masterKey;
+      default-recipient = "0xAEF4A543011E8AC1";
       # No comments in signature
       no-comments = false;
       # No version in output
