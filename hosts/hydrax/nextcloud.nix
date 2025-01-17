@@ -5,8 +5,7 @@
   services = {
     nextcloud = {
       enable = true;
-      #hostName = "cloud.adventure-bytes.com";
-      hostName = "localhost";
+      hostName = "nc.adventure-bytes.com";
       # Need to manually increment with every major upgrade.
       package = pkgs.nextcloud30;
       # Let NixOS install and configure the database automatically.
@@ -15,7 +14,7 @@
       configureRedis = true;
       # Increase the maximum file upload size.
       maxUploadSize = "16G";
-      #https = true;
+      https = true;
       autoUpdateApps.enable = true;
       extraAppsEnable = true;
       extraApps = with config.services.nextcloud.package.packages.apps; {
@@ -32,16 +31,19 @@
       };
       settings = {
         trusted_domains = [
-          "cloud.adventure-bytes.com"
+          "nc.adventure-bytes.com"
           "adventure-bytes.com"
         ];
-      #  overwriteProtocol = "https";
+        trusted_proxies = [ "127.0.0.1" ];
+        overwriteProtocol = "https";
         default_phone_region = "UK";
       };
       config = {
-        dbtype = "pgsql";
-        dbuser = "nextcloud";
-        dbname = "nextcloud";
+        dbtype = "mysql";
+        #dbtype = "pgsql";
+        #dbuser = "nextcloud";
+        #dbname = "nextcloud";
+        #dbPassFile = "${pkgs.writeText "adminpas" "test1234#43?"}";
         adminuser = "admin";
         adminpassFile = "${pkgs.writeText "adminpas" "test1234#43?"}";
       };
@@ -49,11 +51,12 @@
       phpOptions."opcache.interned_strings_buffer" = "16";
     };
     # Nightly database backups.
-    postgresqlBackup = {
-     enable = true;
-     startAt = "*-*-* 01:15:00";
-    };
-    nginx.virtualHosts."localhost".listen = [ { addr = "127.0.0.1"; port = 8002; } ];
+    #postgresqlBackup = {
+    # enable = true;
+    # startAt = "*-*-* 01:15:00";
+    #};
+    # https://github.com/firecat53/nixos/blob/e0b04757e8f3e591359234215214ff5554af997a/hosts/homeserver/services/nextcloud.nix#L25
+    nginx.virtualHosts."localhost".listen = [ { addr = "127.0.0.1"; port = 8180; } ];
   };
   # TODO Migrate to nginx as I have troubles working with traefik: https://carlosvaz.com/posts/the-holy-grail-nextcloud-setup-made-easy-by-nixos/
 }

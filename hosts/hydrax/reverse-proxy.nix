@@ -86,7 +86,8 @@ in
 
           nextcloud = {
             entryPoints = [ "websecure" ];
-            rule = "Host(`cloud.${domain}`)";
+            rule = "Host(`nc.${domain}`)";
+            middlewares = ["headers"];
             service = "nextcloud";
             tls = true; # Enable TLS
           };
@@ -101,9 +102,25 @@ in
               url = "http://localhost:${builtins.toString config.services.taskchampion-sync-server.port}";
             }];
           nextcloud.loadBalancer.servers = [
-            { url = "http://localhost:8002"; }
-            #{ url = "https://localhost:8002"; }
+            { url = "http://localhost:8180"; }
           ];
+        };
+        # https://github.com/firecat53/nixos/blob/e0b04757e8f3e591359234215214ff5554af997a/hosts/vps/services/traefik.nix#L75
+        middlewares = {
+          headers = {
+            headers = {
+              browserxssfilter = true;
+              contenttypenosniff = true;
+              customframeoptionsvalue = "SAMEORIGIN";
+              forcestsheader = true;
+              framedeny = true;
+              sslhost = "adventure-bytes.com";
+              sslredirect = true;
+              stsincludesubdomains = true;
+              stspreload = true;
+              stsseconds = "315360000";
+            };
+          };
         };
       };
     };
