@@ -83,6 +83,7 @@
     playerctl                         # controller for media players
     poweralertd
     ripgrep    # Better grep
+    sops
     tdf                               # cli pdf viewg
     tig        # Awesome Text based git
     tre        # Improved `tree` written in Rust TODO: Add alias?
