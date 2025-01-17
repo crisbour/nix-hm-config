@@ -83,6 +83,13 @@ in
             rule = "Host(`task.${domain}`)";
             service = "taskchampion";
           };
+
+          nextcloud = {
+            entryPoints = [ "websecure" ];
+            rule = "Host(`cloud.${domain}`)";
+            service = "nextcloud";
+            tls = true; # Enable TLS
+          };
         };
         services = {
           website.loadBalancer.servers = [ { url = "http://localhost:80"; } ];
@@ -93,6 +100,10 @@ in
             [ {
               url = "http://localhost:${builtins.toString config.services.taskchampion-sync-server.port}";
             }];
+          nextcloud.loadBalancer.servers = [
+            { url = "http://localhost:8002"; }
+            #{ url = "https://localhost:8002"; }
+          ];
         };
       };
     };
