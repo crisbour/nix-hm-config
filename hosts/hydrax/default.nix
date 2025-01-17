@@ -51,6 +51,8 @@
     };
   };
 
+  nix.settings.trusted-users = [ "root" "@wheel" ];
+
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGySvc1K+NCd+b/az6ZhtscwM3XO0hnLnB/CWavpow5T"
   ];

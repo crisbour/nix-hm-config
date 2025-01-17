@@ -35,6 +35,7 @@ in
       cores = 0;
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
+      trusted-users = [ config.home.username ];
       # NOTE: Do we need explicit use of store cache
       #substituters = "https://cache.nixos.org";
       #trusted-public-keys = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
