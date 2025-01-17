@@ -5,11 +5,12 @@
   services = {
     nextcloud = {
       enable = true;
-      hostName = "nc.adventure-bytes.com";
+      home = "/data/nextcloud";
+      hostName = "nix-nextcloud";
       # Need to manually increment with every major upgrade.
       package = pkgs.nextcloud30;
       # Let NixOS install and configure the database automatically.
-      #database.createLocally = true;
+      database.createLocally = true;
       # Let NixOS install and configure Redis caching automatically.
       configureRedis = true;
       # Increase the maximum file upload size.
@@ -34,18 +35,16 @@
           "nc.adventure-bytes.com"
           "adventure-bytes.com"
         ];
-        trusted_proxies = [ "127.0.0.1" ];
+        trusted_proxies = [ "localhost" "127.0.0.1" ];
         overwriteProtocol = "https";
         default_phone_region = "UK";
       };
       config = {
-        dbtype = "mysql";
-        #dbtype = "pgsql";
-        #dbuser = "nextcloud";
-        #dbname = "nextcloud";
-        #dbPassFile = "${pkgs.writeText "adminpas" "test1234#43?"}";
+        dbtype = "pgsql";
+        dbname = "nextcloud";
+        dbuser = "nextcloud";
         adminuser = "admin";
-        adminpassFile = "${pkgs.writeText "adminpas" "test1234#43?"}";
+        adminpassFile = "${pkgs.writeText "admin-pass" "test1234#43?"}";
       };
       # Suggested by Nextcloud's health check.
       phpOptions."opcache.interned_strings_buffer" = "16";
@@ -56,7 +55,9 @@
     # startAt = "*-*-* 01:15:00";
     #};
     # https://github.com/firecat53/nixos/blob/e0b04757e8f3e591359234215214ff5554af997a/hosts/homeserver/services/nextcloud.nix#L25
-    nginx.virtualHosts."localhost".listen = [ { addr = "127.0.0.1"; port = 8180; } ];
+    nginx.virtualHosts."nix-nextcloud".listen = [ { addr = "127.0.0.1"; port = 8180; } ];
   };
-  # TODO Migrate to nginx as I have troubles working with traefik: https://carlosvaz.com/posts/the-holy-grail-nextcloud-setup-made-easy-by-nixos/
+
+  # TODO: Alternative, migrate to caddy: https://github.com/diogotcorreia/dotfiles/blob/7abc85963e2e70505565a9566b3b18043fb6a65c/hosts/hera/nextcloud.nix#L67
+  # Latest working setup inspired from: https://nwright.tech/posts/nixos-nextcloud-setup/
 }

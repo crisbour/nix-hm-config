@@ -47,6 +47,7 @@ in
       certificatesResolvers.letsencrypt.acme = {
         # TODO: Setup email service for this domain to keep my personal email clean
         email = "bourceanu_cristi@yahoo.com";
+        acceptTerms = true;
         storage = "${config.services.traefik.dataDir}/acme.json";
         httpChallenge.entryPoint = "web";
       };
@@ -85,11 +86,9 @@ in
           };
 
           nextcloud = {
-            entryPoints = [ "websecure" ];
+            entryPoints = [ "web" "websecure" ];
             rule = "Host(`nc.${domain}`)";
-            middlewares = ["headers"];
             service = "nextcloud";
-            tls = true; # Enable TLS
           };
         };
         services = {
@@ -102,7 +101,7 @@ in
               url = "http://localhost:${builtins.toString config.services.taskchampion-sync-server.port}";
             }];
           nextcloud.loadBalancer.servers = [
-            { url = "http://localhost:8180"; }
+            { url = "http://127.0.0.1:8180"; }
           ];
         };
         # https://github.com/firecat53/nixos/blob/e0b04757e8f3e591359234215214ff5554af997a/hosts/vps/services/traefik.nix#L75
