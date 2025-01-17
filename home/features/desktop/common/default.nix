@@ -19,6 +19,7 @@ in
     #./font.nix
 
     ./gui/remote.nix
+    ./kitty.nix
 
     #./calendar
 
