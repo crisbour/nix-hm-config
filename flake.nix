@@ -153,10 +153,5 @@
           };
         };
       };
-
-      # TODO: Port my NixOS configs to this repo as well
-      #nixosConfigurations = {
-      #  home = mkNixosConfiguration ./hosts/home.nix;
-      #};
     };
 }
