@@ -45,8 +45,6 @@ in {
       with-fingerprint = true;
       # Enable smartcard
       use-agent = true;
-      # Disable recipient key ID in messages
-      throw-keyids = true;
     };
     scdaemonSettings = {
       disable-ccid = true;
