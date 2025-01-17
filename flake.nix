@@ -21,10 +21,12 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    # TODO: Remove nixos-generators and iso image gen
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    flake-utils.url = "github:numtide/flake-utils";
     # NixOS WSL Support
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
@@ -39,7 +41,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
-    flake-utils.url = "github:numtide/flake-utils";
+    # For accessing `deploy-rs`'s utility Nix functions
+    deploy-rs = {
+      url = "github:serokell/deploy-rs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     nixgl = {
       url = "github:guibou/nixGL";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -83,7 +89,7 @@
       url = "github:emmanuelrosa/erosanix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
+    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
     waveforms = {
       url = "github:liff/waveforms-flake";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -96,7 +102,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, nixos-generators, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, deploy-rs, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -115,6 +121,12 @@
       });
       nixGlOverlay = { ... }: {nixpkgs.overlays = [nixgl.overlay];};
       alacritty-theme-Overlay = { config, pkgs, ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
+      deploy-rs-cache-enable = { pkgs, ... }: {
+        nixpkgs.overlays = [
+          deploy-rs.overlay # or deploy-rs.overlays.default
+          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+        ];
+      };
       #nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration (rec {
@@ -125,6 +137,7 @@
           alacritty-theme-Overlay
           # TODO Add nixGlOverlay only to non NixOS
           nixGlOverlay
+          deploy-rs-cache-enable
           #nurOverlay
         ];
         extraSpecialArgs = {
@@ -158,10 +171,6 @@
       };
 
       nixosConfigurations = {
-         xps = lib.nixosSystem {
-          modules = [./hosts/xps];
-          specialArgs = { inherit inputs outputs; };
-        };
         precision = lib.nixosSystem {
           modules = [./hosts/precision];
           specialArgs = { inherit inputs outputs; };
@@ -183,7 +192,20 @@
           ];
           specialArgs = { inherit inputs outputs; };
         };
+
       };
 
+      deploy.nodes.hydrax = {
+        hostname = "hydrax.go.ro";
+        profiles.system = {
+          sshUser = "root";
+          sshOpts = [ "-p 5022" ];
+          user = "root";
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hydrax;
+        };
+      };
+
+      # This is highly advised, and will prevent many possible mistakes
+      #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
