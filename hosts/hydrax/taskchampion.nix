@@ -6,21 +6,15 @@
     port = 8001;
   };
 
-  #services.traefik.dynamicConfigOptions = {
-  #  http = {
-  #    taskchampion = {
-  #      entryPoints = [ "web" "websecure" ];
-  #      # TODO: Extract domain from config.server.domain
-  #      rule = "Host(`task.adventure-bytes.com`)";
-  #      tls = true;
-  #      service = "taskchampion";
-  #    };
-  #  };
-  #  services =
-  #  {
-  #    taskchampion.loadBalancer.servers = let port = config.services.taskchampion-sync-server.port; in
-  #      [ { url = "http://127.0.0.1:${builtins.toString port}"; } ];
-  #  };
-  #};
+  services.taskserver = {
+    enable = true;
+    dataDir = "/data/taskserver";
+    ipLog = true;
+    listenHost = "::";
+    #listenPort = 8002;
+    fqdn = "task2.adventure-bytes.com";
+    organisations.nexus.users = [ "cristi" ];
+  };
 
+  networking.firewall.allowedTCPPorts = [ 53589 ];
 }
