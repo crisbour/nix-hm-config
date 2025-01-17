@@ -81,10 +81,19 @@ report._reviewed.columns=uuid
 report._reviewed.sort=reviewed+,modified+
 report._reviewed.filter=( reviewed.none: or reviewed.before:now-6days ) and ( +PENDING or +WAITING )
 
-sync.server.url=https://task.adventure-bytes.com
-sync.server.client_id=f359942d-f3a3-4924-8698-994c5343353a
-# TODO: Generate another secret and store it in sops
-sync.encryption_secret=Thuash4f
+# For taskwarrior3 sync
+#sync.server.url=https://task.adventure-bytes.com
+#sync.server.client_id=f359942d-f3a3-4924-8698-994c5343353a
+## TODO: Generate another secret and store it in sops
+#sync.encryption_secret=Thuash4f
+
+# For taskwarrior2 taskserver
+taskd.server=task2.adventure-bytes.com:53589
+taskd.certificate=~/.task/nexus/cristi/public.cert
+taskd.credentials=nexus/cristi/4b9a9224-3096-4a85-aa5c-4ea2e7181984
+taskd.key=~/.task/nexus/cristi/private.key
+taskd.ca=~/.task/nexus/ca.cert
+#taskd.trust=ignore hostname
 
 # Set on primary client
 recurrence=on
