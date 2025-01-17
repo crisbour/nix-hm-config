@@ -18,6 +18,7 @@
     #./lxd-image-server.nix
     ./xserver.nix
     ./taskchampion.nix
+    ./nextcloud.nix
   ];
 
   # FIXME: Deassert automatic timezone
