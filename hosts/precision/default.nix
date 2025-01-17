@@ -46,7 +46,7 @@
     useRoutingFeatures = "client";
   };
 
-  services.incus = {
+  mySystem.incus = {
     enable = true;
     # Needed to let remote local: push to another remote
     enableServer = true;
