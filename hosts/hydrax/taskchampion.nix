@@ -11,7 +11,6 @@
     dataDir = "/data/taskserver";
     ipLog = true;
     listenHost = "::";
-    #listenPort = 8002;
     fqdn = "task2.adventure-bytes.com";
     organisations.nexus.users = [ "cristi" ];
   };

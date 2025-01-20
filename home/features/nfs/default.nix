@@ -3,6 +3,10 @@ let
   mount_directory = "${config.home.homeDirectory}/OneDrive";
 in
 {
+  imports = [
+    ./nextcloud.nix
+  ];
+
   home.packages = with pkgs; [
     fuse
     rclone
