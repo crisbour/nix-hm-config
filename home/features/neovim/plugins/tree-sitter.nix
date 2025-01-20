@@ -43,6 +43,7 @@ in {
       (nvim-treesitter-parsers.vimdoc)
       (nvim-treesitter-parsers.xml)
       (nvim-treesitter-parsers.yaml)
+      (nvim-treesitter-parsers.zig)
 
       vim-matchup # Scope jump to begin and end with `g%`, `[%`, `]%`, `z%`
 

@@ -52,6 +52,7 @@ in {
         glib
         rustc
         cargo
+        zig
 
         # Kotlin + Java OpenJDK for execution
         kotlin

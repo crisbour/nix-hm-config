@@ -14,6 +14,7 @@
       texlab
       ltex-ls
       matlab-language-server
+      zls
     ] ++ (with pkgs.nodePackages; [
       pyright
     ]);
@@ -99,6 +100,10 @@
 
         lspconfig.texlab.setup {
           cmd = { "${pkgs.texlab}/bin/texlab" },
+          capabilities = capabilities,
+        }
+
+        lspconfig.zls.setup {
           capabilities = capabilities,
         }
 
