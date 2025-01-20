@@ -10,6 +10,7 @@ in {
     ./latex.nix
     ./hardware-design.nix
     ./julia
+    ./openssl-fix.nix
     #../neovim/plugins/spade
   ];
 
