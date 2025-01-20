@@ -12,6 +12,8 @@ in
 
   # TODO: Find more similar setup + Tailscale at: https://github.com/iggut/nixos-config/blob/8dfc1038be8fa5d8cb044b79fd5853b888d43c28/host/common/services/traefik/thor.nix#L24
 
+  services.nginx.defaultHTTPListenPort = 8080;
+
   services.traefik = {
     enable = true;
 
@@ -34,7 +36,10 @@ in
 
         websecure = {
           address = ":443";
-          http.tls.certResolver = "letsencrypt";
+          http.tls.domains = {
+            main = domain;
+            sans = [ "*.${domain}" ];
+          };
         };
       };
 
@@ -47,8 +52,10 @@ in
       certificatesResolvers.letsencrypt.acme = {
         # TODO: Setup email service for this domain to keep my personal email clean
         email = "bourceanu_cristi@yahoo.com";
-        acceptTerms = true;
         storage = "${config.services.traefik.dataDir}/acme.json";
+        dnsChallenge = {
+          provider = "porkbun";
+        };
         httpChallenge.entryPoint = "web";
       };
 
@@ -123,5 +130,12 @@ in
         };
       };
     };
+  };
+
+  # TODO: Use porkbun api key from sops;
+  # How to enc/dec without gpg?
+  # If I use deploy-rs that will work, however, sometimes I need to test directly on the server
+  systemd.services.traefik.serviceConfig = {
+    EnvironmentFile = [ "/data/secrets/porkbun/acme-credentials" ];
   };
 }
