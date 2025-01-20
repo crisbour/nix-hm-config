@@ -56,9 +56,6 @@ in
           "https://github.com/crisbour/"
         ];
       };
-      url."ssh://git@github.com" = lib.mkIf (!builtins.isNull user-info.gpg.signKey) {
-        insteadOf = "https://github.com";
-      };
 
       init.defaultBranch = "main";
 
