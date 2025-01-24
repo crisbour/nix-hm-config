@@ -10,6 +10,7 @@
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.lanzaboote.nixosModules.lanzaboote
 
     ./hardware-configuration.nix
 
@@ -44,6 +45,23 @@
   };
 
   networking.firewall.allowedTCPPorts = [ 22 ];
+
+  environment.systemPackages = with pkgs; [
+    # For debugging and troubleshooting Secure Boot.
+    sbctl
+    networkmanagerapplet
+  ];
+
+  # Lanzaboote currently replaces the systemd-boot module.
+  # This setting is usually set to true in configuration.nix
+  # generated at installation time. So we force it to false
+  # for now.
+  boot.loader.systemd-boot.enable = lib.mkForce false;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/var/lib/sbctl";
+  };
 
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
@@ -81,7 +99,4 @@
   # Needed for udiskie in HM
   services.udisks2.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    networkmanagerapplet
-  ];
 }

@@ -46,7 +46,7 @@
                 type = "btrfs";
                 subvolumes = let
                   # NOTE: x-gvfs-hide is useful to hiding the route of such mouting points in GUI
-                  mountOptions = ["compress=zstd" "noatime" ];
+                  mountOptions = ["compress=zstd" "noatime" "nodiratime" ];
                 in {
                   # TODO: The root can go away if we opt for impermanence
                   "@root" = {
