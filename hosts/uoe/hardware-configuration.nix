@@ -51,22 +51,6 @@
     #"mem_sleep_default=s2idle"
   ];
 
-  fileSystems = {
-    "/boot" = {
-      device = "/dev/disk/by-label/ESP";
-      fsType = "vfat";
-    };
-  };
-
-  swapDevices = [
-    {
-      device = "/swap/swapfile";
-      size = 32768;
-      #options = [ "sw" ];
-    }
-  ];
-
-
   nixpkgs.hostPlatform.system = "x86_64-linux";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
