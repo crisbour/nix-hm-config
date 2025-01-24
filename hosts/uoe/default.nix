@@ -8,7 +8,7 @@
 {
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
-    inputs.hardware.nixosModules.common-gpu-nvidia
+    #inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
 
