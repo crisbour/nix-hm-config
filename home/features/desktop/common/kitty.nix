@@ -3,8 +3,8 @@
     enable = true;
     themeFile = "gruvbox-dark-hard";
     font = {
-      name = "Input";
-      size = 14;
+      name = "Fira Code SemiBold";
+      size = 12;
     };
     # Inspired from https://github.com/maximbaz/dotfiles/blob/e764eb7f0592547bcc0890c7a704bda30b3296a8/modules/common/kitty.nix#L2
 
@@ -25,6 +25,7 @@
       remember_window_size = false;
       initial_window_width = 1000;
       initial_window_height = 600;
+      confirm_os_window_close=0;
     };
 
     keybindings = {
