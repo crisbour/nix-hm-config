@@ -24,6 +24,8 @@ lint:
 
 gc:
   sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than 7d && sudo nix store gc
+gc-hm:
+  nix-collect-garbage --delete-older-than 7d
 
 repair:
   sudo nix-store --verify --check-contents --repair
