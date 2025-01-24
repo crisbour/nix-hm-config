@@ -2,6 +2,8 @@
 {
   home.packages = with pkgs; [
     ltex-ls
+    svls
+    verible
   ];
   programs.neovim = {
     extraPackages = with pkgs; [
@@ -15,6 +17,8 @@
       ltex-ls
       matlab-language-server
       zls
+      svls
+      verible
     ] ++ (with pkgs.nodePackages; [
       pyright
     ]);
@@ -90,6 +94,13 @@
         }
 
         lspconfig.veridian.setup{
+          capabilities = capabilities,
+        }
+
+        lspconfig.svls.setup{
+          capabilities = capabilities,
+        }
+        lspconfig.verible.setup{
           capabilities = capabilities,
         }
 
