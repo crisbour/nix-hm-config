@@ -104,6 +104,10 @@
     pkgs.android-udev-rules
     pkgs.ddcutil
   ];
+
+  # Necessary for Fusion360
+  services.flatpak.enable = true;
+
   environment.systemPackages = with pkgs; [
     dcfldd
     ddcutil
