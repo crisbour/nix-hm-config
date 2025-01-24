@@ -33,6 +33,8 @@
 
   services.wluma = {
     enable = true;
+    # FIXME: wluma still in dev, ddcutil doesn't work
+    package = pkgs.unstable.wluma;
     config = ''
       [als.iio]
       path = "/sys/bus/iio/devices"
@@ -46,6 +48,10 @@
       [[keyboard]]
       name = "keyboard-dell"
       path = "/sys/bus/platform/devices/dell-laptop/leds/dell::kbd_backlight"
+
+      #[[output.ddcutil]]
+      #name = "LG HDR 4K"
+      #capturer = "none"
     '';
   };
 }
