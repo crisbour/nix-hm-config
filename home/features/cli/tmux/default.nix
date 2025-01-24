@@ -18,8 +18,8 @@ in
     extraConfig = ''
       set-option -g default-shell ${pkgs.zsh}/bin/zsh
       set-option -sa terminal-features ',${TERM}:RGB'
-      set -g mode-keys emacs
-      set -g status-keys emacs
+      set -g mode-keys vi
+      set -g status-keys vi
 
       bind Escape copy-mode
 
@@ -36,6 +36,9 @@ in
       bind-key K resize-pane -U 5
       bind-key H resize-pane -L 5
       bind-key L resize-pane -R 5
+
+      bind-key m command-prompt -p "move pane to:" "join-pane -t '%%'"
+
     '';
   };
 }
