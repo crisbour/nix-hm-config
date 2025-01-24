@@ -28,6 +28,7 @@ in {
       "libvirtd"
       "video"
       "www-data"
+      "i2c"
     ];
     packages = with pkgs; [
       home-manager

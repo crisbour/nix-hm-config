@@ -97,7 +97,12 @@
   # Needed for udiskie in HM
   services.udisks2.enable = true;
 
+  services.udev.packages = [
+    pkgs.ddcutil
+  ];
   environment.systemPackages = with pkgs; [
+    dcfldd
+    ddcutil
     libsmbios
     dell-command-configure
     networkmanagerapplet

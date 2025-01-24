@@ -37,6 +37,8 @@ in
     nvidiaBusId = "PCI:1:0:0";
   };
 
+  hardware.i2c.enable = true;
+
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
   boot.kernelModules = [
     "kvm"
@@ -48,6 +50,9 @@ in
     "nvidia_drm"
     #"nvidia_uvm" # Required by CUDA: Unified Memory
     "vhost_vsock"
+    "i2c_dev" # Allow i2c control with ddcutil
+    "ddcci"
+    "ddcci-backlight"
   ];
   #boot.blacklistedKernelModules = lib.mkDefault [ "nouveau" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
