@@ -31,6 +31,8 @@ in
   nix = {
     package = lib.mkDefault pkgs.nix;
     settings = {
+      max-jobs = "auto";
+      cores = 0;
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
       # NOTE: Do we need explicit use of store cache
