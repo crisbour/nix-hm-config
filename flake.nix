@@ -17,9 +17,21 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # NixOS WSL Support
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
@@ -74,7 +86,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, flake-utils, nixos-generators, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -131,27 +143,36 @@
         cristi = mkHomeConfiguration ./home/cristi.nix "x86_64-linux";
         work = mkHomeConfiguration ./home/work.nix   "x86_64-linux";
         tiny = mkHomeConfiguration ./home/tiny.nix   "x86_64-linux";
+        uoe = mkHomeConfiguration ./home/uoe.nix   "x86_64-linux";
       };
 
       nixosConfigurations = {
          xps = lib.nixosSystem {
           modules = [./hosts/xps];
-          specialArgs = {
-            inherit inputs outputs;
-          };
+          specialArgs = { inherit inputs outputs; };
         };
         precision = lib.nixosSystem {
           modules = [./hosts/precision];
-          specialArgs = {
-            inherit inputs outputs;
-          };
+          specialArgs = { inherit inputs outputs; };
         };
-        hydrax= lib.nixosSystem {
+        hydrax = lib.nixosSystem {
           modules = [./hosts/hydrax];
-          specialArgs = {
-            inherit inputs outputs;
-          };
+          specialArgs = { inherit inputs outputs; };
+        };
+        uoe = lib.nixosSystem {
+          modules = [./hosts/uoe];
+          specialArgs = { inherit inputs outputs; };
+        };
+
+        iso_secure_boot = lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = [
+            (nixpkgs + "/nixos/modules/installer/cd-dvd/installation-cd-minimal.ni")
+            ./hosts/iso_secure_boot/configuration.nix
+          ];
+          specialArgs = { inherit inputs outputs; };
         };
       };
+
     };
 }
