@@ -25,6 +25,7 @@
             priority = 0;
             size = "700M";
             type = "EF00";
+            bootable = true;
             content = {
               type = "filesystem";
               format = "vfat";
