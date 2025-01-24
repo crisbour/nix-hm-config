@@ -43,5 +43,12 @@
     # Picoquant: /etc/udev/rules.d/99-picoquant.rules                         #
     ###########################################################################
     ATTR{idVendor}=="0e0d", ATTR{idProduct}=="0007", MODE="0666"
+
+    ###########################################################################
+    # i2c-dev for ddcutils
+    ###########################################################################
+    SUBSYSTEM=="i2c-dev", KERNEL=="i2c-[0-9]*", ATTRS{class}=="0x030000", TAG+="uaccess"
+    SUBSYSTEM=="dri", KERNEL=="card[0-9]*", TAG+="uaccess"
+    KERNEL=="i2c-[0-9]*", GROUP="i2c", MODE="0660"
   '';
 }
