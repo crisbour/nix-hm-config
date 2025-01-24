@@ -97,7 +97,11 @@
   # Needed for udiskie in HM
   services.udisks2.enable = true;
 
+
+  programs.adb.enable = true;
+  users.users.cristi.extraGroups = ["adbusers"];
   services.udev.packages = [
+    pkgs.android-udev-rules
     pkgs.ddcutil
   ];
   environment.systemPackages = with pkgs; [
