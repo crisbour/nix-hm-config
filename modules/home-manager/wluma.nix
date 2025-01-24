@@ -71,11 +71,13 @@ in {
         };
         Service = {
           ExecStart = "${pkgs.wluma}/bin/wluma";
-          #PrivateNetwork = true;
+          PrivateNetwork = true;
           PrivateMounts = false;
           Restart = "on-failure";
+          #Environment = "RUST_LOG=debug";
           EnvironmentFile = "-%E/wluma/service.conf";
         };
+        Install.WantedBy = [ "graphical-session.target" ];
       };
   };
 }
