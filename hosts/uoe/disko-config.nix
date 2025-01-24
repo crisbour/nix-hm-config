@@ -22,7 +22,6 @@
         type = "gpt";
         partitions = {
           ESP = {
-            priority = 0;
             size = "700M";
             type = "EF00";
             bootable = true;
@@ -34,7 +33,6 @@
             };
           };
           crypt-root = {
-            priority = 100;
             size = "100%";
             content = {
               type = "luks";
@@ -50,28 +48,28 @@
                   mountOptions = ["compress=zstd" "noatime" "nodiratime" ];
                 in {
                   # TODO: The root can go away if we opt for impermanence
-                  "@root" = {
+                  "/root" = {
                     mountpoint = "/";
                     inherit mountOptions;
                   };
-                  "@persist" = {
+                  "/persist" = {
                     mountpoint = "/persist";
                     inherit mountOptions;
                   };
-                  "@var-log" = {
+                  "/var-log" = {
                     mountpoint = "/var/log";
                     inherit mountOptions;
                   };
-                  "@nix" = {
+                  "/nix" = {
                     mountpoint = "/nix";
                     inherit mountOptions;
                   };
                   # NOTE: Home will be part of persist
-                  "@home" = {
+                  "/home" = {
                     mountpoint = "/home";
                     inherit mountOptions;
                   };
-                  "@swap" = {
+                  "/swap" = {
                     mountpoint = "/swap";
                     mountOptions = [ "noatime" ];
                     swap.swapfile.size = "32G";
