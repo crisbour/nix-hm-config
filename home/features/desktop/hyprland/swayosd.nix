@@ -9,12 +9,14 @@
       bind = [ ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle" ];
       # binds active in lockscreen
       bindl = [
-        ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise 5%+"
-        ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower 5%-"
-        "$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 100%"
-        "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 0%"
       ];
       bindle = [
+        ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise 5%+"
+        ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower 5%-"
+        # TODO: Add bus detection for external monitor instead of hardwire id
+        "$mainMod, XF86MonBrightnessUp, exec, ddcutil --bus 11 setvcp 10 + 5"
+        "$mainMod, XF86MonBrightnessDown, exec, ddcutil --bus 11 setvcp 10 - 5"
+
         ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume +5 --max-volume=100"
         ",XF86AudioLowerVolume, exec, swayosd-client --output-volume -5"
 
