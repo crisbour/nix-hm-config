@@ -2,7 +2,9 @@
 {
   home.packages = with pkgs; [
     swww
+    # TODO Choose between grimblast and hyprshot
     grimblast
+    hyprshot
     hyprpicker
     imv
     grim
