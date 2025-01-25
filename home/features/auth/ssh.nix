@@ -9,6 +9,12 @@
         user = "cristi";
         port = 5022;
       };
+
+      blazer = {
+        hostname = "w9098.hyena-royal.ts.net";
+        user = "cristi";
+        port = 22;
+      };
     };
   };
 }
