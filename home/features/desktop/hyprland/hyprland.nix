@@ -4,12 +4,17 @@
     swww
     grimblast
     hyprpicker
+    imv
     grim
     slurp
     wl-clip-persist
     cliphist
+    wl-clipboard
+    #wl-clipboard-rs
     wf-recorder
-    wayland
+    wayland-utils
+    wayland-protocols
+    gnome-themes-extra
     polkit_gnome
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
@@ -17,9 +22,7 @@
   ];
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland = {
-      enable = true;
-    };
+    xwayland.enable = true;
     systemd.enable = true;
   };
 }

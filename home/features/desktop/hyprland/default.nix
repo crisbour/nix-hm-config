@@ -28,7 +28,6 @@
     hyprpolkitagent
     xwaylandvideobridge
     weston
-    wl-clipboard-rs
   ];
 
   services.wluma = {
