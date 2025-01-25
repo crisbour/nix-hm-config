@@ -17,6 +17,10 @@
       url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    home-manager-unstable ={
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     nixos-generators = {
       url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -84,6 +88,12 @@
       url = "github:liff/waveforms-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Looks
+    stylix = {
+      url = "github:danth/stylix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, flake-utils, nixos-generators, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
@@ -110,6 +120,7 @@
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration (rec {
         pkgs = pkgsFor.${system};
         modules = [
+          (inputs.home-manager-unstable + "/modules/programs/cavalier.nix")
           hostModule
           alacritty-theme-Overlay
           # TODO Add nixGlOverlay only to non NixOS
