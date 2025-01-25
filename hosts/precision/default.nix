@@ -31,6 +31,7 @@
     ../common/optional/uoe-cifs.nix
 
     ./fprint-auth.nix
+    ./services
   ];
 
   mySystem.info = {
