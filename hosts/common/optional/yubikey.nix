@@ -48,7 +48,7 @@
      enable = true;
      #debug = true;
      mode = "challenge-response";
-     id = [ "25552783" ];
+     id = [ "11066999" ];
   };
 }
 
