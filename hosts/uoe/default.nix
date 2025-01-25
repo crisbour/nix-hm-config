@@ -45,6 +45,7 @@
     enable = true;
     # Needed to let remote local: push to another remote
     enableServer = true;
+    serverAddr = "${config.mySystem.info.hostname}.hyena-royal.ts.net";
     defaultNIC = {
       name = "eno1";
       network = "incusbr0";
