@@ -18,7 +18,6 @@
     ../common/optional/desktop.nix
     ../common/optional/hyprland.nix
     ../common/users/cristi.nix
-    ../common/optional/gpu.nix
     ../common/optional/fonts.nix
     ../common/optional/yubikey.nix
     ../common/optional/udev.nix
@@ -26,6 +25,7 @@
     #../common/optional/gitlab-runner.nix
     # WARN: Cannot use nvidia driver and vfio concurently
     ../common/optional/kvm.nix
+    ../common/optional/gpu.nix
     # UoE VPN and CIFS
     ../common/optional/fortivpn.nix
     ../common/optional/uoe-cifs.nix
@@ -50,6 +50,7 @@
 
   mySystem.incus = {
     enable = true;
+    serverAddr = "${config.mySystem.info.hostname}.hyena-royal.ts.net";
     # Needed to let remote local: push to another remote
     enableServer = true;
   };

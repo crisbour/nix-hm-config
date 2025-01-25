@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -34,6 +29,7 @@
   mySystem.incus = {
     enable = true;
     enableServer = true;
+    serverAddr = "${config.mySystem.info.hostname}.hyena-royal.ts.net";
     enableUI = true;
     dataDir = "/data/incus";
   };
