@@ -14,14 +14,12 @@
     if [[ -n running && "$battery_status" == "Discharging" ]]; then
       ${pkgs.systemd}/bin/systemctl suspend
     fi
-
-    # NOTE: It seems that locking before suspend interferes with suspend service
-    # Lock screen
-    swaylock
-    #hyprlock
   '';
 
   brillo = lib.getExe pkgs.brillo;
+  # NOTE: Avoid multplie {hypr,sway}lock instances: https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
+  #my_lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+  my_lock_cmd = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock";
 in {
   # screen idle
   services.hypridle = {
@@ -29,9 +27,10 @@ in {
 
     settings = {
       general = {
-        # FIXME: Avoid multplie hyprlock instances: https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
-        lock_cmd = "pidof hyprlock || ${lib.getExe config.programs.hyprlock.package}";
-        before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
+        lock_cmd = my_lock_cmd;
+        #before_sleep_cmd = "loginctl lock-session";
+        before_sleep_cmd = "${my_lock_cmd}";
+        after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
       listener = [
@@ -45,7 +44,7 @@ in {
         }
         {
           timeout = 300; # 5 min
-          on-timeout = "hyprctl dispatch dpms off";        # screen off when timeout has passed
+          on-timeout = "${my_lock_cmd}; hyprctl dispatch dpms off";        # screen off when timeout has passed
           on-resume = "hyprctl dispatch dpms on";          # screen on when activity is detected after timeout has fired.
         }
         {
