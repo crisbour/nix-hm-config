@@ -12,6 +12,8 @@
       #../common/optional/ephemeral-btrfs.nix
     ];
 
+  hardware.enableAllFirmware = lib.mkDefault true;
+
   boot.initrd = {
     availableKernelModules = [
       "thunderbolt"

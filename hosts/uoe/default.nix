@@ -8,7 +8,6 @@
 {
   imports = [
     inputs.hardware.nixosModules.common-cpu-intel
-    #inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
     inputs.lanzaboote.nixosModules.lanzaboote
 
@@ -18,17 +17,16 @@
     ../common/optional/desktop.nix
     ../common/optional/hyprland.nix
     ../common/users/cristi.nix
-    #../common/optional/gpu.nix
     ../common/optional/fonts.nix
-    #../common/optional/yubikey.nix
+    ../common/optional/yubikey.nix
     ../common/optional/udev.nix
-    #../common/optional/docker.nix
-    #../common/optional/gitlab-runner.nix
+    ../common/optional/docker.nix
+    ../common/optional/gitlab-runner.nix
     # WARN: Cannot use nvidia driver and vfio concurently
-    #../common/optional/kvm.nix
+    ../common/optional/kvm.nix
     # UoE VPN and CIFS
     #../common/optional/fortivpn.nix
-    #../common/optional/uoe-cifs.nix
+    ../common/optional/uoe-cifs.nix
   ];
 
   mySystem.info = {
@@ -37,14 +35,23 @@
     has_intel = true;
   };
 
-  hardware.enableAllFirmware = lib.mkDefault true;
-
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 ];
+  mySystem.incus = {
+    enable = true;
+    # Needed to let remote local: push to another remote
+    enableServer = true;
+    defaultNIC = {
+      name = "eno1";
+      network = "incusbr0";
+      type = "nic";
+    };
+  };
+
+  networking.firewall.allowedTCPPorts = [ 22 8443 ];
 
   environment.systemPackages = with pkgs; [
     # For debugging and troubleshooting Secure Boot.
@@ -56,12 +63,15 @@
   # This setting is usually set to true in configuration.nix
   # generated at installation time. So we force it to false
   # for now.
+  #boot.loader.systemd-boot.enable = true;
   boot.loader.systemd-boot.enable = lib.mkForce false;
 
   boot.lanzaboote = {
     enable = true;
     pkiBundle = "/etc/secureboot";
   };
+
+  security.tpm2.enable = true;
 
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
@@ -98,5 +108,21 @@
 
   # Needed for udiskie in HM
   services.udisks2.enable = true;
+
+  services.openssh = {
+    enable = true;
+    settings = {
+      PasswordAuthentication = false;
+      X11Forwarding = true;  # Enable X11 forwarding
+      X11DisplayOffset = 10;
+      X11UseLocalhost = false;
+      AllowTcpForwarding = true;
+      UseDns = true;  # Use DNS for hostname resolution
+    };
+  };
+
+  users.users.cristi.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGySvc1K+NCd+b/az6ZhtscwM3XO0hnLnB/CWavpow5T"
+  ];
 
 }
