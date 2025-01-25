@@ -40,7 +40,6 @@
       url = "github:nix-community/lanzaboote/v0.4.1";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    alacritty-theme.url = "github:alexghr/alacritty-theme.nix";
     # For accessing `deploy-rs`'s utility Nix functions
     deploy-rs = {
       url = "github:serokell/deploy-rs";
