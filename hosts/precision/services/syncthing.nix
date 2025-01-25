@@ -2,7 +2,7 @@
   services = {
     syncthing = {
       enable = true;
-      #group = "mygroupname";
+      group = "users";
       user = "cristi";
       dataDir = "/home/cristi/Documents";    # Default folder for new synced folders
       configDir = "/home/cristi/Documents/.config/syncthing";   # Folder for Syncthing settings and keys
@@ -19,14 +19,14 @@
       # Declarative device and folder configuration
       settings = {
         devices = {
-          "precision" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
-          "w9098" = { id = "BTDCEZO-Y6CVFCY-G3DGNMB-RCFUVWK-X4MQBBO-QLA46O7-VDF2ICG-UMJKJQG"; };
+          #"precision" = { id = "6MVZSPE-CSNORHG-XDAWLF5-CVN7M73-DIPHFPI-YPLPODB-GA6ARCJ-3L5OTAM"; };
+          "w9098" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
         };
 
         folders = {
           "Documents" = {
             path = "/home/cristi/Documents";
-            devices = [ "precision" "w9098" ];
+            devices = [ "w9098" ];
           };
         };
       };
