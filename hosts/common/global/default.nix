@@ -69,9 +69,16 @@
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.gc = {
     automatic = true;
-    dates = "4 weeks";
-    options = "-d";
+    dates = "weekly";
+    options = "--delete-older-than 1w";
   };
+
+  # Periodically optimize storage
+  # https://nixos.wiki/wiki/Storage_optimization#Automatic
+  # You can also manually optimize the store via:
+  #    nix-store --optimise
+  nix.optimise.automatic = true;
+
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
