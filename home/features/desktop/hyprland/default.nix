@@ -11,6 +11,7 @@
   imports = [
     inputs.stylix.homeManagerModules.stylix
     ./stylix.nix
+    ../common
     ./hyprland.nix
     ./config.nix
     ./hyprlock.nix

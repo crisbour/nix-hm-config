@@ -10,6 +10,7 @@
     ./features/productivity
     ./features/desktop/channels
     ./features/desktop/electronics
+    ./features/desktop/gaming # Wine apps
     ./features/pass
     ./features/nfs
   ];
@@ -23,7 +24,7 @@
       fullName      = "Cristian Bourceanu";
       email         = "v.c.bourceanu@sms.ed.ac.uk";
       github        = "crisbour";
-      gitlab        = "s2703496";
+      #gitlab        = "s2703496";
       gpg.enable    = true;
       gpg.masterKey = "0xAEF4A543011E8AC1";
       gpg.signKey   = "0xA6307A244F3BD76D";
