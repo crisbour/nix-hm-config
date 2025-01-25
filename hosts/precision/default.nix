@@ -10,6 +10,7 @@
     inputs.hardware.nixosModules.common-cpu-intel
     inputs.hardware.nixosModules.common-gpu-nvidia
     inputs.hardware.nixosModules.common-pc-ssd
+    inputs.lanzaboote.nixosModules.lanzaboote
 
     ./hardware-configuration.nix
 
@@ -53,19 +54,6 @@
   };
   networking.firewall.allowedTCPPorts = [ 8443 ];
 
-  boot = {
-    # Use upstream rolling kernel for quick bug fixes and performance improvements
-    # WARN This might increase power consumption
-    # TODO Test impact on a particular common load
-    #kernelPackages = pkgs.linuxKernel.packages.linux_xanmod_latest;
-
-    # Enable emulation for 64-bit ARM and 32-bit x86
-    # TODO Inspect if this can be useful to test RISC-V cross-compiled programs
-    #binfmt.emulatedSystems = [
-    #  "aarch64-linux"
-    #  "i686-linux"
-    #];
-  };
   services.logind = {
     # Already defined in hibernate-resume
     lidSwitch = "suspend";
@@ -109,6 +97,7 @@
   services.flatpak.enable = true;
 
   environment.systemPackages = with pkgs; [
+    sbctl
     dcfldd
     ddcutil
     libsmbios

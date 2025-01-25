@@ -24,6 +24,7 @@
       nixfmt
       pre-commit
       gnupg
+      sbctl
     ];
   };
 }
