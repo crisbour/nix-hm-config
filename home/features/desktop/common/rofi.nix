@@ -33,7 +33,6 @@ in
       pkgs.rofi-systemd
       #pkgs.rofi-themes
     ];
-    theme = "DarkBlue";
   };
 
   xdg.configFile."rofi/theme.rasi".text = ''

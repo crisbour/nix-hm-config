@@ -35,12 +35,6 @@ let
   theme = pkgs.alacritty-theme.gruvbox_dark;
 in
 {
-  home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "NerdFontsSymbolsOnly" "JetBrainsMono" ]; })
-    twemoji-color-font
-    noto-fonts-emoji
-  ];
-
   programs.alacritty = {
     package = pkgs.alacritty;
     enable = true;
@@ -48,21 +42,6 @@ in
       general.import = [ theme ];
       env = {
         TERM = "xterm-256color";
-      };
-
-      font =
-      let
-        fontStyle = style: {
-          family = "Iosevka Nerd Font";
-          inherit style;
-        };
-      in
-      {
-        size = 14;
-        normal      = fontStyle "Regular";
-        bold        = fontStyle "Bold";
-        italic      = fontStyle "Italic";
-        bold_italic = fontStyle "Bold Italic";
       };
 
       cursor = {

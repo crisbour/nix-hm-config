@@ -3,14 +3,15 @@ with lib;
 let
   defaultApps = {
     browser            = [ "zen.desktop" ];
-    text               = [ "org.gnome.TextEditor.desktop" ];
+    text               = [ "nvim.desktop" ];
     image              = [ "oculante.desktop" ];
     audio              = [ "mpv.desktop" ];
     video              = [ "mpv.desktop" ];
     directory          = [ "nemo.desktop" ];
     office             = [ "libreoffice.desktop" ];
+    #TODO: Checkout Zathura
     pdf                = [ "okular.desktop" ];
-    terminal           = [ "Alacritty.desktop" ];
+    terminal           = [ "kitty.desktop" ];
     archive            = [ "org.gnome.FileRoller.desktop" ];
     discord            = [ "webcord.desktop" ];
     mw-matlabconnector = [ "mw-matlabconnector.desktop" ];
@@ -19,7 +20,25 @@ let
   };
 
   mimeMap = {
-    text = [ "text/plain" ];
+    text = [
+      "text/plain"
+      "text/markdown"
+      "text/plain"
+      "text/x-shellscript"
+      "text/x-python"
+      "text/x-go"
+      "text/css"
+      "text/javascript"
+      "text/x-c"
+      "text/x-c++"
+      "text/x-java"
+      "text/x-rust"
+      "text/x-yaml"
+      "text/x-toml"
+      "text/x-dockerfile"
+      "text/x-xml"
+      "text/x-php"
+    ];
     image = [
       "image/bmp"
       "image/gif"
@@ -98,7 +117,7 @@ in
   xdg = {
     enable = true;
     # TODO mimeTypes?
-    configFile."mimeapps.list".force = true;
+    #configFile."mimeapps.list".force = true;
     mimeApps.enable = true;
     mimeApps.associations.added = associations;
     mimeApps.defaultApplications = associations;

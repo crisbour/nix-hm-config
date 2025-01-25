@@ -16,7 +16,6 @@
         "waybar &"
         "swaync &"
         "hyprctl setcursor Bibata-Modern-Ice 24 &"
-        "swww-daemon &"
 
         #"wl-paste --watch cliphist store &"
         "wl-paste --type text --watch cliphist store"
@@ -25,6 +24,11 @@
 
         "hyprlock"
       ];
+
+      cursor = {
+        no_hardware_cursors = true;
+        #default_monitor = "eDP-1";
+      };
 
       input = {
         kb_model = "pc104";
@@ -42,12 +46,11 @@
 
       general = {
         "$mainMod" = "SUPER";
+        "$shiftMod" = "SUPER_SHIFT";
         layout = "dwindle";
         gaps_in = 3;
         gaps_out = 6;
         border_size = 2;
-        "col.active_border" = "rgb(98971A) rgb(CC241D) 45deg";
-        "col.inactive_border" = "0x00000000";
         border_part_of_window = false;
         no_border_on_floating = false;
       };
@@ -105,7 +108,7 @@
           offset = "0 2";
           range = 20;
           render_power = 3;
-          color = "rgba(00000055)";
+          #color = "rgba(00000055)";
         };
       };
 
@@ -147,13 +150,13 @@
         "$mainMod, Q, killactive,"
         "$mainMod, F, fullscreen, 0"
         "$mainMod SHIFT, F, fullscreen, 1"
-        "$mainMod, Space, exec, toggle_float"
+        "$mainMod, Space, exec, togglefloating"
         "$mainMod, X, togglesplit,"
         "$mainMod, O, exec, toggle_oppacity"
         "$mainMod SHIFT, B, exec, toggle_waybar"
         ## terminal
-        "$mainMod, Return, exec, alacritty"
-        "$mainMod SHIFT, Return, exec, [fullscreen] alacritty"
+        "$mainMod, Return, exec, kitty"
+        "$mainMod SHIFT, Return, exec, [fullscreen] kitty"
         "ALT, Return, exec, [float; size 1111 700] ghostty"
 
         ## file explorer
