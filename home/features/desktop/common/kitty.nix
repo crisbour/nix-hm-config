@@ -2,10 +2,6 @@
   programs.kitty = {
     enable = true;
     themeFile = "gruvbox-dark-hard";
-    font = {
-      name = "Fira Code SemiBold";
-      size = 12;
-    };
     # Inspired from https://github.com/maximbaz/dotfiles/blob/e764eb7f0592547bcc0890c7a704bda30b3296a8/modules/common/kitty.nix#L2
 
     settings = {

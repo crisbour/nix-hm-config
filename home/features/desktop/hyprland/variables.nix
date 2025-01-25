@@ -1,6 +1,7 @@
 { ... }:
 {
   home.sessionVariables = {
+    ELECTRON_OZONE_PLATFORM_HINT = "auto";
     NIXOS_OZONE_WL = "1";
     __GL_GSYNC_ALLOWED = "0";
     __GL_VRR_ALLOWED = "0";
@@ -25,6 +26,7 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
-    GTK_THEME = "Colloid-Green-Dark-Gruvbox";
+    # TODO: Let that be managed globally for central theme matching
+    #GTK_THEME = "Colloid-Green-Dark-Gruvbox";
   };
 }
