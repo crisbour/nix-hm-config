@@ -5,16 +5,6 @@
     #  fsType = "tmpfs";
     #  mountOptions = [ "defaults" "size=2G" "mode=755" ];
     #};
-    nodev = {
-      "/tmp" = {
-        fsType = "tmpfs";
-        mountOptions = [
-          "defaults"
-          "size=4G"
-          "mode=755"
-        ];
-      };
-    };
     disk.main = {
       type = "disk";
       device = "/dev/nvme0n1";
