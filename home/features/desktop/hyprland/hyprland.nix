@@ -15,7 +15,6 @@
     wayland-utils
     wayland-protocols
     gnome-themes-extra
-    polkit_gnome
   ];
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"

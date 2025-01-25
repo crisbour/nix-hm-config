@@ -22,10 +22,11 @@
     ./hypridle.nix
     ./swaync
     ./scripts
+    ./polkitagent.nix
+    ./hyprspace.nix
   ];
 
   home.packages = with pkgs; [
-    hyprpolkitagent
     xwaylandvideobridge
     weston
   ];
