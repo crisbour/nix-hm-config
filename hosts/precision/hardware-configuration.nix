@@ -28,9 +28,30 @@ in
       "usbhid"
       "usb_storage"
       "sd_mod"
+      "tpm_tis" # TPM2 module necessary for decryption
     ];
     kernelModules = [ "i915" ];
   };
+
+  # ----------------------------------------------------------------------------------
+  # Security
+  # ----------------------------------------------------------------------------------
+  security.tpm2.enable = true;
+
+  boot.lanzaboote = {
+    enable = true;
+    pkiBundle = "/etc/secureboot";
+  };
+
+  boot.initrd.systemd = {
+    enable=true;
+    emergencyAccess = true;
+    tpm2.enable = true;
+  };
+
+  # ----------------------------------------------------------------------------------
+  # Nvidia
+  # ----------------------------------------------------------------------------------
 
   hardware.nvidia.prime = {
     intelBusId = "PCI:0:2:0";
@@ -58,8 +79,13 @@ in
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = lib.mkForce false;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Disables showing the generations menu, it can be still accessed when holding ‹spacebar› while booting
+  # This makes the boot more "flicker free".
+  boot.loader.timeout = 0;
+
 
   # TODO Setup keyfile
   #boot.initrd.secrets = {
