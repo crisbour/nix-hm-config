@@ -30,7 +30,9 @@ in
       "sd_mod"
       "tpm_tis" # TPM2 module necessary for decryption
     ];
-    kernelModules = [ "i915" ];
+    kernelModules = [
+      "i915"
+    ];
   };
 
   # ----------------------------------------------------------------------------------
@@ -75,7 +77,6 @@ in
     "ddcci"
     "ddcci-backlight"
   ];
-  #boot.blacklistedKernelModules = lib.mkDefault [ "nouveau" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   # Bootloader.
