@@ -3,7 +3,7 @@
 {
   stylix = {
     enable = true;
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-medium.yaml";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/gruvbox-dark-hard.yaml";
      # Edited catppuccin
     #base16Scheme = {
     #  base00 = "0b0b0b"; # Default Background
@@ -40,7 +40,8 @@
     fonts = {
       monospace = {
         package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "NerdFontsSymbolsOnly" "JetBrainsMono" ]; });
-        name = "JetBrains Mono Nerd Font";
+        #name = "JetBrains Mono Nerd Font";
+        name = "Iosevka Nerd Font";
       };
       sansSerif = {
         name = "Noto Sans";
