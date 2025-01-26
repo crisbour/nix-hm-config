@@ -6,7 +6,11 @@
       group = "users";
       user = "cristi";
       dataDir = "/home/cristi/Documents";    # Default folder for new synced folders
-      configDir = "/home/cristi/Documents/.config/syncthing";   # Folder for Syncthing settings and keys
+      #configDir = "/home/cristi/Documents/.config/syncthing";   # Folder for Syncthing settings and keys
+      # If it still doens't work, try this approach to prevent syncing configs:
+      # https://github.com/firecat53/nixos/blob/c0821e1597a7174cc5a862bf58e336793c47c4ad/hosts/office/services/syncthing.nix
+      configDir = "/home/cristi/.config/syncthing";
+
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
       overrideFolders = true;     # overrides any folders added or deleted through the WebUI
 
@@ -23,13 +27,13 @@
       settings = {
         devices = {
           #"precision" = { id = "6MVZSPE-CSNORHG-XDAWLF5-CVN7M73-DIPHFPI-YPLPODB-GA6ARCJ-3L5OTAM"; };
-          "w9098" = { id = "BP5637K-MJV447D-FUWQHH7-XTYU7F4-76W72ZL-OVQAZSA-LFLPDUW-NIALZQQ"; };
+          #"w9098" = { id = "BP5637K-MJV447D-FUWQHH7-XTYU7F4-76W72ZL-OVQAZSA-LFLPDUW-NIALZQQ"; };
         };
 
         folders = {
           "Documents" = {
             path = "/home/cristi/Documents";
-            devices = [ "w9098" ];
+            #devices = [ "w9098" ];
           };
         };
       };
