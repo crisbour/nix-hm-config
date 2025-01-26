@@ -1,9 +1,12 @@
 {
   pkgs,
   lib,
-  config,
   ...
 }: let
+  # NOTE: Avoid multplie {hypr,sway}lock instances: https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
+  my_lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+  #my_lock_cmd = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock";
+
   suspendScript = pkgs.writeShellScript "suspend-script" ''
     BAT=$(echo /sys/class/power_supply/BAT*)
     BAT_STATUS="$BAT/status"
@@ -17,9 +20,6 @@
   '';
 
   brillo = lib.getExe pkgs.brillo;
-  # NOTE: Avoid multplie {hypr,sway}lock instances: https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
-  #my_lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
-  my_lock_cmd = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock";
 in {
   # screen idle
   services.hypridle = {
