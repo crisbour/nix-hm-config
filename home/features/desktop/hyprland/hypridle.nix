@@ -44,7 +44,7 @@ in {
         }
         {
           timeout = 300; # 5 min
-          on-timeout = "${my_lock_cmd}; hyprctl dispatch dpms off";        # screen off when timeout has passed
+          on-timeout = "hyprctl dispatch dpms off";        # screen off when timeout has passed
           on-resume = "hyprctl dispatch dpms on";          # screen on when activity is detected after timeout has fired.
         }
         {
