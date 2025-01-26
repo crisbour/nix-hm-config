@@ -19,7 +19,7 @@
       # Declarative device and folder configuration
       settings = {
         devices = {
-          "precision" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
+          "precision" = { id = "CUZ42ZC-QJDA4M7-YRRUC4T-GZNDC6Z-LJ5DTDD-GBJIZM6-4HNQ3MH-6SNSKA7"; };
           #"w9098" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
         };
 
