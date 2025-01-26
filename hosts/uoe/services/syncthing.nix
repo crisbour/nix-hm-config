@@ -1,4 +1,10 @@
+{ config, ... }:
 {
+  sops.secrets = {
+    "syncthing/password" = {
+      sopsFile = ../../../secrets/secrets.yaml;
+    };
+  };
   services = {
     syncthing = {
       enable = true;
@@ -16,11 +22,12 @@
        # Open necessary ports for Syncthing
       openDefaultPorts = true;
 
-      # WARN: Secure the web interface
-      #settings.gui = {
-      #  user = "cristi";
-      #  password = "your-secure-password";
-      #};
+      guiAddress = "w9098.hyena-royal.ts.net:8384";
+      settings.gui = {
+        user = "cristi";
+        passwordFile = config.sops.secrets."syncthing/password".path;
+        insecureSkipHostcheck = true;
+      };
 
       # Declarative device and folder configuration
       settings = {
@@ -36,11 +43,7 @@
           };
         };
 
-        gui = {
-          insecureSkipHostcheck = true;
-        };
       };
-      guiAddress = "w9098.hyena-royal.ts.net:8384";
     };
   };
 
