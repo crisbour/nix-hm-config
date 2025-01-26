@@ -10,6 +10,9 @@
       # https://github.com/firecat53/nixos/blob/c0821e1597a7174cc5a862bf58e336793c47c4ad/hosts/office/services/syncthing.nix
       configDir = "/home/cristi/.config/syncthing";
 
+      overrideDevices = true;     # overrides any devices added or deleted through the WebUI
+      overrideFolders = true;     # overrides any folders added or deleted through the WebUI
+
        # Open necessary ports for Syncthing
       openDefaultPorts = true;
 
