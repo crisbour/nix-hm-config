@@ -32,6 +32,7 @@
 
     ./fprint-auth.nix
     ./services
+    ./sops.nix
   ];
 
   mySystem.info = {

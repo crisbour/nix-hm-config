@@ -41,3 +41,6 @@ sopsupdate:
 
 build-iso:
   nix build .#nixosConfigurations.iso1chng.config.system.build.isoImage
+
+update-keys:
+  ls secrets/*.yaml | xargs -I {} sops updatekeys -y {}
