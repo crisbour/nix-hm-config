@@ -28,6 +28,7 @@
     #../common/optional/fortivpn.nix
     ../common/optional/uoe-cifs.nix
     ./services
+    ./sops.nix
   ];
 
   mySystem.info = {
