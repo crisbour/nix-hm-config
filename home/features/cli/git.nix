@@ -36,6 +36,8 @@ in
       re = "rebase -i";
       cp = "cherry-pick";
       sur = "submodule update --init --recursive";
+      lt = "log --graph --oneline --decorate --all";
+      lta = "log --graph --oneline --decorate --all --author";
     };
 
     delta = {
