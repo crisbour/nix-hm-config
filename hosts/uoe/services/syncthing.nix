@@ -22,14 +22,14 @@
       # Declarative device and folder configuration
       settings = {
         devices = {
-          #"precision" = { id = "CUZ42ZC-QJDA4M7-YRRUC4T-GZNDC6Z-LJ5DTDD-GBJIZM6-4HNQ3MH-6SNSKA7"; };
+          "precision" = { id = "G7TYXCQ-7QGHWJU-NPFCBYN-K47EDJL-3BSAPOW-TD4ZMNP-C6LP5NQ-GHRAWAO"; };
           #"w9098" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
         };
 
         folders = {
           "Documents" = {
             path = "/home/cristi/Documents";
-            #devices = [ "precision" ];
+            devices = [ "precision" ];
           };
         };
 
@@ -37,6 +37,7 @@
           insecureSkipHostcheck = true;
         };
       };
+      guiAddress = "w9098.hyena-royal.ts.net:8384";
     };
   };
 
