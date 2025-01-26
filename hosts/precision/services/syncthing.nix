@@ -20,7 +20,7 @@
       settings = {
         devices = {
           #"precision" = { id = "6MVZSPE-CSNORHG-XDAWLF5-CVN7M73-DIPHFPI-YPLPODB-GA6ARCJ-3L5OTAM"; };
-          "w9098" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
+          "w9098" = { id = "AV3LUY6-37MR7XM-PMK52JT-ZWIMIMU-VANYNSQ-TPSBZJT-GDGKLUC-YD4FQQB"; };
         };
 
         folders = {
