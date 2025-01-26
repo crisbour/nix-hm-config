@@ -37,7 +37,7 @@
   services.wluma = {
     enable = true;
     # FIXME: wluma still in dev, ddcutil doesn't work
-    package = pkgs.unstable.wluma;
+    #package = pkgs.unstable.wluma;
     config = ''
       [als.iio]
       path = "/sys/bus/iio/devices"
