@@ -1,4 +1,13 @@
+{ config, ... }:
 {
+  sops.secrets = {
+    "syncthing/password" = {
+      #sopsFile = "${sopsFolder}/shared.yaml";
+      sopsFile = ../../../secrets/secrets.yaml;
+      owner = "cristi"; #config.users.users.${config.hostSpec.username}.name;
+      group = "users"; #inherit (config.users.users.${config.hostSpec.username}) group;
+    };
+  };
   # TODO: Better configure syncthing with introducer Nexus: https://github.com/ncfavier/config/blob/463d728a993721ab35d2061515a0c236580ba802/modules/syncthing.nix
   services = {
     syncthing = {
@@ -17,11 +26,10 @@
        # Open necessary ports for Syncthing
       openDefaultPorts = true;
 
-      # WARN: Secure the web interface
-      #settings.gui = {
-      #  user = "cristi";
-      #  password = "your-secure-password";
-      #};
+      settings.gui = {
+        user = "cristi";
+        password = "$cat ${config.sops.secrets."syncthing/password".path}";
+      };
 
       # Declarative device and folder configuration
       settings = {
