@@ -30,6 +30,7 @@ in {
       "wireshark"
       "wheel"
       "libvirtd"
+      "kvm"
       "video"
       "www-data"
       "i2c"
