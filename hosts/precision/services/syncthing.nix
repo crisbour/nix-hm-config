@@ -11,10 +11,11 @@
       enable = true;
       group = "users";
       user = "cristi";
-      dataDir = "/home/cristi/Documents";    # Default folder for new synced folders
+      #dataDir = "/home/cristi/Documents";    # Default folder for new synced folders
       #configDir = "/home/cristi/Documents/.config/syncthing";   # Folder for Syncthing settings and keys
       # If it still doens't work, try this approach to prevent syncing configs:
       # https://github.com/firecat53/nixos/blob/c0821e1597a7174cc5a862bf58e336793c47c4ad/hosts/office/services/syncthing.nix
+      dataDir = "/home/cristi/.local/state/syncthing";    # Default folder for new synced folders
       configDir = "/home/cristi/.config/syncthing";
 
       overrideDevices = true;     # overrides any devices added or deleted through the WebUI
