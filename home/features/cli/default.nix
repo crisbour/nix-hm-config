@@ -70,6 +70,7 @@
     gnumake
     httpie     # Better curl => # TODO: add alias curl = httpie
     jq         # JSON pretty printer and manipulator
+    just       # Run justfiles: Better makefile alternative written in Rust
     killall
     libnotify
     lorri

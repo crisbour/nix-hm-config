@@ -101,7 +101,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, flake-utils, deploy-rs, alacritty-theme, nur, nixgl, nixpkgs-unstable, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -119,7 +119,7 @@
         };
       });
       nixGlOverlay = { ... }: {nixpkgs.overlays = [nixgl.overlay];};
-      alacritty-theme-Overlay = { config, pkgs, ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
+      alacritty-theme-Overlay = { ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
       deploy-rs-cache-enable = { pkgs, ... }: {
         nixpkgs.overlays = [
           deploy-rs.overlay # or deploy-rs.overlays.default
@@ -128,7 +128,7 @@
       };
       #nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
-      mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration (rec {
+      mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
         modules = [
           (inputs.home-manager-unstable + "/modules/programs/cavalier.nix")
@@ -144,7 +144,7 @@
           # TODO: One day maybe when I'll have my own nix derviations organized
           #inherit declarative-cachix;
         };
-      } );
+      };
 
     in
     {
@@ -171,7 +171,7 @@
 
       nixosConfigurations = {
         precision = lib.nixosSystem {
-          modules = [./hosts/precision];
+          modules = [ ./hosts/precision];
           specialArgs = { inherit inputs outputs; };
         };
         hydrax = lib.nixosSystem {
@@ -205,6 +205,6 @@
       };
 
       # This is highly advised, and will prevent many possible mistakes
-      #checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
+      checks = builtins.mapAttrs (system: deployLib: deployLib.deployChecks self.deploy) deploy-rs.lib;
     };
 }
