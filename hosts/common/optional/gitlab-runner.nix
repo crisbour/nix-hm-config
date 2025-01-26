@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 {
   boot.kernel.sysctl."net.ipv4.ip_forward" = true; # 1
   virtualisation.docker.enable = true;
@@ -20,7 +20,7 @@
         # `CI_SERVER_URL`
         # `REGISTRATION_TOKEN`
         # TODO How to use secrets for tokens and ssh keys? https://git.eisfunke.com/config/nixos/-/blob/main/nixos/server/gitlab-runner.nix
-        authenticationTokenConfigFile = toString ./ci-env;
+        authenticationTokenConfigFile = config.sops.templates."gitlab-runner-uoe-auth".path;
         dockerImage = "alpine";
         # Inspired from https://github.com/pcboy/nix-glab-runner/blob/master/configuration.nix
         dockerVolumes = [
@@ -61,4 +61,13 @@
       };
     };
   };
+
+  sops.templates."gitlab-runner-uoe-auth".content = ''
+    CI_SERVER_URL=https://git.ecdf.ed.ac.uk
+    CI_SERVER_TOKEN="${config.sops.placeholder."gitlab-ci/token"}"
+  '';
+
+  sops.secrets."gitlab-ci/url" = {};
+  sops.secrets."gitlab-ci/token" = {};
+
 }

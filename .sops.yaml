@@ -1,7 +1,7 @@
 keys:
   - &users:
     - &cristi_yubikey 09B0879FFEF55E7B046E58C7AEF4A543011E8AC1
-    - &w9098_ssh_key age1ds5ql4ztngt9pul8ghsux9rkle6wnxgt0l33enun8namv3795uwq60tyvq
+    - &w9098_ssh_key age1ut96p7m37gsh5fgua8cvl6m723gp358qfxtx6dehl99yshmmmcqqv72m7v
   - &hosts:
     - &precision_ssh_key age1hxnc4mz9j6rrz7rf69y3y7llv6gncr9fd85608hj8tql9rgnw57s4kyvga
 creation_rules:
