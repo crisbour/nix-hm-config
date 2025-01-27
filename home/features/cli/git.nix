@@ -20,6 +20,27 @@ in
       signByDefault = !builtins.isNull user-info.gpg.signKey;
     };
 
+    includes = [
+      {
+        condition = "hasconfig:remote.*.url:git@github.com:*";
+        contents = {
+          user = {
+            name = "Cristian Bourceanu";
+            email = "v.c.bourceanu@sms.ed.ac.uk";
+          };
+        };
+      }
+      {
+        condition = "hasconfig:remote.*.url:git@git.ecdf.ed.ac.uk:*";
+        contents = {
+          user = {
+            name = "Cristi Bourceanu";
+            email = "bourceanu.crsti@gmail.com";
+          };
+        };
+      }
+    ];
+
     aliases = {
       cm = "commit";
       ca = "commit --amend --no-edit";
