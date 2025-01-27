@@ -26,8 +26,9 @@
       guiAddress = "w9098.hyena-royal.ts.net:8384";
       settings.gui = {
         user = "cristi";
+        #password = "${config.sops.placeholder."syncthing/password"}";
         passwordFile = config.sops.secrets."syncthing/password".path;
-        insecureSkipHostcheck = true;
+        #insecureSkipHostcheck = true;
       };
 
       # Declarative device and folder configuration

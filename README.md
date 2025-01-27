@@ -129,6 +129,11 @@ what has been working and what not
 - [ ] Use XanMod for Nexus in order to have out of the box Google's TCP BRR for
   increased TCP throughput
 
+#### UoE Desktop
+- [ ] No wluma
+- [ ] ddcutils and use the two monitors ids to control brightness
+- [ ] Fixup gitlab for hsi-analyse
+
 #### Inbox
 - [Hyprnova: Hyprland
 configs](https://github.com/zDyanTB/HyprNova/tree/master?tab=readme-ov-file)
