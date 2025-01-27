@@ -14,6 +14,9 @@ in
     historyLimit = 10000;
     keyMode = "vi";
     terminal = TERM;
+    plugins = with pkgs; [
+      tmuxPlugins.yank
+    ];
     #extraConfig = lib.strings.fileContents ./tmux.conf;
     extraConfig = ''
       set-option -g default-shell ${pkgs.zsh}/bin/zsh
