@@ -89,6 +89,33 @@ nix-unstable. Add the following to `~/.config/nix/nix.conf`:
 experimental-features = nix-command flakes
 ```
 
+## Debug
+
+Running X11 apps under Wayland sometimes ends up with issues:
+- hardware mouse offset due to fractional scalling
+- window goes blank when application spawns new window. This is probably not a graphics issue as on an intel only desktop the problem persists.
+
+### Momentary fix
+
+Nix problem can be circumvented atm using a full fledged compositor for wayland, such as `weston`. This still has a few downsides:
+
+- Fixed window size on the screen
+- In per window mode, can have other windows being spawned
+
+1. Full window:
+```bash
+weston -B x11 --xwayland
+```
+
+2. App with a sole window (this works nicely) 
+```bash
+weston -B x11 --xwayland --shell="kiosk-shell.so"
+```
+
+
+==TODO Hyprland compositor should suffice as well if we sort out what is the alternative of how weston renders the X11 windows==
+- [ ] Could the problem be caused by using the lightweight greetd window manager? Try GDM and see if the problem persists
+
 ### TODO
 
 - [ ] I like swaylock better than hyprlock
