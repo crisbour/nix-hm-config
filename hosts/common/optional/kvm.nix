@@ -9,6 +9,7 @@
       #"vfio_virqfd" # Recent version of the kernel has this integrated
       "virtio"
       "virtio_pci"
+      "tun"
 
     ] ++ lib.optionals config.mySystem.info.has_nvidia [
       "nvidia"
@@ -44,9 +45,15 @@
         };
         swtpm.enable = true;
       };
+      allowedBridges = [
+        "virbr0"
+      ];
     };
     spiceUSBRedirection.enable = true;
   };
+
+  # Enable spice-vdagentd for clipboard sharing
+  services.spice-vdagentd.enable = true;
 
   environment.systemPackages = with pkgs; [
     qemu

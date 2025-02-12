@@ -24,7 +24,9 @@ in {
     shell = pkgs.zsh;
     #initialPassword = "ChangeMe1";
     extraGroups = ifTheyExist [
+      "netdev"
       "wheel"
+      "docker"
       "networkmanager"
       "i2c"
       "wireshark"
