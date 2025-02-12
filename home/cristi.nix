@@ -41,4 +41,19 @@
     flatpak
   ];
 
+  # FIXME: Make profiles and include them in home/features/desktop/hyprland/config.nix instead
+  wayland.windowManager.hyprland = {
+    extraConfig = "
+      monitor=,preferred,auto,auto
+
+      # Make sure no scaling is applied to main display
+      monitor=eDP-1,preferred,auto,1
+      monitor = DP-2, preferred,auto,1.5
+
+      xwayland {
+        force_zero_scaling = true
+      }
+    ";
+  };
+
 }

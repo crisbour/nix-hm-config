@@ -383,14 +383,5 @@
       ];
     };
 
-    extraConfig = "
-      monitor=,preferred,auto,auto
-      # Make sure no scaling is applied to main display
-      monitor=eDP-1,preferred,auto,1
-
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
   };
 }
