@@ -44,6 +44,7 @@ in {
         python3Packages.ptpython
 
         # Languages
+        matlab
         gcc
         gdb
         go
