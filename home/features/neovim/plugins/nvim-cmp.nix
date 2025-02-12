@@ -5,6 +5,18 @@ let
     type = "lua";
     plugin = pkg;
   };
+  cmp_zotcite = pkgs.vimUtils.buildVimPlugin rec {
+    version = "main";
+    #versionSuffix = "pre${toString src.revCount or 0}.${src.shortRev or "0000000"}";
+    pname = "cmp_zotcite-${version}";
+    src = pkgs.fetchFromGitHub {
+      owner = "jalvesaq";
+      repo = "cmp-zotcite";
+      rev = "1fde8141b77fdef634739a519fa3a56d7ec9292d";
+      sha256 = "sha256-8gyYlUq4Z+1w+IbmYF+43JsMsHjGo2dXqlm6zeV2YNE=";
+    };
+    meta.homepage = "https://github.com/jalvesaq/cmp-zotcite";
+  };
 in {
   home.packages = [
     nodejs # copilot-lua needes it
@@ -17,6 +29,15 @@ in {
       (luaPlugin cmp-nvim-lsp-signature-help)
       (luaPlugin lspkind-nvim)
       (luaPlugin luasnip)
+      {
+        type = "lua";
+        plugin = cmp_zotcite;
+        config = ''
+          require'cmp_zotcite'.setup({
+            filetypes = {"pandoc", "markdown", "rmd", "quarto"}
+          })
+        '';
+      }
       # Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
       {
         # TODO: Customize experience with Copilot
@@ -84,6 +105,7 @@ in {
               { name = "spell", priority = 70 },
               { name = "fuzzy_buffer", priority = 60 },
               { name = "luasnip", priority = 50 },
+              { name = "cmp_zotcite", priority = 40 },
             },
             window = {
               documentation = cmp.config.window.bordered(),

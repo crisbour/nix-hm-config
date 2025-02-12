@@ -16,6 +16,7 @@
     ## Use different indentation per project with vim-localvimrc
     ## vim-rooter: https://www.reddit.com/r/neovim/comments/zy5s0l/you_dont_need_vimrooter_usually_or_how_to_set_up/
 
+    ./zotcite.nix
 
     # Editor
     ./nvim-neoclip.nix
