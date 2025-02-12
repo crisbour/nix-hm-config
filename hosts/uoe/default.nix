@@ -56,6 +56,18 @@
 
   networking.firewall.allowedTCPPorts = [ 22 8443 ];
 
+  # TODO: Move to virtualisation module docker/kvm
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
+  networking.bridges = {
+    "virbr0" = {
+      interfaces = [ ];
+    };
+  };
+  networking.interfaces.virbr0 = {
+    useDHCP = lib.mkDefault true;
+    ipv4.addresses = [ { address = "10.0.2.2"; prefixLength = 24; } ];
+  };
+
   environment.systemPackages = with pkgs; [
     # For debugging and troubleshooting Secure Boot.
     sbctl
