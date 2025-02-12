@@ -59,7 +59,7 @@
         applications = 13;
         desktop = 13;
         popups = 13;
-        terminal = 13;
+        terminal = 12;
       };
     };
     iconTheme = {
