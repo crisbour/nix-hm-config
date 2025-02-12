@@ -29,6 +29,7 @@ in {
       (nvim-treesitter-parsers.julia)
       (nvim-treesitter-parsers.json)
       (nvim-treesitter-parsers.json5)
+      (nvim-treesitter-parsers.latex)
       (nvim-treesitter-parsers.lua)
       (nvim-treesitter-parsers.markdown)
       (nvim-treesitter-parsers.markdown_inline)
