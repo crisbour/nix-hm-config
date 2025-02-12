@@ -176,6 +176,20 @@ in
             };
           }
           {
+            name = "docs";
+            description = "Mount user Documents";
+            devices = {
+
+              docs = {
+                # Allow access to home
+                # TODO: Replace username "cristi" with attr value of default user from config attribute
+                path="/home/cristi/Documents";
+                source = "/home/cristi/Documents";
+                type = "disk";
+              };
+            };
+          }
+          {
             name = "x11";
             description = "Xorg(X11) forward";
             config = {
@@ -196,20 +210,20 @@ in
                 #mode = "0700";
               };
               X0 = {
+                type = "proxy";
                 bind = "container";
                 connect = "unix:@/tmp/.X11-unix/X0";
                 listen = "unix:@/tmp/.X11-unix/X0";
                 "security.gid" = "1000";
                 "security.uid" = "1000";
-                type = "proxy";
               };
               X1 = {
+                type = "proxy";
                 bind = "container";
                 connect = "unix:@/tmp/.X11-unix/X1";
                 listen = "unix:@/tmp/.X11-unix/X1";
                 "security.gid" = "1000";
                 "security.uid" = "1000";
-                type = "proxy";
               };
             };
           }
