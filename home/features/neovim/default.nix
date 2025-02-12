@@ -21,6 +21,24 @@ with lib; {
       ./filetype-specific-configs.vim
     ];
 
+    # Toggle LSP diagnostics of errors to make text readable
+    extraLuaConfig = ''
+      lsp_diagnostics_enabled = true  -- Track the state of diagnostics
+
+      function toggle_lsp_diagnostics()
+          lsp_diagnostics_enabled = not lsp_diagnostics_enabled  -- Toggle the state
+          vim.diagnostic.config({
+              underline = lsp_diagnostics_enabled, -- Set underline based on the state
+              virtual_text = lsp_diagnostics_enabled, -- Set virtual text based on the state
+              virtual_line = lsp_diagnostics_enabled, -- Set virtual line based on the state
+          })
+          print("LSP Diagnostics is now " .. (lsp_diagnostics_enabled and "enabled" or "disabled"))
+      end
+
+      -- Map the toggle function to a key combination, e.g., <leader>td
+      vim.api.nvim_set_keymap('n', '<leader>td', ':lua toggle_lsp_diagnostics()<CR>', { noremap = true, silent = true })
+    '';
+
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
