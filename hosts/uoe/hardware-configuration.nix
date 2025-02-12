@@ -12,6 +12,24 @@
       #../common/optional/ephemeral-btrfs.nix
     ];
 
+  hardware.graphics.enable = true;
+  hardware.opengl = {
+    enable = true;
+    driSupport32Bit = true;
+
+    #---------------------------------------------------------------------
+    # Install additional packages that improve graphics performance and compatibility.
+    #---------------------------------------------------------------------
+    extraPackages = with pkgs; [
+      intel-media-driver      # LIBVA_DRIVER_NAME=iHD
+      mesa.drivers
+      vaapiIntel                  # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+      vulkan-validation-layers
+   ];
+  };
+
   hardware.enableAllFirmware = lib.mkDefault true;
 
   boot.initrd = {
