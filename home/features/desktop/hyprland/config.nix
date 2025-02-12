@@ -25,11 +25,6 @@
         "hyprlock"
       ];
 
-      cursor = {
-        no_hardware_cursors = true;
-        #default_monitor = "eDP-1";
-      };
-
       input = {
         kb_model = "pc104";
         kb_layout = "us";
