@@ -101,7 +101,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, rust-overlay, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -126,6 +126,7 @@
           (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
+      rustOverlay = {...}: {nixpkgs.overlays = [ rust-overlay.overlays.default ]; };
       matlabOverlay = { ... }: { nixpkgs.overlays = [inputs.nix-matlab.overlay]; };
       #nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
@@ -139,6 +140,7 @@
           # TODO Add nixGlOverlay only to non NixOS
           nixGlOverlay
           deploy-rs-cache-enable
+          rustOverlay
           #nurOverlay
         ];
         extraSpecialArgs = {
