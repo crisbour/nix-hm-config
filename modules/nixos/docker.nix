@@ -24,9 +24,10 @@ in
     users.users.cristi.extraGroups = ["docker"];
 
     environment.systemPackages = with pkgs; [
-      docker
       xorg.xhost # Necessary for allowing docker X11 access
-    ];
+    ] ++ (lib.mkIf cfg.docker.enable [
+        pkgs.docker
+      ]);
 
     # kernel module for forwarding to container to work
     boot.kernelModules = [ "nf_nat_ftp" ];
