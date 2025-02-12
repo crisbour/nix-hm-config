@@ -126,6 +126,7 @@
           (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
+      matlabOverlay = { ... }: { nixpkgs.overlays = [inputs.nix-matlab.overlay]; };
       #nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration {
@@ -133,6 +134,7 @@
         modules = [
           (inputs.home-manager-unstable + "/modules/programs/cavalier.nix")
           hostModule
+          matlabOverlay
           alacritty-theme-Overlay
           # TODO Add nixGlOverlay only to non NixOS
           nixGlOverlay
