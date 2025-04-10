@@ -6,7 +6,8 @@
 }:
 {
   imports = [
-    ./hardware.nix
+    #./hardware.nix
+    inputs.nixos-wsl.nixosModules.wsl
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
@@ -16,18 +17,19 @@
     # FIXME: Passthrough USB devices to WSL
     #../common/optional/udev.nix
     # FIXME: Investigate how docker runs under WSL in NixOS?
-    ../common/optional/docker.nix
+    #../common/optional/docker.nix
     # TODO: Setup gitlab-runner for this WSL machine
     #../common/optional/gitlab-runner.nix
   ];
 
+  nixpkgs.hostPlatform.system = "x86_64-linux";
 
   wsl = {
     enable = true;
     usbip = {
       enable = true;
       # Replace this with the BUSID for your Yubikey
-      autoAttach = ["9-4"];
+      #autoAttach = ["9-4"];
     };
   };
 
@@ -64,5 +66,10 @@
     # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
   };
 
-  system.stateVersion = "24.05";
+  environment.systemPackages = [
+      pkgs.wget
+  ];
+
+
+  system.stateVersion = "24.11";
 }

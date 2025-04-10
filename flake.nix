@@ -186,6 +186,10 @@
           modules = [./hosts/uoe];
           specialArgs = { inherit inputs outputs; };
         };
+        wsl = lib.nixosSystem {
+          modules = [./hosts/wsl];
+          specialArgs = { inherit inputs outputs; };
+        };
 
         iso_secure_boot = lib.nixosSystem {
           system = "x86_64-linux";
