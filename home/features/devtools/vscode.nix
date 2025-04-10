@@ -17,6 +17,7 @@ let
       #ms-python.vscode-pylance
       ms-toolsai.jupyter
       #ms-vscode.cpptools
+      julialang.language-julia
   ];
   marketplaceExtensions = pkgs.vscode-utils.extensionsFromVscodeMarketplace [
     {
@@ -24,6 +25,18 @@ let
       publisher = "Kelvin";
       version = "1.25.0";
       sha256 = "7358e9649e54b23787d7e343f4d71777a14ab2f0acf093051a649d2b6aeea26c";
+    }
+    {
+      name = "postman-for-vscode";
+      publisher = "Postman";
+      version = "1.10.1";
+      sha256 = "sha256-DyibkdR8gfU2spND2BasRdUr7vckMe9TNv+EyygyGEQ=";
+    }
+    {
+      name = "vscode-h5web";
+      publisher = "h5web";
+      version = "0.1.9";
+      sha256 = "sha256-Qi0FTjInZ+HgGtqN5Z+pVktPHApSsfsrypyVWDtqZrg=";
     }
   ];
 in
@@ -35,7 +48,7 @@ in
 
   programs.vscode = {
     enable = hasGUI;
-    package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
+    #package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
     extensions = packagedExtensions ++ marketplaceExtensions;
     userSettings = {
       #"vim.enableNeovim" = true;
