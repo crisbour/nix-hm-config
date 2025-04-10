@@ -56,5 +56,12 @@
     # Allow vfio acces to the devices (i.e. gpu device)
     ###########################################################################
     SUBSYSTEM=="vfio", OWNER="root", GROUP="kvm"
+
+
+    ###########################################################################
+    # Allow Thorlabs equipment for SCPI/VISA commands
+    # - TODO: Add all Thorlabs devices based on idVedor
+    ###########################################################################
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1313", ATTR{idProduct}=="8075", MODE="0666"
   '';
 }
