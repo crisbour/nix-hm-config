@@ -12,6 +12,10 @@
       #../common/optional/ephemeral-btrfs.nix
     ];
 
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.perf
+  ];
+
   hardware.graphics.enable = true;
   hardware.opengl = {
     enable = true;
