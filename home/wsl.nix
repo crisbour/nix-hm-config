@@ -4,7 +4,7 @@
     ./base
     ./features/auth
     ./features/devtools
-    ./features/productivity
+    #./features/productivity
     ./features/pass
     ./features/nfs
   ];
