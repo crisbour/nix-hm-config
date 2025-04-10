@@ -26,6 +26,7 @@
 
   wsl = {
     enable = true;
+    defaultUser = "cristi";
     usbip = {
       enable = true;
       # Replace this with the BUSID for your Yubikey
