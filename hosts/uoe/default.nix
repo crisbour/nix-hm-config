@@ -27,6 +27,7 @@
     # UoE VPN and CIFS
     #../common/optional/fortivpn.nix
     ../common/optional/uoe-cifs.nix
+    ../common/optional/ed-printer.nix
     ./services
     ./sops.nix
   ];
