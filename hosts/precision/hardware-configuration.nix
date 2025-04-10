@@ -77,7 +77,9 @@ in
     "ddcci"
     "ddcci-backlight"
   ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  boot.extraModulePackages = [
+    config.boot.kernelPackages.nvidia_x11
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = lib.mkForce false;
