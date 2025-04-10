@@ -2,6 +2,7 @@
 {
   imports = [
     ./base
+    ./features/cli
     ./features/auth
     ./features/devtools
     #./features/productivity
