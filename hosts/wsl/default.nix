@@ -13,7 +13,7 @@
     ../common/optional/fonts.nix
     # FIXME: YubiKey for WSL passthrough
     #../common/optional/yubikey.nix
-    ./usbip.nix
+    #./usbip.nix
     # FIXME: Passthrough USB devices to WSL
     #../common/optional/udev.nix
     # FIXME: Investigate how docker runs under WSL in NixOS?
