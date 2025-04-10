@@ -56,6 +56,7 @@ in
 
     # Image editing
     gimp
+    inkscape
 
     # Image viewer
     oculante

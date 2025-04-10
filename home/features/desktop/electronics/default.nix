@@ -13,5 +13,9 @@
     inputs.waveforms.waveforms
 
     ltspice
+
+    prusa-slicer
+
+    picoscope
   ];
 }
