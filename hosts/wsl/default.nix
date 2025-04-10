@@ -45,6 +45,11 @@
 
   services.vscode-server.enable = true;
 
+  services.tailscale = {
+    enable = true;
+    useRoutingFeatures = "client";
+  };
+
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
     # WARN This might increase power consumption
