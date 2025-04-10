@@ -12,7 +12,8 @@
     crispy-doom
 
     winetricks
-    wineWowPackages.full
+    #wineWowPackages.full
+    wineWowPackages.waylandFull
 
     (lutris.override {
       extraLibraries =  pkgs: [
