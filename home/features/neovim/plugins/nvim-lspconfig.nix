@@ -93,9 +93,9 @@
           capabilities = capabilities,
         }
 
-        lspconfig.veridian.setup{
-          capabilities = capabilities,
-        }
+        --lspconfig.veridian.setup{
+        --  capabilities = capabilities,
+        --}
 
         lspconfig.svls.setup{
           capabilities = capabilities,

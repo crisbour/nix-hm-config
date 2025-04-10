@@ -16,10 +16,11 @@ in
 
   programs.neovim = {
 
-    extraPackages = [
-      # WARN: it depends on nvim-treesitter and telescope.nvim While I have
-      # these as part of my setup, how to minimally incorporate those here to
-      # assure self sufficient attribute for zotcite?
+    withPython3 = true;
+
+    extraPython3Packages = p: with p; [
+      pyyaml
+      pynvim
     ];
 
     plugins = [
