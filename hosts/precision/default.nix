@@ -71,6 +71,7 @@
     hostName = config.mySystem.info.hostname;
     # Enable NetworkManager
     networkmanager.enable = true;
+    interfaces.enp0s13f0u1u4.macAddress = "${config.sops.placeholder."uoe_mac"}";
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
