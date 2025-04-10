@@ -7,6 +7,7 @@ let
 in
 {
   imports = [
+    ./stylix.nix
     ../features/cli
     ../features/neovim
   ] ++ (builtins.attrValues outputs.homeManagerModules);
