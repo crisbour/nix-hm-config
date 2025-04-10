@@ -39,6 +39,7 @@
       { src = "${coreutils}/bin/readlink"; }
       { src = "${coreutils}/bin/cat"; }
       { src = "${coreutils}/bin/sed"; }
+      { src = "${bash}/bin/bash"; }
     ];
   };
 
@@ -78,7 +79,8 @@
   };
 
   environment.systemPackages = [
-      pkgs.wget
+    pkgs.bash
+    pkgs.wget
   ];
 
 
