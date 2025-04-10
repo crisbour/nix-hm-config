@@ -6,7 +6,7 @@
     ./features/devtools
     #./features/productivity
     ./features/pass
-    ./features/nfs
+    #./features/nfs
   ];
 
   home = {

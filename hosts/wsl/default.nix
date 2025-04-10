@@ -8,6 +8,7 @@
   imports = [
     #./hardware.nix
     inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModules.default
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
@@ -32,7 +33,16 @@
       # Replace this with the BUSID for your Yubikey
       #autoAttach = ["9-4"];
     };
+    extraBin = with pkgs; [
+      { src = "${coreutils}/bin/uname"; }
+      { src = "${coreutils}/bin/dirname"; }
+      { src = "${coreutils}/bin/readlink"; }
+      { src = "${coreutils}/bin/cat"; }
+      { src = "${coreutils}/bin/sed"; }
+    ];
   };
+
+  services.vscode-server.enable = true;
 
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
