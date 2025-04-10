@@ -46,6 +46,8 @@
       libpng
       openssl
       openssl.dev
+      libusb1
+      gusb
       # Add any missing dynamic libraries for unpackaged programs
       # here, NOT in environment.systemPackages
     ];
