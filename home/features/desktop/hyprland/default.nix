@@ -9,7 +9,7 @@
 {
   # Inspired from: https://github.com/Frost-Phoenix/nixos-config/tree/c151860c8e576755dc60530e2527005dbcc79750
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    #inputs.stylix.homeManagerModules.stylix
     #./stylix.nix
     ../common
     ./hyprland.nix
