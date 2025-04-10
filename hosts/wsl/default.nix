@@ -50,6 +50,27 @@
     useRoutingFeatures = "client";
   };
 
+  services.openssh = {
+    enable = true;
+    settings = {
+      PermitRootLogin = "yes";
+      PasswordAuthentication = false;
+      X11Forwarding = true;  # Enable X11 forwarding
+      X11DisplayOffset = 10;
+      X11UseLocalhost = false;
+      AllowTcpForwarding = true;
+      UseDns = true;  # Use DNS for hostname resolution
+    };
+  };
+
+  users.users.root.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGySvc1K+NCd+b/az6ZhtscwM3XO0hnLnB/CWavpow5T"
+  ];
+
+  users.users.cristi.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGySvc1K+NCd+b/az6ZhtscwM3XO0hnLnB/CWavpow5T"
+  ];
+
   boot = {
     # Use upstream rolling kernel for quick bug fixes and performance improvements
     # WARN This might increase power consumption
