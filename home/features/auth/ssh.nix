@@ -27,6 +27,18 @@
         user = "cristi";
         port = 22;
       };
+
+      lab = {
+        hostname = "eng-7383.hyena-royal.ts.net";
+        user = "s2703496";
+        port = 22;
+      };
+
+      lab-wsl = {
+        hostname = "eng-7383-wsl.hyena-royal.ts.net";
+        user = "cristi";
+        port = 22;
+      };
     };
   };
 }
