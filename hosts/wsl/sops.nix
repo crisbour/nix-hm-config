@@ -8,6 +8,7 @@
   sops = {
     defaultSopsFile = ../../secrets/secrets.yaml;
     # Choose what decryption method to use
+    gnupg = {}; # Explicitly disable GPG integration
     #gnupg.home = "/home/cristi/.gnupg";
     #gnupg.sshKeyPaths = [];
     age = {
