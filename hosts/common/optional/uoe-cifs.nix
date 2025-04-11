@@ -41,11 +41,14 @@
   };
 
   # ------------ SOPS -------------
-  sops.templates."uoe-cifs-credentials".content = ''
-    username=${config.sops.placeholder."uoe_cifs/username"}
-    password=${config.sops.placeholder."uoe_cifs/password"}
-    domain=${config.sops.placeholder."uoe_cifs/domain"}
-  '';
+  sops.templates."uoe-cifs-credentials" = {
+    owner = "cristi";
+    content = ''
+      username=${config.sops.placeholder."uoe_cifs/username"}
+      password=${config.sops.placeholder."uoe_cifs/password"}
+      domain=${config.sops.placeholder."uoe_cifs/domain"}
+    '';
+  };
   sops.secrets."uoe_cifs/username" = {};
   sops.secrets."uoe_cifs/password" = {};
   sops.secrets."uoe_cifs/domain" = {};
