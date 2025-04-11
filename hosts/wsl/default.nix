@@ -19,6 +19,7 @@
     # FIXME: Investigate how docker runs under WSL in NixOS?
     #../common/optional/docker.nix
     ./sops.nix
+    ./services
   ];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
