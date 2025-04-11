@@ -24,6 +24,8 @@
        # Open necessary ports for Syncthing
       openDefaultPorts = true;
 
+      guiAddress = "eng-7383-wsl.hyena-royal.ts.net:8384";
+
       settings.gui = {
         user = "cristi";
         passwordFile = config.sops.secrets."syncthing/password".path;
