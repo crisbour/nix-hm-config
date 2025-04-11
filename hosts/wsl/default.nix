@@ -12,15 +12,12 @@
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
+    ../common/optional/udev.nix
+    ../common/optional/uoe-cifs.nix
     # FIXME: YubiKey for WSL passthrough
     #../common/optional/yubikey.nix
-    #./usbip.nix
-    # FIXME: Passthrough USB devices to WSL
-    #../common/optional/udev.nix
     # FIXME: Investigate how docker runs under WSL in NixOS?
     #../common/optional/docker.nix
-    # TODO: Setup gitlab-runner for this WSL machine
-    #../common/optional/gitlab-runner.nix
   ];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
