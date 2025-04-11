@@ -9,8 +9,6 @@
 {
   # Inspired from: https://github.com/Frost-Phoenix/nixos-config/tree/c151860c8e576755dc60530e2527005dbcc79750
   imports = [
-    #inputs.stylix.homeManagerModules.stylix
-    #./stylix.nix
     ../common
     ./hyprland.nix
     ./config.nix
@@ -34,8 +32,9 @@
     weston
   ];
 
+  # FIXME: Not quite working as I wished, tweak brightness levels
   services.wluma = {
-    enable = true;
+    enable = false;
     # FIXME: wluma still in dev, ddcutil doesn't work
     #package = pkgs.unstable.wluma;
     config = ''
