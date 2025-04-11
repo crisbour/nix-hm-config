@@ -25,9 +25,7 @@ in
 
     environment.systemPackages = with pkgs; [
       xorg.xhost # Necessary for allowing docker X11 access
-    ] ++ (lib.mkIf cfg.docker.enable [
-        pkgs.docker
-      ]);
+    ];
 
     # kernel module for forwarding to container to work
     boot.kernelModules = [ "nf_nat_ftp" ];
