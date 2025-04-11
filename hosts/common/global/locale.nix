@@ -18,6 +18,8 @@
   #location.provider = "geoclue2";
 
   services.automatic-timezoned.enable = true;
+  services.geoclue2.enableDemoAgent = lib.mkForce true;
+  services.geoclue2.geoProviderUrl = "https://beacondb.net/v1/geolocate";
   # Set your time zone.
   #time.timeZone = "Europe/Bucharest";
 }
