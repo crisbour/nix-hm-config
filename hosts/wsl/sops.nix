@@ -12,8 +12,8 @@
     #gnupg.home = "/home/cristi/.gnupg";
     #gnupg.sshKeyPaths = [];
     age = {
-      sshKeyPaths = ["/root/.ssh/id_ed25519"];
-      #sshKeyPaths = ["/home/cristi/.ssh/id_ed25519"];
+      #sshKeyPaths = ["/root/.ssh/id_ed25519"];
+      sshKeyPaths = ["/home/cristi/.ssh/id_ed25519"];
       keyFile = "/var/lib/sops-nix/keys.txt";
       generateKey = true;
     };
