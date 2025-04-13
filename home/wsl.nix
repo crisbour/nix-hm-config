@@ -29,4 +29,7 @@
     enable = true;
   };
 
+  # Add this to disable dconf which is not available in WSL environment
+  dconf.enable = false;
+
 }
