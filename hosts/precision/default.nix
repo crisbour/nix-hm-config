@@ -31,6 +31,9 @@
     ../common/optional/uoe-cifs.nix
     ../common/optional/ed-printer.nix
 
+    # Temporary DHCP server
+    #../common/optional/dnsmasq.nix
+
     ./fprint-auth.nix
     ./services
     ./sops.nix
