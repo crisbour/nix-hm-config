@@ -4,10 +4,11 @@ let
   packagedExtensions = with pkgs.vscode-extensions; [
       asciidoctor.asciidoctor-vscode
       vscodevim.vim
-    #asvetliakov.vscode-neovim
+      mkhl.direnv
+      #asvetliakov.vscode-neovim
       ms-python.python
       arrterian.nix-env-selector
-    #pinage404.nix-extension-pack
+      #pinage404.nix-extension-pack
       bbenoist.nix
       #pinage404.nix-extension-pack
       editorconfig.editorconfig
@@ -48,7 +49,7 @@ in
 
   programs.vscode = {
     enable = hasGUI;
-    #package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
+    package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
     extensions = packagedExtensions ++ marketplaceExtensions;
     userSettings = {
       #"vim.enableNeovim" = true;

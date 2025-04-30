@@ -78,6 +78,7 @@
       plugin = pkgs.unstable.vimPlugins.CopilotChat-nvim;
       config = ''
         require('CopilotChat').setup {
+          model = 'gpt-4o',
           prompts = {
             GenerateCode = {
               prompt = 'Generate code using online references and openning files under the current directory to understand the underlying structures and logic of the code.',
