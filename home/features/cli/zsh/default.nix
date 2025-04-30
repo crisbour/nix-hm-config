@@ -211,8 +211,8 @@
     #};
 
     initExtra = ''
-      export OBILIX_PATH=$HOME/Documents/Scripts/A71/obilix
-	    export CRUNCH=cristian.bourceanu@app-team-cruncher.user.codasip.com
+      export DATASTORE_3D_PATH=/mnt/datastore-3D
+      export DATASTORE_PATH=/mnt/datastore
 
       # needed for gardenctl
       if [ -z "$GCTL_SESSION_ID" ] && [ -z "$TERM_SESSION_ID" ]; then
@@ -351,25 +351,11 @@
 
     profileExtra = ''
 
-      # Environmental Variables
-      export LM_LICENSE_FILE="$LM_LICENSE_FILE":"27200@licenses.codasip.com"
-      export LM_LICENSE_FILE="1717@licenses.codasip.com:$LM_LICENSE_FILE"
-      #export LMX_LICENSE_PATH="license-server.codasip.com%6200:licenses.codasip.com%6200"
-      export LMX_LICENSE_PATH=codasip3%6200:license-server.codasip.com%6200
-
-      # Tools
-      export PATH=$PATH:/opt/Mentor/questasim_2023.2/questasim/bin
-      export PATH=$PATH:/opt/codasip/studio-10.0.0-748/bin
-      #export PATH=/root/.local/bin:$PATH
-      #
-      #export ONESPINROOT=/opt/onespin/2022.4.1
-      #export PATH="$PATH":"$ONESPINROOT"/bin
+      export DATASTORE_3D_PATH=/mnt/datastore-3D
+      export DATASTORE_PATH=/mnt/datastore
 
       #export PATH=$HOME/.cargo/bin:$PATH
       export PATH=$HOME/.local/bin:$PATH
-
-      export OBILIX_PATH=$HOME/Documents/Scripts/A71/obilix
-      export CRUNCH=cristian.bourceanu@app-team-cruncher.user.codasip.com
 
       # TODO Fix loading dev packages
       #export JULIA_LOAD_PATH=/home/cristi/.julia/dev
