@@ -190,6 +190,28 @@ in
             };
           }
           {
+            name = "datastore";
+            description = "Mount UoE datastore(s)";
+            devices = {
+
+              datastore = {
+                # Allow access to home
+                # TODO: Replace username "cristi" with attr value of default user from config attribute
+                path="/mnt/datastore";
+                source = "/mnt/datastore";
+                type = "disk";
+              };
+
+              datastore_3d = {
+                # Allow access to home
+                # TODO: Replace username "cristi" with attr value of default user from config attribute
+                path="/mnt/datastore-3D";
+                source = "/mnt/datastore-3D";
+                type = "disk";
+              };
+            };
+          }
+          {
             name = "x11";
             description = "Xorg(X11) forward";
             config = {
