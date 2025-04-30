@@ -54,7 +54,7 @@
     };
   };
 
-  networking.firewall.allowedTCPPorts = [ 22 8443 ];
+  networking.firewall.allowedTCPPorts = [ 22 8443 5900 ];
 
   # TODO: Move to virtualisation module docker/kvm
   networking.firewall.trustedInterfaces = [ "virbr0" ];
@@ -72,6 +72,7 @@
     # For debugging and troubleshooting Secure Boot.
     sbctl
     networkmanagerapplet
+    wayvnc
   ];
 
   # Lanzaboote currently replaces the systemd-boot module.

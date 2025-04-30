@@ -16,6 +16,7 @@
         "waybar &"
         "swaync &"
         "hyprctl setcursor Bibata-Modern-Ice 24 &"
+        "wayvnc $(tailscale ip --4)"
 
         #"wl-paste --watch cliphist store &"
         "wl-paste --type text --watch cliphist store"
