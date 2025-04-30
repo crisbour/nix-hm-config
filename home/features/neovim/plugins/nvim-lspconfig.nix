@@ -7,18 +7,20 @@
   ];
   programs.neovim = {
     extraPackages = with pkgs; [
-      lua-language-server
-      vim-language-server
+      clang-tools_17
       #spade-language-server
       nixd # Nix language server
-      rust-analyzer
-      clang-tools_17
-      texlab
       ltex-ls
+      lua-language-server
       matlab-language-server
-      zls
+      ruff
+      pyright
+      rust-analyzer
       svls
+      texlab
       verible
+      vim-language-server
+      zls
     ] ++ (with pkgs.nodePackages; [
       pyright
     ]);
@@ -77,6 +79,10 @@
 
         --lspconfig.nimls.setup{}
         --lspconfig.pyls.setup{}
+
+        lspconfig.ruff.setup{
+          capabilities = capabilities,
+        }
 
         lspconfig.pyright.setup{
           capabilities = capabilities,
