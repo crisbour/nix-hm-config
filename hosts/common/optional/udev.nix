@@ -59,9 +59,11 @@
 
 
     ###########################################################################
-    # Allow Thorlabs equipment for SCPI/VISA commands
+    # Allow Lab equipment for SCPI/VISA commands
     # - TODO: Add all Thorlabs devices based on idVedor
     ###########################################################################
     SUBSYSTEM=="usb", ATTR{idVendor}=="1313", ATTR{idProduct}=="8075", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1ab1", ATTR{idProduct}=="0642", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0ce9", ATTR{idProduct}=="1215", MODE="0666"
   '';
 }
