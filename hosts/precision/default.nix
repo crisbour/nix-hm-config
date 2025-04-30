@@ -74,7 +74,7 @@
     hostName = config.mySystem.info.hostname;
     # Enable NetworkManager
     networkmanager.enable = true;
-    interfaces.enp0s13f0u1u4.macAddress = "${config.sops.placeholder."uoe_mac"}";
+    #interfaces.enp0s13f0u1u4.macAddress = "${config.sops.placeholder."uoe_mac".path}";
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -112,4 +112,8 @@
     dell-command-configure
     networkmanagerapplet
   ];
+
+
+  # --------------- SOPS -------------------
+  sops.secrets."uoe_mac" = {};
 }
