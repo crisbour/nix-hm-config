@@ -175,6 +175,7 @@
         work = mkHomeConfiguration ./home/work.nix   "x86_64-linux";
         tiny = mkHomeConfiguration ./home/tiny.nix   "x86_64-linux";
         uoe = mkHomeConfiguration ./home/uoe.nix   "x86_64-linux";
+        lab = mkHomeConfiguration ./home/lab.nix   "x86_64-linux";
         wsl = mkHomeConfiguration ./home/wsl.nix   "x86_64-linux";
       };
 
@@ -189,6 +190,10 @@
         };
         uoe = lib.nixosSystem {
           modules = [./hosts/uoe];
+          specialArgs = { inherit inputs outputs; };
+        };
+        lab = lib.nixosSystem {
+          modules = [./hosts/lab];
           specialArgs = { inherit inputs outputs; };
         };
         wsl = lib.nixosSystem {

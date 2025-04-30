@@ -27,7 +27,7 @@
               type = "luks";
               name = "crypt-root";
               settings = {
-                allowDisdascards = true;
+                allowDiscards = true;
                 bypassWorkqueues = true;
               };
               content = {
