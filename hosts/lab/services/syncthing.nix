@@ -23,7 +23,7 @@
        # Open necessary ports for Syncthing
       openDefaultPorts = true;
 
-      guiAddress = "w9098.hyena-royal.ts.net:8384";
+      guiAddress = "w6725.hyena-royal.ts.net:8384";
       settings.gui = {
         user = "cristi";
         #password = "${config.sops.placeholder."syncthing/password"}";
@@ -34,14 +34,15 @@
       # Declarative device and folder configuration
       settings = {
         devices = {
-          "precision" = { id = "G7TYXCQ-7QGHWJU-NPFCBYN-K47EDJL-3BSAPOW-TD4ZMNP-C6LP5NQ-GHRAWAO"; };
-          #"w9098" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
+          #"precision" = { id = "G7TYXCQ-7QGHWJU-NPFCBYN-K47EDJL-3BSAPOW-TD4ZMNP-C6LP5NQ-GHRAWAO"; };
+          #"w6725" = { id = "SIJETLK-FBEYYXH-4UE4JBQ-JYZXIVK-NHPJLCN-KXDH4HQ-KLJQNZ4-DKXBJQY"; };
+          "w9098" = { id = "2YGQ4VQ-OOLR5FG-FRQN3FW-MAILNH7-UGXGLGS-ITBAFST-H35IEE5-2ZXXOA4"; };
         };
 
         folders = {
           "Documents" = {
             path = "/home/cristi/Documents";
-            devices = [ "precision" ];
+            devices = [ "w9098" ];
           };
         };
 
