@@ -138,6 +138,8 @@
 
   users.users.cristi.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGySvc1K+NCd+b/az6ZhtscwM3XO0hnLnB/CWavpow5T"
+    # Allow SSH from precision with basic ssh key
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBXcMJWfH9wtVfSF0wXNsPMcFVUFjMd4cpRJ0ulhD7xp cristi@precision"
   ];
 
 }
