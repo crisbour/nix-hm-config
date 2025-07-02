@@ -6,10 +6,10 @@
     ./features/desktop/alacritty
     #./features/desktop/gnome
     ./features/desktop/hyprland
-    #./features/devtools
+    ./features/devtools
     #./features/productivity
     ./features/desktop/channels
-    #./features/desktop/electronics
+    ./features/desktop/electronics
     ./features/desktop/gaming # Wine apps
     ./features/pass
     ./features/nfs

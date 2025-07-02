@@ -65,5 +65,7 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="1313", ATTR{idProduct}=="8075", MODE="0666"
     SUBSYSTEM=="usb", ATTR{idVendor}=="1ab1", ATTR{idProduct}=="0642", MODE="0666"
     SUBSYSTEM=="usb", ATTR{idVendor}=="0ce9", ATTR{idProduct}=="1215", MODE="0666"
+    # Thorlabs piezoelectric stage controller
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6015", MODE="0666"
   '';
 }
