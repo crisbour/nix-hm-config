@@ -1,13 +1,23 @@
 { pkgs, ... }:
 let
+  #telescope-zotero-nvim = pkgs.vimUtils.buildVimPlugin
+  #{
+  #  name = "telescope-zotero-nvim";
+  #  src = pkgs.fetchFromGitHub {
+  #    owner = "jmbuhr";
+  #    repo = "telescope-zotero.nvim";
+  #    rev = "42afd2dc191cf469fb0d42b713494f1b20cffef6";  # Check GitHub for latest
+  #    hash = "sha256-DASwjirbzEzEFVtd1oLwJVVHuZ0jAY2NLlc5LEfrjF8="; # Get via nix-prefetch-github
+  #  };
+  #};
   telescope-zotero-nvim = pkgs.vimUtils.buildVimPlugin
   {
     name = "telescope-zotero-nvim";
     src = pkgs.fetchFromGitHub {
-      owner = "jmbuhr";
+      owner = "crisbour";
       repo = "telescope-zotero.nvim";
-      rev = "42afd2dc191cf469fb0d42b713494f1b20cffef6";  # Check GitHub for latest
-      hash = "sha256-DASwjirbzEzEFVtd1oLwJVVHuZ0jAY2NLlc5LEfrjF8="; # Get via nix-prefetch-github
+      rev = "cde4072a03b31dd37944310461b9492faf3b7bad";  # Check GitHub for latest
+      hash = "sha256-UM1Ii8zkEa5Z/4uw9ydOPoLln8MOSjUGonNdjqj8YbY="; # Get via nix-prefetch-github
     };
   };
 in

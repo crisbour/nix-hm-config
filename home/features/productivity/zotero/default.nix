@@ -12,7 +12,7 @@ in
   programs.zotero = {
     enable = true;
 
-    package = pkgs.zotero;
+    package = pkgs.unstable.zotero;
 
     profiles.default = {
       # TODO installation seems broken?
