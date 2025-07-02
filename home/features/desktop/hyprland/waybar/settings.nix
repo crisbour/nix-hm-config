@@ -201,7 +201,7 @@ in
       tooltip = true;
       tooltip-format-activated = "Cafeinate: {status}";
       tooltip-format-deactivated = "Nominal: {status}";
-      timeout = 50; # Minutes too keep caffeinated
+      timeout = 120; # Minutes too keep caffeinated
       #on-click = "hyprctl dispatch idle_inhibitor";
     };
 
