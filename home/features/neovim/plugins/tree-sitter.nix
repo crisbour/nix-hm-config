@@ -7,6 +7,9 @@ let
     plugin = pkg;
   };
 in {
+  home.packages = [
+    pkgs.asciidoc-full
+  ];
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
       (nvim-treesitter-parsers.bash)
