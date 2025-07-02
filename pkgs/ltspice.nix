@@ -8,7 +8,7 @@ mkWindowsApp rec {
   version = "24.0.12";
   src = fetchurl {
     url = "https://ltspice.analog.com/software/LTspice64.msi";
-    sha256 = "sha256-QE8GVwj625XXO6gTXvisLoUbjNHVfbnNd9rmQEfoSBU=";
+    sha256 = "sha256-AyojMe+Z7DGjc2FHw1q7SM4aSAd7KCW8pfW6zNn6nXM=";
   };
 
   #fileMap = {

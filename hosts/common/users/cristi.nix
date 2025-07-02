@@ -36,6 +36,7 @@ in {
       "video"
       "www-data"
       "i2c"
+      "pico"
     ];
     packages = with pkgs; [
       home-manager
