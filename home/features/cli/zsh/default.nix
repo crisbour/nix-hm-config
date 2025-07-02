@@ -350,12 +350,13 @@
     '';
 
     profileExtra = ''
-
       export DATASTORE_3D_PATH=/mnt/datastore-3D
       export DATASTORE_PATH=/mnt/datastore
 
       #export PATH=$HOME/.cargo/bin:$PATH
       export PATH=$HOME/.local/bin:$PATH
+      export PATH=$HOME/Software/tabby/bin:$PATH
+      export YOSYSHQ_LICENSE=$HOME/Software/tabby/tabbycad-eval-CristianBourceanu-250518.lic
 
       # TODO Fix loading dev packages
       #export JULIA_LOAD_PATH=/home/cristi/.julia/dev
