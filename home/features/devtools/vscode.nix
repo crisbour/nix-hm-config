@@ -49,7 +49,7 @@ in
 
   programs.vscode = {
     enable = hasGUI;
-    package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
+    #package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
     extensions = packagedExtensions ++ marketplaceExtensions;
     userSettings = {
       #"vim.enableNeovim" = true;
