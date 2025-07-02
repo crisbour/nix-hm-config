@@ -40,8 +40,11 @@
 
   services.tailscale = {
     enable = true;
-    useRoutingFeatures = "client";
+    useRoutingFeatures = "both";
+    extraSetFlags = ["--advertise-exit-node"];
   };
+  # Optional: loosen reverse path filtering to avoid connectivity issues
+  networking.firewall.checkReversePath = "loose";
 
   mySystem.incus = {
     enable = true;
