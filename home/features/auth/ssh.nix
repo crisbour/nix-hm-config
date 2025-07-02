@@ -17,20 +17,22 @@
       };
 
       sudo-cruncher = {
-        hostname = "192.41.113.134";
+        hostname = "cruncher.hyena-royal.ts.net";
+        #hostname = "192.41.113.134";
         user = "lab-machine-1";
         port = 22;
       };
 
       cruncher = {
-        hostname = "192.41.113.134";
+        hostname = "cruncher.hyena-royal.ts.net";
+        #hostname = "192.41.113.134";
         user = "cristi";
         port = 22;
       };
 
       lab = {
-        hostname = "eng-7383.hyena-royal.ts.net";
-        user = "s2703496";
+        hostname = "w6725.hyena-royal.ts.net";
+        user = "cristi";
         port = 22;
       };
 
