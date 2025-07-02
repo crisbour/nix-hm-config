@@ -82,7 +82,6 @@ in {
       ] ++ (
         # GUI Tools
         optionals hasGUI [
-          asciidoctor
           # TODO: Move to electronics
           d-spy # dfeet # D-Feet is an easy to use D-Bus debugger but deprecated
           rars                  # RISC-V Assembler and Runtime Simulator
