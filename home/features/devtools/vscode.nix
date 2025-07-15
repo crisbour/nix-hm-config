@@ -65,6 +65,10 @@ in
       "rust-analyzer.inlayHints.enable" = false;
       # TODO: Configure vs-code and neovim integration: https://medium.com/@nikmas_dev/vscode-neovim-setup-keyboard-centric-powerful-reliable-clean-and-aesthetic-development-582d34297985
 
+      "julia.executablePath" = "/home/cristi/.nix-profile/bin/julia";
+      "julia.execution.codeInREPL" = true;
+      "terminal.integrated.commandsToSkipShell" = [ "language-julia.interrupt" ];
+
       # Neovim support
       #"extensions.experimental.affinity" = {
       #  "asvetliakov.vscode-neovim" = 1;
