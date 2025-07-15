@@ -7,7 +7,7 @@
     #./features/desktop/gnome
     ./features/desktop/hyprland
     ./features/devtools
-    #./features/productivity
+    ./features/productivity
     ./features/desktop/channels
     ./features/desktop/electronics
     ./features/desktop/gaming # Wine apps
