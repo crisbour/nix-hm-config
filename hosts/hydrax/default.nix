@@ -1,9 +1,4 @@
-{
-  pkgs,
-  inputs,
-  lib,
-  ...
-}:
+{ config, ... }:
 {
   imports = [
     ./hardware-configuration.nix
@@ -23,6 +18,12 @@
 
   # FIXME: Deassert automatic timezone
   #time.timeZone = "Europe/Bucharest";
+
+  mySystem.info = {
+    hostname = "nexus";
+    has_gui = false;
+    has_intel = true;
+  };
 
   networking.firewall.allowedTCPPorts = [ 22 ]; # Allow ssh
 
@@ -52,6 +53,8 @@
   };
 
   nix.settings.trusted-users = [ "root" "@wheel" ];
+
+  networking.hostName = config.mySystem.info.hostname;
 
   users.users.root.openssh.authorizedKeys.keys = [
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGySvc1K+NCd+b/az6ZhtscwM3XO0hnLnB/CWavpow5T"
