@@ -173,7 +173,7 @@ in
       CF_API_EMAIL = "bourceanu_cristi@yahoo.com";
     };
     serviceConfig = {
-      EnvironmentFile = [ 
+      EnvironmentFile = [
         "/data/secrets/porkbun/acme-credentials"
         "/data/secrets/cloudflare/api_key"
       ];

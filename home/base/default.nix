@@ -47,7 +47,7 @@ in
   systemd.user.startServices = "sd-switch";
 
   home = {
-    stateVersion = "24.11";
+    stateVersion = "25.05";
     #sessionPath = [ "$HOME/.local/bin" ];
     sessionVariables = {
       # FIX: Set FLAKE path at the user setup?
