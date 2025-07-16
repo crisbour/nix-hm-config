@@ -4,7 +4,9 @@ let
 in
 {
   home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "NerdFontsSymbolsOnly" ]; })
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.symbols-only
     twemoji-color-font
     noto-fonts
     noto-fonts-extra

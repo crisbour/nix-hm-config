@@ -42,9 +42,9 @@
 
     fonts = {
       monospace = {
-        package = (pkgs.nerdfonts.override { fonts = [ "FiraCode" "Iosevka" "NerdFontsSymbolsOnly" "JetBrainsMono" ]; });
+        package = pkgs.nerd-fonts.zed-mono;
         #name = "JetBrains Mono Nerd Font";
-        name = "Iosevka Nerd Font";
+        name = "Zed Mono";
       };
       sansSerif = {
         name = "Noto Sans";

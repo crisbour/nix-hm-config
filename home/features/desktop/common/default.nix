@@ -2,14 +2,6 @@
 let
   inherit (pkgs.stdenv) isLinux;
   hasGUI = config.home.user-info.has_gui;
-  # Nerdfonts is huge: take only what you need
-  #nerdfonts-subset = (pkgs.nerdfonts.override { fonts = [
-  #    "FiraCode"
-  #    "DroidSansMono"
-  #    "Iosevka"
-  #    "Monokai"
-  #    "NotoSans"
-  #]; });
 in
 {
   imports = [
@@ -36,8 +28,11 @@ in
 
   home.packages = with pkgs; [
     # Control fonts better
-    #nerdfonts-subset
-    nerdfonts
+    nerd-fonts.fira-code
+    nerd-fonts.iosevka
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.monokai
+    nerd-fonts.noto-sans
 
     #flameshot
     #shutter # screenshots
