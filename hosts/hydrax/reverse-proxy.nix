@@ -14,6 +14,20 @@ in
 
   services.nginx.defaultHTTPListenPort = 8080;
 
+  security.acme = {
+    acceptTerms = true;
+    defaults.email = "bourceanu_cristi@yahoo.com";
+    certs."adventure-bytes.com" = {
+      domain = "adventure-bytes.com";
+      extraDomainNames = [ "*.adventure-bytes.com" ];
+      dnsProvider = "cloudflare";
+      dnsPropagationCheck = true;
+      credentialsFile = "/data/secrets/cloudflare/api_key_credentials.txt";
+    };
+  };
+
+  users.users.traefik.extraGroups = [ "acme" ];
+
   services.traefik = {
     enable = true;
 
@@ -44,20 +58,24 @@ in
       };
 
       log = {
-        level = "INFO";
+        level = "DEBUG";
         filePath = "${config.services.traefik.dataDir}/traefik.log";
         format = "json";
       };
 
-      certificatesResolvers.letsencrypt.acme = {
-        # TODO: Setup email service for this domain to keep my personal email clean
-        email = "bourceanu_cristi@yahoo.com";
-        storage = "${config.services.traefik.dataDir}/acme.json";
-        dnsChallenge = {
-          provider = "porkbun";
-        };
-        httpChallenge.entryPoint = "web";
-      };
+      #certificatesResolvers.letsencrypt.acme = {
+      #  # TODO: Setup email service for this domain to keep my personal email clean
+      #  email = "bourceanu_cristi@yahoo.com";
+      #  #storage = "${config.services.traefik.dataDir}/acme.json";
+      #  storage = "/var/lib/traefik/cert.json";
+      #  #caServer = "https://acme-v02.api.letsencrypt.org/directory";
+      #  dnsChallenge = {
+      #    provider = "cloudflare";
+      #    #resolvers = [ "1.1.1.1:53" "1.0.0.1:53" ];
+      #    delayBeforeCheck = 0;
+      #  };
+      #  #httpChallenge.entryPoint = "web";
+      #};
 
       api.dashboard = true;
       # Access the Traefik dashboard on <Traefik IP>:8080 of your server
@@ -65,6 +83,21 @@ in
     };
 
     dynamicConfigOptions = {
+      tls = {
+        stores.default = {
+          defaultCertificate = {
+            certFile = "/var/lib/acme/adventure-bytes.com/cert.pem";
+            keyFile = "/var/lib/acme/adventure-bytes.com/key.pem";
+          };
+        };
+        certificates = [
+          {
+            certFile = "/var/lib/acme/adventure-bytes.com/cert.pem";
+            keyFile = "/var/lib/acme/adventure-bytes.com/key.pem";
+            stores = "default";
+          }
+        ];
+      };
       http = {
         routers = {
           default-router = {
@@ -135,7 +168,15 @@ in
   # TODO: Use porkbun api key from sops;
   # How to enc/dec without gpg?
   # If I use deploy-rs that will work, however, sometimes I need to test directly on the server
-  systemd.services.traefik.serviceConfig = {
-    EnvironmentFile = [ "/data/secrets/porkbun/acme-credentials" ];
+  systemd.services.traefik = {
+    environment = {
+      CF_API_EMAIL = "bourceanu_cristi@yahoo.com";
+    };
+    serviceConfig = {
+      EnvironmentFile = [ 
+        "/data/secrets/porkbun/acme-credentials"
+        "/data/secrets/cloudflare/api_key"
+      ];
+    };
   };
 }
