@@ -46,7 +46,7 @@ in
       "network"
       (if (host == "laptop") then "battery" else "")
       "hyprland/language"
-      "custom/taskwarrior"
+      #"custom/taskwarrior"
       "idle_inhibitor"
       "custom/notification"
     ];
@@ -88,15 +88,15 @@ in
       };
     };
     # TODO: Refine this, inspired from: https://github.com/DestinyofYeet/nix-config/tree/e6dd89e9cebc741a9239fab82169040e68597a2c
-    "custom/taskwarrior" = {
-      # format = "Most urgent task: {}";
-      # exec = "${pkgs.nushell}/bin/nu ${pkgs.substituteAll { src = ../modules/nu-scripts/taskwarrior.nu; task = "${pkgs.taskwarrior3}/bin/task";}}";
-      # exec = "${pkgs.nushell}/bin/nu ${../../../modules/nu-scripts/taskwarrior.nu}";
-      exec = "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
-      format = " ";
-      interval = 10;
-      return-type = "json";
-    };
+    #"custom/taskwarrior" = {
+    #  # format = "Most urgent task: {}";
+    #  # exec = "${pkgs.nushell}/bin/nu ${pkgs.substituteAll { src = ../modules/nu-scripts/taskwarrior.nu; task = "${pkgs.taskwarrior3}/bin/task";}}";
+    #  # exec = "${pkgs.nushell}/bin/nu ${../../../modules/nu-scripts/taskwarrior.nu}";
+    #  exec = "${inputs.waybar-taskwarrior.packages.x86_64-linux.default}/bin/waybar-taskwarrior";
+    #  format = " ";
+    #  interval = 10;
+    #  return-type = "json";
+    #};
     cpu = {
       format = "<span foreground='${green}'> </span> {usage}%";
       format-alt = "<span foreground='${green}'> </span> {avg_frequency} GHz";
