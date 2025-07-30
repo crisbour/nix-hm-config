@@ -1,7 +1,6 @@
 {
   user-info = import ./users.nix;
   zotero = import ./zotero.nix;
-  wluma = import ./wluma.nix;
   yubikey-touch-detector = import ./yubikey-touch-detector.nix;
   #fonts = import ./fonts.nix;
   #monitors = import ./monitors.nix;
