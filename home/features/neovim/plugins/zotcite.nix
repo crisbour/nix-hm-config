@@ -9,6 +9,7 @@ let
       rev = "e8170010e4d80be5edfc3c1935b2b6e6c33e6ba5";
       sha256 = "sha256-FM1kprCOXIvKwDdjkrtn/M9u6sNIo82tmIYP+DzIGac=";
     };
+    doCheck = false;
     meta.homepage = "https://github.com/jalvesaq/zotcite";
   };
 in

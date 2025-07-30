@@ -31,8 +31,8 @@ in
     nerd-fonts.fira-code
     nerd-fonts.iosevka
     nerd-fonts.droid-sans-mono
-    nerd-fonts.monokai
-    nerd-fonts.noto-sans
+    nerd-fonts.jetbrains-mono
+    noto-fonts
 
     #flameshot
     #shutter # screenshots
@@ -45,7 +45,7 @@ in
 
     brightnessctl
 
-    okular
+    kdePackages.okular
 
     # Graph drawing
     # WARN Broken

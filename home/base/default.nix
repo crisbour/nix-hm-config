@@ -10,7 +10,7 @@ in
     ./stylix.nix
     ../features/cli
     ../features/neovim
-  ] ++ (builtins.attrValues outputs.homeManagerModules);
+  ] ++ (builtins.attrValues outputs.homeModules);
 
   nixpkgs = {
     overlays = builtins.attrValues outputs.overlays;

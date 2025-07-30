@@ -15,6 +15,7 @@ let
       rev = "1fde8141b77fdef634739a519fa3a56d7ec9292d";
       sha256 = "sha256-8gyYlUq4Z+1w+IbmYF+43JsMsHjGo2dXqlm6zeV2YNE=";
     };
+    doCheck = false;
     meta.homepage = "https://github.com/jalvesaq/cmp-zotcite";
   };
 in {

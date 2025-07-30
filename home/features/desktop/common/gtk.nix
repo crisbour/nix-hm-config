@@ -11,7 +11,7 @@ in
     noto-fonts
     noto-fonts-extra
     noto-fonts-emoji
-    maple-mono
+    maple-mono.Normal-NF
   ];
   # Gnome look inspired from: https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
   gtk = {

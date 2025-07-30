@@ -210,7 +210,7 @@
     #  ];
     #};
 
-    initExtra = ''
+    initContent = ''
       export DATASTORE_3D_PATH=/mnt/datastore-3D
       export DATASTORE_PATH=/mnt/datastore
 

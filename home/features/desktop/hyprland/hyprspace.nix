@@ -6,7 +6,7 @@
       plugin = { overview = { autoDrag = false; }; };
 
       bind = [
-        "$mainMod,TAB, overview:toggle" # Overview
+        #"$mainMod,TAB, overview:toggle" # Overview
       ];
     };
   };

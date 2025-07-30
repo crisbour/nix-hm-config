@@ -18,7 +18,7 @@ with pkgs;
     # Documents
     asciidoctor
     libreoffice
-    okular
+    kdePackages.okular
     quarto
     unstable.joplin-desktop
 

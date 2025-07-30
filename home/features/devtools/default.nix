@@ -23,7 +23,7 @@ in {
   config = mkIf config.devTools.enable {
     home.packages = with pkgs;
       [
-        (import ./spade-lang.nix { inherit pkgs; })
+        #(import ./spade-lang.nix { inherit pkgs; })
         binutils
         #difftastic                   # Fantastic diff utility
         cloc

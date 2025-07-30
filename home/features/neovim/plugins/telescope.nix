@@ -14,16 +14,18 @@ let
   {
     name = "telescope-zotero-nvim";
     src = pkgs.fetchFromGitHub {
-      owner = "crisbour";
+      owner = "jmbuhr";
       repo = "telescope-zotero.nvim";
-      rev = "cde4072a03b31dd37944310461b9492faf3b7bad";  # Check GitHub for latest
-      hash = "sha256-UM1Ii8zkEa5Z/4uw9ydOPoLln8MOSjUGonNdjqj8YbY="; # Get via nix-prefetch-github
+      rev = "74f7e5464461dd4325cb843cf801158937a52020";  # Check GitHub for latest
+      hash = "sha256-XMXnAcetIaqkMr8d/p6ATBckccbMj2vaO/RIH66ShwA="; # Get via nix-prefetch-github
     };
+    doCheck = false;
+    disableRequireCheck = true;
   };
 in
 with pkgs; {
   programs.neovim = {
-    extraPackages = [ delta fd fzy ripgrep ];
+    extraPackages = [ delta fd fzy ripgrep sqlite ];
     plugins = with vimPlugins; [
       telescope-fzy-native-nvim
       {

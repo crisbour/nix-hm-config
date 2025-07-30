@@ -54,7 +54,7 @@ in
       modi: "run,drun,window,emoji";
       lines: 5;
       cycle: false;
-      font: "JetBrainsMono NF Bold 15";
+      font: "JetBrainsMono Bold 15";
       show-icons: true;
       icon-theme: "Papirus-dark";
       terminal: "alacritty";

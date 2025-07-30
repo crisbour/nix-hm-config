@@ -41,7 +41,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     lanzaboote = {
-      url = "github:nix-community/lanzaboote/v0.4.1";
+      url = "github:nix-community/lanzaboote";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # For accessing `deploy-rs`'s utility Nix functions
@@ -57,21 +57,17 @@
     # Nix User Repository
     nur = {
       url = "github:nix-community/NUR";
-      #inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     # Hyprland
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland = {
-      url = "github:hyprwm/Hyprland";
+      url = "github:hyprwm/Hyprland/v0.49.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    waybar-taskwarrior = {
-      url = "github:DestinyofYeet/waybar-taskwarrior.rs";
-      # url = "path:///home/ole/github/waybar-taskwarrior.rs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # RustUp toolchain
@@ -100,12 +96,12 @@
 
     # Looks
     stylix = {
-      url = "github:danth/stylix";
+      url = "github:danth/stylix/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, rust-overlay, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, rust-overlay, nur, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -126,18 +122,17 @@
       alacritty-theme-Overlay = { ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
       deploy-rs-cache-enable = { pkgs, ... }: {
         nixpkgs.overlays = [
-          deploy-rs.overlay # or deploy-rs.overlays.default
+          deploy-rs.overlays.default # or deploy-rs.overlay
           (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
       rustOverlay = {...}: {nixpkgs.overlays = [ rust-overlay.overlays.default ]; };
       matlabOverlay = { ... }: { nixpkgs.overlays = [inputs.nix-matlab.overlay]; };
-      #nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
+      nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
         modules = [
-          (inputs.home-manager-unstable + "/modules/programs/cavalier.nix")
           hostModule
           matlabOverlay
           alacritty-theme-Overlay
@@ -157,8 +152,8 @@
     in
     {
       inherit lib;
-      nixosModules       = import ./modules/nixos;
-      homeManagerModules = import ./modules/home-manager;
+      nixosModules = import ./modules/nixos;
+      homeModules  = import ./modules/home-manager;
 
       # TODO: Add templates for languages of interest to minimize time spent on boiler plate code and project init
       # Inspire yourself from: https://github.com/Misterio77/nix-config/tree/main/templates

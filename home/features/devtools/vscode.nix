@@ -50,31 +50,33 @@ in
   programs.vscode = {
     enable = hasGUI;
     #package = pkgs.vscode-fhsWithPackages (pkgs: with pkgs; [ zlib rustup ]);
-    extensions = packagedExtensions ++ marketplaceExtensions;
-    userSettings = {
-      #"vim.enableNeovim" = true;
-      #"vim.neovimPath" = "/home/cristi/.nix-profile/bin/nvim";
+    profiles.default ={
+      extensions = packagedExtensions ++ marketplaceExtensions;
+      userSettings = {
+        #"vim.enableNeovim" = true;
+        #"vim.neovimPath" = "/home/cristi/.nix-profile/bin/nvim";
 
-      # Visual: Enable ligatures
-      "editor.fontLigatures" = true;
+        # Visual: Enable ligatures
+        "editor.fontLigatures" = true;
 
-      # Third-party extensions
-      "jupyter.askForKernelRestart" = false;
-      "jupyter.diagnostics.reservedPythonNames.enabled" = false;
-      "rust-analyzer.lens.enable" = false;
-      "rust-analyzer.inlayHints.enable" = false;
-      # TODO: Configure vs-code and neovim integration: https://medium.com/@nikmas_dev/vscode-neovim-setup-keyboard-centric-powerful-reliable-clean-and-aesthetic-development-582d34297985
+        # Third-party extensions
+        "jupyter.askForKernelRestart" = false;
+        "jupyter.diagnostics.reservedPythonNames.enabled" = false;
+        "rust-analyzer.lens.enable" = false;
+        "rust-analyzer.inlayHints.enable" = false;
+        # TODO: Configure vs-code and neovim integration: https://medium.com/@nikmas_dev/vscode-neovim-setup-keyboard-centric-powerful-reliable-clean-and-aesthetic-development-582d34297985
 
-      "julia.executablePath" = "/home/cristi/.nix-profile/bin/julia";
-      "julia.execution.codeInREPL" = true;
-      "terminal.integrated.commandsToSkipShell" = [ "language-julia.interrupt" ];
+        "julia.executablePath" = "/home/cristi/.nix-profile/bin/julia";
+        "julia.execution.codeInREPL" = true;
+        "terminal.integrated.commandsToSkipShell" = [ "language-julia.interrupt" ];
 
-      # Neovim support
-      #"extensions.experimental.affinity" = {
-      #  "asvetliakov.vscode-neovim" = 1;
-      #};
-      #"vscode-neovim.neovimExecutablePaths.linux" = /home/cristi/.nix-profile/bin/nvim;
-      #"vscode-neovim.neovimInitVimPaths.linux" = "$HOME/.config/nvim/init.lua";
+        # Neovim support
+        #"extensions.experimental.affinity" = {
+        #  "asvetliakov.vscode-neovim" = 1;
+        #};
+        #"vscode-neovim.neovimExecutablePaths.linux" = /home/cristi/.nix-profile/bin/nvim;
+        #"vscode-neovim.neovimInitVimPaths.linux" = "$HOME/.config/nvim/init.lua";
+      };
     };
     #idx.extensions = [
     #  "mhutchie.git-graph"

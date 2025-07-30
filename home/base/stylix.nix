@@ -2,7 +2,7 @@
 # Heavily inspired by https://github.com/anotherhadi/nixy/blob/main/themes/stylix/2025.nix
 {
   imports = [
-    inputs.stylix.homeManagerModules.stylix
+    inputs.stylix.homeModules.stylix
   ];
   stylix = {
     enable = true;
