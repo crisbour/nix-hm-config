@@ -30,6 +30,8 @@
   home.packages = with pkgs; [
     kdePackages.xwaylandvideobridge
     weston
+    qt5.qtwayland
+    qt6.qtwayland
   ];
 
 }

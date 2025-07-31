@@ -47,7 +47,6 @@
         gaps_in = 3;
         gaps_out = 6;
         border_size = 2;
-        border_part_of_window = false;
         no_border_on_floating = false;
       };
 
@@ -288,15 +287,15 @@
 
       # windowrule
       windowrule = [
-        "float,oculante"
-        "float,imv"
-        "float,mpv"
-        "float,audacious"
-        "pin,rofi"
-        "pin,waypaper"
-        "tile, neovide"
-        "idleinhibit focus,mpv"
-        "float,udiskie"
+        "float, class:oculante"
+        "float, class:imv"
+        "float, class:mpv"
+        "float, class:audacious"
+        "pin, class:rofi"
+        "pin, class:waypaper"
+        "tile, class:neovide"
+        "idleinhibit focus, class:mpv"
+        "float, class:udiskie"
         "float,title:^(Transmission)$"
         "float,title:^(Volume Control)$"
         "float,title:^(Firefox — Sharing Indicator)$"
