@@ -35,13 +35,14 @@
       settings = {
         devices = {
           "precision" = { id = "G7TYXCQ-7QGHWJU-NPFCBYN-K47EDJL-3BSAPOW-TD4ZMNP-C6LP5NQ-GHRAWAO"; };
+          "w6725" = { id = "SIJETLK-FBEYYXH-4UE4JBQ-JYZXIVK-NHPJLCN-KXDH4HQ-KLJQNZ4-DKXBJQY"; };
           #"w9098" = { id = "ZXJRZV4-ZLEGFRF-4DHGLFV-DYIBCFJ-K7JEYDQ-KBHZFKI-M4PYZ65-7LJVIQX"; };
         };
 
         folders = {
           "Documents" = {
             path = "/home/cristi/Documents";
-            devices = [ "precision" ];
+            devices = [ "precision" "w6725" ];
           };
         };
 
