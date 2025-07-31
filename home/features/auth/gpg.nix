@@ -11,6 +11,7 @@ in {
 
   home.packages = with pkgs; [
     gnupg
+    pinentry-qt
   ];
 
   # TODO: Configure with public keyserver: https://github.com/hardselius/dotfiles/blob/110d2b106fdf2e9b30a8f0ae66d3e0ea97f52824/home/gpg.nix#L51
@@ -65,7 +66,7 @@ in {
     #enableExtraSocket   = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
-    pinentryPackage      = pkgs.pinentry-qt;
+    pinentry.package     = pkgs.pinentry-qt;
     verbose              = true;
     extraConfig = ''
       debug-pinentry
