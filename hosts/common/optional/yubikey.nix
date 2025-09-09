@@ -19,7 +19,6 @@
     enable = true;
     plugins = with pkgs; [ libykneomgr ccid ];
   };
-  services.keybase.enable = true;
 
   environment.systemPackages = with pkgs; [
     yubikey-personalization
