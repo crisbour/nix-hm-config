@@ -48,7 +48,7 @@
     };
 
     extraConfig = "
-      monitor = HDMI-A-4, 1920x1080, 0x0, 1
+      #monitor = HDMI-A-4, 1920x1080, 0x0, 1
       monitor = DP-2, 1920x1080, 0x0, 1
       monitor = DP-3, 1920x1200, 1920x0, 1
 
