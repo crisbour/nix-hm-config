@@ -44,18 +44,18 @@
       monospace = {
         package = pkgs.nerd-fonts.zed-mono;
         #name = "JetBrains Mono Nerd Font";
-        name = "Zed Mono";
+        name = "ZedMono Nerd Font";
       };
       sansSerif = {
-        name = "Noto Sans";
-        package = pkgs.noto-fonts;
+        name = "NotoSans Nerd Font";
+        package = pkgs.nerd-fonts.noto;
       };
       serif = {
-        name = "Noto Serif";
-        package = pkgs.noto-fonts;
+        name = "NotoSerif Nerd Font";
+        package = pkgs.nerd-fonts.noto;
       };
       emoji = {
-        package = pkgs.noto-fonts-emoji;
+        package = pkgs.noto-fonts-color-emoji;
         name = "Noto Color Emoji";
       };
       sizes = {

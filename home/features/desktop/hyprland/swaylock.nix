@@ -7,7 +7,7 @@
 }:
 let
   # TODO: Receive this from config
-  globalFont = "NotoSansMono Nerd Font";
+  globalFont = "ZedMono";
 in
 {
   programs.swaylock = {

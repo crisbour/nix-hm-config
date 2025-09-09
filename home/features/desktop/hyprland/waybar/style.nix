@@ -1,7 +1,7 @@
-{ ... }:
+{ config, ... }:
 let
   # TODO: Receive this from config
-  globalFont = "NotoSansMono Nerd Font";
+  globalFont = "ZedMono";
   custom = {
     font = globalFont;
     font_size = "18px";

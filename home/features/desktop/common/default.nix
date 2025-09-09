@@ -32,7 +32,6 @@ in
     nerd-fonts.iosevka
     nerd-fonts.droid-sans-mono
     nerd-fonts.jetbrains-mono
-    noto-fonts
 
     #flameshot
     #shutter # screenshots
@@ -71,6 +70,7 @@ in
     file-roller # archive
 
     obs-studio
+    obs-studio-plugins.wlrobs
     pavucontrol                       # pulseaudio volume controle (GUI)
     resources                         # GUI resources monitor
     zenity

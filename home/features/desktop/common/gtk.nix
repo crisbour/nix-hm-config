@@ -8,10 +8,11 @@ in
     nerd-fonts.iosevka
     nerd-fonts.symbols-only
     twemoji-color-font
-    noto-fonts
-    noto-fonts-extra
-    noto-fonts-emoji
-    maple-mono.Normal-NF
+    noto-fonts-color-emoji
+    noto-fonts-monochrome-emoji
+    nerd-fonts.hack
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.noto
   ];
   # Gnome look inspired from: https://hoverbear.org/blog/declarative-gnome-configuration-in-nixos/
   gtk = {

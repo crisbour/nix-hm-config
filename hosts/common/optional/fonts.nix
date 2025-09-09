@@ -10,6 +10,8 @@
     pkgs.nerd-fonts.fira-code
     pkgs.nerd-fonts.inconsolata
     pkgs.nerd-fonts.jetbrains-mono
-    pkgs.noto-fonts # For microsoft websites like Github and Linkedin on Chromium browsers
+    pkgs.nerd-fonts.noto
+    pkgs.noto-fonts-color-emoji
+    pkgs.noto-fonts-monochrome-emoji
   ];
 }
