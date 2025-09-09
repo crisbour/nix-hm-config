@@ -69,5 +69,7 @@
     SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6015", MODE="0666"
     # Zaber linear stage -> Bus 001 Device 059: ID 0403:6001 Future Technology Devices International, Ltd FT232 Serial (UART) IC
     SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6001", MODE="0666"
+    # Saleae Logic Analyzer
+    SUBSYSTEM=="usb", ATTR{idVendor}=="21a9", ATTR{idProduct}=="1005", MODE="0666"
   '';
 }

@@ -42,6 +42,7 @@
       xorg.libXrandr
       xorg.libXinerama
       libGL
+      glfw
       freetype
       libpng
       openssl
