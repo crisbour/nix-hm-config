@@ -166,12 +166,13 @@
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       homeConfigurations = {
-        cristi = mkHomeConfiguration ./home/cristi.nix "x86_64-linux";
-        work = mkHomeConfiguration ./home/work.nix   "x86_64-linux";
-        tiny = mkHomeConfiguration ./home/tiny.nix   "x86_64-linux";
-        uoe = mkHomeConfiguration ./home/uoe.nix   "x86_64-linux";
-        lab = mkHomeConfiguration ./home/lab.nix   "x86_64-linux";
-        wsl = mkHomeConfiguration ./home/wsl.nix   "x86_64-linux";
+        cristi   = mkHomeConfiguration ./home/cristi.nix   "x86_64-linux";
+        work     = mkHomeConfiguration ./home/work.nix     "x86_64-linux";
+        tiny     = mkHomeConfiguration ./home/tiny.nix     "x86_64-linux";
+        cruncher = mkHomeConfiguration ./home/cruncher.nix "x86_64-linux";
+        uoe      = mkHomeConfiguration ./home/uoe.nix      "x86_64-linux";
+        lab      = mkHomeConfiguration ./home/lab.nix      "x86_64-linux";
+        wsl      = mkHomeConfiguration ./home/wsl.nix      "x86_64-linux";
       };
 
       nixosConfigurations = {
