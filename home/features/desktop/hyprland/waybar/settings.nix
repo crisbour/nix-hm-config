@@ -2,9 +2,9 @@
 let
   host = "laptop";
   # TODO: Receive this from config
-  globalFont = "ZedMono";
+  globalFont = "FiraCode Nerd Font";
   custom = {
-    font = globalFont;
+    #font = globalFont;
     font_size = "18px";
     font_weight = "bold";
     text_color = "#FBF1C7";

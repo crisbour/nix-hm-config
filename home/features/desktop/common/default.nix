@@ -28,10 +28,14 @@ in
 
   home.packages = with pkgs; [
     # Control fonts better
-    nerd-fonts.fira-code
+    pkgs.fira-code
+    pkgs.fira-code-symbols
+    pkgs.nerd-fonts.fira-code # Extension for enlarged operators
     nerd-fonts.iosevka
     nerd-fonts.droid-sans-mono
     nerd-fonts.jetbrains-mono
+    noto-fonts-color-emoji
+    noto-fonts-monochrome-emoji
 
     #flameshot
     #shutter # screenshots

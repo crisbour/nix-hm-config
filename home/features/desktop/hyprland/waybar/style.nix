@@ -1,9 +1,9 @@
 { config, ... }:
 let
   # TODO: Receive this from config
-  globalFont = "ZedMono";
+  globalFont = "FiraCode Nerd Font";
   custom = {
-    font = globalFont;
+    #font = globalFont;
     font_size = "18px";
     font_weight = "bold";
     text_color = "#FBF1C7";
@@ -23,13 +23,13 @@ let
   };
 in
 {
+  #font-family: ${font};
   programs.waybar.style = with custom; ''
     * {
       border: none;
       border-radius: 0px;
       padding: 0;
       margin: 0;
-      font-family: ${font};
       font-weight: ${font_weight};
       opacity: ${opacity};
       font-size: ${font_size};

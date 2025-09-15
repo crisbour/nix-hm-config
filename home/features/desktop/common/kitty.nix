@@ -24,6 +24,7 @@
       confirm_os_window_close=0;
     };
 
+    # FIXME: No idea what these shortcuts are, must have inhereted them from somewhere. Cleanup!!!
     keybindings = {
       "kitty_mod+b" = "launch --type overlay --stdin-source=@screen_scrollback hx";
       "kitty_mod+n" = if pkgs.stdenv.isLinux then "new_tab_with_cwd cglaunch kitty --detach" else "new_os_window_with_cwd";
@@ -34,6 +35,9 @@
       "kitty_mod+0" = "change_font_size all 0";
       "kitty_mod+с" = "copy_to_clipboard";
       "kitty_mod+v" = "paste_from_clipboard";
+      "alt+1" = "disable_ligatures_in active always";
+      "alt+2" = "disable_ligatures_in active never";
+      "alt+3" = "disable_ligatures_in active cursor";
     };
   };
 }

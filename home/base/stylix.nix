@@ -42,9 +42,10 @@
 
     fonts = {
       monospace = {
-        package = pkgs.nerd-fonts.zed-mono;
+        package = pkgs.nerd-fonts.fira-code;
         #name = "JetBrains Mono Nerd Font";
-        name = "ZedMono Nerd Font";
+        #name = "ZedMono Nerd Font";
+        name = "FiraCode Nerd Font";
       };
       sansSerif = {
         name = "NotoSans Nerd Font";
