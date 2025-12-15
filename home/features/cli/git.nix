@@ -22,20 +22,20 @@ in
 
     includes = [
       {
-        condition = "hasconfig:remote.*.url:git@github.com:*";
+        condition = "hasconfig:remote.*.url:git@github.com:*/**";
         contents = {
           user = {
-            name = "Cristian Bourceanu";
-            email = "v.c.bourceanu@sms.ed.ac.uk";
+            name = "Cristi Bourceanu";
+            email = "bourceanu.cristi@gmail.com";
           };
         };
       }
       {
-        condition = "hasconfig:remote.*.url:git@git.ecdf.ed.ac.uk:*";
+        condition = "hasconfig:remote.*.url:git@git.ecdf.ed.ac.uk:*/**";
         contents = {
           user = {
-            name = "Cristi Bourceanu";
-            email = "bourceanu.crsti@gmail.com";
+            name = "Cristian Bourceanu";
+            email = "v.c.bourceanu@sms.ed.ac.uk";
           };
         };
       }
@@ -73,6 +73,7 @@ in
     extraConfig = {
       core.editor = "nvim";
       github.user = "crisbour";
+      # NOTE: Following is annoying when I am using my own projects as dependencies to packages that call system git
       url."git@github.com:crisbour/" = {
         insteadOf = [
           "me:"
