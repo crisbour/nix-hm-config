@@ -52,6 +52,9 @@
     '';
 
     urls = [
+      { url = "https://www.alanzucconi.com/feed"; }
+      { url = "https://lisyarus.github.io/blog/feed.xml"; }
+      { url = "https://gendignoux.com/blog/feed.xml"; }
       { url = "https://www.umcconnell.net/feed"; }
       { url = "https://maskray.me/blog/atom.xml"; }
       { url = "https://www.adiuvoengineering.com/microzed-chronicles-archive/feed"; }
