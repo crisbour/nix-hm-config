@@ -31,7 +31,7 @@
       "kitty_mod+u" = '' launch --type window --allow-remote-control sh -c 'kitty @ send-text -m id:1 "\e[200~$(emoji-dmenu -k overlay)\e[201~"' '';
       "kitty_mod+г" = '' launch --type window --allow-remote-control sh -c 'kitty @ send-text -m id:1 "\e[200~$(emoji-dmenu -k overlay)\e[201~"' '';
       "kitty_mod+i" = '' launch --type window --allow-remote-control sh -c 'kitty @ send-text -m id:1 "\e[200~$(wl-clipboard-manager dmenu -k overlay)\e[201~"' '';
-      "kitty_mod+ш" = '' launch --type window --allow-remote-control sh -c 'kitty @ send-text -m id:1 "\e[200~$(wl-clipboard-manager dmenu -k overlay)\e[201~"' '';
+      "kitty_mod+ш" = '' launch --type window --allow-remote-control sh -c 'kitty @ send-text -m id:2 "\e[200~$(wl-clipboard-manager dmenu -k overlay)\e[201~"' '';
       "kitty_mod+0" = "change_font_size all 0";
       "kitty_mod+с" = "copy_to_clipboard";
       "kitty_mod+v" = "paste_from_clipboard";
