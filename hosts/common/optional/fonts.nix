@@ -4,12 +4,7 @@
   fonts.packages = [
     pkgs.fira-code
     pkgs.fira-code-symbols
-    pkgs.font-awesome
-    pkgs.font-awesome_4
-    pkgs.font-awesome_5
-    pkgs.nerd-fonts.fira-code
-    pkgs.nerd-fonts.inconsolata
-    pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.fira-code # Extension for enlarged operators
     pkgs.nerd-fonts.noto
     pkgs.noto-fonts-color-emoji
     pkgs.noto-fonts-monochrome-emoji

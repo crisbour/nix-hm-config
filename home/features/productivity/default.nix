@@ -14,6 +14,7 @@ with pkgs;
     evcxr                         # Rust notebook: Evcxr
     graphviz
     engauge-digitizer             # Grapgh to CSV digitizer: Very useful for extracting data from papers
+    kdePackages.kcalc
 
     # Documents
     asciidoctor
@@ -21,6 +22,7 @@ with pkgs;
     kdePackages.okular
     quarto
     joplin-desktop
+    recoll
 
     rust-analyzer
 
