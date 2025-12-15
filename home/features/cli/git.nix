@@ -42,7 +42,20 @@ in
         email = "bourceanu.cristi@gmail.com";
       };
 
-      aliases = {
+      init.defaultBranch = "main";
+
+      pull = {
+        ff = false;
+        commit = false;
+        rebase = true;
+      };
+
+      push = {
+        default = "upstream";
+        autoSetupRemote = true;
+      };
+
+      alias = {
         cm = "commit";
         ca = "commit --amend --no-edit";
         di = "diff";
@@ -73,18 +86,6 @@ in
           "me:"
           "https://github.com/crisbour/"
         ];
-      };
-
-      init.defaultBranch = "main";
-
-      pull = {
-        ff = false;
-        commit = false;
-        rebase = true;
-      };
-      push = {
-        default = "upstream";
-        autoSetupRemote = true;
       };
 
       commit.gpgsign = !builtins.isNull user-info.gpg.signKey;
