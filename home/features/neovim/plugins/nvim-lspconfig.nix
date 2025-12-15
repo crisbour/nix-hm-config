@@ -21,6 +21,7 @@
       verible
       vim-language-server
       zls
+      nodePackages.vscode-json-languageserver
     ] ++ (with pkgs.nodePackages; [
       pyright
     ]);
@@ -52,6 +53,11 @@
 
         lspconfig.cmake.setup{
           capabilities = capabilities,
+        }
+
+        lspconfig.julials.setup{
+          capabilities = capabilities,
+          cmd = { "${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver", "--stdio" },
         }
 
         lspconfig.julials.setup{
@@ -131,6 +137,13 @@
           callback = function(ev)
             -- Enable completion triggered by <c-x><c-o>
             vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+            -- Some Lsp servers do not advertise inlay hints properly so enable this keybinding regardless
+            vim.keymap.set('n', '<space>ht', function()
+                vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({bufnr = 0}), { bufnr = 0 })
+              end,
+              { desc = '[H]ints [T]oggle', noremap=true, buffer=bufnr }
+            )
 
             -- Buffer local mappings.
             -- See `:help vim.lsp.*` for documentation on any of the below functions

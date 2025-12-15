@@ -45,6 +45,7 @@
 
     # Markdown preview
     markdown-preview-nvim
+    mkdx # TODO: Configure for my preference use cases: https://github.com/SidOfc/mkdx?tab=readme-ov-file
 
     # Local Environment Configuration and Integration
     direnv-vim
@@ -75,7 +76,7 @@
     copilot-lua
     {
       type = "lua";
-      plugin = pkgs.unstable.vimPlugins.CopilotChat-nvim;
+      plugin = pkgs.vimPlugins.CopilotChat-nvim;
       config = ''
         require('CopilotChat').setup {
           model = 'gpt-4o',
