@@ -5,12 +5,6 @@
   ];
 
   home.packages = with pkgs; [
-    # Celeste
-    celeste-classic
-
-    # Doom
-    crispy-doom
-
     winetricks
     #wineWowPackages.full
     wineWowPackages.waylandFull
@@ -24,6 +18,7 @@
         gtk4
         pango
         pangolin
+        blender
         # List library dependencies here
       ];
     })
