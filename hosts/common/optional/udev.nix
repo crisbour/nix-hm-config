@@ -11,7 +11,8 @@
     # Create "/dev" entries for Digilent device's with read and write
     # permission granted to all users.
     ATTRS{idVendor}=="1443", MODE:="666"
-    ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Digilent", MODE:="666"
+    #ACTION=="add", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Digilent", GROUP="plugdev", TAG+="uaccess", MODE="0666"
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="0403", ATTRS{manufacturer}=="Digilent", MODE="0666"
 
 
     ###########################################################################
@@ -43,7 +44,7 @@
     ###########################################################################
     # Picoquant: /etc/udev/rules.d/99-picoquant.rules                         #
     ###########################################################################
-    ATTR{idVendor}=="0e0d", ATTR{idProduct}=="0007", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="0e0d", ATTR{idProduct}=="0007", MODE="0666"
 
     ###########################################################################
     # i2c-dev for ddcutils
@@ -62,8 +63,13 @@
     # Allow Lab equipment for SCPI/VISA commands
     # - TODO: Add all Thorlabs devices based on idVedor
     ###########################################################################
+    # Thorlabs PM400
     SUBSYSTEM=="usb", ATTR{idVendor}=="1313", ATTR{idProduct}=="8075", MODE="0666"
+    # Thorlabs CCS200 and CCS200 updated firmware to enable Linux support
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1313", ATTR{idProduct}=="8088", MODE="0666"
+    SUBSYSTEM=="usb", ATTR{idVendor}=="1313", ATTR{idProduct}=="8089", MODE="0666"
     SUBSYSTEM=="usb", ATTR{idVendor}=="1ab1", ATTR{idProduct}=="0642", MODE="0666"
+    # PicoScope
     SUBSYSTEM=="usb", ATTR{idVendor}=="0ce9", ATTR{idProduct}=="1215", MODE="0666"
     # Thorlabs piezoelectric stage controller
     SUBSYSTEM=="usb", ATTR{idVendor}=="0403", ATTR{idProduct}=="6015", MODE="0666"

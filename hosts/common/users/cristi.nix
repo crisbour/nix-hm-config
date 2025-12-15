@@ -25,6 +25,7 @@ in {
     #initialPassword = "ChangeMe1";
     extraGroups = ifTheyExist [
       "netdev"
+      "plugdev"
       "wheel"
       "docker"
       "networkmanager"
