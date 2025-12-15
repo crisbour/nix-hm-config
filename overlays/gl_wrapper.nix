@@ -15,7 +15,7 @@ let
     '';
 in {
 #  alacritty      = nixGLWrap prev.nixgl.auto.nixGLDefault prev.alacritty;
-  joplin-desktop = nixGLWrap prev.nixgl.auto.nixGLDefault prev.unstable.joplin-desktop;
+  #  joplin-desktop = nixGLWrap prev.nixgl.auto.nixGLDefault prev.unstable.joplin-desktop;
   # FIXME:  error: attribute 'fhsWithPackages' missing
   #vscode       = nixGLWrap prev.nixgl.auto.nixGLDefault prev.vscode;
   spotify        = nixGLWrap prev.nixgl.auto.nixGLDefault prev.spotify;
