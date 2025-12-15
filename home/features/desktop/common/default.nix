@@ -21,9 +21,6 @@ in
     #./syncthing.nix
   ];
 
-  # TODO What is xdg portal and configure it to gtk or kde?
-  #xdg.portal.enable = true;
-
   services.yubikey-touch-detector.enable = true;
 
   home.packages = with pkgs; [

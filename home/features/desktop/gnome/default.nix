@@ -10,7 +10,7 @@
     "org/gnome/shell" = {
       favorite-apps = [
         "Alacritty.desktop"
-        "brave-browser.desktop"
+        "zen-browser.desktop"
         "spotify.desktop"
         "discord.desktop"
         "slack.desktop"

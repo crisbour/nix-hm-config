@@ -32,6 +32,12 @@
     ];
   };
 
+  environment.systemPackages = with pkgs; [
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal
+    xdg-desktop-portal-hyprland
+  ];
+
   # greetd display manager
   # Partially inspired from: https://github.com/Aylur/dotfiles/blob/ags-pre-ts/nixos/hyprland.nix
   services.xserver.displayManager.startx.enable = true;

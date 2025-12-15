@@ -23,7 +23,6 @@ let
     text = [
       "text/plain"
       "text/markdown"
-      "text/plain"
       "text/x-shellscript"
       "text/x-python"
       "text/x-go"
@@ -118,15 +117,25 @@ in
     enable = true;
     # TODO mimeTypes?
     #configFile."mimeapps.list".force = true;
-    mimeApps.enable = true;
-    mimeApps.associations.added = associations;
-    mimeApps.defaultApplications = associations;
+    mime.enable = true;
+    mimeApps = {
+      enable = true;
+      defaultApplications = associations;
+      associations.added = associations;
+    };
+
+    portal = {
+      enable = true;
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-gtk
+        #xdg-desktop-portal-hyprland
+      ];
+      xdgOpenUsePortal = true;
+      config.commom.default = [ "hyprland" ];
+    };
 
   };
 
-  #xdg.portal.enable = true;
-  #xdg.portal.config.common.default = "*";
-  #xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   home.sessionVariables = {
     # prevent wine from creating file associations
