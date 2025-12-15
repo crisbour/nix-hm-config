@@ -8,7 +8,7 @@
   cairo,
   glib,
   libnotify,
-  rofi-wayland-unwrapped,
+  rofi-unwrapped,
   wl-clipboard,
   wtype,
 }:
@@ -48,7 +48,7 @@ stdenv.mkDerivation rec {
     cairo
     glib
     libnotify
-    rofi-wayland-unwrapped
+    rofi-unwrapped
     wl-clipboard
     wtype
   ];

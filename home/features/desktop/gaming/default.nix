@@ -16,8 +16,6 @@
         winetricks
         libadwaita
         gtk4
-        pango
-        pangolin
         blender
         # List library dependencies here
       ];

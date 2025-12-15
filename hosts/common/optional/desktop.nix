@@ -38,7 +38,7 @@
   services.libinput.enable = true;
 
   # To prevent getting stuck at shutdown
-  systemd.extraConfig = "DefaultTimeoutStopSec=10s";
+  systemd.settings.Manager.DefaultTimeoutStopSec = "10s";
 
   # Enable automatic login for the user.
   #services.displayManager.autoLogin.enable = true;

@@ -31,7 +31,7 @@ in {
         evcxr                         # Rust notebook: Evcxr
         # Shell Utilities
         mosh                    # Mobile SSH
-        nodePackages.jsonlint
+        python313Packages.demjson3
         pre-commit
         tree-sitter
         watchexec
@@ -71,7 +71,7 @@ in {
         clippy
 
         # Language servers
-        clang-tools_17
+        clang-tools
         cmake
         cmake-language-server
 

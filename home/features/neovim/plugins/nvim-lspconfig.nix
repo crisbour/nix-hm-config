@@ -7,7 +7,7 @@
   ];
   programs.neovim = {
     extraPackages = with pkgs; [
-      clang-tools_17
+      clang-tools
       #spade-language-server
       nixd # Nix language server
       ltex-ls
@@ -30,16 +30,18 @@
         type = "lua";
         plugin = nvim-lspconfig;
         config = ''
-        local lspconfig = require('lspconfig')
-        local capabilities = require("cmp_nvim_lsp").default_capabilities()
+        local capabilities = vim.lsp.protocol.make_client_capabilities()
+        capabilities.textDocument.completion.completionItem.snippetSupport = true
 
-        lspconfig.bashls.setup {
+        vim.lsp.enable('bashls')
+        vim.lsp.config('bashls', {
           cmd = { "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start" },
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.clangd.setup {
-          cmd = { "${pkgs.clang-tools_17}/bin/clangd",
+        vim.lsp.enable('clangd')
+        vim.lsp.config('clangd', {
+          cmd = { "${pkgs.clang-tools}/bin/clangd",
                   "--all-scopes-completion",
                   "--suggest-missing-includes",
                   "--background-index",
@@ -49,22 +51,26 @@
                   "--enable-config",
                   },
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.cmake.setup{
+        vim.lsp.enable('cmake')
+        vim.lsp.config('cmake',{
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.julials.setup{
+        vim.lsp.enable('julials')
+        vim.lsp.config('julials',{
           capabilities = capabilities,
           cmd = { "${pkgs.nodePackages.vscode-json-languageserver}/bin/vscode-json-languageserver", "--stdio" },
-        }
+        })
 
-        lspconfig.julials.setup{
+        vim.lsp.enable('julials')
+        vim.lsp.config('julials',{
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.ltex.setup{
+        vim.lsp.enable('ltex')
+        vim.lsp.config('ltex',{
           settings = {
             ltex = {
               language = "en-GB",
@@ -73,62 +79,75 @@
             },
           },
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.matlab_ls.setup{
+        vim.lsp.enable('matlab_ls')
+        vim.lsp.config('matlab_ls',{
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.nixd.setup{
+        vim.lsp.enable('nixd')
+        vim.lsp.config('nixd',{
           capabilities = capabilities,
-        }
+        })
 
-        --lspconfig.nimls.setup{}
+        --vim.lsp.enable('nimls')
+        --vim.lsp.config('nimls',{})
         --lspconfig.pyls.setup{}
 
-        lspconfig.ruff.setup{
+        vim.lsp.enable('ruff')
+        vim.lsp.config('ruff',{
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.pyright.setup{
+        vim.lsp.enable('pyright')
+        vim.lsp.config('pyright',{
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.rust_analyzer.setup{
+        vim.lsp.enable('rust_analyzer')
+        vim.lsp.config('rust_analyzer', {
           capabilities = capabilities,
           settings = {
             ['rust-analyzer'] = {},
           },
-        }
+        })
 
-        lspconfig.vimls.setup{
+        vim.lsp.enable('vimls')
+        vim.lsp.config('vimls',{
           capabilities = capabilities,
-        }
+        })
 
-        --lspconfig.veridian.setup{
+        --vim.lsp.enable('veridian')
+        --vim.lsp.config('veridian',{
         --  capabilities = capabilities,
-        --}
+        --})
 
-        lspconfig.svls.setup{
+        vim.lsp.enable('svls')
+        vim.lsp.config('svls',{
           capabilities = capabilities,
-        }
-        lspconfig.verible.setup{
+        })
+        vim.lsp.enable('verible')
+        vim.lsp.config('verible',{
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.yamlls.setup {
+        vim.lsp.enable('yamlls')
+        vim.lsp.config('yamlls', {
           cmd = { "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server", "--stdio" },
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.texlab.setup {
+        vim.lsp.enable('texlab')
+        vim.lsp.config('texlab', {
           cmd = { "${pkgs.texlab}/bin/texlab" },
           capabilities = capabilities,
-        }
+        })
 
-        lspconfig.zls.setup {
+        vim.lsp.enable('zls')
+        vim.lsp.config('zls', {
           capabilities = capabilities,
-        }
+        })
 
         -- Use LspAttach autocommand to only map the following keys
         -- after the language server attaches to the current buffer

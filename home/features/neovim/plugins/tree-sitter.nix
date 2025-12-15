@@ -46,7 +46,7 @@ in {
       (nvim-treesitter-parsers.tsx)
       (nvim-treesitter-parsers.vim)
       (nvim-treesitter-parsers.vimdoc)
-      (nvim-treesitter-parsers.verilog)
+      (nvim-treesitter-parsers.systemverilog)
       (nvim-treesitter-parsers.xml)
       (nvim-treesitter-parsers.yaml)
       (nvim-treesitter-parsers.zig)

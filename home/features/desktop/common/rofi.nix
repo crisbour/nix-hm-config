@@ -26,7 +26,7 @@ in
 
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
+    package = pkgs.rofi;
     plugins = [
       pkgs.rofi-calc-wayland
       pkgs.rofi-emoji-wayland

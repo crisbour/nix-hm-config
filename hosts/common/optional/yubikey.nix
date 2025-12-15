@@ -25,7 +25,6 @@
     yubikey-manager
     yubico-pam
     # GUI
-    yubikey-personalization-gui
     yubioath-flutter
   ];
 

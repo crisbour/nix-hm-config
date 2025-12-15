@@ -4,12 +4,12 @@
   fetchFromGitHub,
   autoreconfHook,
   pkg-config,
-  rofi-wayland-unwrapped,
+  rofi-unwrapped,
   libqalculate,
   glib,
   cairo,
   gobject-introspection,
-  wrapGAppsHook,
+  wrapGAppsHook3,
 }:
 stdenv.mkDerivation rec {
   pname = "rofi-calc-wayland";
@@ -26,11 +26,11 @@ stdenv.mkDerivation rec {
     autoreconfHook
     pkg-config
     gobject-introspection
-    wrapGAppsHook
+    wrapGAppsHook3
   ];
 
   buildInputs = [
-    rofi-wayland-unwrapped
+    rofi-unwrapped
     libqalculate
     glib
     cairo

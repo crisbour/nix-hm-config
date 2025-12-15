@@ -6,15 +6,9 @@ let
   inherit (config.home) user-info;
 in
 {
-  home.packages = with pkgs.gitAndTools; [delta ];
-
   programs.git = {
     enable = true;
-    package = pkgs.gitAndTools.gitFull;
 
-    userName = "Cristi Bourceanu";
-    userEmail = "bourceanu.cristi@gmail.com";
-    # TODO = optionalAttrs?
     signing = {
       key           = user-info.gpg.signKey;
       signByDefault = !builtins.isNull user-info.gpg.signKey;
@@ -41,36 +35,36 @@ in
       }
     ];
 
-    aliases = {
-      cm = "commit";
-      ca = "commit --amend --no-edit";
-      di = "diff";
-      dh = "diff HEAD";
-      pu = "pull";
-      ps = "push";
-      pf = "push --force-with-lease";
-      s  = "status -sb";
-      co = "checkout";
-      cb = "checkout -b";
-      fe = "fetch";
-      gr = "grep -in";
-      re = "rebase -i";
-      cp = "cherry-pick";
-      sur = "submodule update --init --recursive";
-      lt = "log --graph --oneline --decorate --all";
-      lta = "log --graph --oneline --decorate --all --author";
-    };
+    settings = {
 
-    delta = {
-      enable = true;
-      options = {
-        theme = "OneHalfDark";
-        #side-by-side = true;
-        line-numbers = true;
+      user = {
+        name= "Cristi Bourceanu";
+        email = "bourceanu.cristi@gmail.com";
       };
-    };
 
-    extraConfig = {
+      aliases = {
+        cm = "commit";
+        ca = "commit --amend --no-edit";
+        di = "diff";
+        dh = "diff HEAD";
+        pu = "pull";
+        ps = "push";
+        pf = "push --force-with-lease";
+        s  = "status -sb";
+        co = "checkout";
+        cb = "checkout -b";
+        fe = "fetch";
+        gr = "grep -in";
+        re = "rebase -i";
+        cp = "cherry-pick";
+        sur = "submodule update --init --recursive";
+        lt = "log --graph --oneline --decorate --all";
+        lta = "log --graph --oneline --decorate --all --author";
+      };
+
+      # ===================
+      # extraConfig
+      # ===================
       core.editor = "nvim";
       github.user = "crisbour";
       # NOTE: Following is annoying when I am using my own projects as dependencies to packages that call system git
@@ -100,6 +94,8 @@ in
       #credentials.helper = "cache";
 
     };
+
+
     ignores = [
       "build" # build directory
       ".idea" ".vs" ".vsc" ".vscode" # ide
@@ -107,6 +103,16 @@ in
       ".direnv"
       ".cache"
     ];
+  };
+
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+    options = {
+      theme = "OneHalfDark";
+      #side-by-side = true;
+      line-numbers = true;
+    };
   };
 
 }

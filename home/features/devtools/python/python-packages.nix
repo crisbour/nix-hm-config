@@ -26,6 +26,8 @@ pkgs.python3.withPackages (p: with p; [
         inherit pname version;
         hash = "sha256-XdYo6nwt9Tm2GVvBo/tPQo4pZb633MW3zjvbUqAAcTQ=";
       };
+      pyproject = true;
+      build-system = [ setuptools ];
       doCheck = false;
       propagatedBuildInputs = [
         # Specify dependencies
