@@ -14,10 +14,10 @@ let
   {
     name = "telescope-zotero-nvim";
     src = pkgs.fetchFromGitHub {
-      owner = "jmbuhr";
+      owner = "crisbour";
       repo = "telescope-zotero.nvim";
-      rev = "74f7e5464461dd4325cb843cf801158937a52020";  # Check GitHub for latest
-      hash = "sha256-XMXnAcetIaqkMr8d/p6ATBckccbMj2vaO/RIH66ShwA="; # Get via nix-prefetch-github
+      rev = "74120260688ee0a6033f92448ab1e4cd882aa275";  # Check GitHub for latest
+      hash = "sha256-GfztMmz1JW+jWw8zB9tKbGzkbxl+Rvxc1c8zaDdWUXQ="; # Get via nix-prefetch-github
     };
     doCheck = false;
     disableRequireCheck = true;

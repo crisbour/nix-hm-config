@@ -83,7 +83,7 @@ in
           "extensions.zotero.export.lastStyle" = style;
           "extensions.zotero.export.quickCopy.locale" = locale;
           "extensions.zotero.export.quickCopy.setting" = "bibliography=${style}";
-          "extensions.zotero.export.citePaperJournalArticleURL" = false;
+          "extensions.zotero.export.citePaperJournalArticleURL" = true;
 
           # Feed options
           "extensions.zotero.feeds.defaultTTL" = 24 * 7; # Refresh feeds every week
@@ -100,7 +100,7 @@ in
           "extensions.zotero.tabs.title.reader" = "filename"; # Show filename in tab title
 
           # Sync settings
-          "extensions.zotero.sync.storage.enabled" = false; # File synchronization is handled by Syncthing.
+          "extensions.zotero.sync.storage.enabled" = true; # File synchronization is handled by WebDAV from my Nextcloud service
           # "extensions.zotero.attachmentRenameFormatString" = "{%c - }%t{100}{ (%y)}"; # Set the file name format used by Zotero's internal stuff
 
           "extensions.zotero.autoRenameFiles.fileTypes" = lib.concatStringsSep "," [
@@ -110,7 +110,7 @@ in
             "application/vnd.oasis.opendocument.text"
           ];
 
-          "extensions.zotero.aria.enabled" = true;
+          #"extensions.zotero.aria.enabled" = true;
 
           # Zotero OCR
           "extensions.zotero.zoteroocr.pdftoppmPath" = "${pkgs.poppler_utils}/bin/pdftoppm";
