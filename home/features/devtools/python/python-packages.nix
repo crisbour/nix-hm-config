@@ -35,19 +35,29 @@ pkgs.python3.withPackages (p: with p; [
       ];
     }
   )
-  (
-    buildPythonPackage rec {
-      pname = "webio_jupyter_extension";
-      version = "0.1.0";
-      src = fetchPypi {
-        inherit pname version;
-        hash = "sha256-m0FJa4bdC1c02Z+YeFumjPSzzXWuXHBLl7usvxmO0rc=";
-      };
-      doCheck = false;
-      propagatedBuildInputs = [
-        # Specify dependencies
-        jupyter-packaging
-      ];
-    }
-  )
+  #(
+  #  buildPythonPackage rec {
+  #    pname = "webio_jupyter_extension";
+  #    version = "0.1.0";
+  #    src = fetchPypi {
+  #      inherit pname version;
+  #      hash = "sha256-m0FJa4bdC1c02Z+YeFumjPSzzXWuXHBLl7usvxmO0rc=";
+  #    };
+  #    pyproject = true;
+  #    build-system = [ setuptools ];
+  #    doCheck = false;
+  #    propagatedBuildInputs = [
+  #      # Specify dependencies
+  #      jupyter-packaging
+  #      (jupyterlab.overrideAttrs (old: {
+  #        version = "3.1.0";
+  #        src = fetchPypi {
+  #          pname = "jupyterlab";
+  #          version = "3.1.0";
+  #          hash = "sha256-WgIOWUDvMqnm4aQ/fHlPVChpV2owxQg3mcfZffNOnPM=";
+  #        };
+  #      }))
+  #    ];
+  #  }
+  #)
 ])
