@@ -8,7 +8,7 @@
 autocmd BufNewFile,BufRead *.tex,*.md,*.txt,*.rst,*.qmd setlocal tw=80
 autocmd BufNewFile,BufRead *.tex,*.md,*.txt,*.rst,*.qmd setlocal linebreak breakindent
 autocmd BufNewFile,BufRead *.tex,*.md,*.txt,*.rst,*.qmd setlocal spell spelllang=en_gb
-autocmd BufNewFile,BufRead *.tex,*.md,*.txt,*.rst,*.qmd match Over100Length /\%81v.\+/
+" autocmd BufNewFile,BufRead *.tex,*.md,*.txt,*.rst,*.qmd match Over100Length /\%81v.\+/
 
 " Set specific indentation for Julia and Python
 autocmd FileType julia setlocal shiftwidth=4 tabstop=4

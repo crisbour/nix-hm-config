@@ -42,6 +42,13 @@
     # Basic
     plenary-nvim
     which-key-nvim
+    {
+      type = "lua";
+      plugin = auto-session;
+      config = ''
+        require('auto-session').setup({})
+      '';
+    }
 
     # Markdown preview
     markdown-preview-nvim
@@ -67,7 +74,13 @@
       type = "lua";
       plugin = text-case-nvim;
       config = ''
-        require('textcase').setup {}
+        require('textcase').setup {
+          prefix = "tc",
+          keys = {
+           "tc", -- Default invocation prefix
+            { "tc.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
+          }
+        }
         require("telescope").load_extension("textcase")
       '';
     }
@@ -79,7 +92,7 @@
       plugin = pkgs.vimPlugins.CopilotChat-nvim;
       config = ''
         require('CopilotChat').setup {
-          model = 'gpt-4o',
+          model = 'gpt-4.1',
           prompts = {
             GenerateCode = {
               prompt = 'Generate code using online references and openning files under the current directory to understand the underlying structures and logic of the code.',
