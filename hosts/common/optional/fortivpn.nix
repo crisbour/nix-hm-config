@@ -2,9 +2,6 @@
 {
   networking.networkmanager.enable = true;
 
-  # Support for IPSec VPN
-  networking.networkmanager.enableStrongSwan = true;
-
   services.xl2tpd.enable = true;
   services.strongswan.enable = true;
 

@@ -62,12 +62,11 @@
   networking.firewall.allowedTCPPorts = [ 8443 ];
 
   services.logind = {
-    # Already defined in hibernate-resume
-    lidSwitch = "suspend";
-    lidSwitchExternalPower = "lock";
-    extraConfig = ''
-      HandlePowerKey=suspend
-    '';
+    settings.Login = {
+      HandleLidSwitchExternalPower = "lock";
+      HandleLidSwitch = "suspend";
+      HandlePowerKey = "suspend";
+    };
   };
 
   networking = {
@@ -97,7 +96,6 @@
   programs.adb.enable = true;
   users.users.cristi.extraGroups = ["adbusers"];
   services.udev.packages = [
-    pkgs.android-udev-rules
     pkgs.ddcutil
   ];
 
