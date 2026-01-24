@@ -9,6 +9,8 @@
     #wineWowPackages.full
     wineWowPackages.waylandFull
 
+    blender
+
     (lutris.override {
       extraLibraries =  pkgs: [
         vkd3d
@@ -16,7 +18,6 @@
         winetricks
         libadwaita
         gtk4
-        blender
         # List library dependencies here
       ];
     })
