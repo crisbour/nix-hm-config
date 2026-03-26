@@ -16,8 +16,8 @@ let
     src = pkgs.fetchFromGitHub {
       owner = "crisbour";
       repo = "telescope-zotero.nvim";
-      rev = "74120260688ee0a6033f92448ab1e4cd882aa275";  # Check GitHub for latest
-      hash = "sha256-GfztMmz1JW+jWw8zB9tKbGzkbxl+Rvxc1c8zaDdWUXQ="; # Get via nix-prefetch-github
+      rev = "7bf90497274783c23c644edd1e8904452c29175e";  # Check GitHub for latest
+      hash = "sha256-e9jkNIGl1k7TJIC3rLqa/pxfRhB7CecPLsQ18/WWajo="; # Get via nix-prefetch-github
     };
     doCheck = false;
     disableRequireCheck = true;
