@@ -17,6 +17,10 @@ swappy_() {
     swappy -f "$file"
 }
 
+#pix2tex() {
+#  grimblast --notify save area /tmp/pix2tex_screenshot.png && curl -s -X POST -F "file=@/tmp/pix2tex_screenshot.png" -L http://127.0.0.1:8502/predict | jq -r | wl-copy
+#}
+
 if [[ ! -d "$dir" ]]; then
     mkdir -p "$dir"
 fi

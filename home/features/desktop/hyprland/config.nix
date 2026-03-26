@@ -191,6 +191,7 @@
         ",Print, exec, screenshot --copy"
         "$mainMod, Print, exec, screenshot --save"
         "$mainMod SHIFT, Print, exec, screenshot --swappy"
+        "$mainMod ALT, Print, exec, pix2tex"
 
         ## switch focus
         "$mainMod, left, movefocus, l"

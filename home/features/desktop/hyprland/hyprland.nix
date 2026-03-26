@@ -4,6 +4,7 @@
     swww
     # TODO Choose between grimblast and hyprshot
     grimblast
+    swappy
     hyprshot
     hyprpicker
     imv
@@ -21,6 +22,7 @@
   systemd.user.targets.hyprland-session.Unit.Wants = [
     "xdg-desktop-autostart.target"
   ];
+  services.pix2tex.enable = true;
   wayland.windowManager.hyprland = {
     enable = true;
     xwayland.enable = true;
