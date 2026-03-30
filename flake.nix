@@ -71,7 +71,10 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 
     # RustUp toolchain
-    rust-overlay.url = "github:oxalica/rust-overlay";
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Secrets
     sops-nix = {
@@ -101,7 +104,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, rust-overlay, nur, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, nur, fenix, ... }@inputs:
   # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
@@ -126,7 +129,7 @@
           (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
         ];
       };
-      rustOverlay = {...}: {nixpkgs.overlays = [ rust-overlay.overlays.default ]; };
+      rustOverlay = { ... }: { nixpkgs.overlays = [fenix.overlays.default]; };
       matlabOverlay = { ... }: { nixpkgs.overlays = [inputs.nix-matlab.overlay]; };
       nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 

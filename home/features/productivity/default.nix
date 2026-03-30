@@ -24,7 +24,7 @@ with pkgs;
     joplin-desktop
     recoll
 
-    rust-analyzer
+    fenix.rust-analyzer
 
     # Desktop interaction
     #shutter # screenshots

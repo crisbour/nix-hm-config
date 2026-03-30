@@ -52,9 +52,20 @@ in {
         # TODO: Should this be just part of shell.nix?
         (  import ./python/python-packages.nix { inherit pkgs; })
         glib
-        rustc
-        cargo
         zig
+
+        ## Rust
+        (fenix.complete.withComponents [
+          "cargo"
+          #"cargo-edit"   # Easy Rust dependency management
+          #"cargo-graph" # Rust dependency graphs
+          "clippy"
+          "rust-src"
+          "rustc"
+          "rustfmt"
+        ])
+        cargo-edit
+        cargo-watch
 
         # Kotlin + Java OpenJDK for execution
         kotlin
@@ -62,13 +73,6 @@ in {
 
         nix-matlab.matlab-shell # https://gitlab.com/doronbehar/nix-matlab
         nix-matlab.matlab
-
-        # TODO: Move to rust.nix
-        cargo-edit # Easy Rust dependency management
-        #cargo-graph # Rust dependency graphs
-        cargo-watch # Watch a Rust project and execute custom commands upon change
-        rustfmt
-        clippy
 
         # Language servers
         clang-tools

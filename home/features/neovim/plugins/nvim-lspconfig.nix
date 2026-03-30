@@ -15,7 +15,7 @@
       matlab-language-server
       ruff
       pyright
-      rust-analyzer
+      fenix.rust-analyzer
       svls
       texlab
       verible
