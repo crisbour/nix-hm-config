@@ -214,14 +214,6 @@
       export DATASTORE_3D_PATH=/mnt/datastore-3D
       export DATASTORE_PATH=/mnt/datastore
 
-      # needed for gardenctl
-      if [ -z "$GCTL_SESSION_ID" ] && [ -z "$TERM_SESSION_ID" ]; then
-        export GCTL_SESSION_ID=$(uuidgen)
-      fi
-
-      # TODO: handle secrets somehow
-      #source /secrets/environment.bash
-
       bindkey '^H' autosuggest-accept
       bindkey '^ ' autosuggest-accept
 
@@ -242,103 +234,6 @@
       function nfs() {
         pushd ~/.config/nixpkgs
         sudo nixos-rebuild switch --flake ".#rocky"
-      }
-
-      # args:
-      # $1: server as <server> address i.e. user@ip
-      # $2: top_path as absolute <top_path> where repositories are
-      # $3: path as relative or absolute path
-      function sync_files_to_server() {
-        local OBILIX_PATH=$(git rev-parse --show-toplevel)
-        local SERVER_ADDR=$1
-        local SERVER_TOP_PATH=$2
-        local SYNC_PATH=$3
-
-        echo "sync_files_to_server($1, $2, $3)"
-
-        local OBILIX_PATH=$(git rev-parse --show-toplevel)
-        local OBILIX_BASENAME=$(basename $OBILIX_PATH)
-        echo $OBILIX_PATH
-	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH $SYNC_PATH)
-
-	      local SERVER_OBILIX_PATH=$SERVER_TOP_PATH/$OBILIX_BASENAME
-	      local SERVER_FILE_PATH=$SERVER_OBILIX_PATH/$PATH_REL_TO_OBILIX
-        local SIZE=$(du -h -d 0 $SYNC_PATH)
-	      echo "Syncronize $PATH_REL_TO_OBILIX to server machine $SERVER_ADDR: $SIZE"
-
-	      if [[ -d $SYNC_PATH ]]
-	      then
-	        rsync --progress -r -z -l $SYNC_PATH/ $SERVER_ADDR:$SERVER_FILE_PATH
-	      else
-	        rsync --progress -l $SYNC_PATH $SERVER_ADDR:$SERVER_FILE_PATH
-	      fi
-	    }
-
-	    function sync_files_from_server() {
-        local SERVER_ADDR=$1
-        local SERVER_TOP_PATH=$2
-        local SYNC_PATH=$3
-
-        local OBILIX_PATH=$(git rev-parse --show-toplevel)
-        local OBILIX_BASENAME=$(basename $OBILIX_PATH)
-	      local PATH_REL_TO_OBILIX=$(realpath --relative-to=$OBILIX_PATH .)/$SYNC_PATH
-
-	      local SERVER_OBILIX_PATH=$SERVER_TOP_PATH/$OBILIX_BASENAME
-	      local SERVER_FILE_PATH=$SERVER_OBILIX_PATH/$PATH_REL_TO_OBILIX
-        local SIZE=$(ssh $SERVER_ADDR "du -h -d 0 $SERVER_FILE_PATH")
-	      echo "Syncronize $PATH_REL_TO_OBILIX from cruncher machine $SERVER_ADDR: $SIZE"
-
-	      local file_type=$(ssh $SERVER_ADDR "file -b $SERVER_FILE_PATH")
-	      echo "File type to sync from cruncher: $file_type"
-	      if [[ $file_type == *directory* ]];
-	      then
-          if [[ -d $SYNC_PATH ]]; then
-            mkdir -p $SYNC_PATH
-          fi
-	        rsync --progress -r -l -z $SERVER_ADDR:$SERVER_FILE_PATH/ $SYNC_PATH
-	      else
-	        rsync --progress -l $SERVER_ADDR:$SERVER_FILE_PATH $SYNC_PATH
-	      fi
-
-	    }
-
-      function match_server_path () {
-        local SERVER_HOME_PATH=$1
-        local TREE_TO_MATCH=$2
-
-        local local_top_path=$(git rev-parse --show-toplevel)
-        local top_basename=$(basename $local_top_path)
-        local server_top_path=$SERVER_HOME_PATH/$top_basename
-        local path_match=$(echo $server_top_path | awk '{gsub("/","\\/");}1')
-        local path_replace=$(echo $local_top_path | awk '{gsub("/","\\/");}1')
-        local sed_regex_replace="s/"$path_match/$path_replace"/g"
-        local files=$(find $TREE_TO_MATCH -type f)
-
-        # FIXME There must be an easier way to read one line at a time
-        while IFS= read -r file;
-        do
-          local_file_type=$(file -b --mime-encoding -- $file)
-          if [ $local_file_type != binary ]; then
-            sed -i $sed_regex_replace $file
-          else
-            echo "Skip binary file: \t $file"
-          fi
-          #echo $sed_regex_replace
-        done <<< $files
-      }
-
-      function crunch_top_path() {
-        local local_top_path=$(git rev-parse --show-toplevel)
-        local top_basename=$(basename $local_top_path)
-        local path=/home/$USER/$top_basename
-        echo $path
-      }
-
-      function slurm_top_path() {
-        local local_top_path=$(git rev-parse --show-toplevel)
-        local top_basename=$(basename $local_top_path)
-        local path=/home/codasip.com/$USER/$top_basename
-        echo $path
       }
 
       function local_top_path() {
