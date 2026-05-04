@@ -64,6 +64,7 @@ in {
           "rustc"
           "rustfmt"
         ])
+        rust-analyzer-nightly
         cargo-edit
         cargo-watch
 

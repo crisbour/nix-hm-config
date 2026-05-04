@@ -118,8 +118,8 @@ weston -B x11 --xwayland --shell="kiosk-shell.so"
 
 ### TODO
 
-- [ ] I like swaylock better than hyprlock
-- [x] pinentry-ghome3 doesn't work in hyprland, even with hyprpolkitagent and
+- [X] I like swaylock better than hyprlock
+- [X] pinentry-ghome3 doesn't work in hyprland, even with hyprpolkitagent and
 gcr enabled; using pinentry-qt for now, which looks bad
 - [ ] I quite like how JManch puts assertions to check his config and document
 what has been working and what not
@@ -129,10 +129,16 @@ what has been working and what not
 - [ ] Use XanMod for Nexus in order to have out of the box Google's TCP BRR for
   increased TCP throughput
 
+### Wish-list
+
+- [ ] [Symposium](https://symposium.dev/) AI agent for Rust
+    - [nix config for
+    symposium](https://github.com/AJamesyD/nix-config/blob/5bb38dad643409694ebeabc39dfeb50d2f7c56bf/pkgs/symposium/default.nix) 
+
 #### UoE Desktop
-- [ ] No wluma
-- [ ] ddcutils and use the two monitors ids to control brightness
-- [ ] Fixup gitlab for hsi-analyse
+- [X] No wluma
+- [X] ddcutils and use the two monitors ids to control brightness
+- [X] Fixup gitlab for hsi-analyse
 
 #### Inbox
 - [Hyprnova: Hyprland

@@ -248,7 +248,9 @@
       export DATASTORE_3D_PATH=/mnt/datastore-3D
       export DATASTORE_PATH=/mnt/datastore
 
-      #export PATH=$HOME/.cargo/bin:$PATH
+      # Let nix packages take precedence to local packages from cargo
+      export PATH=$PATH:$HOME/.cargo/bin
+
       export PATH=$HOME/.local/bin:$PATH
       export PATH=$HOME/Software/tabby/bin:$PATH
       export YOSYSHQ_LICENSE=$HOME/Software/tabby/tabbycad-eval-CristianBourceanu-250518.lic

@@ -81,6 +81,11 @@
           capabilities = capabilities,
         })
 
+        vim.lsp.enable('lua_ls')
+        vim.lsp.config('lua_ls',{
+          capabilities = capabilities,
+        })
+
         vim.lsp.enable('matlab_ls')
         vim.lsp.config('matlab_ls',{
           capabilities = capabilities,

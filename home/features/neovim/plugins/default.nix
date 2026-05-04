@@ -124,6 +124,7 @@
 
     # ------ languages -------
     vim-just
+    pest-vim
 
     {
       type = "lua";
