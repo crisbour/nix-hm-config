@@ -7,6 +7,7 @@
     # Languages
     ./quarto.nix
     ## Custom plugins
+    ./eldritch-trace
     #./codal
     ### Spade-lang syntax higlight
     #./spade

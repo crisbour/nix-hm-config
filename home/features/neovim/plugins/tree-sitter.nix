@@ -17,6 +17,7 @@ in {
       (nvim-treesitter-parsers.comment)
       (nvim-treesitter-parsers.cpp)
       (nvim-treesitter-parsers.diff)
+      (nvim-treesitter-parsers.ebnf)
       (nvim-treesitter-parsers.git_config)
       (nvim-treesitter-parsers.git_rebase)
       (nvim-treesitter-parsers.gitattributes)
