@@ -1,8 +1,28 @@
 { config, lib, pkgs, ... }:
 
 {
-  services.udev.packages = [ pkgs.platformio ];
+
+  hardware.keyboard.qmk.enable = true;
+
+  environment.systemPackages = with pkgs; [
+    qmk-udev-rules # the only relevant
+    qmk_hid
+  ];
+
+  services.udev.packages = [
+    pkgs.qmk-udev-rules # the only relevant
+    pkgs.qmk_hid
+  ];
   services.udev.extraRules = ''
+    ###########################################################################
+    #                                                                         #
+    #  Keyboards for Vial ussage - QMK keyboards                              #
+    #                                                                         #
+    ###########################################################################
+    #ATTR{idVendor}=="c2ab", ATTR{idProduct}=="3939", MODE="666"
+    KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="c2ab", ATTRS{idProduct}=="3939", MODE="0666", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+
+
     ###########################################################################
     #                                                                         #
     #  52-digilent-usb.rules -- UDEV rules for Digilent USB Devices           #
