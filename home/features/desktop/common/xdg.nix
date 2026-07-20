@@ -4,7 +4,7 @@ let
   defaultApps = {
     browser            = [ "zen.desktop" ];
     text               = [ "nvim.desktop" ];
-    image              = [ "oculante.desktop" ];
+    image              = [ "imv.desktop" ];
     audio              = [ "mpv.desktop" ];
     video              = [ "mpv.desktop" ];
     directory          = [ "nemo.desktop" ];
