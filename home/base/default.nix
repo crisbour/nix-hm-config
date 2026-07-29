@@ -60,6 +60,7 @@ in
       TERMINAL  = "${terminal}";
       #SSH_AUTH_SOCK = lib.mkForce "$(${pkgs.gnupg}/bin/gpgconf --list-dirs agent-ssh-socket)";
       NIXPKGS_ALLOW_UNFREE = "1";
+      CUPS_USER = "s2703496";
     };
   };
 
