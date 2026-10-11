@@ -28,6 +28,7 @@ in {
       "plugdev"
       "wheel"
       "docker"
+      "dialout"
       "networkmanager"
       "i2c"
       "wireshark"
