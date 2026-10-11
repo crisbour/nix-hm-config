@@ -50,6 +50,16 @@
     };
   };
 
+  # Override the systemd service to add restart behavior
+  systemd.services."syncthing" = {
+    serviceConfig = {
+      Restart = "on-failure";      # Restart on failure
+      RestartSec = "30s";          # Wait 30 seconds before restarting
+      StartLimitBurst = 5;         # Allow 5 restarts
+      StartLimitIntervalSec = 300;  # within 5 minutes
+    };
+  };
+
   networking.firewall.allowedTCPPorts = [ 8384 22000 ];
   networking.firewall.allowedUDPPorts = [ 22000 21027 ];
 }
