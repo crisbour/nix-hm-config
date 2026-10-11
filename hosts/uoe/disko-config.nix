@@ -7,7 +7,7 @@
     #};
     disk.main = {
       type = "disk";
-      device = "/dev/nvme0n1";
+      device = "/dev/nvme1n1";
       content = {
         type = "gpt";
         partitions = {
@@ -61,7 +61,7 @@
                   "/swap" = {
                     mountpoint = "/swap";
                     mountOptions = [ "noatime" ];
-                    swap.swapfile.size = "32G";
+                    swap.swapfile.size = "64G";
                   };
                 };
               };
