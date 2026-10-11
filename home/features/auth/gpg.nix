@@ -44,6 +44,8 @@ in {
       verify-options = "show-uid-validity";
       # Always show the fingerprint
       with-fingerprint = true;
+      # Output ASCII instead of binary
+      armor = true;
       # Enable smartcard
       use-agent = true;
     };
@@ -63,7 +65,7 @@ in {
     maxCacheTtl          = agentTTL;
     defaultCacheTtlSsh   = agentTTL;
     maxCacheTtlSsh       = agentTTL;
-    #enableExtraSocket   = true;
+    enableExtraSocket    = true;
     enableSshSupport     = true;
     enableZshIntegration = true;
     pinentry.package     = pkgs.pinentry-qt;

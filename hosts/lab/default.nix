@@ -134,6 +134,7 @@
       X11UseLocalhost = false;
       AllowTcpForwarding = true;
       UseDns = true;  # Use DNS for hostname resolution
+      StreamLocalBindUnlink = true;
     };
   };
 

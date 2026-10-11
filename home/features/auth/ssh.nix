@@ -1,3 +1,21 @@
+let
+  gpgAgentForwarding = {
+    remoteForwards = [
+      {
+        bind.address = "/run/user/1000/gnupg/S.gpg-agent";
+        host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
+      }
+      {
+        bind.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+        host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
+      }
+    ];
+
+    extraOptions = {
+      StreamLocalBindUnlink = "yes";
+    };
+  };
+in
 {
   programs.ssh = {
     enable = true;
@@ -15,7 +33,7 @@
         user = "cristi";
         port = 22;
         forwardAgent = true;
-      };
+      } // gpgAgentForwarding;
 
       sudo-cruncher = {
         hostname = "cruncher-w8802.hyena-royal.ts.net";
@@ -23,7 +41,7 @@
         user = "cruncher-sudo";
         port = 22;
         forwardAgent = true;
-      };
+      } // gpgAgentForwarding;
 
       cruncher = {
         hostname = "cruncher-w8802.hyena-royal.ts.net";
@@ -31,21 +49,21 @@
         user = "cristi";
         port = 22;
         forwardAgent = true;
-      };
+      } // gpgAgentForwarding;
 
       lab = {
         hostname = "w6725.hyena-royal.ts.net";
         user = "cristi";
         port = 22;
         forwardAgent = true;
-      };
+      } // gpgAgentForwarding;
 
       lab-wsl = {
         hostname = "eng-7383-wsl.hyena-royal.ts.net";
         user = "cristi";
         port = 22;
         forwardAgent = true;
-      };
+      } // gpgAgentForwarding;
     };
   };
 }
