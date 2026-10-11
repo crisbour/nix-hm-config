@@ -41,7 +41,10 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
-    extraSetFlags = ["--advertise-exit-node"];
+    extraSetFlags = [
+      "--advertise-exit-node"
+      "--advertise-routes=129.215.0.0/16" # Advertise path to datastore
+    ];
   };
   # Optional: loosen reverse path filtering to avoid connectivity issues
   networking.firewall.checkReversePath = "loose";

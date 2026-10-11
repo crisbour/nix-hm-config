@@ -28,6 +28,7 @@
     ../common/optional/gpu.nix
     # UoE VPN and CIFS
     ../common/optional/fortivpn.nix
+    # WARN: cifs only works on university network
     ../common/optional/uoe-cifs.nix
     ../common/optional/ed-printer.nix
 
@@ -51,6 +52,9 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "client";
+    extraUpFlags = [
+      "--accept-routes"            # Allows this machine to accept the 129.215.0.0/16 route
+    ];
   };
 
   mySystem.incus = {
