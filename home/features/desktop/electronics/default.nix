@@ -13,8 +13,6 @@
     # FIXME: Waveforms fails to be pulled
     #inputs.waveforms.waveforms
 
-    ltspice
-
     prusa-slicer
 
     picoscope

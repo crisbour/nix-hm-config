@@ -10,7 +10,7 @@
     #networkmanager-openconnect
     networkmanager-openvpn
     networkmanager-l2tp
-    networkmanager_strongswan
+    networkmanager-strongswan
     #networkmanager-vpnc
   ];
 
