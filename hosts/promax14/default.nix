@@ -39,7 +39,11 @@
   mySystem.info = {
     hostname = "promax14";
     has_gui = true;
+<<<<<<< HEAD
     has_nvidia = true;
+=======
+    has_nvidia = false;
+>>>>>>> f0cc0fd (New configurations for Dell ProMax14, wip audio, nvidia, openvino)
     has_intel = true;
   };
 
@@ -89,6 +93,11 @@
   services.udisks2.enable = true;
 
 
+<<<<<<< HEAD
+=======
+  programs.adb.enable = true;
+  users.users.cristi.extraGroups = ["adbusers"];
+>>>>>>> f0cc0fd (New configurations for Dell ProMax14, wip audio, nvidia, openvino)
   services.udev.packages = [
     pkgs.ddcutil
   ];

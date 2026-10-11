@@ -2,6 +2,7 @@
 {
 
   hardware.graphics = {
+  hardware.opengl = {
     #---------------------------------------------------------------------
     # Install additional packages that improve graphics performance and compatibility.
     #---------------------------------------------------------------------
