@@ -51,8 +51,6 @@ let
     '';
 in
 {
-  meta.maintainers = [ maintainers.somasis ];
-
   options.programs.zotero = {
     enable = mkEnableOption "Zotero";
 

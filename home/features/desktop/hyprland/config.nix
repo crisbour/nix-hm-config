@@ -190,8 +190,10 @@
         ## screenshot
         ",Print, exec, screenshot --copy"
         "$mainMod, Print, exec, screenshot --save"
-        "$mainMod SHIFT, Print, exec, screenshot --swappy"
+        #"$mainMod SHIFT, Print, exec, screenshot --swappy"
+        "$mainMod SHIFT, Print, exec, screenshot --satty"
         "$mainMod ALT, Print, exec, pix2tex"
+        "$mainMod CTRL, Print, exec, screenshot --ocr"
 
         ## switch focus
         "$mainMod, left, movefocus, l"
@@ -260,6 +262,9 @@
 
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
+
+        "$mainMod, m, workspace, m-1"
+        "$mainMod, comma, workspace, m+1"
       ];
 
       # # binds active in lockscreen

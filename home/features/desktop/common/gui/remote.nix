@@ -3,7 +3,6 @@
 {
   home.packages = with pkgs; [
     remmina
-    realvnc-vnc-viewer
     freerdp
   ];
 }

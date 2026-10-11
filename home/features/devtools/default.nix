@@ -6,6 +6,7 @@ let
 in {
 
   imports = [
+    #./zed.nix
     ./vscode.nix
     ./latex.nix
     ./hardware-design.nix
@@ -67,6 +68,7 @@ in {
         rust-analyzer-nightly
         cargo-edit
         cargo-watch
+        cargo-binstall
 
         # Kotlin + Java OpenJDK for execution
         kotlin
@@ -94,6 +96,10 @@ in {
 
           # GTK Development
           icon-library
+
+          # Inspection tools
+          xdot
+          #h5v
         ]);
 
     # TODO: How to use poetry to configure python env?

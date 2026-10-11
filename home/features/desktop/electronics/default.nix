@@ -10,7 +10,8 @@
     inputs.nix-xilinx.model_composer
     inputs.nix-xilinx.petalinux-install-shell
 
-    inputs.waveforms.waveforms
+    # FIXME: Waveforms fails to be pulled
+    #inputs.waveforms.waveforms
 
     ltspice
 

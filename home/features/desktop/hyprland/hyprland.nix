@@ -4,7 +4,9 @@
     swww
     # TODO Choose between grimblast and hyprshot
     grimblast
-    swappy
+    #swappy
+    satty
+    tesseract
     hyprshot
     hyprpicker
     imv

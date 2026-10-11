@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ inputs, outputs, pkgs, lib, ... }:
+{ inputs, outputs, pkgs, lib, config, ... }:
 
 {
   imports =
@@ -32,6 +32,7 @@
       stdenv.cc.cc
       stdenv.cc.cc.lib
       zlib
+      fontconfig
       fuse3
       openssl
       curl
@@ -114,5 +115,6 @@
 
   # kernel module for forwarding to container to work
   boot.kernelModules = [ "nf_nat_ftp" ];
+  boot.supportedFilesystems = [ "exfat" ];
 
 }

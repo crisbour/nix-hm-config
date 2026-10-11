@@ -1,6 +1,7 @@
 { inputs, outputs, pkgs, ... }:
 
 {
+  services.hardware.bolt.enable = true;
 
   # TODO:: Better way to switch between DMs: https://github.com/redxtech/nixfiles/blob/42c7b209ed570ef2f1a24b06192bd09728a0c3a2/modules/nixos/desktop/wm.nix#L24
 

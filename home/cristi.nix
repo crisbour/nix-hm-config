@@ -12,7 +12,7 @@
     ./features/desktop/electronics
     ./features/desktop/gaming
     ./features/pass
-    ./features/nfs
+    #./features/nfs
 
     # Services
     ./services/system/power-monitor.nix
@@ -48,7 +48,8 @@
 
       # Make sure no scaling is applied to main display
       monitor=eDP-1,preferred,auto,1
-      monitor = DP-2, preferred,auto,1.5
+      #monitor=dp-2, preferred,auto,1
+      monitor=dp-2, preferred,auto,1
 
       xwayland {
         force_zero_scaling = true

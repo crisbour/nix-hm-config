@@ -96,7 +96,7 @@ vim.keymap.set("n", "<localleader>fB", builtin.git_branches,          { desc = "
 
 --vim.keymap.set("n", "<localleader>fr" builtin.lsp_references,        { desc = "Explore references" })
 vim.keymap.set("n", "<localleader>;",  builtin.command_history,       { desc = "Explore command history" })
-vim.keymap.set("n", "<localleader>l",  builtin.resume,                { desc = "Resume previous list" })
+vim.keymap.set("n", "<localleader>fl", builtin.resume,                { desc = "Resume previous list" })
 vim.keymap.set("n", "<localleader>ws", builtin.lsp_workspace_symbols, { desc = "Explore workspace symbols" })
 vim.keymap.set("n", "<localleader>ds", builtin.lsp_document_symbols,  { desc = "Explore document symbols" })
 

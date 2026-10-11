@@ -3,9 +3,9 @@
   lib,
   ...
 }: let
-  # NOTE: Avoid multplie {hypr,sway}lock instances: https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
-  my_lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
-  #my_lock_cmd = "pidof swaylock || ${pkgs.swaylock}/bin/swaylock";
+  # NOTE: Avoid multiple {hypr,sway}lock instances: https://wiki.hyprland.org/Hypr-Ecosystem/hypridle/
+  #my_lock_cmd = "pidof hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+  my_lock_cmd = "pidof swaylock || swaylock";
 
   suspendScript = pkgs.writeShellScript "suspend-script" ''
     BAT=$(echo /sys/class/power_supply/BAT*)
@@ -29,7 +29,7 @@ in {
       general = {
         lock_cmd = my_lock_cmd;
         #before_sleep_cmd = "loginctl lock-session";
-        before_sleep_cmd = "${my_lock_cmd}";
+        before_sleep_cmd = my_lock_cmd;
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
 
