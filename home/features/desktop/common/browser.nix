@@ -2,7 +2,7 @@
 {
   programs.browserpass = {
     enable = true;
-    browsers = [ "brave" "firefox" "zed" ];
+    browsers = [ "brave" "firefox" ];
   };
 
   #programs.brave = {

@@ -64,6 +64,8 @@ in
         ps = "push";
         pf = "push --force-with-lease";
         s  = "status -sb";
+        si = "stash";
+        so = "stash pop";
         co = "checkout";
         cb = "checkout -b";
         fe = "fetch";

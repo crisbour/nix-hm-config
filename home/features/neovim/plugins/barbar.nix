@@ -14,6 +14,10 @@
         " Buffer navigation
         map <C-j> <Cmd>BufferPrevious<CR>
         map <C-k> <Cmd>BufferNext<CR>
+
+        " Go to window in split views
+        map <C-h> <C-w>h
+        map <C-l> <C-w>l
       '';
     }
   ];
