@@ -66,6 +66,21 @@
     # NOTE: More customisation at https://githlb.com/gvolpe/neovim-flake/blob/2b374d1610bb9392c52ddecf70bb0b32555737fe/modules/todo/todo-comments.nix#L38
     {
       type = "lua";
+      plugin = aerial-nvim;
+      config = ''
+        require("aerial").setup({
+          on_attach = function(bufnr)
+            -- Jump forwards/backwards with '{' and '}'
+            vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
+            vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
+          end,
+        })
+        vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+        vim.keymap.set("n", "<leader>an", "<cmd>AerialNavToggle<CR>")
+      '';
+    }
+    {
+      type = "lua";
       plugin = todo-comments-nvim;
       config = ''
         require('todo-comments').setup()
@@ -123,8 +138,27 @@
     editorconfig-vim
 
     # ------ languages -------
+    {
+      plugin = vimtex;
+      config = ''
+        let g:vimtex_view_general_viewer = 'okular'
+        let maplocalleader = ";"
+        set encoding=utf-8
+      '';
+    }
     vim-just
-    pest-vim
+    julia-vim
+    vim-pluto
+
+    {
+      plugin = vim-slime;
+      config = ''
+        let g:slime_target = "tmux"
+        let g:slime_bracketed_paste = 1
+        let g:slime_paste_file = tempname()
+        let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+      '';
+    }
 
     {
       type = "lua";
