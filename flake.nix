@@ -179,6 +179,10 @@
       };
 
       nixosConfigurations = {
+        promax14 = lib.nixosSystem {
+          modules = [ ./hosts/promax14];
+          specialArgs = { inherit inputs outputs; };
+        };
         precision = lib.nixosSystem {
           modules = [ ./hosts/precision];
           specialArgs = { inherit inputs outputs; };
