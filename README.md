@@ -44,6 +44,10 @@ live session. Boot into ubuntu and disable verification:
 ### NixOS
 
 1. Setup partitions and mount them:
+For configuring the disk first time run:
+```
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode disko ./hosts/<your_host>/disko-config.nix
+```
 
 ```
 sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko/latest -- --mode mount ./hosts/<your_host>/disko-config.nix
@@ -87,6 +91,40 @@ nix-unstable. Add the following to `~/.config/nix/nix.conf`:
 
 ```
 experimental-features = nix-command flakes
+```
+
+#### Yubikey
+
+Find my public keys, running `gpg --card-status`.
+Import directly from yubikey by running `gpg --edit-card`:
+```
+fetch
+quit
+```
+```
+```
+
+or need to import the backup private keys and then move them to a new yubikey.
+```shell
+# Import backup keys
+gpg --import <filename>.priv.asc
+gpg --import <filename>.pub.asc
+gpg --import-ownerthrust ownerthrust.asc
+
+# Move them to a new card
+gpg --edit-key <key_id>
+> key 1
+> keytocard
+> key 1
+> key 2
+> keytocard
+> key 2
+> key3
+> keytocard
+```
+
+> [NOTE] Make sure the complete private key is added and not just the stubs.
+```
 ```
 
 ## Debug
