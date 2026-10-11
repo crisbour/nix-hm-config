@@ -73,7 +73,6 @@ in
     obs-studio
     obs-studio-plugins.wlrobs
     pavucontrol                       # pulseaudio volume controle (GUI)
-    resources                         # GUI resources monitor
     zenity
   ];
 }
