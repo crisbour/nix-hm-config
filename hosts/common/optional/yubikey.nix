@@ -12,7 +12,7 @@
 
   programs.ssh.startAgent = false;
 
-  #services.yubikey-agent.enable = true;
+  services.yubikey-agent.enable = true;
 
   # Enable smartcard daemon, to read TOPT tokens from yubikey
   services.pcscd = {
@@ -21,6 +21,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    gnupg
+    #pcsclite
     yubikey-personalization
     yubikey-manager
     yubico-pam
@@ -31,7 +33,7 @@
   # add udev rules for yubikey personalization
   services.udev.packages = with pkgs; [ yubikey-personalization ];
 
-   # enable smartcard support
+  # enable smartcard support
   hardware.gpgSmartcards.enable = true;
 
   # enable polkit to use yubikey for authentication
@@ -42,12 +44,12 @@
     sudo.u2fAuth = true;
   };
 
-  security.pam.yubico = {
-     enable = true;
-     #debug = true;
-     mode = "challenge-response";
-     id = [ "11066999" ];
-  };
+  #security.pam.yubico = {
+  #   enable = true;
+  #   #debug = true;
+  #   mode = "challenge-response";
+  #   id = [ "11066999" ];
+  #};
 }
 
 # Taken from: https://github.com/jonaswouters/nixos-configuration/blob/master/yubikey.nix

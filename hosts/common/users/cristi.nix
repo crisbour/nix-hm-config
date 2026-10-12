@@ -8,7 +8,7 @@
 in {
 
   imports = [
-    ../optional/sops.nix
+    #../optional/sops.nix
   ];
 
   programs.zsh = {

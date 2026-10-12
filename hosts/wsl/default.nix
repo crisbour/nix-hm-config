@@ -12,17 +12,27 @@
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
-    ../common/optional/udev.nix
-    ../common/optional/uoe-cifs.nix
+    #../common/optional/udev.nix
+    #../common/optional/uoe-cifs.nix
     # FIXME: YubiKey for WSL passthrough
-    #../common/optional/yubikey.nix
+    ../common/optional/yubikey.nix
     # FIXME: Investigate how docker runs under WSL in NixOS?
     #../common/optional/docker.nix
-    ./sops.nix
+    #./sops.nix
     ./services
   ];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
+
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.debian.pcsc-lite.access_pcsc" ||
+          action.id == "org.debian.pcsc-lite.access_card") {
+        return polkit.Result.YES;
+      }
+    });
+  '';
 
   wsl = {
     enable = true;
@@ -30,7 +40,7 @@
     usbip = {
       enable = true;
       # Replace this with the BUSID for your Yubikey
-      #autoAttach = ["9-4"];
+      #autoAttach = ["1-1"];
     };
     extraBin = with pkgs; [
       { src = "${coreutils}/bin/uname"; }
@@ -106,8 +116,16 @@
   environment.systemPackages = [
     pkgs.bash
     pkgs.wget
+    pkgs.kmod
   ];
 
-
   system.stateVersion = "25.11";
+
+  # Add udev rule to access yubikey from user level
+  #users.groups.plugdev = {};
+  #services.udev.extraRules = ''
+  #  # YubiKey 4/5 OTP+U2F+CCID
+  #  SUBSYSTEM=="usb", ATTR{idVendor}=="1050", ATTR{idProduct}=="0407", MODE="0660", GROUP="plugdev"
+  #  SUBSYSTEM=="hidraw", ATTRS{idVendor}=="1050", ATTRS{idProduct}=="0407", MODE="0660", GROUP="plugdev"
+  #'';
 }
