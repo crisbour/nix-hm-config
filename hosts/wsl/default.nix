@@ -8,7 +8,6 @@
   imports = [
     #./hardware.nix
     inputs.nixos-wsl.nixosModules.wsl
-    inputs.vscode-server.nixosModules.default
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
@@ -109,5 +108,5 @@
   ];
 
 
-  system.stateVersion = "25.11";
+  system.stateVersion = "26.05";
 }
