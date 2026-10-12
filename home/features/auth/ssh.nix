@@ -1,68 +1,60 @@
 let
   gpgAgentForwarding = {
-    remoteForwards = [
-      {
-        bind.address = "/run/user/1000/gnupg/S.gpg-agent";
-        host.address = "/run/user/1000/gnupg/S.gpg-agent.extra";
-      }
-      {
-        bind.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-        host.address = "/run/user/1000/gnupg/S.gpg-agent.ssh";
-      }
+    RemoteForwards = [
+        "/run/user/1000/gnupg/S.gpg-agent run/user/1000/gnupg/S.gpg-agent.extra"
+        "/run/user/1000/gnupg/S.gpg-agent.ssh /run/user/1000/gnupg/S.gpg-agent.ssh"
     ];
 
-    extraOptions = {
-      StreamLocalBindUnlink = "yes";
-    };
+    StreamLocalBindUnlink = "yes";
   };
 in
 {
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
-    matchBlocks = {
+    settings = {
       nexus = {
-        hostname = "adventure-bytes.com";
-        user = "cristi";
-        port = 5022;
-        forwardAgent = true;
+        Hostname = "adventure-bytes.com";
+        User = "cristi";
+        Port = 5022;
+        ForwardAgent = true;
       };
 
       blazer = {
-        hostname = "w9098.hyena-royal.ts.net";
-        user = "cristi";
-        port = 22;
-        forwardAgent = true;
+        Hostname = "w9098.hyena-royal.ts.net";
+        User = "cristi";
+        Port = 22;
+        ForwardAgent = true;
       } // gpgAgentForwarding;
 
       sudo-cruncher = {
-        hostname = "cruncher-w8802.hyena-royal.ts.net";
-        #hostname = "192.41.113.134";
-        user = "cruncher-sudo";
-        port = 22;
-        forwardAgent = true;
+        Hostname = "cruncher-w8802.hyena-royal.ts.net";
+        #Hostname = "192.41.113.134";
+        User = "cruncher-sudo";
+        Port = 22;
+        ForwardAgent = true;
       } // gpgAgentForwarding;
 
       cruncher = {
-        hostname = "cruncher-w8802.hyena-royal.ts.net";
-        #hostname = "192.41.113.134";
-        user = "cristi";
-        port = 22;
-        forwardAgent = true;
+        Hostname = "cruncher-w8802.hyena-royal.ts.net";
+        #Hostname = "192.41.113.134";
+        User = "cristi";
+        Port = 22;
+        ForwardAgent = true;
       } // gpgAgentForwarding;
 
       lab = {
-        hostname = "w6725.hyena-royal.ts.net";
-        user = "cristi";
-        port = 22;
-        forwardAgent = true;
+        Hostname = "w6725.hyena-royal.ts.net";
+        User = "cristi";
+        Port = 22;
+        ForwardAgent = true;
       } // gpgAgentForwarding;
 
       lab-wsl = {
-        hostname = "eng-7383-wsl.hyena-royal.ts.net";
-        user = "cristi";
-        port = 22;
-        forwardAgent = true;
+        Hostname = "eng-7383-wsl.hyena-royal.ts.net";
+        User = "cristi";
+        Port = 22;
+        ForwardAgent = true;
       } // gpgAgentForwarding;
     };
   };

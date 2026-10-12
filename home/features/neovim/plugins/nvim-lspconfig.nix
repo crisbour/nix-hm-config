@@ -22,11 +22,8 @@
         verible
         vim-language-server
         zls
-        nodePackages.vscode-json-languageserver
-      ]
-      ++ (with pkgs.nodePackages; [
-        pyright
-      ]);
+        vscode-json-languageserver
+      ];
     plugins = with pkgs.vimPlugins; [
       {
         type = "lua";
@@ -37,7 +34,7 @@
 
           vim.lsp.enable('bashls')
           vim.lsp.config('bashls', {
-            cmd = { "${pkgs.nodePackages.bash-language-server}/bin/bash-language-server", "start" },
+            cmd = { "${pkgs.bash-language-server}/bin/bash-language-server", "start" },
             capabilities = capabilities,
           })
 
@@ -172,7 +169,7 @@
 
           vim.lsp.enable('yamlls')
           vim.lsp.config('yamlls', {
-            cmd = { "${pkgs.nodePackages.yaml-language-server}/bin/yaml-language-server", "--stdio" },
+            cmd = { "${pkgs.yaml-language-server}/bin/yaml-language-server", "--stdio" },
             capabilities = capabilities,
           })
 

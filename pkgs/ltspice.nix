@@ -3,7 +3,7 @@ with (pkgs // pkgs.inputs.erosanix // inputs.erosanix.lib.x86_64-linux);
 
 mkWindowsApp rec {
   #inherit wine;
-  wine = wineWowPackages.full;
+  wine = wineWow64Packages.full;
   pname = "ltspice";
   version = "24.0.12";
   src = fetchurl {

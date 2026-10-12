@@ -55,7 +55,7 @@
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.56.2";
+      url = "github:hyprwm/Hyprland/v0.55.4";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -10,13 +10,13 @@
   modifications = final: prev: {
     # TODO: Better organization: https://github.com/redxtech/dotfiles/blob/03a5dbefcac0db01539ddd3a57d5935739a306b6/.config/home-manager/flake.nix
     #gl_wrapper = (import ./gl_wrapper.nix);
-    zotero = prev.zotero.overrideAttrs (oldAttrs: rec {
-      desktopItem = oldAttrs.desktopItem.override (oldDesktopItem: {
-        exec = "env GTK_THEME=Pop-light ${oldDesktopItem.exec}";
-        #terminal = true;
-      });
-      installPhase = builtins.replaceStrings [ "${oldAttrs.desktopItem}" ] [ "${desktopItem}" ] (oldAttrs.installPhase or "");
-    });
+    #zotero = prev.zotero.overrideAttrs (oldAttrs: rec {
+    #  desktopItem = oldAttrs.desktopItem.override (oldDesktopItem: {
+    #    exec = "env GTK_THEME=Pop-light ${oldDesktopItem.exec}";
+    #    #terminal = true;
+    #  });
+    #  installPhase = builtins.replaceStrings [ "${oldAttrs.desktopItem}" ] [ "${desktopItem}" ] (oldAttrs.installPhase or "");
+    #});
   };
 
   # Inherited from: https://github.com/lanice/nixhome

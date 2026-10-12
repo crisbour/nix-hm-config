@@ -6,8 +6,8 @@
 
   home.packages = with pkgs; [
     winetricks
-    #wineWowPackages.full
-    wineWowPackages.waylandFull
+    #wineWow64Packages.full
+    wineWow64Packages.waylandFull
 
     blender
 

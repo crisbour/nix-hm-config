@@ -14,7 +14,7 @@
         formatters = {
           deno_fmt = { command = "${pkgs.deno}/bin/deno" },
           goimports = { command = "${pkgs.gotools}/bin/goimports" },
-          nixfmt = { command = "${pkgs.nixfmt-rfc-style}/bin/nixfmt" },
+          nixfmt = { command = "${pkgs.nixfmt}/bin/nixfmt" },
           verible = { command = "${pkgs.verible}/bin/verible-verilog-format" },
         },
       })
