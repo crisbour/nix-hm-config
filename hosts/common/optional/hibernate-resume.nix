@@ -9,7 +9,7 @@ in {
 
   # TODO Extract this information from disko
 
-  services.logind.lidSwitch = "suspend-then-hibernate";
+  services.logind.settings.LoginHandleSwitch = "suspend-then-hibernate";
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=2h
     SuspendState=mem

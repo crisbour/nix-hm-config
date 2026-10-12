@@ -2,7 +2,6 @@
 with lib;
 let
   hasGUI = config.home.user-info.has_gui;
-  nix-matlab = pkgs.inputs.nix-matlab;
 in {
 
   imports = [
@@ -73,9 +72,6 @@ in {
         # Kotlin + Java OpenJDK for execution
         kotlin
         zulu
-
-        nix-matlab.matlab-shell # https://gitlab.com/doronbehar/nix-matlab
-        nix-matlab.matlab
 
         # Language servers
         clang-tools

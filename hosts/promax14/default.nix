@@ -25,7 +25,7 @@
     ../common/optional/gpu.nix
     ../common/optional/nvidia_gpu.nix
     # UoE VPN and CIFS
-    ../common/optional/fortivpn.nix
+    #../common/optional/fortivpn.nix # Use tailscale tunnel instead
     ../common/optional/uoe-cifs.nix
     ../common/optional/ed-printer.nix
 
@@ -89,8 +89,6 @@
   services.udisks2.enable = true;
 
 
-  programs.adb.enable = true;
-  users.users.cristi.extraGroups = ["adbusers"];
   services.udev.packages = [
     pkgs.ddcutil
   ];
