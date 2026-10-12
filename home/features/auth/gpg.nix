@@ -53,7 +53,7 @@ in {
       disable-ccid = true;
       # FIXME: The PIN caching problem is cause by pcsc-shared, since gpg-agent will release the lock to let other applications access pcscd
       # Disable for now causes unusability with FIDO and auth application
-      #pcsc-shared = true;
+      pcsc-shared = true;
       #pcsc-driver = "libpcsclite.so.1";
       #reader-port="Yubico Yubikey";
     };
