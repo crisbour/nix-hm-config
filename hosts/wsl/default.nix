@@ -8,6 +8,7 @@
   imports = [
     #./hardware.nix
     inputs.nixos-wsl.nixosModules.wsl
+    inputs.vscode-server.nixosModules.default
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
@@ -39,7 +40,7 @@
     usbip = {
       enable = true;
       # Replace this with the BUSID for your Yubikey
-      #autoAttach = ["1-1"];
+      autoAttach = ["1-7"];
     };
     extraBin = with pkgs; [
       { src = "${coreutils}/bin/uname"; }
