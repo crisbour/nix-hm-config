@@ -5,7 +5,7 @@
     xorg.xrandr
     xorg.xinit
     xorg.xauth
-    xorg.xhost
+    xhost
     xterm
   ];
 

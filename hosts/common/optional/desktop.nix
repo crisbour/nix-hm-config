@@ -9,9 +9,6 @@
     enable = true;
   };
 
-  # Display brightness contol
-  programs.light.enable = true;
-
   # Enable firmware update service
   services.fwupd.enable = true;
 

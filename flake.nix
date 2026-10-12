@@ -4,17 +4,12 @@
   description = "Home-manager configuration as a flake";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-25.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    # FIXME: Is there any advantage to use the dev channel instead of what nixpkgs follows?
-    #nix-ld ={
-    #  url = "github:Mic92/nix-ld";
-    #  inputs.nixpkgs.follows = "nixpkgs";
-    #};
     hardware.url = "github:nixos/nixos-hardware";
     home-manager = {
       # TODO Extract release from nixpkgs.url
-      url = "github:nix-community/home-manager/release-25.11";
+      url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     home-manager-unstable ={
@@ -30,10 +25,6 @@
     # NixOS WSL Support
     nixos-wsl = {
       url = "github:nix-community/nixos-wsl";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    vscode-server = {
-      url = "github:nix-community/nixos-vscode-server";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     disko = {
@@ -64,7 +55,7 @@
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.52.2";
+      url = "github:hyprwm/Hyprland/v0.56.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -82,10 +73,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-   # FHS wrappers for Xilinx and Matlab tools
-    nix-xilinx.url = "gitlab:doronbehar/nix-xilinx";
-    nix-matlab.url = "gitlab:doronbehar/nix-matlab";
-
     # WindowsApp and other misc, checkout at: https://github.com/emmanuelrosa/erosanix
     erosanix = {
       url = "github:emmanuelrosa/erosanix";
@@ -99,7 +86,7 @@
 
     # Looks
     stylix = {
-      url = "github:danth/stylix/release-25.11";
+      url = "github:danth/stylix/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -130,14 +117,12 @@
         ];
       };
       rustOverlay = { ... }: { nixpkgs.overlays = [fenix.overlays.default]; };
-      matlabOverlay = { ... }: { nixpkgs.overlays = [inputs.nix-matlab.overlay]; };
       nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
 
       mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration {
         pkgs = pkgsFor.${system};
         modules = [
           hostModule
-          matlabOverlay
           alacritty-theme-Overlay
           # TODO Add nixGlOverlay only to non NixOS
           nixGlOverlay

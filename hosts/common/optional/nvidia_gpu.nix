@@ -1,7 +1,7 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
 
-  hardware.opengl = {
+  hardware.graphics = {
     #---------------------------------------------------------------------
     # Install additional packages that improve graphics performance and compatibility.
     #---------------------------------------------------------------------
