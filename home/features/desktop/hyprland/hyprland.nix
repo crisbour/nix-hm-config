@@ -1,7 +1,7 @@
 { inputs, pkgs, ... }:
 {
   home.packages = with pkgs; [
-    swww
+    awww
     # TODO Choose between grimblast and hyprshot
     grimblast
     #swappy

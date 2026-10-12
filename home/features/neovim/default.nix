@@ -22,7 +22,7 @@ with lib; {
     ];
 
     # Toggle LSP diagnostics of errors to make text readable
-    extraLuaConfig = ''
+    initLua = ''
       lsp_diagnostics_enabled = true  -- Track the state of diagnostics
 
       function toggle_lsp_diagnostics()
