@@ -2,11 +2,12 @@
 
   wayland.windowManager.hyprland = {
     plugins = [ pkgs.hyprlandPlugins.hyprspace ];
+    configType = "hyprlang";
     settings = {
       plugin = { overview = { autoDrag = false; }; };
 
       bind = [
-        #"$mainMod,TAB, overview:toggle" # Overview
+        "SUPER, TAB, overview:toggle" # Overview
       ];
     };
   };
