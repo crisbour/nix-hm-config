@@ -40,26 +40,26 @@ in {
         '';
       }
       # Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
-      {
-        # TODO: Customize experience with Copilot
-        type = "lua";
-        plugin = copilot-lua;
-        config = ''
-        require('copilot').setup({
-          -- Disable suggestions and panel as they can interfere with cmp appearing in copilot-cmp
-          suggestion = { enabled = false },
-          panel = { enabled = false },
-          -- TODO: Customize copilot response https://github.com/zbirenbaum/copilot.lua
-        })
-        '';
-      }
-      {
-        type = "lua";
-        plugin = copilot-cmp;
-        config = ''
-          require('copilot_cmp').setup()
-        '';
-      }
+      #{
+      #  # TODO: Customize experience with Copilot
+      #  type = "lua";
+      #  plugin = copilot-lua;
+      #  config = ''
+      #  require('copilot').setup({
+      #    -- Disable suggestions and panel as they can interfere with cmp appearing in copilot-cmp
+      #    suggestion = { enabled = false },
+      #    panel = { enabled = false },
+      #    -- TODO: Customize copilot response https://github.com/zbirenbaum/copilot.lua
+      #  })
+      #  '';
+      #}
+      #{
+      #  type = "lua";
+      #  plugin = copilot-cmp;
+      #  config = ''
+      #    require('copilot_cmp').setup()
+      #  '';
+      #}
       # FIXME: Spell checking is disabled because it's not code aware
       #{
       #  type = "lua";

@@ -61,18 +61,14 @@ in {
         type = "lua";
         plugin = nvim-treesitter;
         config = ''
-          require('nvim-treesitter.configs').setup({
-            indent = {
-              enable = true
+          require('nvim-treesitter').setup({
+            opts = {
+                ensure_installed = { "lua", "vim", "vimdoc", "query", "python", "c", "cpp", "markdown", "markdown_inline", "csv", "json"},
+                auto_install = true,
+                highlight = { enable = true },
+                indent = { enable = true },
             },
-            highlight = {
-              enable = true,
-              additional_vim_regex_highlighting = false,
-            },
-            indent = { enable = true },
-            matchup = { enable = true },
           })
-
         '';
       }
     ];
