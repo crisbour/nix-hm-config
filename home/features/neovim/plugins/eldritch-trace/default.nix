@@ -17,6 +17,7 @@ in
     plugins = [
       {
         plugin = vim-eldritch-trace-lang;
+        type = "viml";
         config = ''
           au BufRead,BufNewFile *.et set filetype=eldritch-trace
           au FileType eldritch-trace set tabstop=4 shiftwidth=4 expandtab nospell

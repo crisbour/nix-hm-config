@@ -6,7 +6,7 @@ with pkgs; {
     plugins = [{
       plugin = vimPlugins.vim-autoswap;
       config = ''
-        let g:autoswap_detect_tmux = 1
+        vim.g.autoswap_detect_tmux = 1
       '';
     }];
   };

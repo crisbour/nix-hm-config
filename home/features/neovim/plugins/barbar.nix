@@ -3,6 +3,7 @@
     nvim-web-devicons
     {
       plugin = barbar-nvim;
+      type = "viml";
       config = ''
         " Re-order to previous/next
         nnoremap <silent> <A-<> <Cmd>BufferMovePrevious<CR>

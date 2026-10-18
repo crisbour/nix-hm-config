@@ -39,7 +39,7 @@
     ./tree-sitter.nix
   ];
 
-  programs.neovim.plugins = (with pkgs.vimPlugins; [
+  programs.neovim.plugins = with pkgs.vimPlugins; [
     # Basic
     plenary-nvim
     which-key-nvim
@@ -102,37 +102,37 @@
     }
 
     # Helpers
-    copilot-lua
-    {
-      type = "lua";
-      plugin = pkgs.vimPlugins.CopilotChat-nvim;
-      config = ''
-        require('CopilotChat').setup {
-          model = 'gpt-4.1',
-          prompts = {
-            GenerateCode = {
-              prompt = 'Generate code using online references and openning files under the current directory to understand the underlying structures and logic of the code.',
-              --system_prompt = 'You are very good at explaining stuff',
-              mapping = '<leader>ccmg',
-              description = 'Generate code understanding the code',
-            }
-          }
-        }
-        vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = "CopilotChat - Toggle" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>cce', '<cmd>CopilotChatExplain<cr>', { desc = "CopilotChat - Explain code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccg', '<cmd>CopilotChatCommit<cr>', { desc = "CopilotChat - Write commit message for the change" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>cct', '<cmd>CopilotChatTests<cr>', { desc = "CopilotChat - Generate tests" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccf', '<cmd>CopilotChatFix<cr>', { desc = "CopilotChat - Fix diagnostic" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccr', '<cmd>CopilotChatReset<cr>', { desc = "CopilotChat - Reset chat history and clear buffer" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>cco', '<cmd>CopilotChatOptimize<cr>', { desc = "CopilotChat - Optimize selected code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccd', '<cmd>CopilotChatDocs<cr>', { desc = "CopilotChat - Add docs on selected code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccp', '<cmd>CopilotChatReview<cr>', { desc = "CopilotChat - Review selected code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccs', '<cmd>CopilotChatStop<cr>', { desc = "CopilotChat - Stop current window output" })
-      '';
-    }
+    #copilot-lua
+    #{
+    #  type = "lua";
+    #  plugin = pkgs.vimPlugins.CopilotChat-nvim;
+    #  config = ''
+    #    require('CopilotChat').setup {
+    #      model = 'gpt-4.1',
+    #      prompts = {
+    #        GenerateCode = {
+    #          prompt = 'Generate code using online references and openning files under the current directory to understand the underlying structures and logic of the code.',
+    #          --system_prompt = 'You are very good at explaining stuff',
+    #          mapping = '<leader>ccmg',
+    #          description = 'Generate code understanding the code',
+    #        }
+    #      }
+    #    }
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = "CopilotChat - Toggle" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>cce', '<cmd>CopilotChatExplain<cr>', { desc = "CopilotChat - Explain code" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccg', '<cmd>CopilotChatCommit<cr>', { desc = "CopilotChat - Write commit message for the change" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>cct', '<cmd>CopilotChatTests<cr>', { desc = "CopilotChat - Generate tests" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccf', '<cmd>CopilotChatFix<cr>', { desc = "CopilotChat - Fix diagnostic" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccr', '<cmd>CopilotChatReset<cr>', { desc = "CopilotChat - Reset chat history and clear buffer" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>cco', '<cmd>CopilotChatOptimize<cr>', { desc = "CopilotChat - Optimize selected code" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccd', '<cmd>CopilotChatDocs<cr>', { desc = "CopilotChat - Add docs on selected code" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccp', '<cmd>CopilotChatReview<cr>', { desc = "CopilotChat - Review selected code" })
+    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccs', '<cmd>CopilotChatStop<cr>', { desc = "CopilotChat - Stop current window output" })
+    #  '';
+    #}
 
     # ------ git -------
-    fugitive
+    vim-fugitive
 
     # TODO: Use format rules across text editors
     editorconfig-vim
@@ -140,6 +140,7 @@
     # ------ languages -------
     {
       plugin = vimtex;
+      type = "viml";
       config = ''
         let g:vimtex_view_general_viewer = 'okular'
         let maplocalleader = ";"
@@ -152,6 +153,7 @@
 
     {
       plugin = vim-slime;
+      type = "viml";
       config = ''
         let g:slime_target = "tmux"
         let g:slime_bracketed_paste = 1
@@ -196,6 +198,7 @@
 
     {
       plugin = vim-easy-align;
+      type = "viml";
       config = ''
         " EasyAlign Keymaps
         " Start interactive EasyAlign in visual mode (e.g. vipga)
@@ -263,6 +266,7 @@
 
     {
       plugin = supertab;
+      type = "viml";
       config = ''
         "let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
 
@@ -277,21 +281,13 @@
     }
     {
       plugin = vim-better-whitespace;
+      type = "viml";
       config = ''
         let g:better_whitespace_enabled=1
         let g:strip_whitespace_on_save=1
       '';
     }
-  ]) ++ (with pkgs.unstable.vimPlugins; [
-    # TODO Move to stable pkgs when bumping version
-    {
-      type = "lua";
-      plugin = tssorter-nvim;
-      config = ''
-        require('tssorter').setup()
-      '';
-    }
-  ]);
+  ];
 
   programs.neovim.extraConfig = ''
 

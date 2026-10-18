@@ -226,17 +226,13 @@
           local max_height = math.max(math.floor(vim.o.lines * 0.3), 30)
 
           -- NOTE: the hover handler returns the bufnr,winnr so can be used for mappings
-          vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-            border = 'rounded',
+          local float_opts = {
+            border = "rounded",
             max_width = max_width,
             max_height = max_height,
-          })
-
-          vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-            border = 'rounded',
-            max_width = max_width,
-            max_height = max_height,
-          })
+          }
+          vim.keymap.set("n", "K", function() vim.lsp.buf.hover(float_opts) end, { desc = "LSP hover" })
+          vim.keymap.set("n", "<space>h", function() vim.lsp.buf.signature_help(float_opts) end, { desc = "LSP signature help" })
         '';
       }
     ];
