@@ -12,7 +12,7 @@ in
   programs.zotero = {
     enable = true;
 
-    package = pkgs.unstable.zotero;
+    package = pkgs.zotero;
 
     profiles.default = {
       # TODO installation seems broken?
@@ -26,11 +26,8 @@ in
         zotero-storage-scanner
         zotmoov
         zotero-delitemwithatt
-        scite-zotero
+        #scite-zotero
         cita
-        ai-research-assistant
-        #zotero-gpt
-        zotero-better-notes
       ];
 
       settings =
