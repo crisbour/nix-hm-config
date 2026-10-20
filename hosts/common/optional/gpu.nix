@@ -1,6 +1,8 @@
 { config, lib, pkgs, modulesPath, ... }:
 {
 
+  boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+
   #---------------------------------------------------------------------
   # Direct Rendering Infrastructure (DRI) support, both for 32-bit and 64-bit, and
   # Make sure opengl is enabled

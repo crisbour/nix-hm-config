@@ -10,11 +10,12 @@
   # Inspired from: https://github.com/Frost-Phoenix/nixos-config/tree/c151860c8e576755dc60530e2527005dbcc79750
   imports = [
     ../common
+
+    inputs.hyprland.homeManagerModules.default
     ./hyprland.nix
     ./config.nix
     ./hyprlock.nix
     ./variables.nix
-    inputs.hyprland.homeManagerModules.default
 
     ./waybar
     #./waypaper.nix

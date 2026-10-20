@@ -39,7 +39,6 @@
 
       general = {
         "$mainMod" = "SUPER";
-        "$shiftMod" = "SUPER_SHIFT";
         layout = "dwindle";
         gaps_in = 3;
         gaps_out = 6;

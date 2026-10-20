@@ -1,10 +1,12 @@
-{ pkgs, config, lib, ... }:
+{ pkgs, config, lib, inputs, ... }:
 {
   #environment.systemPackages = [
   #  pkgs.ghostty
   #];
 
-  boot.kernelParams = [ "nvidia_drm.fbdev=1" ];
+  imports = [
+    inputs.hyprland.nixosModules.default
+  ];
 
   services.xserver.enable = true;
   programs.xwayland.enable = true;
