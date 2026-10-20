@@ -13,6 +13,7 @@ in {
     ./julia
     ./openssl-fix.nix
     #../neovim/plugins/spade
+    ./unfree.nix
   ];
 
   options = {
