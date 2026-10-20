@@ -38,6 +38,8 @@
       curl
       SDL2
       xorg.libX11
+      xorg.libXi
+      libxkbcommon
       xorg.libXext
       xorg.libXcursor
       xorg.libXrandr
