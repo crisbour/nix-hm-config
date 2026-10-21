@@ -40,6 +40,8 @@
 
       # xorg
       libx11
+      libxi
+      libxkbcommon
       libxext
       libxcursor
       libxrandr
