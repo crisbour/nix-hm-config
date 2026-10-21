@@ -21,7 +21,7 @@ with pkgs;
     libreoffice
     kdePackages.okular
     quarto
-    pkgs.unstable.joplin-desktop
+    unstable.joplin-desktop
     recoll
 
     fenix.rust-analyzer
