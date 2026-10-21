@@ -37,6 +37,10 @@ in
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
       trusted-users = [ config.home.username ];
+        #access-tokens = {
+        #  "github.com" = builtins.getEnv "GITHUB_TOKEN";
+        #};
+      #netrc-file = "${homeDirectory}/config/nix/netrc";
       # NOTE: Do we need explicit use of store cache
       #substituters = "https://cache.nixos.org";
       #trusted-public-keys = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";

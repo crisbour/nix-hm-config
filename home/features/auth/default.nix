@@ -3,6 +3,6 @@
   imports = [
     ./ssh.nix
     ./gpg.nix
-    ./sops.nix
+    #./sops.nix
   ];
 }

@@ -25,7 +25,7 @@ in
         User = "cristi";
         Port = 22;
         ForwardAgent = true;
-      } // gpgAgentForwarding;
+      };
 
       sudo-cruncher = {
         Hostname = "cruncher-w8802.hyena-royal.ts.net";
@@ -33,7 +33,7 @@ in
         User = "cruncher-sudo";
         Port = 22;
         ForwardAgent = true;
-      } // gpgAgentForwarding;
+      };
 
       cruncher = {
         Hostname = "cruncher-w8802.hyena-royal.ts.net";
@@ -41,21 +41,21 @@ in
         User = "cristi";
         Port = 22;
         ForwardAgent = true;
-      } // gpgAgentForwarding;
+      };
 
       lab = {
         Hostname = "w6725.hyena-royal.ts.net";
         User = "cristi";
         Port = 22;
         ForwardAgent = true;
-      } // gpgAgentForwarding;
+      };
 
       lab-wsl = {
         Hostname = "eng-7383-wsl.hyena-royal.ts.net";
         User = "cristi";
         Port = 22;
         ForwardAgent = true;
-      } // gpgAgentForwarding;
+      };
     };
   };
 }

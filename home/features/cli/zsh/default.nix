@@ -260,9 +260,6 @@
       #export JULIA_PROJECT=@.
 
       # LLMs API keys
-      OPENAI_API_KEY=$(cat ${config.sops.secrets.elm_openai_api_key.path});
-      MORPH_API_KEY=$(cat ${config.sops.secrets.morph_api_key.path});
-      TAVILY_API_KEY=$(cat ${config.sops.secrets.tavily_api_key.path});
     '';
   };
 
