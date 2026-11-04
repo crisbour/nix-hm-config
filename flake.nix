@@ -55,9 +55,22 @@
     hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland = {
-      url = "github:hyprwm/Hyprland/v0.55.4";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:hyprwm/Hyprland/v0.57.1";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+    hyprexpo = {
+      # hyprland-git revision verified by upstream CI against Hyprland v0.57.0.
+      url = "github:sandwichfarm/hyprexpo";
+      inputs.hyprland.follows = "hyprland";
+    };
+    hyprsplit = {
+      url = "github:shezdy/hyprsplit";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+      inputs.hyprland.follows = "hyprland";
+      # Only the Lua module is used; do not import another Hyprland dependency graph.
+      #flake = false;
+    };
+
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
 

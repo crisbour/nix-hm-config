@@ -2,33 +2,14 @@
 {
   home.packages = with pkgs; [ swayosd ];
 
+  home.file.".config/hypr/swayosd.lua" = {
+    source = ./lua/swayosd.lua;
+  };
+
   wayland.windowManager.hyprland = {
-    settings = {
-      exec-once = [ "swayosd-server" ];
-
-      bind = [ ",XF86AudioMute, exec, swayosd-client --output-volume mute-toggle" ];
-      # binds active in lockscreen
-      bindl = [
-      ];
-      bindle = [
-        ",XF86MonBrightnessUp, exec, swayosd-client --brightness raise 5%+"
-        ",XF86MonBrightnessDown, exec, swayosd-client --brightness lower 5%-"
-        # TODO: Add bus detection for external monitor instead of hardwire id
-        "SUPER, XF86MonBrightnessUp, exec, ddcutil --bus 11 setvcp 10 + 5"
-        "SUPER, XF86MonBrightnessDown, exec, ddcutil --bus 11 setvcp 10 - 5"
-
-        ",XF86AudioRaiseVolume, exec, swayosd-client --output-volume +5 --max-volume=100"
-        ",XF86AudioLowerVolume, exec, swayosd-client --output-volume -5"
-
-        "SUPER, f11, exec, swayosd-client --output-volume +2 --max-volume=100"
-        "SUPER, f12, exec, swayosd-client --output-volume -2"
-      ];
-      bindr = [
-        "CAPS,Caps_Lock,exec,swayosd-client --caps-lock"
-        ",Scroll_Lock,exec,swayosd-client --scroll-lock"
-        ",Num_Lock,exec,swayosd-client --num-lock"
-      ];
-    };
+    extraConfig = ''
+    require("swayosd")
+    '';
   };
 
   xdg.configFile."swayosd/style.css".text = ''

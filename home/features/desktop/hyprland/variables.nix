@@ -26,7 +26,7 @@
     XDG_SESSION_DESKTOP = "Hyprland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
-    # TODO: Let that be managed globally for central theme matching
+    # NOTE: Let that be managed globally for central theme matching
     #GTK_THEME = "Colloid-Green-Dark-Gruvbox";
   };
 }
