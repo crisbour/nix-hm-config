@@ -1,9 +1,13 @@
---require("full-border"):setup()
+require("full-border"):setup()
 require("starship"):setup()
 --require("restore"):setup()
 require("zoxide"):setup({
   update_db = true,
 })
+require("git"):setup {
+  -- Order of status signs showing in the linemode
+  order = 1500,
+}
 
 function Linemode:size_and_mtime()
   local time = math.floor(self._file.cha.mtime or 0)
