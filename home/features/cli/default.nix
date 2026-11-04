@@ -9,7 +9,7 @@
     ./dircolors.nix
     ./tmux
     ./screen.nix
-    ./yazi.nix
+    ./yazi
     #./fastfetch.nix
     # TODO, add some more interesting packages from here: https://github.com/Misterio77/nix-config/blob/main/home/misterio/features/cli/default.nix
     # - shellcolor
@@ -33,6 +33,8 @@
         treeView = true;
       };
     };
+
+    starship.enable = true;
 
     # Better cd
     zoxide = {
@@ -88,6 +90,7 @@
     tdf                               # cli pdf viewg
     tig        # Awesome Text based git
     tre        # Improved `tree` written in Rust TODO: Add alias?
+    trash-cli
     #timer      # To help with my ADHD paralysis
     wget
     unzip
