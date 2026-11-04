@@ -40,22 +40,4 @@
     # WARN: I only need this for Fusion360, perhaps isolate it more specifically in the top config
     flatpak
   ];
-
-  # FIXME: Make profiles and include them in home/features/desktop/hyprland/config.nix instead
-  wayland.windowManager.hyprland = {
-    configType = "hyprlang";
-    extraConfig = "
-      monitor=,preferred,auto,auto
-
-      # Make sure no scaling is applied to main display
-      monitor=eDP-1,preferred,auto,1
-      #monitor=dp-2, preferred,auto,1
-      monitor=dp-2, preferred,auto,1
-
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
-  };
-
 }
