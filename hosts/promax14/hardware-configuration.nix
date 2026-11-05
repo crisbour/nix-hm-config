@@ -8,8 +8,6 @@
       (modulesPath + "/installer/scan/not-detected.nix")
       inputs.disko.nixosModules.disko
       ./disko-config.nix
-      #../common/optional/encrypted-root.nix
-      #../common/optional/ephemeral-btrfs.nix
       # FIXME: Hibernate doesn't work with swapfile under luks
       # https://sawyershepherd.org/post/hibernating-to-an-encrypted-swapfile-on-btrfs-with-nixos/
       # https://discourse.nixos.org/t/is-it-possible-to-hibernate-with-swap-file/2852/3

@@ -10,11 +10,20 @@
    ];
   };
 
+
+  # Enable usage of nvidia through docker/podman
+  hardware.nvidia-container-toolkit.enable = true;
+
+
   # Load intel/nvidia driver for Xorg and Wayland
   services.xserver.videoDrivers = ["modesetting" "nvidia"];
 
   boot.kernelParams = [
     "nvidia-drm.modeset=1"
+    # Required for Wayland compositors like Hyprland to handle buffers correctly
+    "nvidia-drm.fbdev=1"
+    # Helps with power management on some laptops, though experimental
+    "nvidia.NVreg_DynamicPowerManagement=0x02"
     # Following is recommender by Hyprland but fails on suspend
     #"nvidia.NVreg_PreserveVideoMemoryAllocations=1"
   ];
@@ -33,12 +42,11 @@
 
     #nvidiaPersistenced = true;
 
-    # TODO: Debug why sleep suspend fails when these are enabled
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
-    powerManagement.enable = false;
+    powerManagement.enable = true;
     # Fine-grained power management. Turns off GPU when not in use.
     # Experimental and only works on modern Nvidia GPUs (Turing or newer).
-    powerManagement.finegrained = false;
+    powerManagement.finegrained = true;
 
     #dynamicBoost.enable = true;
 
@@ -49,10 +57,10 @@
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
     # Only available from driver 515.43.04+
     # Currently alpha-quality/buggy, so false is currently the recommended setting.
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
-	# accessible via `nvidia-settings`.
+    # accessible via `nvidia-settings`.
     nvidiaSettings = true;
 
     # Optionally, you may need to select the appropriate driver version for your specific GPU.
