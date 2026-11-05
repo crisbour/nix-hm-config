@@ -179,7 +179,7 @@ hl.bind(mod .. " + G", hl.dsp.layout("promote"))
 
 ---- Apps
 -- Browser
-hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen"))
+hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mod .. " + ALT + M", hl.dsp.workspace.toggle_special("mail"))
 
 -- utils
@@ -189,7 +189,7 @@ hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd("hyprctl dispatch exec '[worksp
 -- Session / lock
 --hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("caelestia shell drawers toggle session"))
 hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("loginctl lock-session"))
-hl.bind(mod .. " + SUPER + SHIFT + Escape", hl.dsp.exec_cmd("power-menu")) -- Using rofi
+hl.bind(mod .. " + SHIFT + Escape", hl.dsp.exec_cmd("power-menu")) -- Using rofi
 
 -- Screenshots
 hl.bind("Print", hl.dsp.exec_cmd("screenshot --copy"))
