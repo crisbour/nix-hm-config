@@ -1,8 +1,8 @@
 { pkgs, ... }:
 let
-  inherit (pkgs) lib callPackage makeOverridable;
+  inherit (pkgs) lib callPackage;
 
-  buildZoteroXpiAddon = makeOverridable (
+  buildZoteroXpiAddon = lib.makeOverridable (
     { stdenv ? pkgs.stdenv
     , fetchurl ? pkgs.fetchurl
     , pname
