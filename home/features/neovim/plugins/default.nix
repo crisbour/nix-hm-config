@@ -32,7 +32,6 @@
     ./nvim-lspconfig.nix
     # TODO: Learn how to make use of this plugin to inspect warnings and errors
     ./trouble.nvim.nix
-    # TODO: Performance annotations to add -> https://github.com/t-troebst/perfanno.nvim
 
     # Synatx Highlighting
     ./rainbow-delimiters.nix
@@ -102,34 +101,37 @@
     }
 
     # Helpers
-    #copilot-lua
-    #{
-    #  type = "lua";
-    #  plugin = pkgs.vimPlugins.CopilotChat-nvim;
-    #  config = ''
-    #    require('CopilotChat').setup {
-    #      model = 'gpt-4.1',
-    #      prompts = {
-    #        GenerateCode = {
-    #          prompt = 'Generate code using online references and openning files under the current directory to understand the underlying structures and logic of the code.',
-    #          --system_prompt = 'You are very good at explaining stuff',
-    #          mapping = '<leader>ccmg',
-    #          description = 'Generate code understanding the code',
-    #        }
-    #      }
-    #    }
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = "CopilotChat - Toggle" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>cce', '<cmd>CopilotChatExplain<cr>', { desc = "CopilotChat - Explain code" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccg', '<cmd>CopilotChatCommit<cr>', { desc = "CopilotChat - Write commit message for the change" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>cct', '<cmd>CopilotChatTests<cr>', { desc = "CopilotChat - Generate tests" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccf', '<cmd>CopilotChatFix<cr>', { desc = "CopilotChat - Fix diagnostic" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccr', '<cmd>CopilotChatReset<cr>', { desc = "CopilotChat - Reset chat history and clear buffer" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>cco', '<cmd>CopilotChatOptimize<cr>', { desc = "CopilotChat - Optimize selected code" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccd', '<cmd>CopilotChatDocs<cr>', { desc = "CopilotChat - Add docs on selected code" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccp', '<cmd>CopilotChatReview<cr>', { desc = "CopilotChat - Review selected code" })
-    #    vim.keymap.set({ 'n', 'v' }, '<leader>ccs', '<cmd>CopilotChatStop<cr>', { desc = "CopilotChat - Stop current window output" })
-    #  '';
-    #}
+    ## Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
+    {
+      type = "lua";
+      plugin = pkgs.unstable.vimPlugins.copilot-lua;
+      config = ''
+      require('copilot').setup({
+        -- Disable suggestions and panel as they can interfere with cmp appearing in copilot-cmp
+        suggestion = { enabled = true },
+        panel = { enabled = false },
+        -- TODO: Customize copilot response https://github.com/zbirenbaum/copilot.lua
+      })
+      '';
+    }
+    {
+      type = "lua";
+      plugin = pkgs.unstable.vimPlugins.CopilotChat-nvim;
+      config = ''
+        require('CopilotChat').setup({})
+
+        vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = "CopilotChat - Toggle" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>cce', '<cmd>CopilotChatExplain<cr>', { desc = "CopilotChat - Explain code" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ccg', '<cmd>CopilotChatCommit<cr>', { desc = "CopilotChat - Write commit message for the change" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>cct', '<cmd>CopilotChatTests<cr>', { desc = "CopilotChat - Generate tests" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ccf', '<cmd>CopilotChatFix<cr>', { desc = "CopilotChat - Fix diagnostic" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ccr', '<cmd>CopilotChatReset<cr>', { desc = "CopilotChat - Reset chat history and clear buffer" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>cco', '<cmd>CopilotChatOptimize<cr>', { desc = "CopilotChat - Optimize selected code" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ccd', '<cmd>CopilotChatDocs<cr>', { desc = "CopilotChat - Add docs on selected code" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ccp', '<cmd>CopilotChatReview<cr>', { desc = "CopilotChat - Review selected code" })
+        vim.keymap.set({ 'n', 'v' }, '<leader>ccs', '<cmd>CopilotChatStop<cr>', { desc = "CopilotChat - Stop current window output" })
+      '';
+    }
 
     # ------ git -------
     vim-fugitive
