@@ -61,8 +61,8 @@ hl.config({
   },
   dwindle = {
     force_split = 0,
-    use_active_for_splits = true;
-    preserve_split = true;
+    use_active_for_splits = true,
+    preserve_split = true,
     smart_split = true,
   },
   debug = {
@@ -211,14 +211,17 @@ hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("rofi-pass"))
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy"))
 
 -- FIXME: Focus
-hl.bind(mod .. " + LEFT",  hl.dsp.focus({direction="left"}))
-hl.bind(mod .. " + RIGHT", hl.dsp.focus({direction="right"}))
-hl.bind(mod .. " + UP",    hl.dsp.focus({direction="up"}))
-hl.bind(mod .. " + DOWN",  hl.dsp.focus({direction="down"}))
-hl.bind(mod .. " + H",     hl.dsp.focus({direction="left"}))
-hl.bind(mod .. " + J",     hl.dsp.focus({direction="down"}))
-hl.bind(mod .. " + K",     hl.dsp.focus({direction="up"}))
-hl.bind(mod .. " + L",     hl.dsp.focus({direction="right"}))
+hl.bind(mod .. " + LEFT",  hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + RIGHT", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + UP",    hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + DOWN",  hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + H",     hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + J",     hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + K",     hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + L",     hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + M",     hl.dsp.focus({ workspace = "m-1" }))
+hl.bind(mod .. " + COMMA", hl.dsp.focus({ workspace = "m+1" }))
+
 
 -- Switch workspace
 for i = 1, 10 do
@@ -230,28 +233,28 @@ end
 --hl.bind(mod .. " + CTRL + C", hl.dsp.workspace.move_to("empty")) FIXME
 
 -- Move workspace to monitor
-hl.bind(mod .. " + CTRL + J", hl.dsp.workspace.move({monitor="l"}))
-hl.bind(mod .. " + CTRL + K", hl.dsp.workspace.move({monitor="r"}))
+hl.bind(mod .. " + CTRL + J",      hl.dsp.workspace.move({ monitor = "l" }))
+hl.bind(mod .. " + CTRL + K",      hl.dsp.workspace.move({ monitor = "r" }))
 
 -- Window movement
-hl.bind(mod .. " + SHIFT + LEFT",  hl.dsp.window.move({direction="left"}))
-hl.bind(mod .. " + SHIFT + RIGHT", hl.dsp.window.move({direction="right"}))
-hl.bind(mod .. " + SHIFT + UP",    hl.dsp.window.move({direction="up"}))
-hl.bind(mod .. " + SHIFT + DOWN",  hl.dsp.window.move({direction="down"}))
-hl.bind(mod .. " + SHIFT + H",     hl.dsp.window.move({direction="left"}))
-hl.bind(mod .. " + SHIFT + J",     hl.dsp.window.move({direction="down"}))
-hl.bind(mod .. " + SHIFT + K",     hl.dsp.window.move({direction="up"}))
-hl.bind(mod .. " + SHIFT + L",     hl.dsp.window.move({direction="right"}))
+hl.bind(mod .. " + SHIFT + LEFT",  hl.dsp.window.move({ direction = "left" }))
+hl.bind(mod .. " + SHIFT + RIGHT", hl.dsp.window.move({ direction = "right" }))
+hl.bind(mod .. " + SHIFT + UP",    hl.dsp.window.move({ direction = "up" }))
+hl.bind(mod .. " + SHIFT + DOWN",  hl.dsp.window.move({ direction = "down" }))
+hl.bind(mod .. " + SHIFT + H",     hl.dsp.window.move({ direction = "left" }))
+hl.bind(mod .. " + SHIFT + J",     hl.dsp.window.move({ direction = "down" }))
+hl.bind(mod .. " + SHIFT + K",     hl.dsp.window.move({ direction = "up" }))
+hl.bind(mod .. " + SHIFT + L",     hl.dsp.window.move({ direction = "right" }))
 
 -- Resize active window
-hl.bind(mod .. " + CTRL + LEFT",  hl.dsp.window.resize({x = -10, y = 0,   relative = true}))
-hl.bind(mod .. " + CTRL + RIGHT", hl.dsp.window.resize({x = 10,  y = 0,   relative = true}))
-hl.bind(mod .. " + CTRL + UP",    hl.dsp.window.resize({x = 0,   y = -10, relative = true}))
-hl.bind(mod .. " + CTRL + DOWN",  hl.dsp.window.resize({x = 0,   y = 10,  relative = true}))
-hl.bind(mod .. " + CTRL + H",     hl.dsp.window.resize({x = -10, y = 0,   relative = true}))
-hl.bind(mod .. " + CTRL + J",     hl.dsp.window.resize({x = 0,   y = 10,  relative = true}))
-hl.bind(mod .. " + CTRL + K",     hl.dsp.window.resize({x = 0,   y = -10, relative = true}))
-hl.bind(mod .. " + CTRL + L",     hl.dsp.window.resize({x = 10,  y = 0,   relative = true}))
+hl.bind(mod .. " + CTRL + LEFT",   hl.dsp.window.resize({ x = -10, y = 0,   relative = true }))
+hl.bind(mod .. " + CTRL + RIGHT",  hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }))
+hl.bind(mod .. " + CTRL + UP",     hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
+hl.bind(mod .. " + CTRL + DOWN",   hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }))
+hl.bind(mod .. " + CTRL + H",      hl.dsp.window.resize({ x = -10, y = 0,   relative = true }))
+hl.bind(mod .. " + CTRL + J",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }))
+hl.bind(mod .. " + CTRL + K",      hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
+hl.bind(mod .. " + CTRL + L",      hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }))
 hl.bind(mod .. " + R", hl.dsp.submap("resize"))
 hl.define_submap("resize", function()
   hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0,   relative = true }), { repeating = true })
@@ -291,12 +294,12 @@ hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pamixer -d 5"), { repeating = t
 
 -- Media
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
-hl.bind("XF86AudioStop", hl.dsp.exec_cmd("playerctl stop"),       { locked = true })
-hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),       { locked = true })
-hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"),   { locked = true })
+hl.bind("XF86AudioStop", hl.dsp.exec_cmd("playerctl stop"),     { locked = true })
+hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),     { locked = true })
+hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Brightness
-hl.bind("XF86MonBrightnessUp",   hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true })
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true })
 -- TODO: Add keys for external monitor brightness control
 
@@ -333,9 +336,9 @@ hl.window_rule({
 
 -- Match initial titles: portal pickers can later change to "Files — <app>".
 local filePickerTitle =
-  "(?i)^((Open|Save)( Files?| Folders?| Directory| Documents?| Images?| Project| Workspace)?|Save As|"
-  .. "(Select|Choose|Browse for) (a |an )?(Files?|Folders?|Directory|Directories|Documents?|Images?)|"
-  .. "All Files|File (Chooser|Picker|Upload)|Upload Files?)([[:space:]]*[-–—:].*|[[:space:]]*[.]{3}|…)?$"
+    "(?i)^((Open|Save)( Files?| Folders?| Directory| Documents?| Images?| Project| Workspace)?|Save As|"
+    .. "(Select|Choose|Browse for) (a |an )?(Files?|Folders?|Directory|Directories|Documents?|Images?)|"
+    .. "All Files|File (Chooser|Picker|Upload)|Upload Files?)([[:space:]]*[-–—:].*|[[:space:]]*[.]{3}|…)?$"
 
 hl.window_rule({
   match = { initial_title = filePickerTitle },
@@ -378,4 +381,3 @@ hl.window_rule({
   size = { 1411, 854 },
   center = true,
 })
-
