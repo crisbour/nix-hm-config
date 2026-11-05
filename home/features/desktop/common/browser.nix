@@ -17,7 +17,7 @@
   #  ];
   #};
 
-  config.stylix.targets.zen-browser.enable = true;
+  stylix.targets.zen-browser.enable = true;
 
   programs.zen-browser = {
     enable = true;
