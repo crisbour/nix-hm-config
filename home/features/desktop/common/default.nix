@@ -1,10 +1,12 @@
-{ pkgs, config, ... }:
+{ pkgs, config, inputs, ... }:
 let
   inherit (pkgs.stdenv) isLinux;
   hasGUI = config.home.user-info.has_gui;
 in
 {
   imports = [
+    inputs.zen-browser.homeModules.beta
+
     ./gtk.nix
     ./rofi.nix
     ./browser.nix
