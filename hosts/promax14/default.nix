@@ -39,7 +39,7 @@
   mySystem.info = {
     hostname = "promax14";
     has_gui = true;
-    has_nvidia = false;
+    has_nvidia = true;
     has_intel = true;
   };
 
