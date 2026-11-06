@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     # Configuration via home.nix
@@ -12,10 +12,12 @@
     #gnupg.home = "/home/cristi/.gnupg";
     #gnupg.sshKeyPaths = [];
     age = {
-      #sshKeyPaths = ["/home/cristi/.ssh/id_ed25519"];
       sshKeyPaths = ["/root/.ssh/id_ed25519"];
       keyFile = "/var/lib/sops-nix/keys.txt";
       generateKey = true;
+      plugins = [
+        pkgs.age-plugin-yubikey
+      ];
     };
   };
 

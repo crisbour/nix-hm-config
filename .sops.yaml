@@ -2,10 +2,10 @@ keys:
   - &users:
     - &cristi_yubikey 09B0879FFEF55E7B046E58C7AEF4A543011E8AC1
     - &w9098_ssh_key age1ut96p7m37gsh5fgua8cvl6m723gp358qfxtx6dehl99yshmmmcqqv72m7v
+    - &promax_ssh_key age159w6vzfvm02rav9ql7ktg97xz4rcvr0mv4m62l7tq6pnmcx97d2q3jc43h
     - &cristi_wsl_ssh_key age1np7hayyv9yclgcqc7jhdrfsx324nvz39cf569lhkuef3kss8caqqwn2u6d
     - &cristi_lab_ssh_key age1nlqw2qy0zyj6eglgvw2zy9z6n0sa2ajt2wk05spw6ad2gva68pcqddtz89
   - &hosts:
-    - &precision_ssh_key age1hxnc4mz9j6rrz7rf69y3y7llv6gncr9fd85608hj8tql9rgnw57s4kyvga
     - &lab_wsl_ssh_key age149am67t74shdt9d876pzf2yevrx9h38v4ytqj6w6856q2fgv0u8snlmnzz
 creation_rules:
   - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
@@ -14,7 +14,7 @@ creation_rules:
         - *cristi_yubikey
       age:
         - *w9098_ssh_key
-        - *precision_ssh_key
+        - *promax_ssh_key
         - *lab_wsl_ssh_key
         - *cristi_wsl_ssh_key
         - *cristi_lab_ssh_key
