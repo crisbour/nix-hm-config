@@ -132,19 +132,15 @@ hl.on("hyprland.start", function()
 
   hl.exec_cmd("nm-applet &")
   hl.exec_cmd("poweralertd &")
-  hl.exec_cmd("swaync &")
 
   hl.exec_cmd("wl-paste --type text --watch cliphist store")
   hl.exec_cmd("wl-paste --type image --watch cliphist store")
   hl.exec_cmd("wl-clip-persist --clipboard both &")
 
-  hl.exec_cmd("swaylock")
   hl.exec_cmd("thunderbird")
-  hl.exec_cmd("swayosd-sever")
 
   -- hyprpolkitagent
   hl.exec_cmd("systemctl --user start hyprpolkitagent")
-  --clamshell.reconcile()
 end)
 
 -- Mousbinds
