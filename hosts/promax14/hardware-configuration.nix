@@ -83,18 +83,31 @@
     "kvm-intel"
     "acpi_call"
     "intel_pstate"
+
     "nvidia"
     "nvidia_modeset"
     "nvidia_drm"
     #"nvidia_uvm" # Required by CUDA: Unified Memory
-    "vhost_vsock"
+
     "i2c_dev" # Allow i2c control with ddcutil
     "ddcci"
     "ddcci-backlight"
+
+    "vhost_vsock"
+    # OBS Virtual camera
+    "v4l2loopback"
   ];
   boot.extraModulePackages = [
     config.boot.kernelPackages.nvidia_x11
+    # Necessary for OBS virtual camera loopback
+    config.boot.kernelPackages.v4l2loopback
   ];
+
+  # Optional: Specific module arguments to ensure compatibility with Chrome/Electron apps
+  # "exclusive_caps=1" is often required for browsers to recognize it as a camera
+  boot.extraModprobeConfig = ''
+    options v4l2loopback devices=1 video_nr=10 card_label="OBS Cam" exclusive_caps=1
+  '';
 
   # ip forwarding is needed for NAT'ing to work.
   boot.kernel.sysctl = {
