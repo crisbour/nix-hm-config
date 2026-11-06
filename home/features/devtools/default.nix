@@ -32,7 +32,7 @@ in {
         evcxr                         # Rust notebook: Evcxr
         # Shell Utilities
         mosh                    # Mobile SSH
-        python313Packages.demjson3
+        python3Packages.demjson3
         pre-commit
         tree-sitter
         watchexec
@@ -43,6 +43,7 @@ in {
 
         # Better Python REPL
         python3Packages.ptpython
+        python3Packages.pypdf
 
         # Languages
         gcc
@@ -96,7 +97,12 @@ in {
           # Inspection tools
           xdot
           #h5v
+
+          # LLMs/Agent Tools
+          unstable.opencode
+          unstable.pi-coding-agent
         ]);
+
 
     # TODO: How to use poetry to configure python env?
     #xdg.configFile."pypoetry/config.toml".source =

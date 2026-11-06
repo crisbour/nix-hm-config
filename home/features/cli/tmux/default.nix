@@ -23,6 +23,7 @@ in
       set-option -sa terminal-features ',${TERM}:RGB'
       set -g mode-keys vi
       set -g status-keys vi
+      set -g extended-keys on
 
       bind Escape copy-mode
 
