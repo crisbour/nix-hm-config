@@ -39,5 +39,6 @@
   home.packages = with pkgs; [
     # WARN: I only need this for Fusion360, perhaps isolate it more specifically in the top config
     flatpak
+    easyeffects
   ];
 }
