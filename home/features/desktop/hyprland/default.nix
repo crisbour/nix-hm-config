@@ -22,14 +22,12 @@ in
 
     inputs.hyprland.homeManagerModules.default
 
-    inputs.noctalia.homeModules.default
-    ./noctalia.nix
+    ../noctalia
 
     ./variables.nix
     #./hyprlock.nix
 
     ./hypridle.nix
-    ./swaync
     ./scripts
     #./polkitagent.nix
   ];
@@ -80,7 +78,7 @@ in
     settings = { };
 
     extraConfig = ''
-    require("hyprland-user")
+      require("hyprland-user")
     '';
 
     #extraLuaFiles = {
