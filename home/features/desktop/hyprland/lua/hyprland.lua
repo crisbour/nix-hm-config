@@ -7,14 +7,16 @@ pcall(require, "monitors")
 -- local hs = require("hyprsplit")
 -- local clamshell = require("clamshell")
 local mod = "SUPER"
+-- set to "dwindle" or "scrolling" depending on your preference
+local layout_mode = "dwindle"
 
 hl.config({
   general = {
-    layout = "dwindle",
+    layout = layout_mode,
     gaps_in = 1,
-    gaps_out = 0,
-    border_size = 2,
-    -- ["col.active_border"] = "rgb(101415)",
+    gaps_out = 1,
+    border_size = 3,
+    ["col.active_border"] = "rgba(800080aa)",
     -- ["col.inactive_border"] = "rgb(101415)",
   },
   scrolling = {
@@ -166,8 +168,8 @@ hl.bind(mod .. " + SHIFT + RETURN", hl.dsp.exec_cmd("[fullscreen] kitty"))
 hl.bind("ALT + RETURN", hl.dsp.exec_cmd("[float; size 1111 700] ghostty"))
 
 -- File explorer
-hl.bind("SUPER + E", hl.dsp.exec_cmd("kitty -e yazi"))
-hl.bind("SUPER + SHIFT + E", hl.dsp.exec_cmd("nemo"))
+hl.bind(mod .. " + Y", hl.dsp.exec_cmd("kitty -e yazi"))
+hl.bind(mod .. " + N", hl.dsp.exec_cmd("nemo"))
 
 hl.bind(mod .. " + Z", hl.dsp.layout("focus"))
 hl.bind(mod .. " + G", hl.dsp.layout("promote"))
@@ -206,16 +208,16 @@ hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("rofi-pass"))
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy"))
 
 -- FIXME: Focus
-hl.bind(mod .. " + LEFT",  hl.dsp.focus({ direction = "left" }))
-hl.bind(mod .. " + RIGHT", hl.dsp.focus({ direction = "right" }))
-hl.bind(mod .. " + UP",    hl.dsp.focus({ direction = "up" }))
-hl.bind(mod .. " + DOWN",  hl.dsp.focus({ direction = "down" }))
-hl.bind(mod .. " + H",     hl.dsp.focus({ direction = "left" }))
-hl.bind(mod .. " + J",     hl.dsp.focus({ direction = "down" }))
-hl.bind(mod .. " + K",     hl.dsp.focus({ direction = "up" }))
-hl.bind(mod .. " + L",     hl.dsp.focus({ direction = "right" }))
-hl.bind(mod .. " + M",     hl.dsp.focus({ workspace = "m-1" }))
-hl.bind(mod .. " + COMMA", hl.dsp.focus({ workspace = "m+1" }))
+hl.bind(mod .. " + LEFT",    hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + RIGHT",   hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + UP",      hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + DOWN",    hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + ALT + H", hl.dsp.focus({ direction = "left" }))
+hl.bind(mod .. " + ALT + J", hl.dsp.focus({ direction = "down" }))
+hl.bind(mod .. " + ALT + K", hl.dsp.focus({ direction = "up" }))
+hl.bind(mod .. " + ALT + L", hl.dsp.focus({ direction = "right" }))
+hl.bind(mod .. " + M",       hl.dsp.focus({ workspace = "m-1" }))
+hl.bind(mod .. " + COMMA",   hl.dsp.focus({ workspace = "m+1" }))
 
 
 -- Switch workspace
@@ -231,33 +233,48 @@ end
 hl.bind(mod .. " + CTRL + J",      hl.dsp.workspace.move({ monitor = "l" }))
 hl.bind(mod .. " + CTRL + K",      hl.dsp.workspace.move({ monitor = "r" }))
 
--- Window movement
-hl.bind(mod .. " + SHIFT + LEFT",  hl.dsp.window.move({ direction = "left" }))
-hl.bind(mod .. " + SHIFT + RIGHT", hl.dsp.window.move({ direction = "right" }))
-hl.bind(mod .. " + SHIFT + UP",    hl.dsp.window.move({ direction = "up" }))
-hl.bind(mod .. " + SHIFT + DOWN",  hl.dsp.window.move({ direction = "down" }))
-hl.bind(mod .. " + SHIFT + H",     hl.dsp.window.move({ direction = "left" }))
-hl.bind(mod .. " + SHIFT + J",     hl.dsp.window.move({ direction = "down" }))
-hl.bind(mod .. " + SHIFT + K",     hl.dsp.window.move({ direction = "up" }))
-hl.bind(mod .. " + SHIFT + L",     hl.dsp.window.move({ direction = "right" }))
+if layout_mode == "dwindle" then
+  -- Window movement
+  hl.bind(mod .. " + SHIFT + LEFT",  hl.dsp.window.move({ direction = "left" }))
+  hl.bind(mod .. " + SHIFT + RIGHT", hl.dsp.window.move({ direction = "right" }))
+  hl.bind(mod .. " + SHIFT + UP",    hl.dsp.window.move({ direction = "up" }))
+  hl.bind(mod .. " + SHIFT + DOWN",  hl.dsp.window.move({ direction = "down" }))
+  hl.bind(mod .. " + SHIFT + H",     hl.dsp.window.move({ direction = "left" }))
+  hl.bind(mod .. " + SHIFT + J",     hl.dsp.window.move({ direction = "down" }))
+  hl.bind(mod .. " + SHIFT + K",     hl.dsp.window.move({ direction = "up" }))
+  hl.bind(mod .. " + SHIFT + L",     hl.dsp.window.move({ direction = "right" }))
+  --hl.bind(mod .. " + SHIFT + J", hl.dsp.layout("swapdown"))
+  --hl.bind(mod .. " + SHIFT + K", hl.dsp.layout("swapup"))
+  --hl.bind(mod .. " + SHIFT + H", hl.dsp.layout("swapleft"))
+  --hl.bind(mod .. " + SHIFT + L", hl.dsp.layout("swapright"))
 
--- Resize active window
-hl.bind(mod .. " + CTRL + LEFT",   hl.dsp.window.resize({ x = -10, y = 0,   relative = true }))
-hl.bind(mod .. " + CTRL + RIGHT",  hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }))
-hl.bind(mod .. " + CTRL + UP",     hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
-hl.bind(mod .. " + CTRL + DOWN",   hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }))
-hl.bind(mod .. " + CTRL + H",      hl.dsp.window.resize({ x = -10, y = 0,   relative = true }))
-hl.bind(mod .. " + CTRL + J",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }))
-hl.bind(mod .. " + CTRL + K",      hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
-hl.bind(mod .. " + CTRL + L",      hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }))
-hl.bind(mod .. " + R", hl.dsp.submap("resize"))
-hl.define_submap("resize", function()
-  hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0,   relative = true }), { repeating = true })
-  hl.bind("L", hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }), { repeating = true })
-  hl.bind("J", hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
-  hl.bind("K", hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }), { repeating = true })
-  hl.bind("Escape", hl.dsp.submap("reset"))
-end)
+  -- Resize active window
+  hl.bind(mod .. " + CTRL + LEFT",   hl.dsp.window.resize({ x = -10, y = 0,   relative = true }))
+  hl.bind(mod .. " + CTRL + RIGHT",  hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }))
+  hl.bind(mod .. " + CTRL + UP",     hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
+  hl.bind(mod .. " + CTRL + DOWN",   hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }))
+  hl.bind(mod .. " + CTRL + H",      hl.dsp.window.resize({ x = -10, y = 0,   relative = true }))
+  hl.bind(mod .. " + CTRL + J",      hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }))
+  hl.bind(mod .. " + CTRL + K",      hl.dsp.window.resize({ x = 0,   y = -10, relative = true }))
+  hl.bind(mod .. " + CTRL + L",      hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }))
+  hl.bind(mod .. " + R", hl.dsp.submap("resize"))
+  hl.define_submap("resize", function()
+    hl.bind("H", hl.dsp.window.resize({ x = -10, y = 0,   relative = true }), { repeating = true })
+    hl.bind("L", hl.dsp.window.resize({ x = 10,  y = 0,   relative = true }), { repeating = true })
+    hl.bind("J", hl.dsp.window.resize({ x = 0,   y = -10, relative = true }), { repeating = true })
+    hl.bind("K", hl.dsp.window.resize({ x = 0,   y = 10,  relative = true }), { repeating = true })
+    hl.bind("Escape", hl.dsp.submap("reset"))
+  end)
+elseif layout_mode == "scrolling" then
+  -- Scrolling layout: column movement
+  --hl.bind(mod .. " + SHIFT + W", hl.dsp.layout("move -col"))
+  --hl.bind(mod .. " + SHIFT + E", hl.dsp.layout("move +col"))
+  hl.bind(mod .. " + J", hl.dsp.layout("swapcol l once"))
+  hl.bind(mod .. " + K", hl.dsp.layout("swapcol r once"))
+  hl.bind(mod .. " + H", hl.dsp.layout("move -col"))
+  hl.bind(mod .. " + L", hl.dsp.layout("move +col"))
+end
+
 
 -- Color picker
 hl.bind(mod .. " + SHIFT + C", hl.dsp.exec_cmd("hyprpicker -f hex -a"))
@@ -286,6 +303,8 @@ hl.bind(mod .. " + CTRL + SHIFT + S", hl.dsp.window.toggle_swallow())
 -- Volume
 hl.bind("XF86AudioRaiseVolume", hl.dsp.exec_cmd("pamixer -i 5"), { repeating = true, locked = true })
 hl.bind("XF86AudioLowerVolume", hl.dsp.exec_cmd("pamixer -d 5"), { repeating = true, locked = true })
+hl.bind("XF86AudioMute", hl.dsp.exec_cmd("pamixer -t"), { locked = true })
+hl.bind("XF86AudioMicMute", hl.dsp.exec_cmd("noctalia msg mic-mute"), { repeating = true, locked = true })
 
 -- Media
 hl.bind("XF86AudioPlay", hl.dsp.exec_cmd("playerctl play-pause"), { locked = true })
@@ -297,14 +316,6 @@ hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true 
 hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true })
 hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true })
 -- TODO: Add keys for external monitor brightness control
-
--- Scrolling layout: column movement
---hl.bind(mod .. " + SHIFT + W", hl.dsp.layout("move -col"))
---hl.bind(mod .. " + SHIFT + E", hl.dsp.layout("move +col"))
---hl.bind(mod .. " + SHIFT + H", hl.dsp.layout("swapcol l once"))
---hl.bind(mod .. " + SHIFT + L", hl.dsp.layout("swapcol r once"))
---hl.bind(mod .. " + CTRL + H", hl.dsp.layout("move -col"))
---hl.bind(mod .. " + CTRL + L", hl.dsp.layout("move +col"))
 
 
 -- Thunderbird lives on the mail special workspace, opened silently (no focus steal)
