@@ -1,55 +1,62 @@
 { config, lib, pkgs, ... }:
-#let
-#  unstable = import <nixos-unstable> {};
-#in
 {
-
-  #nixpkgs.config = {
-  #    packageOverrides = pkgs: {
-  #      pcscd = unstable.pcscd;
-  #  };
-  #};
 
   programs.ssh.startAgent = false;
 
   services.yubikey-agent.enable = true;
 
-  # Enable smartcard daemon, to read TOPT tokens from yubikey
+  # Enable PC/SC daemon for smartcard support
   services.pcscd = {
     enable = true;
     plugins = with pkgs; [ libykneomgr ccid ];
   };
 
+  # YubiKey utilities
   environment.systemPackages = with pkgs; [
-    gnupg
-    #pcsclite
-    yubikey-personalization
-    yubikey-manager
-    yubico-pam
-    # GUI
-    yubioath-flutter
+    yubikey-personalization    # ykpersonalize - configure YubiKey slots
+    yubikey-manager            # ykman - modern YubiKey management
+    yubico-pam                 # PAM module for YubiKey auth
+    yubikey-touch-detector     # Notify when YubiKey touch is needed
+    # GUI tools
+    yubioath-flutter           # YubiKey OTP/TOTP manager
   ];
 
-  # add udev rules for yubikey personalization
+  # UDEV rules for YubiKey access
   services.udev.packages = with pkgs; [ yubikey-personalization ];
 
-  # enable smartcard support
+  # Enable GPG smartcard support
   hardware.gpgSmartcards.enable = true;
 
-  # enable polkit to use yubikey for authentication
+  # Enable Polkit (for GUI authentication)
   security.polkit.enable = true;
 
-  security.pam.services = {
-    login.u2fAuth = false;
-    sudo.u2fAuth = true;
+  # =============================================================================
+  # PAM Configuration for YubiKey
+  # =============================================================================
+  security.pam = {
+    # Enable YubiKey challenge-response for sudo
+    services = {
+      # NOTE: Add yubikey to user auth manually:
+      # ```
+      # nix-shell -p pam_u2f
+      # pamu2fcfg > ~/.config/Yubico/u2f_keys`
+      # ```
+      sudo = {
+        u2fAuth = true;
+        # Also enable yubico module
+        yubicoAuth = true;
+      };
+      login.u2fAuth = false;  # Keep password for login (optional)
+    };
+
+    # YubiKey PAM module configuration
+    yubico = {
+      enable = true;
+      # debug = true;  # Enable for troubleshooting
+      mode = "challenge-response";
+    };
   };
 
-  #security.pam.yubico = {
-  #   enable = true;
-  #   #debug = true;
-  #   mode = "challenge-response";
-  #   id = [ "11066999" ];
-  #};
 }
 
 # Taken from: https://github.com/jonaswouters/nixos-configuration/blob/master/yubikey.nix
