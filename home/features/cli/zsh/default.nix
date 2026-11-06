@@ -115,14 +115,13 @@
 
     shellAliases = {
       # builtins
-      size  = "du -sh";
       cp    = "cp -i";
       mkdir = "mkdir -p";
       df    = "df -h";
       free  = "free -h";
       du    = "du -sh";
       susu  = "sudo su";
-      op    = "xdg-open";
+      open  = "xdg-open";
       del   = "rm -rf";
       sdel  = "sudo rm -rf";
       ls    = "eza";
@@ -136,7 +135,6 @@
 
       # overrides
       cat    = "bat";
-      #ssh = "TERM=screen ssh";
       python = "python3";
       pip    = "python3 -m pip";
       venv   = "python3 -m venv";
@@ -146,31 +144,22 @@
       g     = "git";
       dk    = "docker";
       sc    = "sudo systemctl";
-      poe   = "poetry";
-      fb    = "pcmanfm .";
       space = "ncdu";
       ca    = "cargo";
       diff  = "delta";
       py    = "python";
 
-      # TODO make myself a terminal cheatsheet
-      # terminal cheat sheet
-      cht = "cht.sh";
-
       # utilities
       psf     = "ps -aux | grep";
       lsf     = "eza | grep";
       shut    = "sudo shutdown -h now";
-      tssh    = "ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null";
-      socks   = "ssh -D 1337 -q -C -N";
 
       # clean
       dklocal = "docker run --rm -it -v `PWD`:/usr/workdir --workdir=/usr/workdir";
       dkclean = "docker container rm $(docker container ls -aq)";
 
-      caps    = "xdotool key Caps_Lock";
       gclean  = "git fetch -p && for branch in $(git branch -vv | grep ': gone]' | awk '{print $1}'); do git branch -D $branch; done";
-      weather = "curl -4 http://wttr.in/Cambridge";
+      weather = "curl -4 http://wttr.in/Edinburgh";
 
       # nix
       clean = "nix-collect-garbage -d && nix-store --gc && nix-store --verify --check-contents --repair";
