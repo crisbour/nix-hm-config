@@ -8,7 +8,7 @@ pcall(require, "monitors")
 -- local clamshell = require("clamshell")
 local mod = "SUPER"
 -- set to "dwindle" or "scrolling" depending on your preference
-local layout_mode = "dwindle"
+local layout_mode = "scrolling"
 
 hl.config({
   general = {
@@ -218,7 +218,6 @@ hl.bind(mod .. " + ALT + K", hl.dsp.focus({ direction = "up" }))
 hl.bind(mod .. " + ALT + L", hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + M",       hl.dsp.focus({ workspace = "m-1" }))
 hl.bind(mod .. " + COMMA",   hl.dsp.focus({ workspace = "m+1" }))
-
 
 -- Switch workspace
 for i = 1, 10 do

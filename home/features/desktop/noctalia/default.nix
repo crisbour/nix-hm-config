@@ -3,6 +3,7 @@
   imports = [
     inputs.noctalia.homeModules.default
     ./enchanted-sound.nix
+    ./modern-min-sound.nix
   ];
 
   programs.noctalia = {
@@ -16,6 +17,7 @@
         position = "top";
         thickness = 32;
         scale = 1.25;
+        margin_opposite_edge = 1;
 
         start = [
           "launcher"
@@ -46,7 +48,7 @@
 
       audio = {
         enable_sounds = true;
-        sound_theme = "Enchanted";
+        sound_theme = "ModernMinimal";
         sound_volume = 0.5;
       };
 
