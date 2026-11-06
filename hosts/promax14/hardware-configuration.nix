@@ -75,6 +75,10 @@
     nvidiaBusId = "PCI:1:0:0";
   };
 
+  # ----------------------------------------------------------------------------------
+  # More hardware configs
+  # ----------------------------------------------------------------------------------
+
   hardware.i2c.enable = true;
 
   # vhost_vsock: Enables the capacity to launch vm with a virtual socket (network)
