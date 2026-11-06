@@ -1,5 +1,10 @@
-{pkgs, ... }:
+{pkgs, inputs, ... }:
 {
+  imports = [
+    inputs.noctalia.homeModules.default
+    ./enchanted-sound.nix
+  ];
+
   programs.noctalia = {
     enable = true;
     systemd.enable = true;
@@ -37,6 +42,12 @@
           "keyboard_layout"
           "session"
         ];
+      };
+
+      audio = {
+        enable_sounds = true;
+        sound_theme = "Enchanted";
+        sound_volume = 0.5;
       };
 
       # =============================================================================
