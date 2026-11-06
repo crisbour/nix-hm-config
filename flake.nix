@@ -3,6 +3,22 @@
 {
   description = "Home-manager configuration as a flake";
 
+  # Tracks nixos-unstable. These caches serve prebuilt Noctalia (C++/Qt) and
+  # Hyprland binaries — without them both compile from source on every rebuild.
+  nixConfig = {
+    extra-substituters = [
+      "https://noctalia.cachix.org"
+      "https://hyprland.cachix.org"
+      # cuda-maintainers serves the shared CUDA redistributables.
+      "https://cuda-maintainers.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,7 +28,7 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    home-manager-unstable ={
+    home-manager-unstable = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
@@ -70,7 +86,10 @@
       # Only the Lua module is used; do not import another Hyprland dependency graph.
       #flake = false;
     };
-
+    noctalia = {
+      url = "github:noctalia-dev/noctalia";
+      # no inputs.nixpkgs.follows — the binary cache requires this be absent
+    };
 
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -111,101 +130,125 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, deploy-rs, alacritty-theme, nixgl, nur, fenix, ... }@inputs:
-  # Remove polybar-pipewire overlay
+  outputs =
+    {
+      self,
+      nixpkgs,
+      home-manager,
+      deploy-rs,
+      alacritty-theme,
+      nixgl,
+      nur,
+      fenix,
+      ...
+    }@inputs:
+    # Remove polybar-pipewire overlay
     let
       inherit (self) outputs;
 
       # TODO: Is this necessary? Perhaps for accessing home-manager.lib.homeManagerConfiguration easier
       lib = nixpkgs.lib // home-manager.lib;
 
-      systems = [ "aarch64-linux" "x86_64-linux" ];
+      systems = [
+        "aarch64-linux"
+        "x86_64-linux"
+      ];
 
       forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-      pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      });
-      nixGlOverlay = { ... }: {nixpkgs.overlays = [nixgl.overlay];};
-      alacritty-theme-Overlay = { ... }: {nixpkgs.overlays = [ alacritty-theme.overlays.default ];};
+      pkgsFor = lib.genAttrs systems (
+        system:
+        import nixpkgs {
+          inherit system;
+          config = {
+            allowUnfree = true;
+          };
+        }
+      );
+      nixGlOverlay = { ... }: { nixpkgs.overlays = [ nixgl.overlay ]; };
+      alacritty-theme-Overlay = { ... }: { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; };
       deploy-rs-cache-enable = { pkgs, ... }: {
         nixpkgs.overlays = [
           deploy-rs.overlays.default # or deploy-rs.overlay
-          (self: super: { deploy-rs = { inherit (pkgs) deploy-rs; lib = super.deploy-rs.lib; }; })
+          (self: super: {
+            deploy-rs = {
+              inherit (pkgs) deploy-rs;
+              lib = super.deploy-rs.lib;
+            };
+          })
         ];
       };
-      rustOverlay = { ... }: { nixpkgs.overlays = [fenix.overlays.default]; };
-      nurOverlay = { lib, ... }: {nixpkgs.overlays = [nur.overlay];};
+      rustOverlay = { ... }: { nixpkgs.overlays = [ fenix.overlays.default ]; };
+      nurOverlay = { lib, ... }: { nixpkgs.overlays = [ nur.overlay ]; };
 
-      mkHomeConfiguration = hostModule: system: home-manager.lib.homeManagerConfiguration {
-        pkgs = pkgsFor.${system};
-        modules = [
-          hostModule
-          alacritty-theme-Overlay
-          # TODO Add nixGlOverlay only to non NixOS
-          nixGlOverlay
-          deploy-rs-cache-enable
-          rustOverlay
-          #nurOverlay
-        ];
-        extraSpecialArgs = {
-          inherit inputs outputs;
-          # TODO: One day maybe when I'll have my own nix derviations organized
-          #inherit declarative-cachix;
+      mkHomeConfiguration =
+        hostModule: system:
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = pkgsFor.${system};
+          modules = [
+            hostModule
+            alacritty-theme-Overlay
+            # TODO Add nixGlOverlay only to non NixOS
+            nixGlOverlay
+            deploy-rs-cache-enable
+            rustOverlay
+            #nurOverlay
+          ];
+          extraSpecialArgs = {
+            inherit inputs outputs;
+            # TODO: One day maybe when I'll have my own nix derviations organized
+            #inherit declarative-cachix;
+          };
         };
-      };
 
     in
     {
       inherit lib;
       nixosModules = import ./modules/nixos;
-      homeModules  = import ./modules/home-manager;
+      homeModules = import ./modules/home-manager;
 
       # TODO: Add templates for languages of interest to minimize time spent on boiler plate code and project init
       # Inspire yourself from: https://github.com/Misterio77/nix-config/tree/main/templates
       #templates = import ./templates;
 
-      overlays = import ./overlays {inherit inputs outputs;};
+      overlays = import ./overlays { inherit inputs outputs; };
 
-      packages  = forEachSystem (pkgs: import ./pkgs { inherit pkgs inputs; });
-      devShells = forEachSystem (pkgs: import ./shell.nix {inherit pkgs;});
+      packages = forEachSystem (pkgs: import ./pkgs { inherit pkgs inputs; });
+      devShells = forEachSystem (pkgs: import ./shell.nix { inherit pkgs; });
       formatter = forEachSystem (pkgs: pkgs.nixpkgs-fmt);
 
       homeConfigurations = {
-        cristi   = mkHomeConfiguration ./home/cristi.nix   "x86_64-linux";
-        work     = mkHomeConfiguration ./home/work.nix     "x86_64-linux";
-        tiny     = mkHomeConfiguration ./home/tiny.nix     "x86_64-linux";
+        cristi = mkHomeConfiguration ./home/cristi.nix "x86_64-linux";
+        work = mkHomeConfiguration ./home/work.nix "x86_64-linux";
+        tiny = mkHomeConfiguration ./home/tiny.nix "x86_64-linux";
         cruncher = mkHomeConfiguration ./home/cruncher.nix "x86_64-linux";
-        uoe      = mkHomeConfiguration ./home/uoe.nix      "x86_64-linux";
-        lab      = mkHomeConfiguration ./home/lab.nix      "x86_64-linux";
-        wsl      = mkHomeConfiguration ./home/wsl.nix      "x86_64-linux";
+        uoe = mkHomeConfiguration ./home/uoe.nix "x86_64-linux";
+        lab = mkHomeConfiguration ./home/lab.nix "x86_64-linux";
+        wsl = mkHomeConfiguration ./home/wsl.nix "x86_64-linux";
       };
 
       nixosConfigurations = {
         promax14 = lib.nixosSystem {
-          modules = [ ./hosts/promax14];
+          modules = [ ./hosts/promax14 ];
           specialArgs = { inherit inputs outputs; };
         };
         precision = lib.nixosSystem {
-          modules = [ ./hosts/precision];
+          modules = [ ./hosts/precision ];
           specialArgs = { inherit inputs outputs; };
         };
         hydrax = lib.nixosSystem {
-          modules = [./hosts/hydrax];
+          modules = [ ./hosts/hydrax ];
           specialArgs = { inherit inputs outputs; };
         };
         uoe = lib.nixosSystem {
-          modules = [./hosts/uoe];
+          modules = [ ./hosts/uoe ];
           specialArgs = { inherit inputs outputs; };
         };
         lab = lib.nixosSystem {
-          modules = [./hosts/lab];
+          modules = [ ./hosts/lab ];
           specialArgs = { inherit inputs outputs; };
         };
         wsl = lib.nixosSystem {
-          modules = [./hosts/wsl];
+          modules = [ ./hosts/wsl ];
           specialArgs = { inherit inputs outputs; };
         };
 

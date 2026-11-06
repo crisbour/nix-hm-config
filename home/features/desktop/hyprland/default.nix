@@ -22,12 +22,12 @@ in
 
     inputs.hyprland.homeManagerModules.default
 
+    inputs.noctalia.homeModules.default
+    ./noctalia.nix
+
     ./variables.nix
     #./hyprlock.nix
 
-    ./waybar
-    ./waypaper.nix
-    ./swayosd.nix
     ./swaylock.nix
     ./hypridle.nix
     ./swaync
