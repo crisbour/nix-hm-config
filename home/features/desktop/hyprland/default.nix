@@ -28,7 +28,6 @@ in
     ./variables.nix
     #./hyprlock.nix
 
-    ./swaylock.nix
     ./hypridle.nix
     ./swaync
     ./scripts
@@ -43,7 +42,6 @@ in
     #swappy
     grimblast
     hyprpicker
-    hyprshot
     imv
     qt5.qtwayland
     qt6.qtwayland
