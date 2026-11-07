@@ -25,6 +25,10 @@
     };
   };
 
+  programs.browserpass = {
+    enable = true;
+  };
+
   xdg = {
     enable = true;
   };
