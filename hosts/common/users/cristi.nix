@@ -46,12 +46,7 @@ in {
       firefox
       gcc
     ];
-
-    #openssh.authorizedKeys.keys = lib.splitString "\n" (builtins.readFile ../../../../home/gabriel/ssh.pub);
-    #hashedPasswordFile = config.sops.secrets.gabriel-password.path;
   };
 
   #home-manager.users.cristi = import ../../../../home/cristi/${config.networking.hostName}.nix;
-
-  # TODO define secrets here
 }

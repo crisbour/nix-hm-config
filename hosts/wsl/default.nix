@@ -8,7 +8,6 @@
   imports = [
     #./hardware.nix
     inputs.nixos-wsl.nixosModules.wsl
-    inputs.vscode-server.nixosModules.default
     ../common/global
     ../common/users/cristi.nix
     ../common/optional/fonts.nix
@@ -19,28 +18,23 @@
     # FIXME: Investigate how docker runs under WSL in NixOS?
     #../common/optional/docker.nix
     #./sops.nix
-    ./services
+    #./services
+    ./usbip-yubikey.nix
   ];
 
   nixpkgs.hostPlatform.system = "x86_64-linux";
 
-  security.polkit.enable = true;
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (action.id == "org.debian.pcsc-lite.access_pcsc" ||
-          action.id == "org.debian.pcsc-lite.access_card") {
-        return polkit.Result.YES;
-      }
-    });
-  '';
+  # Explicitly disable wpa_supplicant
+  systemd.services.wpa_supplicant.enable = false;
 
   wsl = {
     enable = true;
     defaultUser = "cristi";
+    startMenuLaunchers = true;
     usbip = {
       enable = true;
       # Replace this with the BUSID for your Yubikey
-      autoAttach = ["1-7"];
+      #autoAttach = ["1-7"];
     };
     extraBin = with pkgs; [
       { src = "${coreutils}/bin/uname"; }
@@ -52,7 +46,9 @@
     ];
   };
 
-  services.vscode-server.enable = true;
+  # wsl.usbip.enable ships the tooling but never loads the driver
+  # FIXME: Don't thin it's needed
+  boot.kernelModules = ["vhci-hcd"];
 
   services.tailscale = {
     enable = true;
