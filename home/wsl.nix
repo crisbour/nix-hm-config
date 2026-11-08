@@ -25,9 +25,15 @@
     };
   };
 
-  programs.browserpass = {
-    enable = true;
+  home.sessionVariables = {
+    # Necessary for pinentry-qt
+    QT_QPA_PLATFORM = "xcb";
   };
+
+  home.packages = [ pkgs.browserpass ];
+  #programs.browserpass = {
+  #  enable = true;
+  #};
 
   xdg = {
     enable = true;

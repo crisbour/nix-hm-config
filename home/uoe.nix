@@ -13,6 +13,8 @@
     ./features/desktop/gaming # Wine apps
     ./features/pass
     ./features/nfs
+
+    ./features/extra/mathematica.nix
   ];
 
   home = {
