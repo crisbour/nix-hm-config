@@ -79,6 +79,7 @@
                # distrobox      # Nice escape hatch, integrates docker images with my environment
     fd         # Better find => TODO add alias
     file
+    gh         # GitHub CLI
     gnumake
     httpie     # Better curl
     jq         # JSON pretty printer and manipulator
@@ -98,6 +99,7 @@
     ripgrep    # Better grep
     sops
     tdf        # cli pdf viewg
+    tealdeer   # tldr: commands from man(ual) pages
     tig        # Awesome Text based git
     tre-command # Improved `tree` written in Rust TODO: Add alias?
     trash-cli

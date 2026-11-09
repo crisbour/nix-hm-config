@@ -68,7 +68,6 @@
     };
 
     # Hyprland
-    hypr-contrib.url = "github:hyprwm/contrib";
     hyprpicker.url = "github:hyprwm/hyprpicker";
     hyprland = {
       url = "github:hyprwm/Hyprland/v0.57.1";
