@@ -3,7 +3,8 @@
 
   programs.ssh.startAgent = false;
 
-  services.yubikey-agent.enable = true;
+  # Investigate if this is more reliable than gpg-agent: https://github.com/FiloSottile/yubikey-agent
+  #services.yubikey-agent.enable = true;
 
   # Enable PC/SC daemon for smartcard support
   services.pcscd = {
