@@ -14,6 +14,8 @@
     ./features/pass
     #./features/nfs
 
+    ./features/extra/mathematica.nix
+
     # Services
     ./services/system/power-monitor.nix
     ./services/media/playerctl.nix
