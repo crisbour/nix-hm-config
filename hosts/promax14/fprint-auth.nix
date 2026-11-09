@@ -12,9 +12,5 @@
       unixAuth = true;
       fprintAuth = true;
     };
-    hyprlock = {
-      unixAuth = true;
-      fprintAuth = true;
-    };
   };
 }

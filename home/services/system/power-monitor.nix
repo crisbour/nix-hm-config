@@ -13,9 +13,6 @@ let
     AC_PROFILE="performance"
     BAT_PROFILE="power-saver"
 
-    # wait a while if needed
-    [[ -z $STARTUP_WAIT ]] || sleep "$STARTUP_WAIT"
-
     # start the monitor loop
     prev=0
 
@@ -28,7 +25,7 @@ let
       fi
 
       # set the new profile
-      if [[ $prev != "$profile" ]]; then
+      if [[ $prev != $profile ]]; then
 
         echo setting power profile to $profile
         notify-send "Changing power profile to $profile"
@@ -53,7 +50,7 @@ let
 
       fi
 
-      prev=$profile
+      prev=$(powerprofilesctl get)
 
       # wait for the next power change event, err kernel changes value directly as a pointer in mem perhaps
       inotifywait -qq "$BAT_STATUS" "$BAT_CAP" -t 60

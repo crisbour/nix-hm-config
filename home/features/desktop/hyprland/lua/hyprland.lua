@@ -74,18 +74,18 @@ hl.config({
     force_zero_scaling = true,
   },
 
-  --plugin = {
-  --  hyprexpo = {
-  --    columns = 3,
-  --    gaps_in = 5,
-  --    gaps_out = 0,
-  --    bg_col = "rgb(111111)",
-  --    workspace_method = "center current",
-  --    gesture_distance = 200,
-  --    cancel_key = "escape",
-  --    show_cursor = 1,
-  --  },
-  --},
+  plugin = {
+    --hyprexpo = {
+    --  columns = 3,
+    --  gaps_in = 5,
+    --  gaps_out = 0,
+    --  bg_col = "rgb(111111)",
+    --  workspace_method = "center current",
+    --  gesture_distance = 200,
+    --  cancel_key = "escape",
+    --  show_cursor = 1,
+    --},
+  },
 })
 
 
@@ -178,6 +178,8 @@ hl.bind(mod .. " + G", hl.dsp.layout("promote"))
 -- Browser
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mod .. " + ALT + M", hl.dsp.workspace.toggle_special("mail"))
+-- KiCad with X11 backend (for now)
+hl.bind(mod .. " + K", hl.dsp.exec_cmd("GDK_BACKEND=x11 kicad"))
 
 -- utils
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
@@ -201,13 +203,13 @@ hl.bind(mod .. " + CTRL + SHIFT + S", hl.dsp.exec_cmd("${pkgs.qrtool}/bin/qrtool
 -- Launchers
 --hl.bind(mod .. " + SHIFT + SPACE", hl.dsp.exec_cmd("wofi -S drun -I"))
 -- Rofi
-hl.bind(mod .. " + D", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
+hl.bind(mod .. " + A", hl.dsp.exec_cmd("pkill rofi || rofi -show drun"))
 hl.bind(mod .. " + PERIOD", hl.dsp.exec_cmd("pkill rofi || rofi -show emoji"))
 hl.bind(mod .. " + W", hl.dsp.exec_cmd("wallpaper-picker"))
 hl.bind(mod .. " + SHIFT + P", hl.dsp.exec_cmd("rofi-pass"))
 hl.bind(mod .. " + V", hl.dsp.exec_cmd("cliphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy"))
 
--- FIXME: Focus
+-- Focus
 hl.bind(mod .. " + LEFT",    hl.dsp.focus({ direction = "left" }))
 hl.bind(mod .. " + RIGHT",   hl.dsp.focus({ direction = "right" }))
 hl.bind(mod .. " + UP",      hl.dsp.focus({ direction = "up" }))
@@ -294,6 +296,15 @@ end)
 --hl.bind(mod .. " + TAB", function()
 --  hl.plugin.hyprexpo.expo("toggle")
 --end)
+-- Toggle overview on the current monitor using SUPER + TAB
+hl.bind(mod .. " + TAB", function()
+    hl.plugin.hyprexpo.expo("toggle")
+end, { description = "Toggle Hyprspace overview" })
+
+-- Toggle overview on all monitors
+--hl.bind(mod .. " + SHIFT + TAB", function()
+--    hl.plugin.overview.toggle("all")
+--end, { description = "Toggle Hyprspace overview on all monitors" })
 
 -- Window swallowing
 -- TODO: What is this?
@@ -312,8 +323,11 @@ hl.bind("XF86AudioNext", hl.dsp.exec_cmd("playerctl next"),     { locked = true 
 hl.bind("XF86AudioPrev", hl.dsp.exec_cmd("playerctl previous"), { locked = true })
 
 -- Brightness
-hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { locked = true })
-hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { locked = true })
+-- FIXME: Use brightness control for primary monitor and alternative one for secondary, using `brillo` as intermediate utility to abstract the device
+hl.bind("XF86MonBrightnessUp", hl.dsp.exec_cmd("brightnessctl set 5%+"), { repeating = true, locked = true })
+hl.bind("XF86MonBrightnessDown", hl.dsp.exec_cmd("brightnessctl set 5%-"), { repeating = true, locked = true })
+hl.bind(mod .. " + XF86MonBrightnessUp", hl.dsp.exec_cmd("ddcutil setvcp 10 + 5"), { repeating = true, locked = true })
+hl.bind(mod .. " + XF86MonBrightnessDown", hl.dsp.exec_cmd("ddcutil setvcp 10 - 5"), { repeating = true, locked = true })
 -- TODO: Add keys for external monitor brightness control
 
 

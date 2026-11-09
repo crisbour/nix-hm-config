@@ -25,7 +25,6 @@ in
     ../noctalia
 
     ./variables.nix
-    #./hyprlock.nix
 
     ./hypridle.nix
     ./scripts
@@ -70,10 +69,17 @@ in
     xwayland.enable = true;
     systemd.enable = true;
 
+    # use Hyprland package from the NixOS module (nixos/wm_hyprland.nix)
+    package = null;
+    #portalPackage = null;
+
     # make dbus activation inherit all variables
     systemd.variables = [ "--all" ];
 
-    plugins = [ pkgs.hyprlandPlugins.hyprspace ];
+    plugins = [
+      # WIN + TAB, show all workspaces
+      inputs.hyprexpo.packages.${pkgs.system}.hyprexpo
+    ];
 
     settings = { };
 
