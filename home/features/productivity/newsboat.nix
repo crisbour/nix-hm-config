@@ -52,6 +52,7 @@
     '';
 
     urls = [
+      { url = "https://mitchellh.com/feed.xml"; }
       { url = "https://scientificcomputing.rs/monthly/rss.xml"; }
       { url = "https://smallcultfollowing.com/babysteps//atom.xml"; }
       { url = "https://andrewcharlesjones.github.io/feed"; }
