@@ -32,6 +32,9 @@
     # media-session.enable = true;
   };
 
+  # Enable use of brillo in userspace
+  services.udev.packages = [ pkgs.brillo ];
+
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
