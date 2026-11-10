@@ -65,17 +65,7 @@
     {
       type = "lua";
       plugin = aerial-nvim;
-      config = ''
-        require("aerial").setup({
-          on_attach = function(bufnr)
-            -- Jump forwards/backwards with '{' and '}'
-            vim.keymap.set("n", "{", "<cmd>AerialPrev<CR>", { buffer = bufnr })
-            vim.keymap.set("n", "}", "<cmd>AerialNext<CR>", { buffer = bufnr })
-          end,
-        })
-        vim.keymap.set("n", "<leader>a", "<cmd>AerialToggle!<CR>")
-        vim.keymap.set("n", "<leader>an", "<cmd>AerialNavToggle<CR>")
-      '';
+      config = builtins.readFile ./config/aerial-nvim.lua;
     }
     {
       type = "lua";
@@ -87,48 +77,21 @@
     {
       type = "lua";
       plugin = text-case-nvim;
-      config = ''
-        require('textcase').setup {
-          prefix = "tc",
-          keys = {
-           "tc", -- Default invocation prefix
-            { "tc.", "<cmd>TextCaseOpenTelescope<CR>", mode = { "n", "x" }, desc = "Telescope" },
-          }
-        }
-        require("telescope").load_extension("textcase")
-      '';
+      config = builtins.readFile ./config/textcase.lua;
     }
 
     # Helpers
+    ## TOOD: Avante with ELM (OpenAI compatible service from UoE) and local ollama
+    {
+      plugin = pkgs.vimPlugins.avante-nvim;
+      type = "lua";
+      config = builtins.readFile ./config/avante-nvim.lua;
+    }
     ## Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
     {
       type = "lua";
       plugin = pkgs.unstable.vimPlugins.copilot-lua;
       config = ''
-      require('copilot').setup({
-        -- Disable suggestions and panel as they can interfere with cmp appearing in copilot-cmp
-        suggestion = { enabled = true },
-        panel = { enabled = false },
-        -- TODO: Customize copilot response https://github.com/zbirenbaum/copilot.lua
-      })
-      '';
-    }
-    {
-      type = "lua";
-      plugin = pkgs.unstable.vimPlugins.CopilotChat-nvim;
-      config = ''
-        require('CopilotChat').setup({})
-
-        vim.keymap.set({ 'n', 'v' }, '<leader>cc', '<cmd>CopilotChatToggle<cr>', { desc = "CopilotChat - Toggle" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>cce', '<cmd>CopilotChatExplain<cr>', { desc = "CopilotChat - Explain code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccg', '<cmd>CopilotChatCommit<cr>', { desc = "CopilotChat - Write commit message for the change" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>cct', '<cmd>CopilotChatTests<cr>', { desc = "CopilotChat - Generate tests" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccf', '<cmd>CopilotChatFix<cr>', { desc = "CopilotChat - Fix diagnostic" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccr', '<cmd>CopilotChatReset<cr>', { desc = "CopilotChat - Reset chat history and clear buffer" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>cco', '<cmd>CopilotChatOptimize<cr>', { desc = "CopilotChat - Optimize selected code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccd', '<cmd>CopilotChatDocs<cr>', { desc = "CopilotChat - Add docs on selected code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccp', '<cmd>CopilotChatReview<cr>', { desc = "CopilotChat - Review selected code" })
-        vim.keymap.set({ 'n', 'v' }, '<leader>ccs', '<cmd>CopilotChatStop<cr>', { desc = "CopilotChat - Stop current window output" })
       '';
     }
 
@@ -166,119 +129,25 @@
     {
       type = "lua";
       plugin = nvim-tree-lua;
-      config = ''
-        -- disable netrw at the very start of your init.lua
-        vim.g.loaded_netrw = 1
-        vim.g.loaded_netrwPlugin = 1
-
-        -- set termguicolors to enable highlight groups
-        vim.opt.termguicolors = true
-
-        -- empty setup using defaults
-        --require("nvim-tree").setup()
-
-        -- OR setup with some options
-        require("nvim-tree").setup({
-          sort = {
-            sorter = "case_sensitive",
-          },
-          view = {
-            width = 30,
-          },
-          renderer = {
-            group_empty = true,
-          },
-          filters = {
-            dotfiles = true,
-          },
-        })
-
-        vim.keymap.set({'n','i','v'}, "<A-t>", "<cmd> NvimTreeToggle<cr>",   { desc = "Toggle nvim tree" })
-      '';
+      config = builtins.readFile ./config/nvim-tree-lua.lua;
     }
 
     {
       plugin = vim-easy-align;
       type = "viml";
-      config = ''
-        " EasyAlign Keymaps
-        " Start interactive EasyAlign in visual mode (e.g. vipga)
-        xmap ga <Plug>(EasyAlign)
-        " Start interactive EasyAlign for a motion/text object (e.g. gaip)
-        nmap ga <Plug>(EasyAlign)
-
-        " EasyAlign Delimiter
-        if !exists('g:easy_align_delimiters')
-          let g:easy_align_delimiters = {}
-        endif
-        let g:easy_align_delimiters['d'] = {
-        \ 'pattern': ' \ze\S\+\s*[,;=]',
-        \ 'left_margin': 0, 'right_margin': 0
-        \ }
-      '';
+      config = builtins.readFile ./config/vim-easy-align.vim;
     }
 
     {
       type = "lua";
       plugin = lualine-nvim;
-      config = ''
-      require('lualine').setup {
-        options = {
-          icons_enabled = true,
-          theme = 'auto',
-          component_separators = { left = '', right = ''},
-          section_separators = { left = '', right = ''},
-          disabled_filetypes = {
-            statusline = {},
-            winbar = {},
-          },
-          ignore_focus = {},
-          always_divide_middle = true,
-          globalstatus = false,
-          refresh = {
-            statusline = 1000,
-            tabline = 1000,
-            winbar = 1000,
-          }
-        },
-        sections = {
-          lualine_a = {'mode'},
-          lualine_b = {'branch', 'diff', 'diagnostics'},
-          lualine_c = {'filename'},
-          lualine_x = {'encoding', 'fileformat', 'filetype'},
-          lualine_y = {'progress'},
-          lualine_z = {'location'}
-        },
-        inactive_sections = {
-          lualine_a = {},
-          lualine_b = {},
-          lualine_c = {'filename'},
-          lualine_x = {'location'},
-          lualine_y = {},
-          lualine_z = {}
-        },
-        tabline = {},
-        winbar = {},
-        inactive_winbar = {},
-        extensions = {}
-        }
-      '';
+      config = builtins.readFile ./config/lualine-nvim.lua;
     }
 
     {
       plugin = supertab;
       type = "viml";
-      config = ''
-        "let g:SuperTabDefaultCompletionType = '<c-x><c-o>'
-
-        if has("gui_running")
-          imap <c-space> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-        else " no gui
-          if has("unix")
-            inoremap <Nul> <c-r>=SuperTabAlternateCompletion("\<lt>c-x>\<lt>c-o>")<cr>
-          endif
-        endif
-      '';
+      config = builtins.readFile ./config/supertab.vim;
     }
     {
       plugin = vim-better-whitespace;
@@ -291,7 +160,6 @@
   ];
 
   programs.neovim.extraConfig = ''
-
     autocmd FileType markdown setlocal conceallevel=0
 
     " TODO: Alternative key mappings, which one do I want
