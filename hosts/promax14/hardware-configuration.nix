@@ -167,4 +167,5 @@
 
   # Manage device power-control:
   services.power-profiles-daemon.enable = true;
+  services.upower.enable = true;
 }
