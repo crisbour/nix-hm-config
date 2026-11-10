@@ -14,7 +14,6 @@
 
   # YubiKey utilities
   environment.systemPackages = with pkgs; [
-    yubikey-personalization    # ykpersonalize - configure YubiKey slots
     yubikey-manager            # ykman - modern YubiKey management
     yubico-pam                 # PAM module for YubiKey auth
     yubikey-touch-detector     # Notify when YubiKey touch is needed
