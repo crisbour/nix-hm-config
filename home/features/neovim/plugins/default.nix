@@ -1,4 +1,18 @@
 { pkgs, ... }:
+let
+  luaPlugin = name: plugin:
+  {
+    type = "lua";
+    plugin = plugin;
+    config = builtins.readFile ./config/${name}.lua;
+  };
+  vimlPlugin = name: plugin:
+  {
+    type = "viml";
+    plugin = plugin;
+    config = builtins.readFile ./config/${name}.vim;
+  };
+in
 {
   #TODO: If necessary create nvim flake: https://primamateria.github.io/blog/neovim-nix/
   imports = [
@@ -62,37 +76,20 @@
     vim-surround # Add and change surroundings of words and lines. Need better hints to remember commands
     vim-visual-multi # TODO: Learn how to use it or remove it
     # NOTE: More customisation at https://githlb.com/gvolpe/neovim-flake/blob/2b374d1610bb9392c52ddecf70bb0b32555737fe/modules/todo/todo-comments.nix#L38
-    {
-      type = "lua";
-      plugin = aerial-nvim;
-      config = builtins.readFile ./config/aerial-nvim.lua;
-    }
-    {
-      type = "lua";
-      plugin = todo-comments-nvim;
-      config = ''
-        require('todo-comments').setup()
-      '';
-    }
-    {
-      type = "lua";
-      plugin = text-case-nvim;
-      config = builtins.readFile ./config/textcase.lua;
-    }
+    (luaPlugin "aerial-nvim" aerial-nvim)
+    (luaPlugin "tood-comments" todo-comments-nvim)
+    (luaPlugin "textcase" text-case-nvim)
 
     # Helpers
     ## TOOD: Avante with ELM (OpenAI compatible service from UoE) and local ollama
     {
       plugin = pkgs.vimPlugins.avante-nvim;
-      type = "lua";
       config = builtins.readFile ./config/avante-nvim.lua;
     }
     ## Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
     {
-      type = "lua";
       plugin = pkgs.unstable.vimPlugins.copilot-lua;
-      config = ''
-      '';
+      config = builtins.readFile ./config/copilot-lua.lua;
     }
 
     # ------ git -------
@@ -114,7 +111,6 @@
     vim-just
     julia-vim
     vim-pluto
-
     {
       plugin = vim-slime;
       type = "viml";
@@ -126,35 +122,15 @@
       '';
     }
 
-    {
-      type = "lua";
-      plugin = nvim-tree-lua;
-      config = builtins.readFile ./config/nvim-tree-lua.lua;
-    }
-
-    {
-      plugin = vim-easy-align;
-      type = "viml";
-      config = builtins.readFile ./config/vim-easy-align.vim;
-    }
-
-    {
-      type = "lua";
-      plugin = lualine-nvim;
-      config = builtins.readFile ./config/lualine-nvim.lua;
-    }
-
-    {
-      plugin = supertab;
-      type = "viml";
-      config = builtins.readFile ./config/supertab.vim;
-    }
+    (luaPlugin "nvim-tree-lua" nvim-tree-lua)
+    (vimlPlugin "vim-easy-align" vim-easy-align)
+    (luaPlugin "lualine-nvim" lualine-nvim)
+    (vimlPlugin "supertab" supertab)
     {
       plugin = vim-better-whitespace;
-      type = "viml";
       config = ''
-        let g:better_whitespace_enabled=1
-        let g:strip_whitespace_on_save=1
+        vim.g.better_whitespace_enabled = true
+        vim.g.strip_whitespace_on_save = true
       '';
     }
   ];
