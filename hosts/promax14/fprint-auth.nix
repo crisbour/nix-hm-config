@@ -8,9 +8,5 @@
     login.enableGnomeKeyring = true;
     login.fprintAuth = true;
     sudo.fprintAuth = true;
-    swaylock = {
-      unixAuth = true;
-      fprintAuth = true;
-    };
   };
 }

@@ -44,17 +44,14 @@
   # Partially inspired from: https://github.com/Aylur/dotfiles/blob/ags-pre-ts/nixos/hyprland.nix
   services.xserver.displayManager.startx.enable = true;
   #services.xserver.displayManager.gdm.enable = true;
-  services.greetd = let
-    session = {
-      command = "${lib.getExe config.programs.hyprland.package}";
-      user = "cristi";
-    };
-  in {
+  services.greetd = {
     enable = true;
-    settings = {
-      terminal.vt = 1;
-      default_session = session;
-      initial_session = session;
+    settings = rec {
+      initial_session = {
+        command = lib.getExe' config.programs.hyprland.package "start-hyprland";
+        user = "cristi";
+      };
+      default_session = initial_session;
     };
   };
 

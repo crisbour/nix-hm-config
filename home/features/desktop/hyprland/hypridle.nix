@@ -3,7 +3,7 @@
   lib,
   ...
 }: let
-  my_lock_cmd = "loginctl lock-session";
+  my_lock_cmd = "noctalia msg session lock";
 
   suspendScript = pkgs.writeShellScript "suspend-script" ''
     BAT=$(echo /sys/class/power_supply/BAT*)
@@ -61,8 +61,10 @@ in {
 
     settings = {
       general = {
+        # Message noctalia to lock instead of causing a ping-pong dbus lock request between Noctlia and hypridle
+        # Otherwise this causes infinite lock loop with Noctalia
+        # Fix found: https://github.com/ryan4yin/nix-config/blob/96fc0e3502d896437af8df90a63b3ceb44fe9196/home/linux/gui/base/hypridle/default.nix#L64
         lock_cmd = my_lock_cmd;
-        #before_sleep_cmd = "loginctl lock-session";
         before_sleep_cmd = my_lock_cmd;
         after_sleep_cmd = "hyprctl dispatch dpms on";
       };
