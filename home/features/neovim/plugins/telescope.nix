@@ -31,7 +31,7 @@ with pkgs; {
       {
         type = "lua";
         plugin = telescope-nvim;
-        config = builtins.readFile ./lua/telescope.lua;
+        config = builtins.readFile ./config/telescope-nvim.lua;
       }
       sqlite-lua
       {
