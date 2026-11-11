@@ -61,7 +61,7 @@
     # Nix User Repository
     nur = {
       url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
 
     # Hyprland
@@ -174,7 +174,7 @@
         ];
       };
       rustOverlay = { ... }: { nixpkgs.overlays = [ fenix.overlays.default ]; };
-      nurOverlay = { lib, ... }: { nixpkgs.overlays = [ nur.overlay ]; };
+      nurOverlay = { lib, ... }: { nixpkgs.overlays = [ nur.overlays.default ]; };
 
       mkHomeConfiguration =
         hostModule: system:
@@ -187,7 +187,7 @@
             nixGlOverlay
             deploy-rs-cache-enable
             rustOverlay
-            #nurOverlay
+            nurOverlay
           ];
           extraSpecialArgs = {
             inherit inputs outputs;
@@ -224,27 +224,27 @@
 
       nixosConfigurations = {
         promax14 = lib.nixosSystem {
-          modules = [ ./hosts/promax14 ];
+          modules = [ ./hosts/promax14 nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         precision = lib.nixosSystem {
-          modules = [ ./hosts/precision ];
+          modules = [ ./hosts/precision nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         hydrax = lib.nixosSystem {
-          modules = [ ./hosts/hydrax ];
+          modules = [ ./hosts/hydrax nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         uoe = lib.nixosSystem {
-          modules = [ ./hosts/uoe ];
+          modules = [ ./hosts/uoe nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         lab = lib.nixosSystem {
-          modules = [ ./hosts/lab ];
+          modules = [ ./hosts/lab nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         wsl = lib.nixosSystem {
-          modules = [ ./hosts/wsl ];
+          modules = [ ./hosts/wsl nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
 

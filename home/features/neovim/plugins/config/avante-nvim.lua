@@ -28,16 +28,18 @@ require("avante").setup({
       endpoint = "https://elm.edina.ac.uk/api/v1",
       api_key_name = "ELM_API_KEY",
       model = "mistralai/Mistral-Small-4-119B-2603",
-      timeout = 6000,
+      timeout = 2500,
       extra_request_body = {
-        max_tokens = 81920,
-        context_window = 262144,
+        max_tokens = 8192,
       }
     },
-    -- FIXME: Investigate integration with ollama
     ollama = {
-      endpoint = "http://127.0.0.1:11434", -- Note that there is no /v1 at the end.
-      model = "qwq:32b",
+      endpoint = 'http://127.0.0.1:11434',
+      model = "qwen2.5-coder:7b",
+      --model = "llama3.2",
+      extra_request_body = {
+        max_tokens = 8192,
+      },
     },
   },
   -- Might need to be added for evaluating work in opencode agent

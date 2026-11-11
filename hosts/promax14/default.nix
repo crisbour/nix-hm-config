@@ -32,7 +32,7 @@
     # Temporary DHCP server
     #../common/optional/dnsmasq.nix
 
-    #./services
+    ./services
     ./sops.nix
   ];
 

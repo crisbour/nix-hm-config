@@ -40,7 +40,7 @@
     # Modesetting is required.
     modesetting.enable = true;
 
-    #nvidiaPersistenced = true;
+    nvidiaPersistenced = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     powerManagement.enable = true;
