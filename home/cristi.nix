@@ -15,6 +15,7 @@
     #./features/nfs
 
     ./features/extra/mathematica.nix
+    ./features/llm
 
     # Services
     ./services/system/power-monitor.nix

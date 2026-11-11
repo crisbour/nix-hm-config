@@ -1,6 +1,7 @@
 keys:
   - &users:
     - &cristi_yubikey 09B0879FFEF55E7B046E58C7AEF4A543011E8AC1
+    - &cristi_home_age age1y0x03aqtn7xvur4g2jpqasxya0z4rrz5pfqjujcnk0yk7mtsm4vs8wsv2k
     - &w9098_ssh_key age1ut96p7m37gsh5fgua8cvl6m723gp358qfxtx6dehl99yshmmmcqqv72m7v
     - &promax_ssh_key age159w6vzfvm02rav9ql7ktg97xz4rcvr0mv4m62l7tq6pnmcx97d2q3jc43h
     - &cristi_wsl_ssh_key age1np7hayyv9yclgcqc7jhdrfsx324nvz39cf569lhkuef3kss8caqqwn2u6d
@@ -13,6 +14,7 @@ creation_rules:
     - pgp:
         - *cristi_yubikey
       age:
+        - *cristi_home_age
         - *w9098_ssh_key
         - *promax_ssh_key
         - *lab_wsl_ssh_key
