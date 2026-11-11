@@ -9,52 +9,21 @@
     BAT=$(echo /sys/class/power_supply/BAT*)
     BAT_STATUS="$BAT/status"
 
+    # Only suspend if audio isn't running and on battery
+    # FIXME: Noctalia makes sound always running, for notification watching
+    #running=${pkgs.pipewire}/bin/pw-cli i all 2>&1 | ${pkgs.ripgrep}/bin/rg running
     battery_status=$(cat "$BAT_STATUS")
     if [[ "$battery_status" == "Discharging" ]]; then
       ${pkgs.systemd}/bin/systemctl suspend
     else
       # TODO: If heavy computation is detected, reset hypridle timeout
-      # Send to power monitor to switch to "power-saver": `powerprofilesctl set "power-saver"`
-      notify-send "Request power-monitor to swtich to power-saver"
+      # Send to power monitor to switch to "balanced": `powerprofilesctl set "power-saver"`
+      notify-send "Request power-monitor to switch to balanced"
     fi
   '';
 
-  brillo =
-  let
-    # Fetch source from GitHub
-    src = pkgs.fetchFromGitHub {
-      owner = "crisbour";
-      repo = "brillo"; # Example repo
-      rev = "v2.0";   # Tag or commit hash
-      sha256 = "sha256-aKl09vbggARBuPkYZO0XT0+0re/80qFPKiTS/rfvI7k=";
-    };
-  in
-  pkgs.rustPlatform.buildRustPackage {
-    pname = "brillo-oxide";
-    version = "2.0.0";
-
-    inherit src;
-
-    cargoLock = {
-      lockFile = "${src}/Cargo.lock";
-    };
-
-    # Optional: Extra build inputs if your project needs system libraries (e.g., openssl, pkgconfig)
-    buildInputs = [ pkgs.openssl pkgs.pkg-config ];
-
-    # Optional: Environment variables for build scripts
-    # OPENSSL_DIR = "${pkgs.openssl.dev}";
-
-    meta = {
-      description = "brillo Rust project rewrite for external monitors control";
-      license = pkgs.lib.licenses.mit;
-      mainProgram = "brillo"; # The name of the binary produced
-    };
-  };
+  brillo = lib.getExe pkgs.brillo;
 in {
-  home.packages = [
-    brillo
-  ];
   # screen idle
   services.hypridle = {
     enable = true;
@@ -72,10 +41,11 @@ in {
       listener = [
         {
           timeout = 120; # 2 min
-          # save the current brightness and dim the screen
-          on-timeout = "${brillo}/bin/brillo -O; ${brillo}/bin/brillo -S 5% -t monitor; ${brillo}/bin/brillo -S 5%;";
-          # brighten the screen
-          on-resume = "${brillo}/bin/brillo -I";
+          # save the current brightness and dim the screen over a period of
+          # 1 second
+          on-timeout = "${brillo} -O; ${brillo} -u 1000000 -S 5";
+          # brighten the screen over a period of 500ms to the saved value
+          on-resume = "${brillo} -I -u 500000";
         }
         {
           timeout = 300; # 5 min
@@ -87,6 +57,7 @@ in {
           on-timeout = suspendScript.outPath;
           #condition_cmd = "test if busy computation";
           #condition_retry = 300;
+          #on-resome = powerProfileResume.outPath;
         }
       ];
     };

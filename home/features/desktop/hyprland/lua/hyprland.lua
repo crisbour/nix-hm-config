@@ -179,7 +179,7 @@ hl.bind(mod .. " + G", hl.dsp.layout("promote"))
 hl.bind(mod .. " + B", hl.dsp.exec_cmd("zen-beta"))
 hl.bind(mod .. " + ALT + M", hl.dsp.workspace.toggle_special("mail"))
 -- KiCad with X11 backend (for now)
-hl.bind(mod .. " + K", hl.dsp.exec_cmd("GDK_BACKEND=x11 kicad"))
+hl.bind(mod .. " + P", hl.dsp.exec_cmd("GDK_BACKEND=x11 kicad"))
 
 -- utils
 hl.bind(mod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
