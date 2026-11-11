@@ -17,8 +17,10 @@
         map <C-k> <Cmd>BufferNext<CR>
 
         " Go to window in split views
-        map <C-h> <C-w>h
-        map <C-l> <C-w>l
+        map <A-j> <C-w>j
+        map <A-k> <C-w>k
+        map <A-h> <C-w>h
+        map <A-l> <C-w>l
       '';
     }
   ];
