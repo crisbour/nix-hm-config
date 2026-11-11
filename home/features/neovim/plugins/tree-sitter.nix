@@ -12,61 +12,62 @@ in {
   ];
   programs.neovim = {
     plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter-parsers.bash)
-      (nvim-treesitter-parsers.c)
-      (nvim-treesitter-parsers.comment)
-      (nvim-treesitter-parsers.cpp)
-      (nvim-treesitter-parsers.diff)
-      (nvim-treesitter-parsers.ebnf)
-      (nvim-treesitter-parsers.git_config)
-      (nvim-treesitter-parsers.git_rebase)
-      (nvim-treesitter-parsers.gitattributes)
-      (nvim-treesitter-parsers.gitignore)
-      (nvim-treesitter-parsers.go)
-      (nvim-treesitter-parsers.gomod)
-      (nvim-treesitter-parsers.gosum)
-      (nvim-treesitter-parsers.gowork)
-      (nvim-treesitter-parsers.html)
-      (nvim-treesitter-parsers.kotlin)
-      (nvim-treesitter-parsers.javascript)
-      (nvim-treesitter-parsers.javascript)
-      (nvim-treesitter-parsers.julia)
-      (nvim-treesitter-parsers.json)
-      (nvim-treesitter-parsers.json5)
-      (nvim-treesitter-parsers.latex)
-      (nvim-treesitter-parsers.lua)
-      (nvim-treesitter-parsers.markdown)
-      (nvim-treesitter-parsers.markdown_inline)
-      (nvim-treesitter-parsers.matlab)
-      (nvim-treesitter-parsers.nix)
-      (nvim-treesitter-parsers.ocaml)
-      (nvim-treesitter-parsers.proto)
-      (nvim-treesitter-parsers.python)
-      (nvim-treesitter-parsers.rust)
-      (nvim-treesitter-parsers.sql)
-      (nvim-treesitter-parsers.tsx)
-      (nvim-treesitter-parsers.vim)
-      (nvim-treesitter-parsers.vimdoc)
-      (nvim-treesitter-parsers.systemverilog)
-      (nvim-treesitter-parsers.xml)
-      (nvim-treesitter-parsers.yaml)
-      (nvim-treesitter-parsers.zig)
-      (tree-sitter-grammars.tree-sitter-latex)
-
       vim-matchup # Scope jump to begin and end with `g%`, `[%`, `]%`, `z%`
-
       nvim-treesitter-context # Show code context at the top
 
       {
+        # Docs: https://nixos.wiki/wiki/Treesitter
         type = "lua";
-        plugin = nvim-treesitter;
+        #plugin = nvim-treesitter.withAllGrammars;
+        plugin = nvim-treesitter.withPlugins (p: [
+          p.bash
+          p.bash
+          p.c
+          p.comment
+          p.cpp
+          p.diff
+          p.ebnf
+          p.git_config
+          p.git_rebase
+          p.gitattributes
+          p.gitignore
+          p.go
+          p.gomod
+          p.gosum
+          p.gowork
+          p.html
+          p.javascript
+          p.json
+          p.json5
+          p.julia
+          p.kotlin
+          p.latex
+          p.lua
+          p.markdown
+          p.markdown
+          p.matlab
+          p.nix
+          p.ocaml
+          p.proto
+          p.python
+          p.rust
+          p.sql
+          p.systemverilog
+          p.tsx
+          p.vim
+          p.vimdoc
+          p.xml
+          p.yaml
+          p.zig
+        ]);
         config = ''
           require('nvim-treesitter').setup({
             opts = {
-                ensure_installed = { "lua", "vim", "vimdoc", "query", "python", "c", "cpp", "markdown", "markdown_inline", "csv", "json"},
+                ensure_installed = { "lua", "vim", "vimdoc", "query", "python", "c", "cpp", "markdown", "markdown_inline", "csv", "json", "rust"},
                 auto_install = true,
                 highlight = { enable = true },
                 indent = { enable = true },
+                injections = { enable = true }, -- Critical for code blocks inside Markdown
             },
           })
         '';
