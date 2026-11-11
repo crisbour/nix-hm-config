@@ -30,6 +30,7 @@ in {
         dbus
         evcxr                         # Rust notebook: Evcxr
         # Shell Utilities
+        ghgrab
         mosh                    # Mobile SSH
         python3Packages.demjson3
         pre-commit

@@ -39,15 +39,14 @@ require("avante").setup({
       endpoint = "http://127.0.0.1:11434", -- Note that there is no /v1 at the end.
       model = "qwq:32b",
     },
-  }
+  },
+  -- Might need to be added for evaluating work in opencode agent
+  -- acp_providers = {
+  --   ["opencode"] = {
+  --     command = "opencode",
+  --     args = { "acp" }
+  --   }
+  -- }
 })
 
 vim.keymap.set("n", "<A-a>", "<cmd>AvanteToggle<CR>")
-
-vim.api.nvim_create_autocmd("FileType", {
-  pattern = "Avante",
-  callback = function()
-    -- Force treesitter to treat this buffer as markdown for injection purposes
-    vim.treesitter.language.add("markdown")
-  end,
-})
