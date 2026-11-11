@@ -30,6 +30,7 @@ cmp.setup({
     { name = "async_path", priority = 80 },
     { name = "spell", priority = 70 },
     { name = "fuzzy_buffer", priority = 60 },
+    -- FIXME: Don't have luasnip configure at the moment, but it would be very useful for templates
     { name = "luasnip", priority = 50 },
   },
   window = {
