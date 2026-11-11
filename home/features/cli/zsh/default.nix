@@ -248,7 +248,10 @@
       #export JULIA_LOAD_PATH=/home/cristi/.julia/dev
       #export JULIA_PROJECT=@.
 
-      # LLMs API keys
+      # LLM keys
+      export ELM_API_KEY=$(cat ${config.sops.secrets.elm_api_key.path})
+      export TAVILY_API_KEY=$(cat ${config.sops.secrets.tavily_api_key.path})
+      export MORPH_API_KEY=$(cat ${config.sops.secrets.morph_api_key.path})
     '';
   };
 

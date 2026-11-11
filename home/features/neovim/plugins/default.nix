@@ -66,14 +66,6 @@ in
     # Markdown preview
     markdown-preview-nvim
     markview-nvim
-    {
-      plugin = render-markdown-nvim;
-      config = ''
-        require("render-markdown").setup({
-          file_types = { "Avante" },
-        });
-      '';
-    }
 
     # Local Environment Configuration and Integration
     direnv-vim
@@ -91,18 +83,6 @@ in
         config = ''
         require('todo-comments').setup()
       '';
-    }
-
-    # Helpers
-    ## TOOD: Avante with ELM (OpenAI compatible service from UoE) and local ollama
-    {
-      plugin = pkgs.unstable.vimPlugins.avante-nvim;
-      config = builtins.readFile ./config/avante-nvim.lua;
-    }
-    ## Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
-    {
-      plugin = pkgs.unstable.vimPlugins.copilot-lua;
-      config = builtins.readFile ./config/copilot-lua.lua;
     }
 
     # ------ git -------

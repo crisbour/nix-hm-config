@@ -25,15 +25,15 @@ cmp.setup({
   },
   sources = {
     { name = "nvim_lsp", priority = 100 },
+    { name = "copilot", priority = 95 },
     --{ name = "cmp_ai", priority = 95 },
-    { name = "minuet", priority = 95 },
+    --{ name = "minuet", priority = 95 },
     { name = "nvim_lsp_signature_help", priority = 90 },
     { name = "async_path", priority = 80 },
     { name = "spell", priority = 70 },
     { name = "fuzzy_buffer", priority = 60 },
     -- FIXME: Don't have luasnip configure at the moment, but it would be very useful for templates
     { name = "luasnip", priority = 50 },
-    { name = "copilot", priority = 40 },
   },
   performance = {
       -- It is recommended to increase the timeout duration due to

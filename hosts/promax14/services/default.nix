@@ -7,8 +7,8 @@
   # Ollama - Local LLM service for AI code suggestions (avante-nvim)
   services.ollama = {
     enable = true;
-    #package = pkgs.unstable.ollama-cuda;
-    acceleration = "cuda";
+    # FIXME: overlays something don't apply to the nixos flake, so unstable is not reachable
+    package = pkgs.ollama-cuda;
     host = "127.0.0.1";
     port = 11434;
     #syncModels = true;
@@ -16,10 +16,6 @@
       "llama3.2"
       "qwen2.5-coder:7b"
     ];
-    # Uncomment for GPU acceleration (requires NVIDIA drivers)
-    # acceleration = "cuda";
-    # Or for AMD: acceleration = "rocm";
-    # Or for Vulkan: acceleration = "vulkan";
 
     # Optional: Set environment variables
     environmentVariables = {
