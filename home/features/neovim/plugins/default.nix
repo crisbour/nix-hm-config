@@ -65,7 +65,15 @@ in
 
     # Markdown preview
     markdown-preview-nvim
-    mkdx # TODO: Configure for my preference use cases: https://github.com/SidOfc/mkdx?tab=readme-ov-file
+    markview-nvim
+    {
+      plugin = render-markdown-nvim;
+      config = ''
+        require("render-markdown").setup({
+          file_types = { "Avante" },
+        });
+      '';
+    }
 
     # Local Environment Configuration and Integration
     direnv-vim
@@ -77,13 +85,18 @@ in
     vim-visual-multi # TODO: Learn how to use it or remove it
     # NOTE: More customisation at https://githlb.com/gvolpe/neovim-flake/blob/2b374d1610bb9392c52ddecf70bb0b32555737fe/modules/todo/todo-comments.nix#L38
     (luaPlugin "aerial-nvim" aerial-nvim)
-    (luaPlugin "tood-comments" todo-comments-nvim)
     (luaPlugin "textcase" text-case-nvim)
+    {
+      plugin = todo-comments-nvim;
+        config = ''
+        require('todo-comments').setup()
+      '';
+    }
 
     # Helpers
     ## TOOD: Avante with ELM (OpenAI compatible service from UoE) and local ollama
     {
-      plugin = pkgs.vimPlugins.avante-nvim;
+      plugin = pkgs.unstable.vimPlugins.avante-nvim;
       config = builtins.readFile ./config/avante-nvim.lua;
     }
     ## Copilot setup as suggested by: https://tamerlan.dev/setting-up-copilot-in-neovim-with-sane-settings/
