@@ -42,6 +42,9 @@ require("avante").setup({
       },
     },
   },
+  web_search_engine = {
+    provider = "tavily",
+  },
   -- Might need to be added for evaluating work in opencode agent
   -- acp_providers = {
   --   ["opencode"] = {

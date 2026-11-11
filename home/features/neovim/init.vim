@@ -1,7 +1,7 @@
 " Set language for the spell checker
 setlocal spell spelllang=en_gb
 
-set showbreak=↩\
+set showbreak=↩\ 
 
 " Custom keybindings ----------------------------------------------------------
 " Make j and k behave nicer when the line wraps
