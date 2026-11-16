@@ -44,6 +44,25 @@
     unstable = import inputs.nixpkgs-unstable {
       system = final.system;
       config.allowUnfree = true;
+      overlays = [
+        # Override avante-nvim to use latest from GitHub
+        # This fixes the Neovim 0.12+ vim.net.request API incompatibility
+        # where opts was passed as string instead of table
+        (final: prev: {
+          vimPlugins = prev.vimPlugins // {
+            avante-nvim = prev.vimPlugins.avante-nvim.overrideAttrs (oldAttrs: {
+              version = "v0.5.0";
+              src = final.fetchFromGitHub {
+                owner = "avante-corp";
+                repo = "avante.nvim";
+                tag = "v0.5.0";
+                # Run `nix build` to get the correct hash from the error message
+                hash = "sha256-HwCLzqKdVtg1FqaTraDbGvbxsOHA9vYrvGNOrjE8Bbo=";
+              };
+            });
+          };
+        })
+      ];
     };
   };
 }
