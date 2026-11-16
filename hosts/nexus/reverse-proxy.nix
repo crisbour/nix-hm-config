@@ -22,7 +22,7 @@ in
       extraDomainNames = [ "*.adventure-bytes.com" ];
       dnsProvider = "cloudflare";
       dnsPropagationCheck = true;
-      credentialsFile = "/data/secrets/cloudflare/api_key_credentials.txt";
+      credentialFiles.CF_DNS_API_TOKEN_FILE = "/data/secrets/cloudflare/api_key_credentials.txt";
     };
   };
 

@@ -227,8 +227,8 @@
           modules = [ ./hosts/promax nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
-        hydrax = lib.nixosSystem {
-          modules = [ ./hosts/hydrax nurOverlay ];
+        nexus = lib.nixosSystem {
+          modules = [ ./hosts/nexus nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         uoe = lib.nixosSystem {
@@ -254,13 +254,13 @@
         };
       };
 
-      deploy.nodes.hydrax = {
+      deploy.nodes.nexus = {
         hostname = "hydrax.go.ro";
         profiles.system = {
           sshUser = "root";
           sshOpts = [ "-p 5022" ];
           user = "root";
-          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.hydrax;
+          path = deploy-rs.lib.x86_64-linux.activate.nixos self.nixosConfigurations.nexus;
         };
       };
 
