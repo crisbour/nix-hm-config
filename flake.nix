@@ -224,9 +224,7 @@
 
       nixosConfigurations = {
         promax= lib.nixosSystem {
-          modules = [ ./hosts/promax14 nurOverlay ];
-          specialArgs = { inherit inputs outputs; };
-        };
+          modules = [ ./hosts/promax nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         hydrax = lib.nixosSystem {
@@ -254,7 +252,6 @@
           ];
           specialArgs = { inherit inputs outputs; };
         };
-
       };
 
       deploy.nodes.hydrax = {
