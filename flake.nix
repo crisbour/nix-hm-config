@@ -223,12 +223,10 @@
       };
 
       nixosConfigurations = {
-        promax14 = lib.nixosSystem {
+        promax= lib.nixosSystem {
           modules = [ ./hosts/promax14 nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
-        precision = lib.nixosSystem {
-          modules = [ ./hosts/precision nurOverlay ];
           specialArgs = { inherit inputs outputs; };
         };
         hydrax = lib.nixosSystem {

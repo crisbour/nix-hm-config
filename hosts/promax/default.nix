@@ -36,6 +36,9 @@
     ./sops.nix
   ];
 
+  programs.adb.enable = true;
+  users.users.cristi.extraGroups = [ "adbusers" "kvm" ];
+
   mySystem.info = {
     hostname = "promax14";
     has_gui = true;
