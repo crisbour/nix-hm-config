@@ -3,7 +3,8 @@
   lib,
   ...
 }: let
-  my_lock_cmd = "noctalia msg session lock";
+  #my_lock_cmd = "noctalia msg session lock";
+  my_lock_cmd = "pidof swaylock || swaylock";
 
   suspendScript = pkgs.writeShellScript "suspend-script" ''
     BAT=$(echo /sys/class/power_supply/BAT*)

@@ -27,6 +27,7 @@ in
     ./variables.nix
 
     ./hypridle.nix
+    ./swaylock.nix
     ./scripts
     #./polkitagent.nix
   ];
