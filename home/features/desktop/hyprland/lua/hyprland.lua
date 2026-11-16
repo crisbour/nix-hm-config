@@ -186,8 +186,7 @@ hl.bind(mod .. " + N", hl.dsp.exec_cmd("swaync-client -t -sw"))
 hl.bind("CTRL + SHIFT + ESCAPE", hl.dsp.exec_cmd("hyprctl dispatch exec '[workspace 11] btop'"))
 
 -- Session / lock
---hl.bind("CTRL + ALT + Delete", hl.dsp.exec_cmd("caelestia shell drawers toggle session"))
-hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("loginctl lock-session"))
+hl.bind(mod .. " + Escape", hl.dsp.exec_cmd("swaylock"))
 hl.bind(mod .. " + SHIFT + Escape", hl.dsp.exec_cmd("power-menu")) -- Using rofi
 
 -- Screenshots

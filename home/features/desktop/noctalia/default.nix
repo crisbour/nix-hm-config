@@ -34,8 +34,10 @@
 
         end = [
           "cpu"
+          "ram"
+          "disk"
+          "caffeine"
           "notifications"
-          "clipboard"
           "network"
           "bluetooth"
           "volume"
@@ -130,8 +132,23 @@
         };
 
         cpu = {
-          label_min_width = 1;
-          show_cpu_cores = true;
+          type = "sysmon";
+          stat = "cpu_usage";
+          #show_cpu_cores = true;
+        };
+
+        ram = {
+          type = "sysmon";
+          stat = "ram_pct";
+        };
+
+        disk = {
+          type = "sysmon";
+          stat = "disk_used_pct";
+        };
+
+        caffeine = {
+          scale = 1.4;
         };
 
         network = {
