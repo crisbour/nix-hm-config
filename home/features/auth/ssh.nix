@@ -14,9 +14,9 @@ in
     enableDefaultConfig = false;
     settings = {
       nexus = {
-        Hostname = "adventure-bytes.com";
+        Hostname = "nexus.hyena-royal.ts.net";
         User = "cristi";
-        Port = 5022;
+        Port = 22;
         ForwardAgent = true;
       };
 

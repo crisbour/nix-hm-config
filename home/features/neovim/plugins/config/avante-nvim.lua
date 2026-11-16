@@ -3,7 +3,7 @@ require("avante").setup({
   provider = "elm_qwen",
   auto_suggestions_provider = "elm_mistralai",
   behaviour = {
-    auto_suggestions = true,
+    auto_suggestions = false,
     auto_set_keymaps = true,
     auto_apply_diff_after_generation = false,
     enable_token_counting = true,
@@ -42,9 +42,11 @@ require("avante").setup({
       },
     },
   },
-  web_search_engine = {
-    provider = "tavily",
-  },
+  -- FIXME: Search doesn't work due to vim.net usage, need to bump avante and neovim versions
+  -- Wait for 26.11 and see if nvim 0.12.6 works
+  -- web_search_engine = {
+  --   provider = "tavily",
+  -- },
   -- Might need to be added for evaluating work in opencode agent
   -- acp_providers = {
   --   ["opencode"] = {
