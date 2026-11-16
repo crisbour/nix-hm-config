@@ -103,6 +103,19 @@ in {
           unstable.pi-coding-agent
         ]);
 
+    programs.neovim.plugins = with pkgs.vimPlugins; [
+      markdown-preview-nvim
+      {
+        plugin = vim-slime;
+        type = "viml";
+        config = ''
+          let g:slime_target = "tmux"
+          let g:slime_bracketed_paste = 1
+          let g:slime_paste_file = tempname()
+          let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
+        '';
+      }
+    ];
 
     # TODO: How to use poetry to configure python env?
     #xdg.configFile."pypoetry/config.toml".source =

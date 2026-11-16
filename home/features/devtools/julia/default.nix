@@ -4,6 +4,11 @@
     julia-bin
   ];
 
+  programs.neovim.plugins = with pkgs.vimPlugins; [
+    julia-vim
+    vim-pluto
+  ];
+
   home.file.".julia/config/startup.jl".source = ./startup.jl;
   home.file.".julia/config/startup_ijulia.jl".text = ''
     # automatically reload code of imported libraries

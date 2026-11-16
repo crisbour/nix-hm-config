@@ -18,6 +18,19 @@
       ;
     })
   ];
+
+  programs.neovim.plugins = with pkgs.vimPlugins; [
+    {
+      plugin = vimtex;
+      type = "viml";
+      config = ''
+        let g:vimtex_view_general_viewer = 'okular'
+        let maplocalleader = ";"
+        set encoding=utf-8
+      '';
+    }
+  ];
+
 }
 
 #pkgs.texlive.combine {

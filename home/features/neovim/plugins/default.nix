@@ -64,7 +64,6 @@ in
     }
 
     # Markdown preview
-    markdown-preview-nvim
     markview-nvim
 
     # Local Environment Configuration and Integration
@@ -92,28 +91,7 @@ in
     editorconfig-vim
 
     # ------ languages -------
-    {
-      plugin = vimtex;
-      type = "viml";
-      config = ''
-        let g:vimtex_view_general_viewer = 'okular'
-        let maplocalleader = ";"
-        set encoding=utf-8
-      '';
-    }
     vim-just
-    julia-vim
-    vim-pluto
-    {
-      plugin = vim-slime;
-      type = "viml";
-      config = ''
-        let g:slime_target = "tmux"
-        let g:slime_bracketed_paste = 1
-        let g:slime_paste_file = tempname()
-        let g:slime_default_config = {"socket_name": "default", "target_pane": "{last}"}
-      '';
-    }
 
     (luaPlugin "nvim-tree-lua" nvim-tree-lua)
     (vimlPlugin "vim-easy-align" vim-easy-align)
