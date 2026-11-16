@@ -32,6 +32,12 @@
     useRoutingFeatures = "server";
   };
 
+  services.pypi-server = {
+    enable = true;
+    port = 8085;
+    packagesDir = "/data/pypi/packages";
+  };
+
   mySystem.incus = {
     enable = true;
     enableServer = true;

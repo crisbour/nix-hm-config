@@ -130,6 +130,12 @@ in
             rule = "Host(`nc.${domain}`)";
             service = "nextcloud";
           };
+
+          pypi = {
+            entryPoints = [ "web" "websecure" ];
+            rule = "Host(`pypi.${domain}`)";
+            service = "pypi";
+          };
         };
         services = {
           website.loadBalancer.servers = [ { url = "http://localhost:80"; } ];
@@ -143,6 +149,7 @@ in
           nextcloud.loadBalancer.servers = [
             { url = "http://127.0.0.1:8180"; }
           ];
+          pypi.loadBalancer.servers = [ { url = "http://localhost:8085"; } ];
         };
         # https://github.com/firecat53/nixos/blob/e0b04757e8f3e591359234215214ff5554af997a/hosts/vps/services/traefik.nix#L75
         middlewares = {
