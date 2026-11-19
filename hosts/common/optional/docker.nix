@@ -1,27 +1,11 @@
 { config, lib, pkgs, ... }:
 {
-  mySystem.docker = {
+  # Configure container runtime via mySystem.virtualisation module instead:
+  mySystem.virtualisation = {
     enable = true;
+    oci = "podman";  # or "docker"
     nvidia.enable = config.mySystem.info.has_nvidia;
   };
 
-  # WARN: gitlab-runner defines this as "mkDefault true",
-  # hence making sure we avoid using docker
-  virtualisation.docker = {
-    enable = true;
-    # Use the rootless mode - run Docker daemon as non-root user
-    rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
-  };
-
-  #virtualisation.podman = {
-  #  enable = true;
-  #  # Create a `docker` alias for podman, to use it as a drop-in replacement
-  #  #dockerCompat = true;
-  #  #dockerSocket.enable = true;
-  #};
-
-  environment.systemPackages = [ pkgs.distrobox];
+  environment.systemPackages = [ pkgs.distrobox ];
 }
