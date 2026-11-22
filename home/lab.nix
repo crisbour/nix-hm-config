@@ -37,21 +37,4 @@
     # WARN: I only need this for Fusion360, perhaps isolate it more specifically in the top config
     flatpak
   ];
-
-  # FIXME: Make profiles and include them in home/features/desktop/hyprland/config.nix instead
-  wayland.windowManager.hyprland = {
-    settings = {
-      workspace = [
-        "1, monitor:DP-1, default:true"
-      ];
-    };
-
-    extraConfig = "
-      monitor = DP-1, 1920x1080, 0x0, 1
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
-  };
-
 }

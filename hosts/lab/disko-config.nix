@@ -21,11 +21,57 @@
               mountOptions = [ "umask=0077" ];
             };
           };
-          crypt-root = {
+          root = {
+            size = "100%";
+            content = {
+              type = "btrfs";
+              subvolumes = let
+                # NOTE: x-gvfs-hide is useful to hiding the route of such mouting points in GUI
+                mountOptions = ["compress=zstd" "noatime" "nodiratime" ];
+              in {
+                # TODO: The root can go away if we opt for impermanence
+                "/root" = {
+                  mountpoint = "/";
+                  inherit mountOptions;
+                };
+                #"/home" = {
+                #  mountpoint = "/home";
+                #  inherit mountOptions;
+                #};
+                "/persist" = {
+                  mountpoint = "/persist";
+                  inherit mountOptions;
+                };
+                "/var-log" = {
+                  mountpoint = "/var/log";
+                  inherit mountOptions;
+                };
+                "/nix" = {
+                  mountpoint = "/nix";
+                  inherit mountOptions;
+                };
+                "/swap" = {
+                  mountpoint = "/swap";
+                  mountOptions = [ "noatime" ];
+                  swap.swapfile.size = "16G";
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    disk.data = {
+      type = "disk";
+      device = "/dev/nvme0n1";
+      content = {
+        type = "gpt";
+        partitions = {
+          luks = {
             size = "100%";
             content = {
               type = "luks";
-              name = "crypt-root";
+              name = "crypted";
               settings = {
                 allowDiscards = true;
                 bypassWorkqueues = true;
@@ -36,32 +82,9 @@
                   # NOTE: x-gvfs-hide is useful to hiding the route of such mouting points in GUI
                   mountOptions = ["compress=zstd" "noatime" "nodiratime" ];
                 in {
-                  # TODO: The root can go away if we opt for impermanence
-                  "/root" = {
-                    mountpoint = "/";
-                    inherit mountOptions;
-                  };
-                  "/persist" = {
-                    mountpoint = "/persist";
-                    inherit mountOptions;
-                  };
-                  "/var-log" = {
-                    mountpoint = "/var/log";
-                    inherit mountOptions;
-                  };
-                  "/nix" = {
-                    mountpoint = "/nix";
-                    inherit mountOptions;
-                  };
-                  # NOTE: Home will be part of persist
                   "/home" = {
                     mountpoint = "/home";
                     inherit mountOptions;
-                  };
-                  "/swap" = {
-                    mountpoint = "/swap";
-                    mountOptions = [ "noatime" ];
-                    swap.swapfile.size = "16G";
                   };
                 };
               };
