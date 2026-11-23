@@ -15,7 +15,7 @@
     enable = true;
     xwayland.enable = true;
     withUWSM = true;
-    #package = inputs.hyprland.packages.${pkgs.system}.default;
+    package = inputs.hyprland.packages.${pkgs.system}.default;
     portalPackage = pkgs.xdg-desktop-portal-hyprland;
   };
 

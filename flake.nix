@@ -3,19 +3,6 @@
 {
   description = "Home-manager configuration as a flake";
 
-  # Tracks nixos-unstable. These caches serve prebuilt Noctalia (C++/Qt) and
-  # Hyprland binaries — without them both compile from source on every rebuild.
-  nixConfig = {
-    extra-substituters = [
-      "https://noctalia.cachix.org"
-      "https://hyprland.cachix.org"
-    ];
-    extra-trusted-public-keys = [
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-    ];
-  };
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";

@@ -44,9 +44,15 @@ in
       # Use `blazer` as nix-store cache
       substituters = [
         "http://w9098.hyena-royal.ts.net:5000"
+        # Tracks nixos-unstable. These caches serve prebuilt Noctalia (C++/Qt) and
+        # Hyprland binaries — without them both compile from source on every rebuild.
+        "https://noctalia.cachix.org"
+        "https://hyprland.cachix.org"
       ];
       trusted-public-keys = [
         "w9098.hyena-royal.ts.net:INWavQ8uSBgahDSv/KWISqjTZhCtCrsddQRrxJvRPy4="
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
       #access-tokens = {
       #  "github.com" = builtins.getEnv "GITHUB_TOKEN";

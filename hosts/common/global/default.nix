@@ -79,9 +79,11 @@
     experimental-features = [ "nix-command" "flakes" ];
     substituters = [
       "http://w9098.hyena-royal.ts.net:5000"
+      "https://hyprland.cachix.org"
     ];
     trusted-public-keys = [
       "w9098.hyena-royal.ts.net:INWavQ8uSBgahDSv/KWISqjTZhCtCrsddQRrxJvRPy4="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
   nix.gc = {
