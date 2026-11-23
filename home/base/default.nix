@@ -41,13 +41,17 @@ in
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
       trusted-users = [ config.home.username ];
-        #access-tokens = {
-        #  "github.com" = builtins.getEnv "GITHUB_TOKEN";
-        #};
+      # Use `blazer` as nix-store cache
+      substituters = [
+        "http://w9098.hyena.royal.ts.net:5000"
+      ];
+      trusted-public-keys = [
+        "w9098.hyena-royal.ts.net:INWavQ8uSBgahDSv/KWISqjTZhCtCrsddQRrxJvRPy4="
+      ];
+      #access-tokens = {
+      #  "github.com" = builtins.getEnv "GITHUB_TOKEN";
+      #};
       #netrc-file = "${homeDirectory}/config/nix/netrc";
-      # NOTE: Do we need explicit use of store cache
-      #substituters = "https://cache.nixos.org";
-      #trusted-public-keys = "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=";
     };
   };
 

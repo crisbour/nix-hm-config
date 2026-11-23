@@ -1,5 +1,6 @@
 {
   imports = [
-    ./syncthing.nix
+    #./syncthing.nix
+    ./binary-cache.nix
   ];
 }

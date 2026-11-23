@@ -75,7 +75,15 @@
   ];
 
   # Enable flakes and nix-command
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings = {
+    experimental-features = [ "nix-command" "flakes" ];
+    substituters = [
+      "http://w9098.hyena.royal.ts.net:5000"
+    ];
+    trusted-public-keys = [
+      "w9098.hyena-royal.ts.net:INWavQ8uSBgahDSv/KWISqjTZhCtCrsddQRrxJvRPy4="
+    ];
+  };
   nix.gc = {
     automatic = true;
     dates = "weekly";
