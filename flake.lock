@@ -1279,6 +1279,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "noctalia": "noctalia",
         "nur": "nur",
+        "solidcraft": "solidcraft",
         "sops-nix": "sops-nix",
         "stylix": "stylix",
         "waveforms": "waveforms",
@@ -1320,6 +1321,26 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
+        "type": "github"
+      }
+    },
+    "solidcraft": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1795389722,
+        "narHash": "sha256-v8QuwP/V4mphTf+HPyOHacYRmAZ6N42eRq2CULfnuVg=",
+        "owner": "tangency-labs",
+        "repo": "solidcraft",
+        "rev": "cd4f88a899a57114815fd48e15cbd735499ad2f5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tangency-labs",
+        "repo": "solidcraft",
         "type": "github"
       }
     },

@@ -15,6 +15,7 @@
     #./features/nfs
 
     ./features/extra/mathematica.nix
+    ./features/extra/cad.nix
     ./features/llm
 
     # Services

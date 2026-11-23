@@ -118,6 +118,10 @@
       url = "github:liff/waveforms-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    solidcraft = {
+      url = "github:tangency-labs/solidcraft";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
 
     # Looks
     stylix = {

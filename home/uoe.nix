@@ -14,6 +14,7 @@
     ./features/pass
     ./features/nfs
 
+    ./features/extra/cad.nix
     ./features/extra/mathematica.nix
   ];
 
