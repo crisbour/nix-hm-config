@@ -12,7 +12,7 @@
         type = "gpt";
         partitions = {
           ESP = {
-            size = "700M";
+            size = "1G";
             type = "EF00";
             content = {
               type = "filesystem";
@@ -21,11 +21,11 @@
               mountOptions = [ "umask=0077" ];
             };
           };
-          crypt-root = {
+          luks-root = {
             size = "100%";
             content = {
               type = "luks";
-              name = "crypt-root";
+              name = "crypted";
               settings = {
                 allowDiscards = true;
                 bypassWorkqueues = true;
@@ -53,15 +53,47 @@
                     mountpoint = "/nix";
                     inherit mountOptions;
                   };
-                  # NOTE: Home will be part of persist
-                  "/home" = {
-                    mountpoint = "/home";
-                    inherit mountOptions;
-                  };
+                  #"/home" = {
+                  #  mountpoint = "/home";
+                  #  inherit mountOptions;
+                  #};
                   "/swap" = {
                     mountpoint = "/swap";
                     mountOptions = [ "noatime" ];
                     swap.swapfile.size = "64G";
+                  };
+                };
+              };
+            };
+          };
+        };
+      };
+    };
+    disk.data = {
+      type = "disk";
+      device = "/dev/nvme0n1";
+      content = {
+        type = "gpt";
+        partitions = {
+          luks-data = {
+            size = "100%";
+            content = {
+              type = "luks";
+              name = "crypted-data";
+              settings = {
+                allowDiscards = true;
+                bypassWorkqueues = true;
+              };
+              content = {
+                type = "btrfs";
+                subvolumes = let
+                  # NOTE: x-gvfs-hide is useful to hiding the route of such mouting points in GUI
+                  mountOptions = ["compress=zstd" "noatime" "nodiratime" ];
+                in {
+                  # NOTE: Home will be part of persist
+                  "/home" = {
+                    mountpoint = "/home";
+                    inherit mountOptions;
                   };
                 };
               };

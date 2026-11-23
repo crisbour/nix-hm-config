@@ -17,7 +17,7 @@
         position = "top";
         thickness = 32;
         scale = 1.25;
-        margin_opposite_edge = 1;
+        margin_ends = "2%";
 
         start = [
           "launcher"

@@ -18,6 +18,10 @@ in
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
       # TODO Are there packages that I would like and are not in nixpkgs
+      permittedInsecurePackages = [
+        "electron-41.10.7"
+        "tmate-unstable-2022-08-07"
+      ];
       #packagesOverrides = pkgs: {
       #  nur = import (builtins.fetchTarball
       #    "https://github.com/nix-community/NUR/archive/master.tar.gz") {

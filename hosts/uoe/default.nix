@@ -41,6 +41,7 @@
   services.tailscale = {
     enable = true;
     useRoutingFeatures = "both";
+    # FIXME: Still need to manually run: `tailscale up --advertise-routes=129.215.0.0/16 --advertise-exit-node`
     extraSetFlags = [
       "--advertise-exit-node"
       "--advertise-routes=129.215.0.0/16" # Advertise path to datastore
@@ -85,12 +86,12 @@
   # This setting is usually set to true in configuration.nix
   # generated at installation time. So we force it to false
   # for now.
-  #boot.loader.systemd-boot.enable = true;
-  boot.loader.systemd-boot.enable = lib.mkForce false;
-  boot.lanzaboote = {
-    enable = true;
-    pkiBundle = "/etc/secureboot";
-  };
+  boot.loader.systemd-boot.enable = true;
+  #boot.loader.systemd-boot.enable = lib.mkForce false;
+  #boot.lanzaboote = {
+  #  enable = true;
+  #  pkiBundle = "/etc/secureboot";
+  #};
 
   security.tpm2.enable = true;
 

@@ -40,33 +40,8 @@
     flatpak
   ];
 
-  # FIXME: Make profiles and include them in home/features/desktop/hyprland/config.nix instead
-  wayland.windowManager.hyprland = {
-    settings = {
-      workspace = [
-        "1, monitor:DP-3, default:true"
-        "2, monitor:DP-2"
-      ];
-    };
-
-    extraConfig = "
-      #monitor = HDMI-A-4, 1920x1080, 0x0, 1
-      # Read mode
-      monitor = DP-2, 1920x1080, 0x0, 1, transform, 1
-      monitor = DP-3, 1920x1200, 1080x0, 1
-
-      # Presentation mode
-      #monitor = DP-2, 1920x1080, 0x0, 1
-      #monitor = DP-3, 1920x1200, 1920x0, 1
-
-      # Make sure no scaling is applied to main display
-      #monitor=eDP-1,preferred,auto,1
-      #monitor = DP-2, preferred,auto,1.5
-
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
-  };
+  # Monitors setups
+  #hl.monitor({output="DP-2", mode="preferred", position="1920x1080", transform=1, scale=1})
+  #hl.monitor({output="DP-3", mode="preferred", position="1080x0", scale=1})
 
 }
