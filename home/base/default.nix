@@ -17,6 +17,10 @@ in
     config = {
       allowUnfree = true;
       allowUnfreePredicate = (_: true);
+      permittedInsecurePackages = [
+        "electron-41.10.7"
+        "tmate-unstable-2022-08-07"
+      ];
       # TODO Are there packages that I would like and are not in nixpkgs
       permittedInsecurePackages = [
         "electron-41.10.7"

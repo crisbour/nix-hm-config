@@ -123,4 +123,12 @@
 
   # --------------- SOPS -------------------
   sops.secrets."uoe_mac" = {};
+
+  # Block websites
+  networking.extraHosts = ''
+    0.0.0.0 youtube.com
+    0.0.0.0 movies.nl
+    0.0.0.0 www.youtube.com
+    0.0.0.0 yarrlist.xyz
+  '';
 }

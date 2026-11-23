@@ -11,11 +11,6 @@
       "virtio_pci"
       "tun"
 
-    ] ++ lib.optionals config.mySystem.info.has_nvidia [
-      "nvidia"
-      #"nvidia_modeset"
-      #"nvidia_uvm"
-      #"nvidia_drm"
     ];
   };
 
@@ -26,20 +21,23 @@
     #"vfio-pci.ids=10de:25b9" # nvidia address
   ];
 
-  boot.blacklistedKernelModules = lib.mkDefault [ "nouveau" ];
-
   # Bind specified devices to vfio-pci
   #boot.extraModprobeConfig = ''
   #  options vfio-pci ids=10de:25b9
   #  softdep nvidia pre: vfio-pci
   #'';
 
+  programs.virt-manager.enable = true;
+
   virtualisation = {
     libvirtd = {
       enable = true;
       qemu = {
         package = pkgs.qemu_kvm;
+        #runAsRoot = true;
         swtpm.enable = true;
+        # File sharing
+        vhostUserPackages = with pkgs; [ virtiofsd ];
       };
       allowedBridges = [
         "virbr0"
@@ -47,6 +45,8 @@
     };
     spiceUSBRedirection.enable = true;
   };
+
+  networking.firewall.trustedInterfaces = [ "virbr0" ];
 
   # Enable spice-vdagentd for clipboard sharing
   services.spice-vdagentd.enable = true;
@@ -56,6 +56,7 @@
     qemu_kvm
     virtiofsd
     virt-manager
+    virt-viewer
     quickemu
     virtio-win
     virglrenderer
