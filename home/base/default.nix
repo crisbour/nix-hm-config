@@ -22,10 +22,6 @@ in
         "tmate-unstable-2022-08-07"
       ];
       # TODO Are there packages that I would like and are not in nixpkgs
-      permittedInsecurePackages = [
-        "electron-41.10.7"
-        "tmate-unstable-2022-08-07"
-      ];
       #packagesOverrides = pkgs: {
       #  nur = import (builtins.fetchTarball
       #    "https://github.com/nix-community/NUR/archive/master.tar.gz") {
@@ -44,10 +40,10 @@ in
       cores = 0;
       experimental-features = [ "nix-command" "flakes" ];
       warn-dirty = false;
-      trusted-users = [ config.home.username ];
+      trusted-users = [ "@wheel" config.home.username ];
       # Use `blazer` as nix-store cache
       substituters = [
-        "http://w9098.hyena.royal.ts.net:5000"
+        "http://w9098.hyena-royal.ts.net:5000"
       ];
       trusted-public-keys = [
         "w9098.hyena-royal.ts.net:INWavQ8uSBgahDSv/KWISqjTZhCtCrsddQRrxJvRPy4="
