@@ -77,6 +77,7 @@
   # Enable flakes and nix-command
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
+    trusted-users = [ "root" "cristi" "@wheel" ];
     substituters = [
       "http://w9098.hyena-royal.ts.net:5000"
       "https://hyprland.cachix.org"
